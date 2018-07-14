@@ -1,0 +1,57 @@
+{
+  "name": "bitcapital-core-sdk",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "author": "Luis Brito <luis@nxtep.io>",
+  "license": "UNLICENSED",
+  "typings": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn run -s clean && tsc",
+    "clean": "rimraf ./dist/",
+    "test": "yarn run -s lint && jest --config jest.json",
+    "lint": "tslint --project tsconfig.json",
+    "docs": "./scripts/docs.sh",
+    "start": "$(cd docs/ && serve -p ${PORT:-3030})",
+    "precommit": "lint-staged && yarn -s test"
+  },
+  "lint-staged": {
+    "!(dist/)*.ts": [
+      "tslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "buffer": "^5.0.8",
+    "js-base64": "^2.4.3",
+    "localstorage-polyfill": "^1.0.1",
+    "moment": "^2.22.0",
+    "qs": "^6.5.1",
+    "rimraf": "^2.6.2",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.2",
+    "@types/lodash": "^4.14.104",
+    "@types/winston": "^2.3.9",
+    "axios-mock-adapter": "^1.10.0",
+    "hat": "^0.0.3",
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "lint-staged": "^7.0.0",
+    "nativescript-typedoc-theme": "https://github.com/NativeScript/nativescript-typedoc-theme.git",
+    "nodemon": "^1.12.1",
+    "serve": "^6.4.8",
+    "ts-jest": "^21.1.2",
+    "ts-lint": "^4.5.1",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.4.2",
+    "typedoc": "^0.9.0",
+    "typedoc-clarity-theme": "^1.1.0",
+    "typescript": "^2.5.3"
+  }
+}

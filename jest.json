@@ -1,0 +1,28 @@
+{
+  "testRegex": "(./tests/.*|\\.(spec))\\.(ts)$",
+  "mapCoverage": true,
+  "collectCoverage": true,
+  "testEnvironment": "node",
+  "coverageDirectory": "./coverage",
+  "coveragePathIgnorePatterns": [
+    "node_modules",
+    "tests"
+  ],
+  "transform": {
+    "^.+\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
+  },
+  "setupFiles": [
+    "./tests/setup.ts"
+  ],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "json"
+  ],
+  "testPathIgnorePatterns": [
+    "./build",
+    "./tests/setup.ts",
+    "./tests/__mock__"
+  ]
+}
