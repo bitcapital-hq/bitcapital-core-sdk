@@ -1,4 +1,4 @@
-import { User } from '../models';
+import { User, UserSchema } from '../models';
 import { HttpInterceptor, HttpOptions } from '../base';
 import { Observable, Observer, StorageUtil, LocalStorage } from '../utils';
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from '../services';
@@ -148,7 +148,7 @@ export default class Session {
 
       try {
         const user = await this.userWebService.me(oauth);
-        return this.register(new User({ ...user, credentials: oauth }));
+        return this.register(new User({ ...user, credentials: oauth } as UserSchema));
       } catch (error) {
         error.credentials = oauth;
         throw error;

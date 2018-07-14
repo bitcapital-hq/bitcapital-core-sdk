@@ -36,8 +36,8 @@ export default class User extends BaseModel implements UserSchema {
 
   constructor(data: Partial<UserSchema>) {
     super(data);
-    this.lastName = data.firstName;
-    this.firstName = data.lastName;
+    this.lastName = data.lastName;
+    this.firstName = data.firstName;
     this.email = data.email;
     this.password = data.password;
     this.role = data.role;
@@ -50,5 +50,13 @@ export default class User extends BaseModel implements UserSchema {
     this.credentials = (data.credentials ? (
       data.credentials instanceof OAuthCredentials ? data.credentials : new OAuthCredentials(data.credentials)
     ) : undefined);
+  }
+
+  get name() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
+  set name(_ignoredValue: string) {
+    throw new Error('Name is a readonly value, you must edit "firstName" and "lastName" separately');
   }
 }

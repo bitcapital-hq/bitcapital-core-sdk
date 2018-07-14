@@ -30,4 +30,5 @@ export default class User extends BaseModel implements UserSchema {
     virtual?: boolean;
     credentials?: OAuthCredentials;
     constructor(data: Partial<UserSchema>);
+    name: string;
 }
