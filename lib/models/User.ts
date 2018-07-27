@@ -1,5 +1,6 @@
 import { BaseModel, BaseModelSchema } from '../base';
 import OAuthCredentials from './OAuthCredentials';
+import Domain from './Domain';
 
 export enum UserStatus {
   ACTIVE = 'active',
@@ -21,6 +22,8 @@ export interface UserSchema extends BaseModelSchema {
   status?: UserStatus;
   virtual?: boolean;
   credentials?: OAuthCredentials;
+  domain: Domain;
+  ownedDomain?: Domain;
 }
 
 export default class User extends BaseModel implements UserSchema {
@@ -33,6 +36,8 @@ export default class User extends BaseModel implements UserSchema {
   status?: UserStatus;
   virtual?: boolean = false;
   credentials?: OAuthCredentials;
+  domain: Domain;
+  ownedDomain?: Domain;
 
   constructor(data: Partial<UserSchema>) {
     super(data);
@@ -42,6 +47,8 @@ export default class User extends BaseModel implements UserSchema {
     this.password = data.password;
     this.role = data.role;
     this.status = data.status;
+    this.domain = data.domain;
+    this.ownedDomain = data.ownedDomain;
     this.virtual = (data.credentials && data.credentials.virtual) ?
       data.credentials.virtual :
       (data.virtual || this.virtual);

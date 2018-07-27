@@ -19,7 +19,6 @@ const TEST_VIRTUAL_CREDENTIALS = {
 };
 
 const TEST_USER = {
-  _id: hat(),
   firstName: 'John Doe',
   lastName: 'Connor Bro',
   email: 'user@test.com',
@@ -31,7 +30,6 @@ describe('lib.models.User', () => {
     const user = new User({ ...TEST_USER });
 
     expect(user).toBeTruthy();
-    expect(user.id).toBe(TEST_USER._id);
     expect(user.firstName).toBe(TEST_USER.firstName);
     expect(user.lastName).toBe(TEST_USER.lastName);
     expect(user.email).toBe(TEST_USER.email);
@@ -43,7 +41,6 @@ describe('lib.models.User', () => {
     const user = new User({ credentials, ...TEST_USER });
 
     expect(user).toBeTruthy();
-    expect(user.id).toBe(TEST_USER._id);
     expect(user.firstName).toBe(TEST_USER.firstName);
     expect(user.lastName).toBe(TEST_USER.lastName);
     expect(user.email).toBe(TEST_USER.email);
@@ -55,7 +52,6 @@ describe('lib.models.User', () => {
     const user = new User({ credentials, ...TEST_USER });
 
     expect(user).toBeTruthy();
-    expect(user.id).toBe(TEST_USER._id);
     expect(user.virtual).toBe(true);
     expect(user.firstName).toBe(TEST_USER.firstName);
     expect(user.lastName).toBe(TEST_USER.lastName);
@@ -67,7 +63,6 @@ describe('lib.models.User', () => {
     const user = new User({ credentials: TEST_CREDENTIALS as any, ...TEST_USER });
 
     expect(user).toBeTruthy();
-    expect(user.id).toBe(TEST_USER._id);
     expect(user.firstName).toBe(TEST_USER.firstName);
     expect(user.lastName).toBe(TEST_USER.lastName);
     expect(user.email).toBe(TEST_USER.email);
