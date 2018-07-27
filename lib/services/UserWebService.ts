@@ -77,7 +77,7 @@ export default class UserWebService extends Http {
    * @param user The values you want to update
    */
   public async update(id: string, user: UserSchema): Promise<User> {
-    const response = await this.put(`/users/${id}`, user);
+    const response = await this.post(`/users/${id}`, user);
 
     if (!response || response.status !== 200) {
       throw response;
