@@ -1,1 +1,1 @@
-export { default as Http, HttpOptions, HttpInterceptor } from './http/Http';
+export { default as Http, HttpOptions, HttpInterceptor } from "./http/Http";

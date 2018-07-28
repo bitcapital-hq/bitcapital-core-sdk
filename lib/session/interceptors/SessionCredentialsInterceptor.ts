@@ -1,6 +1,6 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { HttpInterceptor } from '../../base';
-import Session from '../Session';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { HttpInterceptor } from "../../base";
+import Session from "../Session";
 
 export default class SessionCredentialsInterceptor implements HttpInterceptor {
   session: Session;
@@ -12,8 +12,8 @@ export default class SessionCredentialsInterceptor implements HttpInterceptor {
   public async request(request: AxiosRequestConfig) {
     const credentials = this.session.current ? this.session.current.credentials : undefined;
 
-    if (credentials && !request.headers['Authorization']) {
-      request.headers['Authorization'] = `Bearer ${credentials.accessToken}`;
+    if (credentials && !request.headers["Authorization"]) {
+      request.headers["Authorization"] = `Bearer ${credentials.accessToken}`;
     }
     return request;
   }

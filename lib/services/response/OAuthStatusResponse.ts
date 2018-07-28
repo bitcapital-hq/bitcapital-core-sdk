@@ -5,7 +5,7 @@ export interface OAuthStatusResponseSchema {
   uptime: number;
 }
 
-export default class OAuthStatusResponse implements OAuthStatusResponseSchema{
+export default class OAuthStatusResponse implements OAuthStatusResponseSchema {
   name: string;
   version: string;
   env: string;

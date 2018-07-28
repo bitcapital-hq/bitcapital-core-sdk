@@ -1,9 +1,9 @@
-import { stringify } from 'qs';
-import { Buffer } from 'buffer';
-import { Http, HttpOptions } from '../base';
-import { OAuthCredentials } from '../models';
-import { OAuthPasswordRequest, OAuthClientCredentialsRequest } from './request';
-import { OAuthStatusResponse } from './response';
+import { stringify } from "qs";
+import { Buffer } from "buffer";
+import { Http, HttpOptions } from "../base";
+import { OAuthCredentials } from "../models";
+import { OAuthPasswordRequest, OAuthClientCredentialsRequest } from "./request";
+import { OAuthStatusResponse } from "./response";
 
 export interface OAuthWebServiceOptions extends HttpOptions {
   clientId: string;
@@ -30,9 +30,9 @@ export default class OAuthWebService extends Http {
    *
    * @returns {String}
    */
-  public static getBasicToken(data: { clientId: string, clientSecret: string }): String {
+  public static getBasicToken(data: { clientId: string; clientSecret: string }): String {
     const mask = `${data.clientId}:${data.clientSecret}`;
-    return (new Buffer(mask).toString('base64'));
+    return new Buffer(mask).toString("base64");
   }
 
   /**
@@ -40,13 +40,13 @@ export default class OAuthWebService extends Http {
    *
    * @param data The user credentials
    */
-  public async password(data: { username: string, password: string }): Promise<OAuthCredentials> {
+  public async password(data: { username: string; password: string }): Promise<OAuthCredentials> {
     const request = new OAuthPasswordRequest(data.username, data.password);
-    const response = await this.post('/oauth/token', stringify(request), {
+    const response = await this.post("/oauth/token", stringify(request), {
       headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}`,
-      },
+        "Content-type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}`
+      }
     });
 
     if (response && response.status === 200) {
@@ -60,11 +60,11 @@ export default class OAuthWebService extends Http {
    */
   public async clientCredentials(): Promise<OAuthCredentials> {
     const request = new OAuthClientCredentialsRequest();
-    const response = await this.post('/oauth/token', stringify(request), {
+    const response = await this.post("/oauth/token", stringify(request), {
       headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}`,
-      },
+        "Content-type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}`
+      }
     });
 
     if (response && response.status === 200) {
@@ -79,10 +79,13 @@ export default class OAuthWebService extends Http {
    * @param accessToken The user access token
    */
   public async revoke(accessToken?: String): Promise<void> {
-
-    const response = await this.post('/oauth/revoke', { accessToken }, {
-      headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-    });
+    const response = await this.post(
+      "/oauth/revoke",
+      { accessToken },
+      {
+        headers: { "Content-type": "application/x-www-form-urlencoded" }
+      }
+    );
 
     // The client may choose to ignore this error, as it wouldn't interfere with the user flow.
     if (!response || response.status !== 200) {

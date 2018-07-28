@@ -1,6 +1,6 @@
-import { Session } from '../session';
-import { Http, HttpOptions } from '../base';
-import { AnalyticsActiveResponse, AnalyticsDevicesResponse } from './response';
+import { Session } from "../session";
+import { Http, HttpOptions } from "../base";
+import { AnalyticsActiveResponse, AnalyticsDevicesResponse } from "./response";
 
 export interface AnalyticsWebServiceOptions extends HttpOptions {
   session?: Session;
@@ -28,7 +28,7 @@ export default class AnalyticsWebService extends Http {
    * Gets analytics for the currently active tokens.
    */
   public async active(query: any = {}): Promise<AnalyticsActiveResponse> {
-    const response = await this.get('/analytics/active', query);
+    const response = await this.get("/analytics/active", query);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -41,7 +41,7 @@ export default class AnalyticsWebService extends Http {
    * Gets device analytics from recent tokens.
    */
   public async devices(query: any = {}): Promise<AnalyticsDevicesResponse> {
-    const response = await this.get('/analytics/devices', query);
+    const response = await this.get("/analytics/devices", query);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -49,5 +49,4 @@ export default class AnalyticsWebService extends Http {
 
     return new AnalyticsDevicesResponse(response.data);
   }
-
 }

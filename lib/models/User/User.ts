@@ -1,9 +1,9 @@
 import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
-import { OAuthCredentials, Domain, Consumer } from '..';
+import { OAuthCredentials, Domain, Consumer } from "..";
 
 export enum UserStatus {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
+  ACTIVE = "active",
+  INACTIVE = "inactive"
 }
 
 export enum UserRole {
@@ -37,21 +37,22 @@ export default class User extends BaseModel implements UserSchema {
   domain: Domain;
   consumer?: Consumer;
   virtual: boolean;
-  
+
   constructor(data: Partial<UserSchema>) {
     super(data);
-    
-    // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => this[prop] = data[prop]);
 
-    this.virtual = (data.credentials && data.credentials.virtual) ?
-      data.credentials.virtual :
-      (data.virtual || this.virtual);
+    // Assign all props
+    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+
+    this.virtual =
+      data.credentials && data.credentials.virtual ? data.credentials.virtual : data.virtual || this.virtual;
 
     // Relationship attributes enforcing
-    this.credentials = (data.credentials ? (
-      data.credentials instanceof OAuthCredentials ? data.credentials : new OAuthCredentials(data.credentials)
-    ) : undefined);
+    this.credentials = data.credentials
+      ? data.credentials instanceof OAuthCredentials
+        ? data.credentials
+        : new OAuthCredentials(data.credentials)
+      : undefined;
   }
 
   get name() {

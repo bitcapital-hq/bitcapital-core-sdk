@@ -18,8 +18,8 @@ export default class Phone extends BaseModel implements PhoneSchema {
 
   constructor(data: Partial<PhoneSchema>) {
     super(data);
-    
+
     // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => this[prop] = data[prop]);
+    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
   }
 }

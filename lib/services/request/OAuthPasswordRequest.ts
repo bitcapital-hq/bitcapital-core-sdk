@@ -4,7 +4,7 @@ export default class OAuthPasswordRequest {
   password: string;
 
   constructor(username: string, password: string) {
-    this.grant_type = 'password';
+    this.grant_type = "password";
     this.username = username;
     this.password = password;
   }

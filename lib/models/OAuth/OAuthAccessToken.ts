@@ -1,10 +1,10 @@
 import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
-import OAuthClient, { OAuthClientSchema } from './OAuthClient';
-import { User } from '..';
+import OAuthClient, { OAuthClientSchema } from "./OAuthClient";
+import { User } from "..";
 
 export enum OAuthClientStatus {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
+  ACTIVE = "active",
+  INACTIVE = "inactive"
 }
 
 export interface UserAgentInformation {
@@ -41,10 +41,10 @@ export default class OAuthAccessToken extends BaseModel {
     this.expires = data.expires ? new Date(data.expires) : undefined;
 
     if (data.client) {
-      this.client = typeof data.client === typeof 'a' ? data.client : new OAuthClient(data.client as any) as any;
+      this.client = typeof data.client === typeof "a" ? data.client : (new OAuthClient(data.client as any) as any);
     }
     if (data.user) {
-      this.user = typeof data.user === typeof 'a' ? data.user : new User(data.user as User);
+      this.user = typeof data.user === typeof "a" ? data.user : new User(data.user as User);
     }
   }
 }

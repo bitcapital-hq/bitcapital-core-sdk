@@ -34,7 +34,6 @@ export class PaginatedArray<T> extends Array<T> implements PaginationData {
 }
 
 export class PaginationUtil {
-
   /**
    * Merge the response data with pagination headers.
    *
@@ -42,9 +41,9 @@ export class PaginationUtil {
    * @param headers The map of the response headers
    */
   public static parse<T>(data: PaginatedArray<T> = [], headers: any = {}): PaginatedArray<T> {
-    data.dataLength = headers['x-data-length'] ? parseInt(headers['x-data-length'], DEFAULT_LIMIT) : undefined;
-    data.dataSkip = headers['x-data-skip'] ? parseInt(headers['x-data-skip'], DEFAULT_LIMIT) : undefined;
-    data.dataLimit = headers['x-data-limit'] ? parseInt(headers['x-data-limit'], DEFAULT_LIMIT) : undefined;
+    data.dataLength = headers["x-data-length"] ? parseInt(headers["x-data-length"], DEFAULT_LIMIT) : undefined;
+    data.dataSkip = headers["x-data-skip"] ? parseInt(headers["x-data-skip"], DEFAULT_LIMIT) : undefined;
+    data.dataLimit = headers["x-data-limit"] ? parseInt(headers["x-data-limit"], DEFAULT_LIMIT) : undefined;
     return data;
   }
 }

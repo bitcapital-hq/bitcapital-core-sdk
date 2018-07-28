@@ -39,6 +39,6 @@ export default class Domain extends BaseModel implements DomainSchema {
     super(data);
 
     // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => this[prop] = data[prop]);
+    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
   }
 }

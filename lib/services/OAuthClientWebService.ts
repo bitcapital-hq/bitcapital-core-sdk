@@ -1,7 +1,7 @@
-import { Session } from '../session';
-import { Http, HttpOptions } from '../base';
-import { OAuthClient, OAuthClientSchema } from '../models';
-import { PaginationUtil, PaginatedArray } from '../utils';
+import { Session } from "../session";
+import { Http, HttpOptions } from "../base";
+import { OAuthClient, OAuthClientSchema } from "../models";
+import { PaginationUtil, PaginatedArray } from "../utils";
 
 export interface OAuthClientWebServiceOptions extends HttpOptions {
   session?: Session;
@@ -30,7 +30,7 @@ export default class OAuthClientWebService extends Http {
    * @param query The query of the search
    */
   public async find(query: any = {}): Promise<PaginatedArray<OAuthClient>> {
-    const response = await this.get('/clients', query);
+    const response = await this.get("/clients", query);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -60,14 +60,13 @@ export default class OAuthClientWebService extends Http {
    * @param client The {#OAuthClient}. properties
    */
   public async create(client: OAuthClientSchema): Promise<OAuthClient> {
-    const response = await this.post('/clients', new OAuthClient(client));
+    const response = await this.post("/clients", new OAuthClient(client));
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
     return new OAuthClient(response.data);
-
   }
 
   /**

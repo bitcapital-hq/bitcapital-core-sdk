@@ -1,7 +1,7 @@
-import { Session } from '../session';
-import { Http, HttpOptions } from '../base';
-import { OAuthAccessToken } from '../models';
-import { PaginationUtil, PaginatedArray } from '../utils';
+import { Session } from "../session";
+import { Http, HttpOptions } from "../base";
+import { OAuthAccessToken } from "../models";
+import { PaginationUtil, PaginatedArray } from "../utils";
 
 export interface OAuthAccessTokenWebServiceOptions extends HttpOptions {
   session?: Session;
@@ -30,7 +30,7 @@ export default class OAuthAccessTokenWebService extends Http {
    * @param query The query of the search
    */
   public async find(query: any = {}): Promise<PaginatedArray<OAuthAccessToken>> {
-    const response = await this.get('/tokens', query);
+    const response = await this.get("/tokens", query);
 
     if (!response || response.status !== 200) {
       throw response;

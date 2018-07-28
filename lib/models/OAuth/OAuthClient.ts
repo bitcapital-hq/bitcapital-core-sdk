@@ -1,8 +1,8 @@
 import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
 
 export enum OAuthClientStatus {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
+  ACTIVE = "active",
+  INACTIVE = "inactive"
 }
 
 export interface OAuthClientSchema extends BaseModelSchema {

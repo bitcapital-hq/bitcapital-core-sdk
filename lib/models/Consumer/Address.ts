@@ -26,8 +26,8 @@ export default class Address extends BaseModel implements AddressSchema {
 
   constructor(data: Partial<AddressSchema>) {
     super(data);
-    
+
     // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => this[prop] = data[prop]);
+    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
   }
 }

@@ -1,5 +1,5 @@
-import LocalStorage from './LocalStorage';
-import { StorageUtilEngine } from './StorageUtilEngine';
+import LocalStorage from "./LocalStorage";
+import { StorageUtilEngine } from "./StorageUtilEngine";
 
 export default class StorageUtil {
   protected engine: StorageUtilEngine;
@@ -7,15 +7,14 @@ export default class StorageUtil {
   constructor(public label: string, engine?: StorageUtilEngine) {
     if (engine) {
       this.engine = engine;
-    } else if (!engine && typeof process === 'object') {
-      require('localstorage-polyfill');
+    } else if (!engine && typeof process === "object") {
+      require("localstorage-polyfill");
       this.engine = (global as any).localStorage;
     } else if (!engine && window && window.localStorage) {
       this.engine = new LocalStorage(window);
     } else {
-      throw new Error('No storage util available');
+      throw new Error("No storage util available");
     }
-
   }
 
   /**
@@ -74,5 +73,4 @@ export default class StorageUtil {
   public async clear(): Promise<void> {
     return this.engine.clear();
   }
-
 }

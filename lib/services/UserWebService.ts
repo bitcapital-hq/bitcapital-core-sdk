@@ -1,7 +1,7 @@
-import { Session } from '../session';
-import { Http, HttpOptions } from '../base';
-import { User, UserSchema, OAuthCredentials } from '../models';
-import { PaginationUtil, PaginatedArray } from '../utils';
+import { Session } from "../session";
+import { Http, HttpOptions } from "../base";
+import { User, UserSchema, OAuthCredentials } from "../models";
+import { PaginationUtil, PaginatedArray } from "../utils";
 
 export interface UserWebServiceOptions extends HttpOptions {
   session?: Session;
@@ -30,7 +30,7 @@ export default class UserWebService extends Http {
    * @param query The query of the search
    */
   public async find(query: any = {}): Promise<PaginatedArray<User>> {
-    const response = await this.get('/users', query);
+    const response = await this.get("/users", query);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -60,14 +60,13 @@ export default class UserWebService extends Http {
    * @param user The user properties
    */
   public async create(user: UserSchema): Promise<User> {
-    const response = await this.post('/users', new User(user));
+    const response = await this.post("/users", new User(user));
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
     return new User(response.data);
-
   }
 
   /**
@@ -106,10 +105,14 @@ export default class UserWebService extends Http {
    * @param credentials The OAuth 2.0 credentials for the request
    */
   public async me(credentials?: OAuthCredentials): Promise<User> {
-    const response = await this.get('/users/me', {}, {
-      // TODO: move this to an interceptor
-      headers: { Authorization: credentials ? `Bearer ${credentials.accessToken}` : undefined },
-    });
+    const response = await this.get(
+      "/users/me",
+      {},
+      {
+        // TODO: move this to an interceptor
+        headers: { Authorization: credentials ? `Bearer ${credentials.accessToken}` : undefined }
+      }
+    );
     return new User({ credentials, ...response.data });
   }
 
@@ -117,7 +120,7 @@ export default class UserWebService extends Http {
    * Set a new password using a secret token.
    */
   public async setPassword(token: string, password: string): Promise<void> {
-    const response = await this.post('/users/password', { token, password });
+    const response = await this.post("/users/password", { token, password });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -130,7 +133,7 @@ export default class UserWebService extends Http {
    * @param email The email to be reset
    */
   public async reset(email: string): Promise<void> {
-    const response = await this.post('/users/reset', { email });
+    const response = await this.post("/users/reset", { email });
 
     if (!response || response.status !== 200) {
       throw response;

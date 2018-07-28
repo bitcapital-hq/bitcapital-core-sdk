@@ -1,8 +1,7 @@
-import { StorageUtilEngine } from './StorageUtilEngine';
+import { StorageUtilEngine } from "./StorageUtilEngine";
 
 export default class LocalStorage implements StorageUtilEngine {
-  constructor(protected context: Window) {
-  }
+  constructor(protected context: Window) {}
 
   async setItem(key: string, value: string): Promise<any> {
     return window.localStorage.setItem(key, value);

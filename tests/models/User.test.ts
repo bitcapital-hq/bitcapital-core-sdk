@@ -1,32 +1,32 @@
-import * as hat from 'hat';
-import { User, OAuthCredentials, UserRole } from '../../lib';
+import * as hat from "hat";
+import { User, OAuthCredentials, UserRole } from "../../lib";
 
 const TEST_CREDENTIALS = {
-  token_type: 'bearer',
+  token_type: "bearer",
   access_token: hat(),
   refresh_token: hat(),
   user_id: hat(),
-  expires_in: 3600,
+  expires_in: 3600
 };
 
 const TEST_VIRTUAL_CREDENTIALS = {
-  token_type: 'bearer',
+  token_type: "bearer",
   access_token: hat(),
   refresh_token: hat(),
   user_id: hat(),
   expires_in: 3600,
-  virtual: true,
+  virtual: true
 };
 
 const TEST_USER = {
-  firstName: 'John Doe',
-  lastName: 'Connor Bro',
-  email: 'user@test.com',
-  role: UserRole.USER,
+  firstName: "John Doe",
+  lastName: "Connor Bro",
+  email: "user@test.com",
+  role: UserRole.USER
 };
 
-describe('lib.models.User', () => {
-  it('should instantiate properly without credentials', async () => {
+describe("lib.models.User", () => {
+  it("should instantiate properly without credentials", async () => {
     const user = new User({ ...TEST_USER });
 
     expect(user).toBeTruthy();
@@ -36,7 +36,7 @@ describe('lib.models.User', () => {
     expect(user.credentials).toBeUndefined();
   });
 
-  it('should instantiate properly with credentials instance', async () => {
+  it("should instantiate properly with credentials instance", async () => {
     const credentials = new OAuthCredentials(TEST_CREDENTIALS);
     const user = new User({ credentials, ...TEST_USER });
 
@@ -47,7 +47,7 @@ describe('lib.models.User', () => {
     expect(user.credentials).toBeInstanceOf(OAuthCredentials);
   });
 
-  it('should instantiate properly with virtual credentials instance', async () => {
+  it("should instantiate properly with virtual credentials instance", async () => {
     const credentials = new OAuthCredentials(TEST_VIRTUAL_CREDENTIALS);
     const user = new User({ credentials, ...TEST_USER });
 
@@ -59,7 +59,7 @@ describe('lib.models.User', () => {
     expect(user.credentials).toBeInstanceOf(OAuthCredentials);
   });
 
-  it('should instantiate properly with credentials raw data', async () => {
+  it("should instantiate properly with credentials raw data", async () => {
     const user = new User({ credentials: TEST_CREDENTIALS as any, ...TEST_USER });
 
     expect(user).toBeTruthy();
@@ -69,12 +69,12 @@ describe('lib.models.User', () => {
     expect(user.credentials).toBeInstanceOf(OAuthCredentials);
   });
 
-  it('should handle the name getter and setter properly', async () => {
+  it("should handle the name getter and setter properly", async () => {
     const user = new User({ credentials: TEST_CREDENTIALS as any, ...TEST_USER });
 
     expect(user).toBeTruthy();
-    expect(user.name).toMatch(new RegExp(user.firstName, 'ig'));
-    expect(user.name).toMatch(new RegExp(user.lastName, 'ig'));
-    expect(() => user.name = '').toThrow(/Name is a readonly value/);
+    expect(user.name).toMatch(new RegExp(user.firstName, "ig"));
+    expect(user.name).toMatch(new RegExp(user.lastName, "ig"));
+    expect(() => (user.name = "")).toThrow(/Name is a readonly value/);
   });
 });

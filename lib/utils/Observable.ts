@@ -58,9 +58,10 @@ export default class Observable {
    * @returns {number}
    */
   public async notify(event?: string, data?: any): Promise<number> {
-    const wrapper = () => this.listeners.map((observable) => {
-      observable.update(event, data);
-    });
+    const wrapper = () =>
+      this.listeners.map(observable => {
+        observable.update(event, data);
+      });
 
     if (this.options.async) {
       setTimeout(wrapper, Observable.NOTIFICATION_TIMEOUT);
