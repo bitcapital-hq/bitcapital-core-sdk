@@ -15,22 +15,22 @@ export enum ConsumerStatus {
 
 export interface ConsumerSchema extends BaseModelSchema {
   status: ConsumerStatus;
-  user: User;
+  user?: User;
   userId: string;
-  documents: Document[];
-  phones: Phone[];
-  addresses: Address[];
-  wallets: Wallet[];
+  documents?: Document[];
+  phones?: Phone[];
+  addresses?: Address[];
+  wallets?: Wallet[];
 }
 
 export default class Consumer extends BaseModel implements ConsumerSchema {
   status: ConsumerStatus = undefined;
-  user: User = undefined;
+  user?: User = undefined;
   userId: string = undefined;
-  documents: Document[] = undefined;
-  phones: Phone[] = undefined;
-  addresses: Address[] = undefined;
-  wallets: Wallet[] = undefined;
+  documents?: Document[] = undefined;
+  phones?: Phone[] = undefined;
+  addresses?: Address[] = undefined;
+  wallets?: Wallet[] = undefined;
   constructor(data: Partial<ConsumerSchema>) {
     super(data);
 

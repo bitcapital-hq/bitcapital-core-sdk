@@ -8,7 +8,7 @@ export enum DocumentType {
 }
 
 export interface DocumentSchema extends BaseModelSchema {
-  consumer: Consumer;
+  consumer?: Consumer;
   consumerId: string;
   type: DocumentType;
   number?: string;
@@ -19,7 +19,7 @@ export interface DocumentSchema extends BaseModelSchema {
 }
 
 export default class Document extends BaseModel implements DocumentSchema {
-  consumer: Consumer = undefined;
+  consumer?: Consumer = undefined;
   consumerId: string = undefined;
   type: DocumentType = undefined;
   number?: string = undefined;

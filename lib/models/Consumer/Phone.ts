@@ -2,7 +2,7 @@ import { Consumer } from ".";
 import { BaseModel, BaseModelSchema } from "..";
 
 export interface PhoneSchema extends BaseModelSchema {
-  consumer: Consumer;
+  consumer?: Consumer;
   consumerId: string;
   code: number;
   number: string;
@@ -10,7 +10,7 @@ export interface PhoneSchema extends BaseModelSchema {
 }
 
 export default class Phone extends BaseModel implements PhoneSchema {
-  consumer: Consumer = undefined;
+  consumer?: Consumer = undefined;
   consumerId: string = undefined;
   code: number = undefined;
   number: string = undefined;

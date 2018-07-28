@@ -3,12 +3,12 @@ import { BaseModel, BaseModelSchema } from "..";
 
 export interface WalletSchema extends BaseModelSchema {
   address: string;
-  consumer: Consumer;
+  consumer?: Consumer;
 }
 
 export default class Wallet extends BaseModel implements WalletSchema {
   address: string = undefined;
-  consumer: Consumer = undefined;
+  consumer?: Consumer = undefined;
 
   constructor(data: Partial<WalletSchema>) {
     super(data);
