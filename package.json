@@ -15,10 +15,12 @@
     "lint": "tslint --project tsconfig.json",
     "docs": "./scripts/docs.sh",
     "start": "$(cd docs/ && serve -p ${PORT:-3030})",
-    "precommit": "lint-staged && yarn -s test"
+    "precommit": "lint-staged",
+    "prepush": "yarn -s test"
   },
   "lint-staged": {
     "!(dist/)*.ts": [
+      "prettier --write",
       "tslint --fix",
       "git add"
     ]
@@ -44,12 +46,14 @@
     "lint-staged": "^7.0.0",
     "nativescript-typedoc-theme": "https://github.com/NativeScript/nativescript-typedoc-theme.git",
     "nodemon": "^1.12.1",
+    "prettier": "^1.13.7",
     "serve": "^6.4.8",
     "ts-jest": "^21.1.2",
     "ts-lint": "^4.5.1",
     "ts-node": "^3.3.0",
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.4.2",
+    "tslint-config-prettier": "^1.14.0",
     "typedoc": "^0.9.0",
     "typedoc-clarity-theme": "^1.1.0",
     "typescript": "^2.5.3"
