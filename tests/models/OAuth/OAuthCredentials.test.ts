@@ -1,5 +1,5 @@
 import * as hat from "hat";
-import { OAuthCredentials } from "../../lib";
+import { OAuthCredentials } from "../../../lib";
 
 const TEST_CREDENTIALS = {
   token_type: "bearer",

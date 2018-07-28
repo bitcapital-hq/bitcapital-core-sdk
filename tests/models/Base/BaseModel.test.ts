@@ -1,4 +1,4 @@
-import { BaseModel } from "../../lib";
+import { BaseModel } from "../../../lib";
 
 describe("lib.base.BaseModel", () => {
   it("should instantiate a valid BaseModel with an id", async () => {
