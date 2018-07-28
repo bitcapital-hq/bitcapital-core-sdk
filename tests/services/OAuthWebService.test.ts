@@ -1,7 +1,7 @@
 import * as hat from "hat";
 import * as MockAdapter from "axios-mock-adapter";
 import { OAuthWebService } from "../../lib";
-import OAuthCredentials from "../../lib/models/OAuthCredentials";
+import OAuthCredentials from "../../lib/models/OAuth/OAuthCredentials";
 
 const TEST_CREDENTIALS = {
   token_type: "bearer",

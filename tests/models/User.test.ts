@@ -22,7 +22,7 @@ const TEST_USER = {
   firstName: "John Doe",
   lastName: "Connor Bro",
   email: "user@test.com",
-  role: UserRole.USER
+  role: UserRole.CONSUMER
 };
 
 describe("lib.models.User", () => {
@@ -75,6 +75,5 @@ describe("lib.models.User", () => {
     expect(user).toBeTruthy();
     expect(user.name).toMatch(new RegExp(user.firstName, "ig"));
     expect(user.name).toMatch(new RegExp(user.lastName, "ig"));
-    expect(() => (user.name = "")).toThrow(/Name is a readonly value/);
   });
 });
