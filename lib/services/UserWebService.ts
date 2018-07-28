@@ -26,11 +26,10 @@ export default class UserWebService extends Http {
   }
 
   /**
-   * Finds users with a given query
-   * @param query The query of the search
+   * Find all {#User}s.
    */
-  public async find(query: any = {}): Promise<PaginatedArray<User>> {
-    const response = await this.get("/users", query);
+  public async findAll(): Promise<PaginatedArray<User>> {
+    const response = await this.get("/users");
 
     if (!response || response.status !== 200) {
       throw response;
@@ -42,11 +41,12 @@ export default class UserWebService extends Http {
   }
 
   /**
-   * Find a user by giving it's ID
-   * @param id The id of the user
+   * Find a {#User} by it's id.
+   *
+   * @param id The id of the {#User}
    */
   public async findById(id: string): Promise<User> {
-    const response = await this.get(`/users/${id}`, {});
+    const response = await this.get(`/users/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -56,38 +56,40 @@ export default class UserWebService extends Http {
   }
 
   /**
-   * Creates a new user
-   * @param user The user properties
-   */
-  public async create(user: UserSchema): Promise<User> {
-    const response = await this.post("/users", new User(user));
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new User(response.data);
-  }
-
-  /**
-   * Updates an existing {#User}.
+   * Partially update an existing {#User}.
    *
    * @param id the id of the {#User}
    * @param user The values you want to update
    */
-  public async update(id: string, user: UserSchema): Promise<User> {
+  public async update(id: string, user: Partial<UserSchema>): Promise<User> {
     const response = await this.post(`/users/${id}`, user);
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
-    return new User({ ...response.data });
+    return new User(response.data);
   }
 
   /**
-   * Deletes a given user
-   * @param id The id of the user
+   * Upsert (Update or Insert) a {#User}.
+   *
+   * @param consumer The values you want to upsert
+   */
+  public async upsert(user: UserSchema): Promise<User> {
+    const response = await this.put(`/users`, user);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new User(response.data);
+  }
+
+  /**
+   * Delete an {$User} by it's id
+   *
+   * @param id The id of the {#User}
    */
   public async deleteById(id: string): Promise<boolean> {
     const response = await this.delete(`/users/${id}`);
@@ -100,7 +102,7 @@ export default class UserWebService extends Http {
   }
 
   /**
-   * Gets the current user information from API.
+   * Gets the current {#User} information from the API.
    *
    * @param credentials The OAuth 2.0 credentials for the request
    */
