@@ -1,4 +1,4 @@
-import { BaseModel, BaseModelSchema } from '../base';
+import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
 
 export enum OAuthClientStatus {
   ACTIVE = 'active',

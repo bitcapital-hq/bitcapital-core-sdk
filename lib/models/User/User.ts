@@ -1,6 +1,5 @@
-import { BaseModel, BaseModelSchema } from '../base';
-import OAuthCredentials from './OAuthCredentials';
-import Domain from './Domain';
+import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
+import { OAuthCredentials, Domain, Consumer } from '..';
 
 export enum UserStatus {
   ACTIVE = 'active',
@@ -8,47 +7,43 @@ export enum UserStatus {
 }
 
 export enum UserRole {
-  ROOT = 'root',
-  USER = 'user',
+  ADMIN = "admin",
+  AUDIT = "audit",
+  MEDIATOR = "mediator",
+  CONSUMER = "consumer"
 }
 
 export interface UserSchema extends BaseModelSchema {
-  id?: string;
   firstName: string;
   lastName: string;
   email: string;
-  password?: string;
   role: UserRole;
-  status?: UserStatus;
-  virtual?: boolean;
+  status: UserStatus;
+  password?: string;
   credentials?: OAuthCredentials;
   domain: Domain;
-  ownedDomain?: Domain;
+  consumer?: Consumer;
+  virtual: boolean;
 }
 
 export default class User extends BaseModel implements UserSchema {
-  id?: string;
   firstName: string;
   lastName: string;
   email: string;
-  password?: string;
   role: UserRole;
-  status?: UserStatus;
-  virtual?: boolean = false;
+  status: UserStatus;
+  password?: string;
   credentials?: OAuthCredentials;
   domain: Domain;
-  ownedDomain?: Domain;
-
+  consumer?: Consumer;
+  virtual: boolean;
+  
   constructor(data: Partial<UserSchema>) {
     super(data);
-    this.lastName = data.lastName;
-    this.firstName = data.firstName;
-    this.email = data.email;
-    this.password = data.password;
-    this.role = data.role;
-    this.status = data.status;
-    this.domain = data.domain;
-    this.ownedDomain = data.ownedDomain;
+    
+    // Assign all props
+    Object.getOwnPropertyNames(this).map(prop => this[prop] = data[prop]);
+
     this.virtual = (data.credentials && data.credentials.virtual) ?
       data.credentials.virtual :
       (data.virtual || this.virtual);
@@ -61,9 +56,5 @@ export default class User extends BaseModel implements UserSchema {
 
   get name() {
     return `${this.firstName} ${this.lastName}`;
-  }
-
-  set name(_ignoredValue: string) {
-    throw new Error('Name is a readonly value, you must edit "firstName" and "lastName" separately');
   }
 }
