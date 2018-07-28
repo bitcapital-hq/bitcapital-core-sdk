@@ -1,5 +1,4 @@
-import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
-import User from "../User/User";
+import { BaseModel, BaseModelSchema, User } from "..";
 
 export interface DomainSettings {
   logo?: string;
@@ -25,15 +24,15 @@ export interface DomainSchema extends BaseModelSchema {
 }
 
 export default class Domain extends BaseModel implements DomainSchema {
-  name: string;
-  role: DomainRole;
-  slug: string;
-  logo?: string;
-  primaryColor?: string;
-  tintColor?: string;
-  urls?: string[];
-  users: User[] | null;
-  settings: DomainSettings;
+  name: string = undefined;
+  role: DomainRole = undefined;
+  slug: string = undefined;
+  logo?: string = undefined;
+  primaryColor?: string = undefined;
+  tintColor?: string = undefined;
+  urls?: string[] = undefined;
+  users: User[] | null = undefined;
+  settings: DomainSettings = undefined;
 
   constructor(data: Partial<DomainSchema>) {
     super(data);

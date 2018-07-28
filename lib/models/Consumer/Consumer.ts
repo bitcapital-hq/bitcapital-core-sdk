@@ -1,6 +1,5 @@
-import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
 import { Address, Document, Phone, Wallet } from ".";
-import { User } from "..";
+import { BaseModel, BaseModelSchema, User } from "..";
 
 export enum ConsumerStatus {
   PENDING_DOCUMENTS = "pending_documents",
@@ -25,13 +24,13 @@ export interface ConsumerSchema extends BaseModelSchema {
 }
 
 export default class Consumer extends BaseModel implements ConsumerSchema {
-  status: ConsumerStatus;
-  user: User;
-  userId: string;
-  documents: Document[];
-  phones: Phone[];
-  addresses: Address[];
-  wallets: Wallet[];
+  status: ConsumerStatus = undefined;
+  user: User = undefined;
+  userId: string = undefined;
+  documents: Document[] = undefined;
+  phones: Phone[] = undefined;
+  addresses: Address[] = undefined;
+  wallets: Wallet[] = undefined;
   constructor(data: Partial<ConsumerSchema>) {
     super(data);
 

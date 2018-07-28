@@ -1,5 +1,5 @@
-import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
 import { Consumer } from ".";
+import { BaseModel, BaseModelSchema } from "..";
 
 export interface WalletSchema extends BaseModelSchema {
   address: string;
@@ -7,8 +7,8 @@ export interface WalletSchema extends BaseModelSchema {
 }
 
 export default class Wallet extends BaseModel implements WalletSchema {
-  address: string;
-  consumer: Consumer;
+  address: string = undefined;
+  consumer: Consumer = undefined;
 
   constructor(data: Partial<WalletSchema>) {
     super(data);

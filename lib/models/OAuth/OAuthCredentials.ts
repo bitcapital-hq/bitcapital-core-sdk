@@ -1,4 +1,4 @@
-import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
+import { BaseModel, BaseModelSchema } from "..";
 
 export interface OAuthCredentialsSchema extends BaseModelSchema {
   access_token: string;

@@ -1,5 +1,5 @@
-import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
 import { Consumer } from ".";
+import { BaseModel, BaseModelSchema } from "..";
 
 export interface PhoneSchema extends BaseModelSchema {
   consumer: Consumer;
@@ -10,11 +10,11 @@ export interface PhoneSchema extends BaseModelSchema {
 }
 
 export default class Phone extends BaseModel implements PhoneSchema {
-  consumer: Consumer;
-  consumerId: string;
-  code: number;
-  number: string;
-  verifiedAt?: Date;
+  consumer: Consumer = undefined;
+  consumerId: string = undefined;
+  code: number = undefined;
+  number: string = undefined;
+  verifiedAt?: Date = undefined;
 
   constructor(data: Partial<PhoneSchema>) {
     super(data);
