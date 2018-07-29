@@ -55,6 +55,11 @@ export default class DomainWebService extends Http {
     return new Domain(response.data);
   }
 
+  /**
+   * Find the {#User}s from a {#Domain} by it's id.
+   *
+   * @param id The id of the {#Domain}
+   */
   public async findUsersById(id: string): Promise<User> {
     const response = await this.get(`/domains/${id}/users`);
 
@@ -65,6 +70,11 @@ export default class DomainWebService extends Http {
     return response.data.map(user => new User(user));
   }
 
+  /**
+   * Find the {#User}s with role {#Consumer} from a {#Domain} by it's id.
+   *
+   * @param id The id of the {#Domain}
+   */
   public async findConsumersById(id: string): Promise<User> {
     const response = await this.get(`/domains/${id}/consumers`);
 
@@ -75,6 +85,11 @@ export default class DomainWebService extends Http {
     return response.data.map(user => new User(user));
   }
 
+  /**
+   * Find the {#User}s with role Mediator from a {#Domain} by it's id.
+   *
+   * @param id The id of the {#Domain}
+   */
   public async findMediatorsById(id: string): Promise<User> {
     const response = await this.get(`/domains/${id}/mediators`);
 

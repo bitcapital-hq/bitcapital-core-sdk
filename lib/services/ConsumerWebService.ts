@@ -45,7 +45,7 @@ export default class ConsumerWebService extends Http {
   /**
    * Find a {#User} with role {#Consumer} by it's ID
    *
-   * @param id The id of the consumer
+   * @param id The id of the {#Consumer}
    */
   public async findById(id: string): Promise<User> {
     const response = await this.get(`/consumers/${id}`);
@@ -57,6 +57,12 @@ export default class ConsumerWebService extends Http {
     return new User(response.data);
   }
 
+  /**
+   * Find the #{Document}s from a {#Consumer} by it's ID
+   * This method won't return pictures
+   *
+   * @param id The id of the {#Consumer}
+   */
   public async findDocumentsById(id: string): Promise<Document[]> {
     const response = await this.get(`/consumers/${id}/documents`);
 
@@ -67,6 +73,12 @@ export default class ConsumerWebService extends Http {
     return response.data.map(document => new Document(document));
   }
 
+  /**
+   * Find the {#Document}s from a {#Consumer} by it's ID and the {#Document} type
+   * This method will return pictures
+   *
+   * @param id The id of the {#Consumer}
+   */
   public async findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document> {
     const response = await this.get(`/consumers/${id}/documents/${type}`);
 
@@ -77,6 +89,11 @@ export default class ConsumerWebService extends Http {
     return new Document(response.data);
   }
 
+  /**
+   * Find the {#Wallet}s from a {#Consumer} by it's ID
+   *
+   * @param id The id of the {#Consumer}
+   */
   public async findWalletsById(id: string): Promise<Wallet[]> {
     const response = await this.get(`/consumers/${id}/wallets`);
 
@@ -102,6 +119,11 @@ export default class ConsumerWebService extends Http {
     return new User(response.data);
   }
 
+  /**
+   * Create a new {#Document} on a {#Consumer} by it's ID
+   *
+   * @param id The id of the {#Consumer}
+   */
   public async createDocument(id: string, document: DocumentSchema): Promise<Document> {
     const response = await this.post(`/consumers/${id}/documents`, document);
 
@@ -128,6 +150,11 @@ export default class ConsumerWebService extends Http {
     return new User(response.data);
   }
 
+  /**
+   * Upload a new {#Document} picture to a {#Consumer} by it's ID and the {#Document} type and side
+   *
+   * @param id The id of the {#Consumer}
+   */
   public async uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File) {
     const formData = new FormData();
     formData.append("picture", picture);
