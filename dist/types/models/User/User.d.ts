@@ -1,39 +1,37 @@
-import { BaseModel, BaseModelSchema } from '../base';
-import OAuthCredentials from './OAuthCredentials';
-import Domain from './Domain';
+import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer } from "..";
 export declare enum UserStatus {
     ACTIVE = "active",
     INACTIVE = "inactive"
 }
 export declare enum UserRole {
-    ROOT = "root",
-    USER = "user"
+    ADMIN = "admin",
+    AUDIT = "audit",
+    MEDIATOR = "mediator",
+    CONSUMER = "consumer"
 }
 export interface UserSchema extends BaseModelSchema {
-    id?: string;
     firstName: string;
     lastName: string;
     email: string;
-    password?: string;
     role: UserRole;
-    status?: UserStatus;
-    virtual?: boolean;
+    status: UserStatus;
+    password?: string;
     credentials?: OAuthCredentials;
     domain: Domain;
-    ownedDomain?: Domain;
+    consumer?: Consumer;
+    virtual: boolean;
 }
 export default class User extends BaseModel implements UserSchema {
-    id?: string;
     firstName: string;
     lastName: string;
     email: string;
-    password?: string;
     role: UserRole;
-    status?: UserStatus;
-    virtual?: boolean;
+    status: UserStatus;
+    password?: string;
     credentials?: OAuthCredentials;
     domain: Domain;
-    ownedDomain?: Domain;
+    consumer?: Consumer;
+    virtual: boolean;
     constructor(data: Partial<UserSchema>);
-    name: string;
+    readonly name: string;
 }

@@ -1,6 +1,5 @@
 export interface BaseModelSchema {
     id?: string;
-    _id?: string;
     createdAt?: string | Date;
     updatedAt?: string | Date;
 }

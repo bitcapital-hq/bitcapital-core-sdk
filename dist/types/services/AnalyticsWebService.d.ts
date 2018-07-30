@@ -1,14 +1,11 @@
-import { Session } from '../session';
-import { Http, HttpOptions } from '../base';
-import { AnalyticsActiveResponse, AnalyticsDevicesResponse } from './response';
-export interface AnalyticsWebServiceOptions extends HttpOptions {
-    session?: Session;
-}
-export default class AnalyticsWebService extends Http {
-    protected options: AnalyticsWebServiceOptions;
+import { Http, HttpOptions } from "../base";
+import { AnalyticsActiveResponse, AnalyticsDevicesResponse } from "./response";
+export default class AnalyticsWebService {
+    protected http: Http;
     protected static instance: AnalyticsWebService;
-    constructor(options: AnalyticsWebServiceOptions);
-    static getInstance(options: AnalyticsWebServiceOptions): AnalyticsWebService;
+    constructor(options: HttpOptions);
+    static getInstance(): AnalyticsWebService;
+    static initialize(options: HttpOptions): AnalyticsWebService;
     /**
      * Gets analytics for the currently active tokens.
      */

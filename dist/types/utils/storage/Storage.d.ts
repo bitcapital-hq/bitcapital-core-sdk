@@ -1,4 +1,4 @@
-import { StorageUtilEngine } from './StorageUtilEngine';
+import { StorageUtilEngine } from "./StorageUtilEngine";
 export default class StorageUtil {
     label: string;
     protected engine: StorageUtilEngine;

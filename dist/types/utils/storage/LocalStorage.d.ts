@@ -1,4 +1,4 @@
-import { StorageUtilEngine } from './StorageUtilEngine';
+import { StorageUtilEngine } from "./StorageUtilEngine";
 export default class LocalStorage implements StorageUtilEngine {
     protected context: Window;
     constructor(context: Window);

@@ -1,15 +1,17 @@
-import { Http, HttpOptions } from '../base';
-import { OAuthCredentials } from '../models';
-import { OAuthStatusResponse } from './response';
+import { Http, HttpOptions } from "../base";
+import { OAuthCredentials } from "../models";
+import { OAuthStatusResponse } from "./response";
 export interface OAuthWebServiceOptions extends HttpOptions {
     clientId: string;
     clientSecret: string;
 }
-export default class OAuthWebService extends Http {
+export default class OAuthWebService {
     protected options: OAuthWebServiceOptions;
+    protected http: Http;
     protected static instance: OAuthWebService;
     constructor(options: OAuthWebServiceOptions);
-    static getInstance(options: OAuthWebServiceOptions): OAuthWebService;
+    static getInstance(): OAuthWebService;
+    static initialize(options: OAuthWebServiceOptions): OAuthWebService;
     /**
      * Gets basic token for client credentials authentication.
      *

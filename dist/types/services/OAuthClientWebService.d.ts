@@ -1,25 +1,23 @@
-import { Session } from '../session';
-import { Http, HttpOptions } from '../base';
-import { OAuthClient, OAuthClientSchema } from '../models';
-import { PaginatedArray } from '../utils';
-export interface OAuthClientWebServiceOptions extends HttpOptions {
-    session?: Session;
-}
-export default class OAuthClientWebService extends Http {
-    protected options: OAuthClientWebServiceOptions;
+import { Http, HttpOptions } from "../base";
+import { OAuthClient, OAuthClientSchema } from "../models";
+import { PaginatedArray, Pagination } from "../utils";
+import BaseModelWebService from "./base/BaseModelWebService";
+export default class OAuthClientWebService implements BaseModelWebService<OAuthClient, OAuthClientSchema> {
+    protected http: Http;
     protected static instance: OAuthClientWebService;
-    constructor(options: OAuthClientWebServiceOptions);
-    static getInstance(options: OAuthClientWebServiceOptions): OAuthClientWebService;
+    constructor(options: HttpOptions);
+    static getInstance(): OAuthClientWebService;
+    static initialize(options: HttpOptions): OAuthClientWebService;
     /**
      * Finds {#OAuthClient} with a given query
      * @param query The query of the search
      */
-    find(query?: any): Promise<PaginatedArray<OAuthClient>>;
+    findAll(pagination: Pagination): Promise<PaginatedArray<OAuthClient>>;
     /**
      * Find a {#OAuthClient} by giving it's ID
      * @param id The id of the {#OAuthClient}.
      */
-    findById(id: string): Promise<OAuthClient>;
+    findOne(id: string): Promise<OAuthClient>;
     /**
      * Creates a new {#OAuthClient}.
      * @param client The {#OAuthClient}. properties
@@ -36,5 +34,5 @@ export default class OAuthClientWebService extends Http {
      * Deletes a given {#OAuthClient}.
      * @param id The id of the client
      */
-    deleteById(id: string): Promise<boolean>;
+    delete(id: string): Promise<boolean>;
 }
