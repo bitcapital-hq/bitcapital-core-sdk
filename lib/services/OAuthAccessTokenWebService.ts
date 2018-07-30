@@ -3,20 +3,15 @@ import { Http, HttpOptions } from "../base";
 import { OAuthAccessToken } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 
-export interface OAuthAccessTokenWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
 export default class OAuthAccessTokenWebService {
-  protected options: OAuthAccessTokenWebServiceOptions;
   protected http: Http;
   protected static instance: OAuthAccessTokenWebService;
 
-  constructor(options: OAuthAccessTokenWebServiceOptions) {
+  constructor(options: HttpOptions) {
     this.http = new Http(options);
 
-    if (options.session) {
-      this.http.interceptors(options.session.interceptors());
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
@@ -24,7 +19,7 @@ export default class OAuthAccessTokenWebService {
     return this.instance;
   }
 
-  public static initialize(options: OAuthAccessTokenWebServiceOptions): OAuthAccessTokenWebService {
+  public static initialize(options: HttpOptions): OAuthAccessTokenWebService {
     this.instance = new OAuthAccessTokenWebService(options);
     return this.instance;
   }

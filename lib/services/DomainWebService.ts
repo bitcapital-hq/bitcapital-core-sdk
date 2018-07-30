@@ -4,20 +4,15 @@ import { Domain, DomainSchema, User } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
-export interface DomainWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
 export default class DomainWebService implements BaseModelWebService<Domain, DomainSchema> {
-  protected options: DomainWebServiceOptions;
   protected http: Http;
   protected static instance: DomainWebService;
 
-  constructor(options: DomainWebServiceOptions) {
+  constructor(options: HttpOptions) {
     this.http = new Http(options);
 
-    if (options.session) {
-      this.http.interceptors(options.session.interceptors());
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
@@ -25,7 +20,7 @@ export default class DomainWebService implements BaseModelWebService<Domain, Dom
     return this.instance;
   }
 
-  public static initialize(options: DomainWebServiceOptions): DomainWebService {
+  public static initialize(options: HttpOptions): DomainWebService {
     this.instance = new DomainWebService(options);
     return this.instance;
   }

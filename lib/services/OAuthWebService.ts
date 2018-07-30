@@ -16,6 +16,7 @@ export default class OAuthWebService {
   protected static instance: OAuthWebService;
 
   constructor(options: OAuthWebServiceOptions) {
+    this.options = options;
     this.http = new Http(options);
   }
 

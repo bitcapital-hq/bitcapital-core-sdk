@@ -4,20 +4,15 @@ import { OAuthClient, OAuthClientSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
-export interface OAuthClientWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
 export default class OAuthClientWebService implements BaseModelWebService<OAuthClient, OAuthClientSchema> {
-  protected options: OAuthClientWebServiceOptions;
   protected http: Http;
   protected static instance: OAuthClientWebService;
 
-  constructor(options: OAuthClientWebServiceOptions) {
+  constructor(options: HttpOptions) {
     this.http = new Http(options);
 
-    if (options.session) {
-      this.http.interceptors(options.session.interceptors());
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
@@ -25,7 +20,7 @@ export default class OAuthClientWebService implements BaseModelWebService<OAuthC
     return this.instance;
   }
 
-  public static initialize(options: OAuthClientWebServiceOptions): OAuthClientWebService {
+  public static initialize(options: HttpOptions): OAuthClientWebService {
     this.instance = new OAuthClientWebService(options);
     return this.instance;
   }

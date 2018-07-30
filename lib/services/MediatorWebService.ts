@@ -4,24 +4,19 @@ import { User, UserSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
-export interface MediatorWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
 export default class MediatorWebService implements BaseModelWebService<User, UserSchema> {
-  protected options: MediatorWebServiceOptions;
   protected http: Http;
   protected static instance: MediatorWebService;
 
-  constructor(options: MediatorWebServiceOptions) {
+  constructor(options: HttpOptions) {
     this.http = new Http(options);
 
-    if (options.session) {
-      this.http.interceptors(options.session.interceptors());
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
-  public static getInstance(options: MediatorWebServiceOptions): MediatorWebService {
+  public static getInstance(options: HttpOptions): MediatorWebService {
     if (!this.instance) {
       this.instance = new MediatorWebService(options);
     }

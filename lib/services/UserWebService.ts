@@ -4,20 +4,15 @@ import { User, UserSchema, OAuthCredentials } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
-export interface UserWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
 export default class UserWebService implements BaseModelWebService<User, UserSchema> {
-  protected options: UserWebServiceOptions;
   protected http: Http;
   protected static instance: UserWebService;
 
-  constructor(options: UserWebServiceOptions) {
+  constructor(options: HttpOptions) {
     this.http = new Http(options);
 
-    if (options.session) {
-      this.http.interceptors(options.session.interceptors());
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
@@ -25,7 +20,7 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
     return this.instance;
   }
 
-  public static initialize(options: UserWebServiceOptions): UserWebService {
+  public static initialize(options: HttpOptions): UserWebService {
     this.instance = new UserWebService(options);
     return this.instance;
   }

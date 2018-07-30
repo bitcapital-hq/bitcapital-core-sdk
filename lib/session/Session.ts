@@ -9,16 +9,12 @@ export interface SessionOptions {
   autoFetch?: boolean;
   storage?: StorageUtil;
   oauth?: OAuthWebServiceOptions;
-  userWebService?: UserWebService;
-  oauthWebService?: OAuthWebService;
 }
 
 export default class Session {
   current?: User;
   storage: StorageUtil;
   observable: Observable;
-  userWebService: UserWebService;
-  oauthWebService: OAuthWebService;
   _interceptors: HttpInterceptor[] = [];
 
   public static EVENT_SESSION_CHANGED = "SESSION_CHANGED";
@@ -35,10 +31,6 @@ export default class Session {
       new SessionUnauthorizedInterceptor(() => this.destroy())
     ];
 
-    // TODO: Service instance or config are required, validate this
-    this.oauthWebService = options.oauthWebService || OAuthWebService.getInstance({ ...options.oauth });
-    this.userWebService = options.userWebService || UserWebService.getInstance({ session: this, ...options.http });
-
     // Fetch session in startup by default
     if ((options.autoFetch as any) !== false) {
       this.fetch();
@@ -54,13 +46,13 @@ export default class Session {
 
   /**
    * Gets session singleton instance.
-   *
-   * @param options The session options
    */
-  public static getInstance(options: SessionOptions): Session {
-    if (!this.instance) {
-      this.instance = new Session(options);
-    }
+  public static getInstance(): Session {
+    return this.instance;
+  }
+
+  public static initialize(options: SessionOptions): Session {
+    this.instance = new Session(options);
     return this.instance;
   }
 
@@ -127,7 +119,7 @@ export default class Session {
     if (this.current) {
       // Revokes the token in the OAuth Server
       try {
-        await this.oauthWebService.revoke(this.current.credentials.accessToken);
+        await OAuthWebService.getInstance().revoke(this.current.credentials.accessToken);
       } catch (exception) {
         console.warn("SESSION: Could not destroy current session", exception);
       }
@@ -142,11 +134,11 @@ export default class Session {
    * @param data The user credentials
    */
   public async password(data: { username: string; password: string }): Promise<User> {
-    const oauth = await this.oauthWebService.password(data);
+    const oauth = await OAuthWebService.getInstance().password(data);
 
     if (oauth.accessToken) {
       try {
-        const user = await this.userWebService.me(oauth);
+        const user = await UserWebService.getInstance().me(oauth);
         return this.register(new User({ ...user, credentials: oauth } as UserSchema));
       } catch (error) {
         error.credentials = oauth;
@@ -161,11 +153,11 @@ export default class Session {
    * Performs a "client_credentials" authentication using the OAuth 2.0 server and registers it in current session.
    */
   public async clientCredentials(): Promise<User> {
-    const oauth = await this.oauthWebService.clientCredentials();
+    const oauth = await OAuthWebService.getInstance().clientCredentials();
 
     try {
       if (oauth.accessToken && !oauth.virtual) {
-        const user = await this.userWebService.me(oauth);
+        const user = await UserWebService.getInstance().me(oauth);
         return this.register(user);
       }
       if (oauth.accessToken) {

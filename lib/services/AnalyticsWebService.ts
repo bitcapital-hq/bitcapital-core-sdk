@@ -2,20 +2,15 @@ import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
 import { AnalyticsActiveResponse, AnalyticsDevicesResponse } from "./response";
 
-export interface AnalyticsWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
 export default class AnalyticsWebService {
-  protected options: AnalyticsWebServiceOptions;
   protected http: Http;
   protected static instance: AnalyticsWebService;
 
-  constructor(options: AnalyticsWebServiceOptions) {
+  constructor(options: HttpOptions) {
     this.http = new Http(options);
 
-    if (options.session) {
-      this.http.interceptors(options.session.interceptors());
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
@@ -23,7 +18,7 @@ export default class AnalyticsWebService {
     return this.instance;
   }
 
-  public static initialize(options: AnalyticsWebServiceOptions): AnalyticsWebService {
+  public static initialize(options: HttpOptions): AnalyticsWebService {
     this.instance = new AnalyticsWebService(options);
     return this.instance;
   }

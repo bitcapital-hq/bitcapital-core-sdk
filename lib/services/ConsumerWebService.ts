@@ -4,20 +4,15 @@ import { User, UserSchema, Document, Wallet, DocumentSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
-export interface ConsumerWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
 export default class ConsumerWebService implements BaseModelWebService<User, UserSchema> {
-  protected options: ConsumerWebServiceOptions;
   protected http: Http;
   protected static instance: ConsumerWebService;
 
-  constructor(options: ConsumerWebServiceOptions) {
+  constructor(options: HttpOptions) {
     this.http = new Http(options);
 
-    if (options.session) {
-      this.http.interceptors(options.session.interceptors());
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
@@ -25,7 +20,7 @@ export default class ConsumerWebService implements BaseModelWebService<User, Use
     return this.instance;
   }
 
-  public static initialize(options: ConsumerWebServiceOptions): ConsumerWebService {
+  public static initialize(options: HttpOptions): ConsumerWebService {
     this.instance = new ConsumerWebService(options);
     return this.instance;
   }
