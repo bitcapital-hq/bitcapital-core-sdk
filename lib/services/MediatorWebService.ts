@@ -16,10 +16,12 @@ export default class MediatorWebService implements BaseModelWebService<User, Use
     }
   }
 
-  public static getInstance(options: HttpOptions): MediatorWebService {
-    if (!this.instance) {
-      this.instance = new MediatorWebService(options);
-    }
+  public static getInstance(): MediatorWebService {
+    return this.instance;
+  }
+
+  public static initialize(options: HttpOptions): MediatorWebService {
+    this.instance = new MediatorWebService(options);
     return this.instance;
   }
 

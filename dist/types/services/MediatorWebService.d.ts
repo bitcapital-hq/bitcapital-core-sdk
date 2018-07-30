@@ -6,7 +6,8 @@ export default class MediatorWebService implements BaseModelWebService<User, Use
     protected http: Http;
     protected static instance: MediatorWebService;
     constructor(options: HttpOptions);
-    static getInstance(options: HttpOptions): MediatorWebService;
+    static getInstance(): MediatorWebService;
+    static initialize(options: HttpOptions): MediatorWebService;
     /**
      * Find all {#User} with role {#Mediator}s
      *
