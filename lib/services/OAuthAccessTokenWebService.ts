@@ -1,27 +1,31 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
 import { OAuthAccessToken } from "../models";
-import { PaginationUtil, PaginatedArray } from "../utils";
+import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 
 export interface OAuthAccessTokenWebServiceOptions extends HttpOptions {
   session?: Session;
 }
 
-export default class OAuthAccessTokenWebService extends Http {
+export default class OAuthAccessTokenWebService {
   protected options: OAuthAccessTokenWebServiceOptions;
+  protected http: Http;
   protected static instance: OAuthAccessTokenWebService;
 
   constructor(options: OAuthAccessTokenWebServiceOptions) {
-    super(options);
+    this.http = new Http(options);
+
     if (options.session) {
-      this.interceptors(options.session.interceptors());
+      this.http.interceptors(options.session.interceptors());
     }
   }
 
-  public static getInstance(options: OAuthAccessTokenWebServiceOptions): OAuthAccessTokenWebService {
-    if (!this.instance) {
-      this.instance = new OAuthAccessTokenWebService(options);
-    }
+  public static getInstance(): OAuthAccessTokenWebService {
+    return this.instance;
+  }
+
+  public static initialize(options: OAuthAccessTokenWebServiceOptions): OAuthAccessTokenWebService {
+    this.instance = new OAuthAccessTokenWebService(options);
     return this.instance;
   }
 
@@ -29,8 +33,9 @@ export default class OAuthAccessTokenWebService extends Http {
    * Finds {#OAuthAccessToken} with a given query
    * @param query The query of the search
    */
-  public async find(query: any = {}): Promise<PaginatedArray<OAuthAccessToken>> {
-    const response = await this.get("/tokens", query);
+  public async findAll(pagination: Pagination): Promise<PaginatedArray<OAuthAccessToken>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get("/tokens", null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -46,7 +51,7 @@ export default class OAuthAccessTokenWebService extends Http {
    * @param id The id of the {#OAuthAccessToken}.
    */
   public async findByUser(user: string): Promise<OAuthAccessToken> {
-    const response = await this.get(`/tokens`, { user });
+    const response = await this.http.get(`/tokens`, { user });
 
     if (!response || response.status !== 200) {
       throw response;

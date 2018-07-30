@@ -10,18 +10,21 @@ export interface OAuthWebServiceOptions extends HttpOptions {
   clientSecret: string;
 }
 
-export default class OAuthWebService extends Http {
+export default class OAuthWebService {
   protected options: OAuthWebServiceOptions;
+  protected http: Http;
   protected static instance: OAuthWebService;
 
   constructor(options: OAuthWebServiceOptions) {
-    super(options);
+    this.http = new Http(options);
   }
 
-  public static getInstance(options: OAuthWebServiceOptions): OAuthWebService {
-    if (!this.instance) {
-      this.instance = new OAuthWebService(options);
-    }
+  public static getInstance(): OAuthWebService {
+    return this.instance;
+  }
+
+  public static initialize(options: OAuthWebServiceOptions): OAuthWebService {
+    this.instance = new OAuthWebService(options);
     return this.instance;
   }
 
@@ -42,7 +45,7 @@ export default class OAuthWebService extends Http {
    */
   public async password(data: { username: string; password: string }): Promise<OAuthCredentials> {
     const request = new OAuthPasswordRequest(data.username, data.password);
-    const response = await this.post("/oauth/token", stringify(request), {
+    const response = await this.http.post("/oauth/token", stringify(request), {
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
         Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}`
@@ -60,7 +63,7 @@ export default class OAuthWebService extends Http {
    */
   public async clientCredentials(): Promise<OAuthCredentials> {
     const request = new OAuthClientCredentialsRequest();
-    const response = await this.post("/oauth/token", stringify(request), {
+    const response = await this.http.post("/oauth/token", stringify(request), {
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
         Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}`
@@ -79,7 +82,7 @@ export default class OAuthWebService extends Http {
    * @param accessToken The user access token
    */
   public async revoke(accessToken?: String): Promise<void> {
-    const response = await this.post(
+    const response = await this.http.post(
       "/oauth/revoke",
       { accessToken },
       {
@@ -97,7 +100,7 @@ export default class OAuthWebService extends Http {
    * Gets the server status.
    */
   public async status(): Promise<OAuthStatusResponse> {
-    const response = await this.get(`/`);
+    const response = await this.http.get(`/`);
 
     if (response && response.status === 200) {
       return new OAuthStatusResponse(response.data);

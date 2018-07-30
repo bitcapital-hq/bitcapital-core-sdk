@@ -1,3 +1,4 @@
+export { default as BaseModelWebService } from "./base/BaseModelWebService";
 export { default as UserWebService, UserWebServiceOptions } from "./UserWebService";
 export { default as AnalyticsWebService, AnalyticsWebServiceOptions } from "./AnalyticsWebService";
 export { default as OAuthWebService, OAuthWebServiceOptions } from "./OAuthWebService";

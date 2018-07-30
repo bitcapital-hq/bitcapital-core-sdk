@@ -1,27 +1,32 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
 import { OAuthClient, OAuthClientSchema } from "../models";
-import { PaginationUtil, PaginatedArray } from "../utils";
+import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
+import BaseModelWebService from "./base/BaseModelWebService";
 
 export interface OAuthClientWebServiceOptions extends HttpOptions {
   session?: Session;
 }
 
-export default class OAuthClientWebService extends Http {
+export default class OAuthClientWebService implements BaseModelWebService<OAuthClient, OAuthClientSchema> {
   protected options: OAuthClientWebServiceOptions;
+  protected http: Http;
   protected static instance: OAuthClientWebService;
 
   constructor(options: OAuthClientWebServiceOptions) {
-    super(options);
+    this.http = new Http(options);
+
     if (options.session) {
-      this.interceptors(options.session.interceptors());
+      this.http.interceptors(options.session.interceptors());
     }
   }
 
-  public static getInstance(options: OAuthClientWebServiceOptions): OAuthClientWebService {
-    if (!this.instance) {
-      this.instance = new OAuthClientWebService(options);
-    }
+  public static getInstance(): OAuthClientWebService {
+    return this.instance;
+  }
+
+  public static initialize(options: OAuthClientWebServiceOptions): OAuthClientWebService {
+    this.instance = new OAuthClientWebService(options);
     return this.instance;
   }
 
@@ -29,8 +34,9 @@ export default class OAuthClientWebService extends Http {
    * Finds {#OAuthClient} with a given query
    * @param query The query of the search
    */
-  public async find(query: any = {}): Promise<PaginatedArray<OAuthClient>> {
-    const response = await this.get("/clients", query);
+  public async findAll(pagination: Pagination): Promise<PaginatedArray<OAuthClient>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get("/clients", null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -45,8 +51,8 @@ export default class OAuthClientWebService extends Http {
    * Find a {#OAuthClient} by giving it's ID
    * @param id The id of the {#OAuthClient}.
    */
-  public async findById(id: string): Promise<OAuthClient> {
-    const response = await this.get(`/clients/${id}`, {});
+  public async findOne(id: string): Promise<OAuthClient> {
+    const response = await this.http.get(`/clients/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -60,7 +66,7 @@ export default class OAuthClientWebService extends Http {
    * @param client The {#OAuthClient}. properties
    */
   public async create(client: OAuthClientSchema): Promise<OAuthClient> {
-    const response = await this.post("/clients", new OAuthClient(client));
+    const response = await this.http.post("/clients", new OAuthClient(client));
 
     if (!response || response.status !== 200) {
       throw response;
@@ -76,7 +82,7 @@ export default class OAuthClientWebService extends Http {
    * @param client The values you want to update
    */
   public async update(id: string, client: OAuthClientSchema): Promise<OAuthClient> {
-    const response = await this.put(`/clients/${id}`, client);
+    const response = await this.http.put(`/clients/${id}`, client);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -89,8 +95,8 @@ export default class OAuthClientWebService extends Http {
    * Deletes a given {#OAuthClient}.
    * @param id The id of the client
    */
-  public async deleteById(id: string): Promise<boolean> {
-    const response = await this.delete(`/users/${id}`);
+  public async delete(id: string): Promise<boolean> {
+    const response = await this.http.delete(`/users/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;

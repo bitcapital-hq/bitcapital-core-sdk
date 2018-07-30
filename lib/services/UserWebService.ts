@@ -1,35 +1,41 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
 import { User, UserSchema, OAuthCredentials } from "../models";
-import { PaginationUtil, PaginatedArray } from "../utils";
+import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
+import BaseModelWebService from "./base/BaseModelWebService";
 
 export interface UserWebServiceOptions extends HttpOptions {
   session?: Session;
 }
 
-export default class UserWebService extends Http {
+export default class UserWebService implements BaseModelWebService<User, UserSchema> {
   protected options: UserWebServiceOptions;
+  protected http: Http;
   protected static instance: UserWebService;
 
   constructor(options: UserWebServiceOptions) {
-    super(options);
+    this.http = new Http(options);
+
     if (options.session) {
-      this.interceptors(options.session.interceptors());
+      this.http.interceptors(options.session.interceptors());
     }
   }
 
-  public static getInstance(options: UserWebServiceOptions): UserWebService {
-    if (!this.instance) {
-      this.instance = new UserWebService(options);
-    }
+  public static getInstance(): UserWebService {
+    return this.instance;
+  }
+
+  public static initialize(options: UserWebServiceOptions): UserWebService {
+    this.instance = new UserWebService(options);
     return this.instance;
   }
 
   /**
    * Find all {#User}s.
    */
-  public async findAll(): Promise<PaginatedArray<User>> {
-    const response = await this.get("/users");
+  public async findAll(pagination: Pagination): Promise<PaginatedArray<User>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get("/users", null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -45,8 +51,8 @@ export default class UserWebService extends Http {
    *
    * @param id The id of the {#User}
    */
-  public async findById(id: string): Promise<User> {
-    const response = await this.get(`/users/${id}`);
+  public async findOne(id: string): Promise<User> {
+    const response = await this.http.get(`/users/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -62,7 +68,7 @@ export default class UserWebService extends Http {
    * @param user The values you want to update
    */
   public async update(id: string, user: Partial<UserSchema>): Promise<User> {
-    const response = await this.post(`/users/${id}`, user);
+    const response = await this.http.post(`/users/${id}`, user);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -77,7 +83,7 @@ export default class UserWebService extends Http {
    * @param consumer The values you want to upsert
    */
   public async upsert(user: UserSchema): Promise<User> {
-    const response = await this.put(`/users`, user);
+    const response = await this.http.put(`/users`, user);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -91,8 +97,8 @@ export default class UserWebService extends Http {
    *
    * @param id The id of the {#User}
    */
-  public async deleteById(id: string): Promise<boolean> {
-    const response = await this.delete(`/users/${id}`);
+  public async delete(id: string): Promise<boolean> {
+    const response = await this.http.delete(`/users/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -107,7 +113,7 @@ export default class UserWebService extends Http {
    * @param credentials The OAuth 2.0 credentials for the request
    */
   public async me(credentials?: OAuthCredentials): Promise<User> {
-    const response = await this.get(
+    const response = await this.http.get(
       "/users/me",
       {},
       {
@@ -122,7 +128,7 @@ export default class UserWebService extends Http {
    * Set a new password using a secret token.
    */
   public async setPassword(token: string, password: string): Promise<void> {
-    const response = await this.post("/users/password", { token, password });
+    const response = await this.http.post("/users/password", { token, password });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -135,7 +141,7 @@ export default class UserWebService extends Http {
    * @param email The email to be reset
    */
   public async reset(email: string): Promise<void> {
-    const response = await this.post("/users/reset", { email });
+    const response = await this.http.post("/users/reset", { email });
 
     if (!response || response.status !== 200) {
       throw response;
