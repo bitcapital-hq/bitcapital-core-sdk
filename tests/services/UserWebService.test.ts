@@ -29,10 +29,10 @@ describe("lib.services.UserWebService", () => {
   });
 
   it("should instantiate a simple singleton UserWebService", async () => {
-    const user = UserWebService.getInstance({ baseURL: "http://localhost:3000/test_url" });
+    const user = UserWebService.initialize({ baseURL: "http://localhost:3000/test_url" });
     expect(user).toBeTruthy();
     expect((user as any).client).toBeTruthy();
-    expect((UserWebService as any).instance).toEqual(user);
+    expect(UserWebService.getInstance).toEqual(user);
   });
 
   describe("Success user instance", () => {
