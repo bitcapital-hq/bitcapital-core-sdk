@@ -1,2 +1,2 @@
-export * from './interceptors';
-export { default as Session, SessionOptions } from './Session';
+export * from "./interceptors";
+export { default as Session, SessionOptions } from "./Session";

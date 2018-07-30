@@ -1,22 +1,18 @@
-import { User } from '../models';
-import { HttpInterceptor, HttpOptions } from '../base';
-import { Observable, Observer, StorageUtil } from '../utils';
-import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from '../services';
+import { User } from "../models";
+import { HttpInterceptor, HttpOptions } from "../base";
+import { Observable, Observer, StorageUtil } from "../utils";
+import { OAuthWebServiceOptions } from "../services";
 export interface SessionOptions {
     http?: HttpOptions;
     autoFetch?: boolean;
     storage?: StorageUtil;
     oauth?: OAuthWebServiceOptions;
-    userWebService?: UserWebService;
-    oauthWebService?: OAuthWebService;
 }
 export default class Session {
     options: SessionOptions;
     current?: User;
     storage: StorageUtil;
     observable: Observable;
-    userWebService: UserWebService;
-    oauthWebService: OAuthWebService;
     _interceptors: HttpInterceptor[];
     static EVENT_SESSION_CHANGED: string;
     protected static instance: Session;
@@ -27,10 +23,9 @@ export default class Session {
     interceptors(): HttpInterceptor[];
     /**
      * Gets session singleton instance.
-     *
-     * @param options The session options
      */
-    static getInstance(options: SessionOptions): Session;
+    static getInstance(): Session;
+    static initialize(options: SessionOptions): Session;
     /**
      * Subscribe for updates.
      *

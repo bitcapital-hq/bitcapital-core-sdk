@@ -1,44 +1,44 @@
-import { Session } from '../session';
-import { Http, HttpOptions } from '../base';
-import { User, UserSchema, OAuthCredentials } from '../models';
-import { PaginatedArray } from '../utils';
-export interface UserWebServiceOptions extends HttpOptions {
-    session?: Session;
-}
-export default class UserWebService extends Http {
-    protected options: UserWebServiceOptions;
+import { Http, HttpOptions } from "../base";
+import { User, UserSchema, OAuthCredentials } from "../models";
+import { PaginatedArray, Pagination } from "../utils";
+import BaseModelWebService from "./base/BaseModelWebService";
+export default class UserWebService implements BaseModelWebService<User, UserSchema> {
+    protected http: Http;
     protected static instance: UserWebService;
-    constructor(options: UserWebServiceOptions);
-    static getInstance(options: UserWebServiceOptions): UserWebService;
+    constructor(options: HttpOptions);
+    static getInstance(): UserWebService;
+    static initialize(options: HttpOptions): UserWebService;
     /**
-     * Finds users with a given query
-     * @param query The query of the search
+     * Find all {#User}s.
      */
-    find(query?: any): Promise<PaginatedArray<User>>;
+    findAll(pagination: Pagination): Promise<PaginatedArray<User>>;
     /**
-     * Find a user by giving it's ID
-     * @param id The id of the user
+     * Find a {#User} by it's id.
+     *
+     * @param id The id of the {#User}
      */
-    findById(id: string): Promise<User>;
+    findOne(id: string): Promise<User>;
     /**
-     * Creates a new user
-     * @param user The user properties
-     */
-    create(user: UserSchema): Promise<User>;
-    /**
-     * Updates an existing {#User}.
+     * Partially update an existing {#User}.
      *
      * @param id the id of the {#User}
      * @param user The values you want to update
      */
-    update(id: string, user: UserSchema): Promise<User>;
+    update(id: string, user: Partial<UserSchema>): Promise<User>;
     /**
-     * Deletes a given user
-     * @param id The id of the user
+     * Upsert (Update or Insert) a {#User}.
+     *
+     * @param consumer The values you want to upsert
      */
-    deleteById(id: string): Promise<boolean>;
+    upsert(user: UserSchema): Promise<User>;
     /**
-     * Gets the current user information from API.
+     * Delete an {$User} by it's id
+     *
+     * @param id The id of the {#User}
+     */
+    delete(id: string): Promise<boolean>;
+    /**
+     * Gets the current {#User} information from the API.
      *
      * @param credentials The OAuth 2.0 credentials for the request
      */

@@ -1,5 +1,5 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { HttpInterceptor } from './HttpInterceptor';
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { HttpInterceptor } from "./HttpInterceptor";
 export { HttpInterceptor };
 export declare type HttpClient = AxiosInstance;
 export declare type HttpRequestOptions = AxiosRequestConfig;

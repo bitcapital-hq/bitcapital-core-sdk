@@ -1,35 +1,36 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
 import { Domain, DomainSchema, User } from "../models";
-import { PaginationUtil, PaginatedArray } from "../utils";
+import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
+import BaseModelWebService from "./base/BaseModelWebService";
 
-export interface DomainWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
-export default class DomainWebService extends Http {
-  protected options: DomainWebServiceOptions;
+export default class DomainWebService implements BaseModelWebService<Domain, DomainSchema> {
+  protected http: Http;
   protected static instance: DomainWebService;
 
-  constructor(options: DomainWebServiceOptions) {
-    super(options);
-    if (options.session) {
-      this.interceptors(options.session.interceptors());
+  constructor(options: HttpOptions) {
+    this.http = new Http(options);
+
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
-  public static getInstance(options: DomainWebServiceOptions): DomainWebService {
-    if (!this.instance) {
-      this.instance = new DomainWebService(options);
-    }
+  public static getInstance(): DomainWebService {
+    return this.instance;
+  }
+
+  public static initialize(options: HttpOptions): DomainWebService {
+    this.instance = new DomainWebService(options);
     return this.instance;
   }
 
   /**
    * Find all {#Domain}s
    */
-  public async findAll(): Promise<PaginatedArray<Domain>> {
-    const response = await this.get("/domains");
+  public async findAll(pagination: Pagination): Promise<PaginatedArray<Domain>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get("/domains", null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -45,8 +46,8 @@ export default class DomainWebService extends Http {
    *
    * @param id The id of the {#Domain}
    */
-  public async findById(id: string): Promise<Domain> {
-    const response = await this.get(`/domains/${id}`);
+  public async findOne(id: string): Promise<Domain> {
+    const response = await this.http.get(`/domains/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -61,7 +62,7 @@ export default class DomainWebService extends Http {
    * @param id The id of the {#Domain}
    */
   public async findUsersById(id: string): Promise<User> {
-    const response = await this.get(`/domains/${id}/users`);
+    const response = await this.http.get(`/domains/${id}/users`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -76,7 +77,7 @@ export default class DomainWebService extends Http {
    * @param id The id of the {#Domain}
    */
   public async findConsumersById(id: string): Promise<User> {
-    const response = await this.get(`/domains/${id}/consumers`);
+    const response = await this.http.get(`/domains/${id}/consumers`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -91,7 +92,7 @@ export default class DomainWebService extends Http {
    * @param id The id of the {#Domain}
    */
   public async findMediatorsById(id: string): Promise<User> {
-    const response = await this.get(`/domains/${id}/mediators`);
+    const response = await this.http.get(`/domains/${id}/mediators`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -106,7 +107,7 @@ export default class DomainWebService extends Http {
    * @param domain The {#Domain} properties
    */
   public async create(domain: DomainSchema): Promise<Domain> {
-    const response = await this.post("/domains", domain);
+    const response = await this.http.post("/domains", domain);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -122,7 +123,7 @@ export default class DomainWebService extends Http {
    * @param domain The values you want to update
    */
   public async update(id: string, domain: Partial<DomainSchema>): Promise<Domain> {
-    const response = await this.post(`/domains/${id}`, domain);
+    const response = await this.http.post(`/domains/${id}`, domain);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -137,7 +138,7 @@ export default class DomainWebService extends Http {
    * @param domain The values you want to upsert
    */
   public async upsert(domain: DomainSchema): Promise<Domain> {
-    const response = await this.put(`/domains`, domain);
+    const response = await this.http.put(`/domains`, domain);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -151,8 +152,8 @@ export default class DomainWebService extends Http {
    *
    * @param id The id of the {#Domain}
    */
-  public async deleteById(id: string): Promise<boolean> {
-    const response = await this.delete(`/domains/${id}`);
+  public async delete(id: string): Promise<boolean> {
+    const response = await this.http.delete(`/domains/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;

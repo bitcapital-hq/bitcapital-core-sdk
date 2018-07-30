@@ -42,7 +42,7 @@ describe("lib.session.Session", () => {
   });
 
   it("should instantiate a simple singleton Session", async () => {
-    const session = Session.getInstance({
+    const session = Session.initialize({
       storage: new StorageUtil("session", new MemoryStorage()),
       oauth: {
         clientId: hat(),
@@ -55,7 +55,7 @@ describe("lib.session.Session", () => {
     });
     expect(session).toBeTruthy();
     expect((Session as any).instance).toEqual(session);
-    expect(Session.getInstance({} as any)).toEqual(session);
+    expect(Session.getInstance()).toEqual(session);
   });
 
   describe("Success OAuth 2.0 tokens", () => {
@@ -64,15 +64,17 @@ describe("lib.session.Session", () => {
     beforeEach(async () => {
       // This sets the mock adapter on the default instance
       session = new Session({
-        storage: new StorageUtil("session", new MemoryStorage()),
-        oauthWebService: new OAuthWebService({
-          clientId: hat(),
-          clientSecret: hat(),
-          baseURL: "http://localhost:3000/test_url"
-        }),
-        userWebService: new UserWebService({
-          baseURL: "http://localhost:3000/test_url"
-        })
+        storage: new StorageUtil("session", new MemoryStorage())
+      });
+
+      OAuthWebService.initialize({
+        clientId: hat(),
+        clientSecret: hat(),
+        baseURL: "http://localhost:3000/test_url"
+      });
+
+      UserWebService.initialize({
+        baseURL: "http://localhost:3000/test_url"
       });
 
       const oauthMock = new (MockAdapter as any)((session as any).oauthWebService.client);

@@ -1,24 +1,22 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
 import { User, UserSchema } from "../models";
-import { PaginationUtil, PaginatedArray } from "../utils";
+import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
+import BaseModelWebService from "./base/BaseModelWebService";
 
-export interface MediatorWebServiceOptions extends HttpOptions {
-  session?: Session;
-}
-
-export default class MediatorWebService extends Http {
-  protected options: MediatorWebServiceOptions;
+export default class MediatorWebService implements BaseModelWebService<User, UserSchema> {
+  protected http: Http;
   protected static instance: MediatorWebService;
 
-  constructor(options: MediatorWebServiceOptions) {
-    super(options);
-    if (options.session) {
-      this.interceptors(options.session.interceptors());
+  constructor(options: HttpOptions) {
+    this.http = new Http(options);
+
+    if (Session.getInstance()) {
+      this.http.interceptors(Session.getInstance().interceptors());
     }
   }
 
-  public static getInstance(options: MediatorWebServiceOptions): MediatorWebService {
+  public static getInstance(options: HttpOptions): MediatorWebService {
     if (!this.instance) {
       this.instance = new MediatorWebService(options);
     }
@@ -30,8 +28,9 @@ export default class MediatorWebService extends Http {
    *
    * @param query The query of the search
    */
-  public async findAll(): Promise<PaginatedArray<User>> {
-    const response = await this.get("/mediators");
+  public async findAll(pagination: Pagination): Promise<PaginatedArray<User>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get("/mediators", null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -47,8 +46,8 @@ export default class MediatorWebService extends Http {
    *
    * @param id The id of the mediator
    */
-  public async findById(id: string): Promise<User> {
-    const response = await this.get(`/mediators/${id}`);
+  public async findOne(id: string): Promise<User> {
+    const response = await this.http.get(`/mediators/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -63,7 +62,7 @@ export default class MediatorWebService extends Http {
    * @param mediator The mediator properties
    */
   public async create(mediator: UserSchema): Promise<User> {
-    const response = await this.post("/mediators", mediator);
+    const response = await this.http.post("/mediators", mediator);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -79,7 +78,7 @@ export default class MediatorWebService extends Http {
    * @param mediator The values you want to update
    */
   public async update(id: string, mediator: Partial<UserSchema>): Promise<User> {
-    const response = await this.post(`/mediators/${id}`, mediator);
+    const response = await this.http.post(`/mediators/${id}`, mediator);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -93,8 +92,8 @@ export default class MediatorWebService extends Http {
    *
    * @param id The id of the {#User} with role {#Mediator}
    */
-  public async deleteById(id: string): Promise<boolean> {
-    const response = await this.delete(`/mediators/${id}`);
+  public async delete(id: string): Promise<boolean> {
+    const response = await this.http.delete(`/mediators/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;

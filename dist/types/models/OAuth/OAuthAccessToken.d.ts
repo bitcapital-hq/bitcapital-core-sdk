@@ -1,6 +1,5 @@
-import { BaseModel, BaseModelSchema } from '../base';
-import OAuthClient, { OAuthClientSchema } from './OAuthClient';
-import User from './User';
+import { OAuthClient, OAuthClientSchema } from ".";
+import { BaseModel, BaseModelSchema, User } from "..";
 export declare enum OAuthClientStatus {
     ACTIVE = "active",
     INACTIVE = "inactive"

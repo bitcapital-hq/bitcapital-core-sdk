@@ -28,7 +28,7 @@ describe("lib.services.OAuthWebService", () => {
   });
 
   it("should instantiate a simple singleton OAuthWebService", async () => {
-    const oauth = OAuthWebService.getInstance({
+    const oauth = OAuthWebService.initialize({
       clientId: hat(),
       clientSecret: hat(),
       baseURL: "http://localhost:3000/test_url"
@@ -36,7 +36,7 @@ describe("lib.services.OAuthWebService", () => {
     expect(oauth).toBeTruthy();
     expect((oauth as any).client).toBeTruthy();
     expect((OAuthWebService as any).instance).toEqual(oauth);
-    expect(OAuthWebService.getInstance({} as any)).toEqual(oauth);
+    expect(OAuthWebService.getInstance()).toEqual(oauth);
   });
 
   describe("Success OAuth 2.0 tokens", () => {
