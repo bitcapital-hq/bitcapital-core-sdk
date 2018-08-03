@@ -24,7 +24,7 @@ describe("lib.services.OAuthWebService", () => {
       baseURL: "http://localhost:3000/test_url"
     });
     expect(oauth).toBeTruthy();
-    expect((oauth as any).client).toBeTruthy();
+    expect((oauth as any).http.client).toBeTruthy();
   });
 
   it("should instantiate a simple singleton OAuthWebService", async () => {
@@ -34,7 +34,7 @@ describe("lib.services.OAuthWebService", () => {
       baseURL: "http://localhost:3000/test_url"
     });
     expect(oauth).toBeTruthy();
-    expect((oauth as any).client).toBeTruthy();
+    expect((oauth as any).http.client).toBeTruthy();
     expect((OAuthWebService as any).instance).toEqual(oauth);
     expect(OAuthWebService.getInstance()).toEqual(oauth);
   });
@@ -50,7 +50,7 @@ describe("lib.services.OAuthWebService", () => {
         baseURL: "http://localhost:3000/test_url"
       });
 
-      const mock = new MockAdapter((oauth as any).client);
+      const mock = new MockAdapter((oauth as any).http.client);
 
       // Mock all requests to a simple success
       mock.onPost("/oauth/token").reply(200, TEST_CREDENTIALS);
@@ -77,7 +77,7 @@ describe("lib.services.OAuthWebService", () => {
         baseURL: "http://localhost:3000/test_url"
       });
 
-      const mock = new MockAdapter((oauth as any).client);
+      const mock = new MockAdapter((oauth as any).http.client);
 
       // Mock all requests to a simple success
       mock.onPost("/oauth/token").networkError();

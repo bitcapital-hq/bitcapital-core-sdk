@@ -25,14 +25,14 @@ describe("lib.services.UserWebService", () => {
   it("should instantiate a simple UserWebService directly", async () => {
     const user = new UserWebService({ baseURL: "http://localhost:3000/test_url" });
     expect(user).toBeTruthy();
-    expect((user as any).client).toBeTruthy();
+    expect((user as any).http.client).toBeTruthy();
   });
 
   it("should instantiate a simple singleton UserWebService", async () => {
     const user = UserWebService.initialize({ baseURL: "http://localhost:3000/test_url" });
     expect(user).toBeTruthy();
-    expect((user as any).client).toBeTruthy();
-    expect(UserWebService.getInstance).toEqual(user);
+    expect((user as any).http.client).toBeTruthy();
+    expect(UserWebService.getInstance()).toEqual(user);
   });
 
   describe("Success user instance", () => {
@@ -44,7 +44,7 @@ describe("lib.services.UserWebService", () => {
         baseURL: "http://localhost:3000/test_url"
       });
 
-      const mock = new MockAdapter((user as any).client);
+      const mock = new MockAdapter((user as any).http.client);
 
       // Mock all requests to a simple success
       mock.onGet("/users/me").reply(200, TEST_USER);
