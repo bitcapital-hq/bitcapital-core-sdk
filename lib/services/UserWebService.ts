@@ -1,6 +1,6 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
-import { User, UserSchema, OAuthCredentials } from "../models";
+import { User, UserSchema, OAuthCredentials, UserRole } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
@@ -28,9 +28,9 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
   /**
    * Find all {#User}s.
    */
-  public async findAll(pagination: Pagination): Promise<PaginatedArray<User>> {
+  public async findAll(pagination: Pagination, role?: UserRole): Promise<PaginatedArray<User>> {
     const { skip, limit } = pagination;
-    const response = await this.http.get("/users", null, { params: { skip, limit } });
+    const response = await this.http.get("/users", null, { params: { skip, limit, role } });
 
     if (!response || response.status !== 200) {
       throw response;

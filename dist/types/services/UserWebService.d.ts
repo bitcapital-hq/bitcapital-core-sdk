@@ -1,5 +1,5 @@
 import { Http, HttpOptions } from "../base";
-import { User, UserSchema, OAuthCredentials } from "../models";
+import { User, UserSchema, OAuthCredentials, UserRole } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 export default class UserWebService implements BaseModelWebService<User, UserSchema> {
@@ -11,7 +11,7 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
     /**
      * Find all {#User}s.
      */
-    findAll(pagination: Pagination): Promise<PaginatedArray<User>>;
+    findAll(pagination: Pagination, role?: UserRole): Promise<PaginatedArray<User>>;
     /**
      * Find a {#User} by it's id.
      *
