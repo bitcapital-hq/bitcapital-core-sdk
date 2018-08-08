@@ -28,7 +28,7 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
     /**
      *  Inserts a new {#User}.
      *
-     * @param consumer The values you want to upsert
+     * @param consumer The values you want to insert
      */
     create(user: UserSchema): Promise<User>;
     /**

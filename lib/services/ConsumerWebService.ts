@@ -106,6 +106,21 @@ export default class ConsumerWebService implements BaseModelWebService<User, Use
   }
 
   /**
+   *  Inserts a new {#Consumer}.
+   *
+   * @param consumer The values you want to insert
+   */
+  public async create(consumer: UserSchema): Promise<User> {
+    const response = await this.http.post(`/consumers`, consumer);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new User(response.data);
+  }
+
+  /**
    * Create a new {#Document} on a {#Consumer} by it's ID
    *
    * @param id The id of the {#Consumer}
