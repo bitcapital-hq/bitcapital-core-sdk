@@ -41,12 +41,6 @@ export default class ConsumerWebService implements BaseModelWebService<User, Use
      */
     findWalletsById(id: string): Promise<Wallet[]>;
     /**
-     * Create a new {#User} with role {#Consumer}
-     *
-     * @param consumer The consumer properties
-     */
-    create(consumer: UserSchema): Promise<User>;
-    /**
      * Create a new {#Document} on a {#Consumer} by it's ID
      *
      * @param id The id of the {#Consumer}
