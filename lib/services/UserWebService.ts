@@ -73,12 +73,12 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
   }
 
   /**
-   * Upsert (Update or Insert) a {#User}.
+   *  Inserts a new {#User}.
    *
    * @param consumer The values you want to upsert
    */
-  public async upsert(user: UserSchema): Promise<User> {
-    const response = await this.http.put(`/users`, user);
+  public async create(user: UserSchema): Promise<User> {
+    const response = await this.http.post(`/users`, user);
 
     if (!response || response.status !== 200) {
       throw response;

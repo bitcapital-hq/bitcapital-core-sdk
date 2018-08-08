@@ -26,11 +26,11 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
      */
     update(id: string, user: Partial<UserSchema>): Promise<User>;
     /**
-     * Upsert (Update or Insert) a {#User}.
+     *  Inserts a new {#User}.
      *
      * @param consumer The values you want to upsert
      */
-    upsert(user: UserSchema): Promise<User>;
+    create(user: UserSchema): Promise<User>;
     /**
      * Delete an {$User} by it's id
      *
