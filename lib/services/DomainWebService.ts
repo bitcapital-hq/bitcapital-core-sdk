@@ -61,7 +61,7 @@ export default class DomainWebService implements BaseModelWebService<Domain, Dom
    *
    * @param id The id of the {#Domain}
    */
-  public async findUsersById(id: string): Promise<User> {
+  public async findUsersById(id: string): Promise<User[]> {
     const response = await this.http.get(`/domains/${id}/users`);
 
     if (!response || response.status !== 200) {
@@ -76,7 +76,7 @@ export default class DomainWebService implements BaseModelWebService<Domain, Dom
    *
    * @param id The id of the {#Domain}
    */
-  public async findConsumersById(id: string): Promise<User> {
+  public async findConsumersById(id: string): Promise<User[]> {
     const response = await this.http.get(`/domains/${id}/consumers`);
 
     if (!response || response.status !== 200) {
@@ -91,7 +91,7 @@ export default class DomainWebService implements BaseModelWebService<Domain, Dom
    *
    * @param id The id of the {#Domain}
    */
-  public async findMediatorsById(id: string): Promise<User> {
+  public async findMediatorsById(id: string): Promise<User[]> {
     const response = await this.http.get(`/domains/${id}/mediators`);
 
     if (!response || response.status !== 200) {
