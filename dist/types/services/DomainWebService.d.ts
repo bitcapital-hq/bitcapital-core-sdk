@@ -19,23 +19,27 @@ export default class DomainWebService implements BaseModelWebService<Domain, Dom
      */
     findOne(id: string): Promise<Domain>;
     /**
+     * Find the Root Domain.
+     */
+    findRootDomain(): Promise<Domain>;
+    /**
      * Find the {#User}s from a {#Domain} by it's id.
      *
      * @param id The id of the {#Domain}
      */
-    findUsersById(id: string): Promise<User>;
+    findUsersById(id: string): Promise<User[]>;
     /**
      * Find the {#User}s with role {#Consumer} from a {#Domain} by it's id.
      *
      * @param id The id of the {#Domain}
      */
-    findConsumersById(id: string): Promise<User>;
+    findConsumersById(id: string): Promise<User[]>;
     /**
      * Find the {#User}s with role Mediator from a {#Domain} by it's id.
      *
      * @param id The id of the {#Domain}
      */
-    findMediatorsById(id: string): Promise<User>;
+    findMediatorsById(id: string): Promise<User[]>;
     /**
      * Create a new {#Domain}.
      *
