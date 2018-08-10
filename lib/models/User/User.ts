@@ -22,7 +22,7 @@ export interface UserSchema extends BaseModelSchema {
   credentials?: OAuthCredentials;
   domain: Domain;
   consumer?: Consumer;
-  virtual: boolean;
+  virtual?: boolean;
 }
 
 export default class User extends BaseModel implements UserSchema {
