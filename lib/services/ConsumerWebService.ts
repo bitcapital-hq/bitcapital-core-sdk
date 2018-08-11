@@ -174,6 +174,26 @@ export default class ConsumerWebService implements BaseModelWebService<User, Use
   }
 
   /**
+   * Upload a new {#Document} picture to a {#Consumer} by it's ID and the {#Document} type and side from base64
+   *
+   * @param id The id of the {#Consumer}
+   */
+  public async uploadDocumentPictureFromBase64(
+    id: string,
+    type: DocumentType,
+    side: "front" | "back" | "selfie",
+    picture: string
+  ) {
+    const response = await this.http.post(`/consumers/${id}/documents/${type}/${side}`, { picture });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Document(response.data);
+  }
+
+  /**
    * Delete a {#User} with role {#Consumer} by it's id
    *
    * @param id The id of the {#User} with role {#Consumer}

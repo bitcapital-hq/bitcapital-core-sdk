@@ -66,6 +66,12 @@ export default class ConsumerWebService implements BaseModelWebService<User, Use
      */
     uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File): Promise<Document>;
     /**
+     * Upload a new {#Document} picture to a {#Consumer} by it's ID and the {#Document} type and side from base64
+     *
+     * @param id The id of the {#Consumer}
+     */
+    uploadDocumentPictureFromBase64(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: string): Promise<Document>;
+    /**
      * Delete a {#User} with role {#Consumer} by it's id
      *
      * @param id The id of the {#User} with role {#Consumer}
