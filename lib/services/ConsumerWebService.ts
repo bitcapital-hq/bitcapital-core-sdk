@@ -1,6 +1,6 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
-import { User, UserSchema, Document, Wallet, DocumentSchema } from "../models";
+import { User, UserSchema, Document, Wallet, DocumentSchema, DocumentType } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
