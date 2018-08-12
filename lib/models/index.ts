@@ -4,6 +4,7 @@ export { default as Domain, DomainSchema, DomainRole } from "./Domain/Domain";
 export { default as Wallet, WalletSchema, WalletType, StellarWalletData, BankingWalletData } from "./Wallet/Wallet";
 export { default as Payment, PaymentSchema } from "./Payment/Payment";
 export { default as Recipient, RecipientSchema } from "./Payment/Recipient";
+export { default as Asset, AssetSchema } from "./Asset/Asset";
 
 export {
   default as Transaction,
