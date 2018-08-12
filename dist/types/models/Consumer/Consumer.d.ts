@@ -1,4 +1,4 @@
-import { Address, Document, Phone, Wallet } from ".";
+import { Address, Document, Phone } from ".";
 import { BaseModel, BaseModelSchema, User } from "..";
 export declare enum ConsumerStatus {
     PENDING_DOCUMENTS = "pending_documents",
@@ -18,7 +18,6 @@ export interface ConsumerSchema extends BaseModelSchema {
     documents?: Document[];
     phones?: Phone[];
     addresses?: Address[];
-    wallets?: Wallet[];
 }
 export default class Consumer extends BaseModel implements ConsumerSchema {
     status: ConsumerStatus;
@@ -27,6 +26,5 @@ export default class Consumer extends BaseModel implements ConsumerSchema {
     documents?: Document[];
     phones?: Phone[];
     addresses?: Address[];
-    wallets?: Wallet[];
     constructor(data: Partial<ConsumerSchema>);
 }

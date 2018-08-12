@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const __1 = require("..");
+class Recipient extends __1.BaseModel {
+    constructor(data) {
+        super(data);
+        this.amount = undefined;
+        this.destination = undefined;
+        // Assign all props
+        Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    }
+}
+exports.default = Recipient;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVjaXBpZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vbGliL21vZGVscy9QYXltZW50L1JlY2lwaWVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDBCQUFnRDtBQVFoRCxlQUErQixTQUFRLGFBQVM7SUFJOUMsWUFBWSxJQUE4QjtRQUN4QyxLQUFLLENBQUMsSUFBSSxDQUFDLENBQUM7UUFKZCxXQUFNLEdBQVcsU0FBUyxDQUFDO1FBQzNCLGdCQUFXLEdBQVcsU0FBUyxDQUFDO1FBSzlCLG1CQUFtQjtRQUNuQixNQUFNLENBQUMsbUJBQW1CLENBQUMsSUFBSSxDQUFDLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQztJQUMxRSxDQUFDO0NBQ0Y7QUFWRCw0QkFVQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEJhc2VNb2RlbCwgQmFzZU1vZGVsU2NoZW1hIH0gZnJvbSBcIi4uXCI7XG5pbXBvcnQgV2FsbGV0IGZyb20gXCIuLi9XYWxsZXQvV2FsbGV0XCI7XG5cbmV4cG9ydCBpbnRlcmZhY2UgUmVjaXBpZW50U2NoZW1hIGV4dGVuZHMgQmFzZU1vZGVsU2NoZW1hIHtcbiAgYW1vdW50OiBzdHJpbmc7XG4gIGRlc3RpbmF0aW9uOiBXYWxsZXQ7XG59XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIFJlY2lwaWVudCBleHRlbmRzIEJhc2VNb2RlbCBpbXBsZW1lbnRzIFJlY2lwaWVudFNjaGVtYSB7XG4gIGFtb3VudDogc3RyaW5nID0gdW5kZWZpbmVkO1xuICBkZXN0aW5hdGlvbjogV2FsbGV0ID0gdW5kZWZpbmVkO1xuXG4gIGNvbnN0cnVjdG9yKGRhdGE6IFBhcnRpYWw8UmVjaXBpZW50U2NoZW1hPikge1xuICAgIHN1cGVyKGRhdGEpO1xuXG4gICAgLy8gQXNzaWduIGFsbCBwcm9wc1xuICAgIE9iamVjdC5nZXRPd25Qcm9wZXJ0eU5hbWVzKHRoaXMpLm1hcChwcm9wID0+ICh0aGlzW3Byb3BdID0gZGF0YVtwcm9wXSkpO1xuICB9XG59XG4iXX0=
