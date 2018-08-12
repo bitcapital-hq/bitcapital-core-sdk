@@ -54,12 +54,6 @@ export default class DomainWebService implements BaseModelWebService<Domain, Dom
      */
     update(id: string, domain: Partial<DomainSchema>): Promise<Domain>;
     /**
-     * Upsert a {#Domain}.
-     *
-     * @param domain The values you want to upsert
-     */
-    upsert(domain: DomainSchema): Promise<Domain>;
-    /**
      * Delete a {#Domain} by it's id.
      *
      * @param id The id of the {#Domain}
