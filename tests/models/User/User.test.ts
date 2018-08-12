@@ -22,7 +22,9 @@ const TEST_USER = {
   firstName: "John Doe",
   lastName: "Connor Bro",
   email: "user@test.com",
-  role: UserRole.CONSUMER
+  role: UserRole.CONSUMER,
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString()
 };
 
 describe("lib.models.User", () => {
