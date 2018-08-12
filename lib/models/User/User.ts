@@ -1,4 +1,4 @@
-import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer } from "..";
+import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer, Wallet } from "..";
 
 export enum UserStatus {
   ACTIVE = "active",
@@ -23,6 +23,7 @@ export interface UserSchema extends BaseModelSchema {
   domain: Domain;
   consumer?: Consumer;
   virtual?: boolean;
+  wallets?: Wallet[];
 }
 
 export default class User extends BaseModel implements UserSchema {
@@ -36,6 +37,7 @@ export default class User extends BaseModel implements UserSchema {
   domain: Domain = undefined;
   consumer?: Consumer = undefined;
   virtual: boolean = undefined;
+  wallets?: Wallet[] = undefined;
 
   constructor(data: Partial<UserSchema>) {
     super(data);
