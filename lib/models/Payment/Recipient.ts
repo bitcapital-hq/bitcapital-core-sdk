@@ -3,12 +3,12 @@ import Wallet from "../Wallet/Wallet";
 
 export interface RecipientSchema extends BaseModelSchema {
   amount: string;
-  destination: Wallet;
+  destination: Wallet | string;
 }
 
 export default class Recipient extends BaseModel implements RecipientSchema {
   amount: string = undefined;
-  destination: Wallet = undefined;
+  destination: Wallet | string = undefined;
 
   constructor(data: Partial<RecipientSchema>) {
     super(data);
