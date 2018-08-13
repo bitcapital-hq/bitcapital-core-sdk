@@ -48,9 +48,13 @@ export default class Session {
         notify: boolean;
     }): Promise<User>;
     /**
-     * Fetches the currently stored session.
+     * Fetches the currently stored session from local storage.
      */
     protected fetch(): Promise<User>;
+    /**
+     * Reloads the current user using the remote server.
+     */
+    protected reload(): Promise<User>;
     /**
      * Destroys the session and clears the storage.
      */
