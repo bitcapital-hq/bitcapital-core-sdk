@@ -54,7 +54,7 @@ export default class Session {
     /**
      * Reloads the current user using the remote server.
      */
-    protected reload(): Promise<User>;
+    reload(): Promise<User>;
     /**
      * Destroys the session and clears the storage.
      */
