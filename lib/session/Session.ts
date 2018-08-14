@@ -150,6 +150,18 @@ export default class Session {
   }
 
   /**
+   * Refreshs the current user information.
+   */
+  public async refresh(): Promise<User> {
+    if (!this.current) return;
+
+    const user = await UserWebService.getInstance().me();
+    this.register(new User({ ...user, credentials: this.current.credentials } as UserSchema));
+
+    return user;
+  }
+
+  /**
    * Performs a "client_credentials" authentication using the OAuth 2.0 server and registers it in current session.
    */
   public async clientCredentials(): Promise<User> {
