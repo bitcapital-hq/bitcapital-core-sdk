@@ -65,6 +65,10 @@ export default class Session {
         password: string;
     }): Promise<User>;
     /**
+     * Refreshs the current user information.
+     */
+    refresh(): Promise<User>;
+    /**
      * Performs a "client_credentials" authentication using the OAuth 2.0 server and registers it in current session.
      */
     clientCredentials(): Promise<User>;
