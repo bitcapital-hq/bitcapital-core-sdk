@@ -1,6 +1,6 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
-import { Wallet, WalletSchema, User } from "../models";
+import { Wallet, WalletSchema, User, Transaction, TransactionSchema, IncomeSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
@@ -54,6 +54,41 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
     }
 
     return new Wallet(response.data);
+  }
+
+  /**
+   * Find the {#Wallet}'s {#Transaction}s by it's id.
+   *
+   * @param id The id of the {#Wallet}
+   */
+  public async findWalletTransactions(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get(`/wallets/${id}/transactions`, null, { params: { skip, limit } });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    // Return a paginated array with count information from headers
+    const result = response.data.map((item: TransactionSchema) => new Transaction(item));
+    return PaginationUtil.parse(result, response.headers);
+  }
+
+  /**
+   * Find the {#Wallet}'s Income by it's id.
+   *
+   * @param id The id of the {#Wallet}
+   */
+  public async findWalletIncome(id: string, pagination: Pagination): Promise<PaginatedArray<IncomeSchema>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get(`/wallets/${id}/received`, null, { params: { skip, limit } });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    // Return a paginated array with count information from headers
+    return PaginationUtil.parse(response.data as IncomeSchema[], response.headers);
   }
 
   /**
