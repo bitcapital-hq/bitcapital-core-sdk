@@ -25,10 +25,10 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
      */
     findWalletTransactions(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>>;
     /**
-   * Find the {#Wallet}'s Income by it's id.
-   *
-   * @param id The id of the {#Wallet}
-   */
+     * Find the {#Wallet}'s Income by it's id.
+     *
+     * @param id The id of the {#Wallet}
+     */
     findWalletIncome(id: string, pagination: Pagination): Promise<PaginatedArray<IncomeSchema>>;
     /**
      * Find the Root Wallet.

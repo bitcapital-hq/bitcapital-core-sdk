@@ -40,12 +40,13 @@ export default class PaymentWebService implements BaseModelWebService<Payment, P
   }
 
   /**
-   * Find a {#Payment} by it's id.
+   * Create a {#Payment}
    *
    * @param payment The payment to be created
    */
-  public async create(payment: PaymentSchema): Promise<Payment> {
-    const response = await this.http.post(`/payments`, payment);
+  public async create(payment: PaymentSchema, asset?: string): Promise<Payment> {
+    const url = asset ? "/payments/" + asset : "/payments";
+    const response = await this.http.post(url, payment);
 
     if (!response || response.status !== 200) {
       throw response;
