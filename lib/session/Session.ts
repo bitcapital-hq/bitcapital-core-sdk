@@ -105,7 +105,7 @@ export default class Session {
   /**
    * Reloads the current user using the remote server.
    */
-  protected async reload() {
+  public async reload() {
     if (this.current) {
       const oauth = this.current.credentials;
       const user = await UserWebService.getInstance().me(oauth);
@@ -156,6 +156,18 @@ export default class Session {
     }
 
     throw oauth;
+  }
+
+  /**
+   * Refreshs the current user information.
+   */
+  public async refresh(): Promise<User> {
+    if (!this.current) return;
+
+    const user = await UserWebService.getInstance().me();
+    this.register(new User({ ...user, credentials: this.current.credentials } as UserSchema));
+
+    return user;
   }
 
   /**

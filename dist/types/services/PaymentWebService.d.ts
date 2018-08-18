@@ -14,9 +14,9 @@ export default class PaymentWebService implements BaseModelWebService<Payment, P
      */
     findOne(id: string): Promise<Payment>;
     /**
-     * Find a {#Payment} by it's id.
+     * Create a {#Payment}
      *
      * @param payment The payment to be created
      */
-    create(payment: PaymentSchema): Promise<Payment>;
+    create(payment: PaymentSchema, asset?: string): Promise<Payment>;
 }

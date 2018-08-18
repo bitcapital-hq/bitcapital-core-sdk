@@ -14,6 +14,7 @@ export {
 export { default as Payment, PaymentSchema } from "./Payment/Payment";
 export { default as Recipient, RecipientSchema } from "./Payment/Recipient";
 export { default as Asset, AssetSchema } from "./Asset/Asset";
+export { IncomeSchema } from "./Income/Income";
 
 export {
   default as Transaction,

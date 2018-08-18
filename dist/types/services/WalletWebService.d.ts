@@ -1,5 +1,5 @@
 import { Http, HttpOptions } from "../base";
-import { Wallet, WalletSchema, User } from "../models";
+import { Wallet, WalletSchema, User, Transaction, IncomeSchema } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 export default class WalletWebService implements BaseModelWebService<Wallet, WalletSchema> {
@@ -18,6 +18,18 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
      * @param id The id of the {#Wallet}
      */
     findOne(id: string): Promise<Wallet>;
+    /**
+     * Find the {#Wallet}'s {#Transaction}s by it's id.
+     *
+     * @param id The id of the {#Wallet}
+     */
+    findWalletTransactions(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>>;
+    /**
+     * Find the {#Wallet}'s Income by it's id.
+     *
+     * @param id The id of the {#Wallet}
+     */
+    findWalletIncome(id: string, pagination: Pagination): Promise<PaginatedArray<IncomeSchema>>;
     /**
      * Find the Root Wallet.
      */

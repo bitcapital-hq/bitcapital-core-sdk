@@ -54,7 +54,7 @@ export default class Session {
     /**
      * Reloads the current user using the remote server.
      */
-    protected reload(): Promise<User>;
+    reload(): Promise<User>;
     /**
      * Destroys the session and clears the storage.
      */
@@ -68,6 +68,10 @@ export default class Session {
         username: string;
         password: string;
     }): Promise<User>;
+    /**
+     * Refreshs the current user information.
+     */
+    refresh(): Promise<User>;
     /**
      * Performs a "client_credentials" authentication using the OAuth 2.0 server and registers it in current session.
      */
