@@ -1,6 +1,6 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
-import { Wallet, WalletSchema, User, Transaction, TransactionSchema, IncomeSchema } from "../models";
+import { Wallet, WalletSchema, User, Transaction, TransactionSchema, Payment } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
@@ -79,7 +79,7 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
    *
    * @param id The id of the {#Wallet}
    */
-  public async findWalletIncome(id: string, pagination: Pagination): Promise<PaginatedArray<IncomeSchema>> {
+  public async received(id: string, pagination: Pagination): Promise<PaginatedArray<Payment>> {
     const { skip, limit } = pagination;
     const response = await this.http.get(`/wallets/${id}/received`, null, { params: { skip, limit } });
 
@@ -88,7 +88,7 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
     }
 
     // Return a paginated array with count information from headers
-    return PaginationUtil.parse(response.data as IncomeSchema[], response.headers);
+    return PaginationUtil.parse(response.data.map(p => new Payment(p)), response.headers);
   }
 
   /**
@@ -172,21 +172,6 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
    */
   public async update(id: string, wallet: Partial<WalletSchema>): Promise<Wallet> {
     const response = await this.http.post(`/wallets/${id}`, wallet);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Wallet(response.data);
-  }
-
-  /**
-   * Upsert a {#Wallet}.
-   *
-   * @param wallet The values you want to upsert
-   */
-  public async upsert(wallet: WalletSchema): Promise<Wallet> {
-    const response = await this.http.put(`/wallets`, wallet);
 
     if (!response || response.status !== 200) {
       throw response;

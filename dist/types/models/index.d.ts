@@ -5,7 +5,6 @@ export { default as Wallet, WalletSchema, WalletType, StellarWalletData, Banking
 export { default as Payment, PaymentSchema } from "./Payment/Payment";
 export { default as Recipient, RecipientSchema } from "./Payment/Recipient";
 export { default as Asset, AssetSchema } from "./Asset/Asset";
-export { IncomeSchema } from "./Income/Income";
 export { default as Transaction, TransactionType, TransactionAdditionalData, TransactionSchema } from "./Transaction/Transaction";
 export * from "./Consumer";
 export * from "./OAuth";

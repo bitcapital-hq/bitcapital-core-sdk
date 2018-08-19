@@ -1,5 +1,5 @@
 import { Http, HttpOptions } from "../base";
-import { Wallet, WalletSchema, User, Transaction, IncomeSchema } from "../models";
+import { Wallet, WalletSchema, User, Transaction, Payment } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 export default class WalletWebService implements BaseModelWebService<Wallet, WalletSchema> {
@@ -29,7 +29,7 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
      *
      * @param id The id of the {#Wallet}
      */
-    findWalletIncome(id: string, pagination: Pagination): Promise<PaginatedArray<IncomeSchema>>;
+    received(id: string, pagination: Pagination): Promise<PaginatedArray<Payment>>;
     /**
      * Find the Root Wallet.
      */
@@ -65,12 +65,6 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
      * @param wallet The values you want to update
      */
     update(id: string, wallet: Partial<WalletSchema>): Promise<Wallet>;
-    /**
-     * Upsert a {#Wallet}.
-     *
-     * @param wallet The values you want to upsert
-     */
-    upsert(wallet: WalletSchema): Promise<Wallet>;
     /**
      * Delete a {#Wallet} by it's id.
      *
