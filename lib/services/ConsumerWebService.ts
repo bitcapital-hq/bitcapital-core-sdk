@@ -64,7 +64,7 @@ export default class ConsumerWebService implements BaseModelWebService<User, Use
    *
    * @param id The id of the {#Consumer}
    */
-  public async findDocumentsById(id: string): Promise<Document[]> {
+  public async findDocumentsById(id: string = "me"): Promise<Document[]> {
     const response = await this.http.get(`/consumers/${id}/documents`);
 
     if (!response || response.status !== 200) {

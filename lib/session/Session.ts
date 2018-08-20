@@ -94,14 +94,23 @@ export default class Session {
   }
 
   /**
-   * Fetches the currently stored session.
+   * Fetches the currently stored session from local storage.
    */
   protected async fetch() {
     this.current = await this.storage.get("session");
-
     await this.observable.notify(Session.EVENT_SESSION_CHANGED, this.current);
-
     return this.current;
+  }
+
+  /**
+   * Reloads the current user using the remote server.
+   */
+  public async reload() {
+    if (this.current) {
+      const oauth = this.current.credentials;
+      const user = await UserWebService.getInstance().me(oauth);
+      return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+    }
   }
 
   /**

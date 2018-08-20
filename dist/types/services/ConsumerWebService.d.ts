@@ -26,7 +26,7 @@ export default class ConsumerWebService implements BaseModelWebService<User, Use
      *
      * @param id The id of the {#Consumer}
      */
-    findDocumentsById(id: string): Promise<Document[]>;
+    findDocumentsById(id?: string): Promise<Document[]>;
     /**
      * Find the {#Document}s from a {#Consumer} by it's ID and the {#Document} type
      * This method will return pictures

@@ -12,9 +12,7 @@ export interface DomainSchema extends BaseModelSchema {
     name: string;
     role: DomainRole;
     slug: string;
-    logo?: string;
-    primaryColor?: string;
-    tintColor?: string;
+    test?: boolean;
     urls?: string[];
     users: User[] | null;
     settings: DomainSettings;
@@ -23,9 +21,7 @@ export default class Domain extends BaseModel implements DomainSchema {
     name: string;
     role: DomainRole;
     slug: string;
-    logo?: string;
-    primaryColor?: string;
-    tintColor?: string;
+    test?: boolean;
     urls?: string[];
     users: User[] | null;
     settings: DomainSettings;

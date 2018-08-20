@@ -3,15 +3,13 @@ import { Consumer, ConsumerSchema, ConsumerStatus, Address, Document, Phone, Wal
 import { TEST_ADDRESS } from "./Address.test";
 import { TEST_DOCUMENT } from "./Document.test";
 import { TEST_PHONE } from "./Phone.test";
-import { TEST_WALLET } from "./Wallet.test";
 
 export const TEST_CONSUMER: ConsumerSchema = {
   status: ConsumerStatus.PENDING_DOCUMENTS,
   userId: hat(),
   addresses: [new Address(TEST_ADDRESS)],
   documents: [new Document(TEST_DOCUMENT)],
-  phones: [new Phone(TEST_PHONE)],
-  wallets: [new Wallet(TEST_WALLET)]
+  phones: [new Phone(TEST_PHONE)]
 };
 
 describe("lib.models.Consumer.Consumer", () => {
@@ -23,6 +21,5 @@ describe("lib.models.Consumer.Consumer", () => {
     expect(consumer.addresses).toBe(TEST_CONSUMER.addresses);
     expect(consumer.documents).toBe(TEST_CONSUMER.documents);
     expect(consumer.phones).toBe(TEST_CONSUMER.phones);
-    expect(consumer.wallets).toBe(TEST_CONSUMER.wallets);
   });
 });

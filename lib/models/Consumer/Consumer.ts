@@ -1,4 +1,4 @@
-import { Address, Document, Phone, Wallet } from ".";
+import { Address, Document, Phone } from ".";
 import { BaseModel, BaseModelSchema, User } from "..";
 
 export enum ConsumerStatus {
@@ -20,7 +20,6 @@ export interface ConsumerSchema extends BaseModelSchema {
   documents?: Document[];
   phones?: Phone[];
   addresses?: Address[];
-  wallets?: Wallet[];
 }
 
 export default class Consumer extends BaseModel implements ConsumerSchema {
@@ -30,10 +29,8 @@ export default class Consumer extends BaseModel implements ConsumerSchema {
   documents?: Document[] = undefined;
   phones?: Phone[] = undefined;
   addresses?: Address[] = undefined;
-  wallets?: Wallet[] = undefined;
   constructor(data: Partial<ConsumerSchema>) {
     super(data);
-
     // Assign all props
     Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
   }

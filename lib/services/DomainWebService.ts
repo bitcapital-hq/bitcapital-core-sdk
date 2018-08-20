@@ -146,21 +146,6 @@ export default class DomainWebService implements BaseModelWebService<Domain, Dom
   }
 
   /**
-   * Upsert a {#Domain}.
-   *
-   * @param domain The values you want to upsert
-   */
-  public async upsert(domain: DomainSchema): Promise<Domain> {
-    const response = await this.http.put(`/domains`, domain);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Domain(response.data);
-  }
-
-  /**
    * Delete a {#Domain} by it's id.
    *
    * @param id The id of the {#Domain}
