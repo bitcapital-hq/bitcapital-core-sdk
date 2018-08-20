@@ -42,7 +42,7 @@ import { Session } from 'bitcapital-core-sdk';
 
 // Initialize the session instance to authenticate
 // using the Bitcapital Core OAuth 2.0 provider.
-Session.initialize({
+const session = Session.initialize({
   // Base instance URL for REST API calls
   http: {
     baseURL: 'https://your-instance.btcore.app',
@@ -54,9 +54,6 @@ Session.initialize({
     clientSecret: '< YOUR CLIENT_SECRET HERE >',
   }
 });
-
-// Get your session instance
-const session = Session.getInstance();
 
 try {
   // Authenticate a user with email and password from Bitcapital Core
@@ -70,7 +67,7 @@ try {
   // The session returns the user info and credentials
   console.log(user.credentials.accessToken);
 
-  // To logout and destroy current information, use the "destroy" action
+  // To logout and clear the current credentials, use the "destroy" action
   await session.destroy();
 
 } catch(exception) {
