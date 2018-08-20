@@ -19,13 +19,13 @@ npm install "git+https://github.com/nxtep-io/bitcapital-core-sdk.git#1.0.0";
 
 ## Getting started (From source)
 
-Install the dependencies:
+Install the dependencies and make sure everything is OK by running the automated tests.
 ```bash
 yarn install
 yarn test
 ```
 
-Prepare the changes for publishing
+Prepare the changes for publishing using the Typescript compiler
 ```bash
 yarn run build
 ```
