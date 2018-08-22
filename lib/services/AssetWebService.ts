@@ -66,7 +66,7 @@ export default class AssetWebService implements BaseModelWebService<Asset, Asset
   public async emit(request: AssetEmitRequestSchema): Promise<Payment> {
     const { id, amount, destination } = request;
 
-    const response = await this.http.get(`/assets/${id}/emit`, { amount, destination });
+    const response = await this.http.post(`/assets/${id}/emit`, { amount, destination });
 
     if (!response || response.status !== 200) {
       throw response;
