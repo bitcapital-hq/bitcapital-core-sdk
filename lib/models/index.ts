@@ -12,6 +12,7 @@ export {
 } from "./Wallet/Wallet";
 
 export { default as Payment, PaymentSchema } from "./Payment/Payment";
+export { PaymentRequestSchema } from "./Payment/PaymentRequest";
 export { default as Recipient, RecipientSchema } from "./Payment/Recipient";
 export { default as Asset, AssetSchema } from "./Asset/Asset";
 

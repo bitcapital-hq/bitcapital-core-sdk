@@ -1,6 +1,6 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
-import { Payment, PaymentSchema, Recipient } from "../models";
+import { Payment, PaymentSchema, PaymentRequestSchema } from "../models";
 import BaseModelWebService from "./base/BaseModelWebService";
 
 export default class PaymentWebService implements BaseModelWebService<Payment, PaymentSchema> {
@@ -44,7 +44,10 @@ export default class PaymentWebService implements BaseModelWebService<Payment, P
    *
    * @param payment The payment to be created
    */
-  public async pay(source: string, recipients: Recipient[], asset: string = ""): Promise<Payment> {
+  public async pay(request: PaymentRequestSchema): Promise<Payment> {
+    const { source, recipients } = request;
+    const asset = request.asset ? request.asset : "";
+
     const url = `/payments/${asset}`;
     const response = await this.http.post(url, { source, recipients });
 
