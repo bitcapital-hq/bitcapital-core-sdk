@@ -1,5 +1,5 @@
 import { Http, HttpOptions } from "../base";
-import { Payment, PaymentSchema } from "../models";
+import { Payment, PaymentSchema, Recipient } from "../models";
 import BaseModelWebService from "./base/BaseModelWebService";
 export default class PaymentWebService implements BaseModelWebService<Payment, PaymentSchema> {
     protected http: Http;
@@ -18,5 +18,5 @@ export default class PaymentWebService implements BaseModelWebService<Payment, P
      *
      * @param payment The payment to be created
      */
-    create(payment: PaymentSchema, asset?: string): Promise<Payment>;
+    pay(source: string, recipients: Recipient[], asset?: string): Promise<Payment>;
 }
