@@ -1,6 +1,6 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
-import { Asset, AssetSchema, Payment } from "../models";
+import { Asset, AssetSchema, Payment, AssetEmitRequestSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
@@ -63,7 +63,9 @@ export default class AssetWebService implements BaseModelWebService<Asset, Asset
    * @param amount The amount to be emitted
    * @param [destination] The destination wallet
    */
-  public async emit(id: string, amount: string, destination?: string): Promise<Payment> {
+  public async emit(request: AssetEmitRequestSchema): Promise<Payment> {
+    const { id, amount, destination } = request;
+
     const response = await this.http.get(`/assets/${id}/emit`, { amount, destination });
 
     if (!response || response.status !== 200) {

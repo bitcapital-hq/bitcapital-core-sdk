@@ -1,5 +1,5 @@
 import { Http, HttpOptions } from "../base";
-import { Asset, AssetSchema, Payment } from "../models";
+import { Asset, AssetSchema, Payment, AssetEmitRequestSchema } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 export default class AssetWebService implements BaseModelWebService<Asset, AssetSchema> {
@@ -25,7 +25,7 @@ export default class AssetWebService implements BaseModelWebService<Asset, Asset
      * @param amount The amount to be emitted
      * @param [destination] The destination wallet
      */
-    emit(id: string, amount: string, destination?: string): Promise<Payment>;
+    emit(request: AssetEmitRequestSchema): Promise<Payment>;
     /**
      * Create a new {#Asset}.
      *
