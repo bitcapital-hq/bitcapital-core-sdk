@@ -1,4 +1,5 @@
 import { BaseModel, BaseModelSchema, User } from "..";
+import { IsNotEmpty, IsEnum, IsAlphanumeric, IsFQDN } from "class-validator";
 
 export interface DomainSettings {
   logo?: string;
@@ -22,13 +23,22 @@ export interface DomainSchema extends BaseModelSchema {
 }
 
 export default class Domain extends BaseModel implements DomainSchema {
-  name: string = undefined;
+  @IsNotEmpty() name: string = undefined;
+
+  @IsNotEmpty()
+  @IsEnum(DomainRole)
   role: DomainRole = undefined;
+
+  @IsNotEmpty()
+  @IsAlphanumeric()
   slug: string = undefined;
-  test?: boolean = undefined;
+
+  @IsFQDN(null, { each: true })
   urls?: string[] = undefined;
+
   users: User[] | null = undefined;
   settings: DomainSettings = undefined;
+  test?: boolean = undefined;
 
   constructor(data: Partial<DomainSchema>) {
     super(data);

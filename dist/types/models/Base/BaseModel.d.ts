@@ -8,4 +8,10 @@ export default class BaseModel {
     createdAt?: Date;
     updatedAt?: Date;
     constructor(data: any);
+    /**
+     * Returns true if the model is valid or an array of validation errors if invalid
+     *
+     * @param {boolean} [toString] If toString is true, this will return a formatted error string
+     */
+    isValid(toString?: boolean): Promise<string | true | import("../../../node_modules/class-validator/validation/ValidationError").ValidationError[]>;
 }

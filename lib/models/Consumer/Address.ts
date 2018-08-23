@@ -1,5 +1,6 @@
 import { Consumer } from ".";
 import { BaseModel, BaseModelSchema } from "..";
+import { IsNotEmpty, IsUUID } from "class-validator";
 
 export interface AddressSchema extends BaseModelSchema {
   consumer?: Consumer;
@@ -15,14 +16,16 @@ export interface AddressSchema extends BaseModelSchema {
 
 export default class Address extends BaseModel implements AddressSchema {
   consumer?: Consumer = undefined;
-  consumerId: string = undefined;
-  country: string = undefined;
+  @IsUUID() consumerId: string = undefined;
+
+  @IsNotEmpty() country: string = undefined;
+  @IsNotEmpty() city: string = undefined;
+  @IsNotEmpty() code: string = undefined;
+  @IsNotEmpty() address: string = undefined;
+  @IsNotEmpty() complement: string = undefined;
+  @IsNotEmpty() number: string = undefined;
+
   geo: { x: number; y: number } = undefined;
-  city: string = undefined;
-  code: string = undefined;
-  address: string = undefined;
-  complement: string = undefined;
-  number: string = undefined;
 
   constructor(data: Partial<AddressSchema>) {
     super(data);

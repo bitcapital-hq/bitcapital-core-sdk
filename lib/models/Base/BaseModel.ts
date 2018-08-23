@@ -1,3 +1,5 @@
+import { validate, IsOptional, IsUUID } from "class-validator";
+
 export interface BaseModelSchema {
   id?: string;
   createdAt?: string | Date;
@@ -5,9 +7,13 @@ export interface BaseModelSchema {
 }
 
 export default class BaseModel {
+  @IsOptional()
+  @IsUUID()
   id?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+
+  @IsOptional() createdAt?: Date;
+
+  @IsOptional() updatedAt?: Date;
 
   constructor(data: any) {
     this.id = data.id;
@@ -18,5 +24,24 @@ export default class BaseModel {
     if (data.updatedAt) {
       this.updatedAt = new Date(data.createdAt);
     }
+  }
+
+  /**
+   * Returns true if the model is valid or an array of validation errors if invalid
+   *
+   * @param {boolean} [toString] If toString is true, this will return a formatted error string
+   */
+  public async isValid(toString?: boolean) {
+    const errors = await validate(this);
+
+    if (errors.length === 0) {
+      return true;
+    }
+
+    if (toString) {
+      return errors.map(error => error.toString(true)).join("; ");
+    }
+
+    return errors;
   }
 }

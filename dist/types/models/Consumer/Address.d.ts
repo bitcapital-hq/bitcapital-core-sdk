@@ -18,14 +18,14 @@ export default class Address extends BaseModel implements AddressSchema {
     consumer?: Consumer;
     consumerId: string;
     country: string;
-    geo: {
-        x: number;
-        y: number;
-    };
     city: string;
     code: string;
     address: string;
     complement: string;
     number: string;
+    geo: {
+        x: number;
+        y: number;
+    };
     constructor(data: Partial<AddressSchema>);
 }
