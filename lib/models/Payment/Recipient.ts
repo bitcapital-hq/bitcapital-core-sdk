@@ -1,5 +1,6 @@
 import { BaseModel, BaseModelSchema } from "..";
 import Wallet from "../Wallet/Wallet";
+import { IsNotEmpty, IsNumberString, IsUUID } from "class-validator";
 
 export interface RecipientSchema extends BaseModelSchema {
   amount: string;
@@ -7,8 +8,11 @@ export interface RecipientSchema extends BaseModelSchema {
 }
 
 export default class Recipient extends BaseModel implements RecipientSchema {
+  @IsNotEmpty()
+  @IsNumberString()
   amount: string = undefined;
-  destination: Wallet | string = undefined;
+
+  @IsUUID() destination: Wallet | string = undefined;
 
   constructor(data: Partial<RecipientSchema>) {
     super(data);

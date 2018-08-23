@@ -2,6 +2,7 @@ import { TransactionType } from "./TransactionType";
 import { BaseModel, BaseModelSchema } from "..";
 import Wallet from "../Wallet/Wallet";
 import Payment from "../Payment/Payment";
+import { IsNotEmpty, IsEnum } from "class-validator";
 
 export { TransactionType };
 
@@ -19,9 +20,14 @@ export interface TransactionSchema extends BaseModelSchema {
 }
 
 export default class Transaction extends BaseModel implements TransactionSchema {
-  data: TransactionAdditionalData = undefined;
+  @IsNotEmpty() data: TransactionAdditionalData = undefined;
+
+  @IsNotEmpty()
+  @IsEnum(TransactionType)
   type: TransactionType = undefined;
-  source: Wallet = undefined;
+
+  @IsNotEmpty() source: Wallet = undefined;
+
   payments?: Payment[] = undefined;
 
   constructor(data: Partial<TransactionSchema>) {

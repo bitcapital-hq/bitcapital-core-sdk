@@ -1,6 +1,16 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("..");
+const class_validator_1 = require("class-validator");
 var DocumentType;
 (function (DocumentType) {
     DocumentType["BRL_IDENTITY"] = "brl_identity";
@@ -22,5 +32,40 @@ class Document extends __1.BaseModel {
         Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
     }
 }
+__decorate([
+    class_validator_1.IsUUID(),
+    __metadata("design:type", String)
+], Document.prototype, "consumerId", void 0);
+__decorate([
+    class_validator_1.IsNotEmpty(),
+    class_validator_1.IsEnum(DocumentType),
+    __metadata("design:type", String)
+], Document.prototype, "type", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsNotEmpty(),
+    __metadata("design:type", String)
+], Document.prototype, "number", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsBase64(),
+    __metadata("design:type", String)
+], Document.prototype, "front", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsBase64(),
+    __metadata("design:type", String)
+], Document.prototype, "back", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsBase64(),
+    __metadata("design:type", String)
+], Document.prototype, "selfie", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsDate(),
+    class_validator_1.MaxDate(new Date()),
+    __metadata("design:type", Date)
+], Document.prototype, "verifiedAt", void 0);
 exports.default = Document;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRG9jdW1lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9saWIvbW9kZWxzL0NvbnN1bWVyL0RvY3VtZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsMEJBQWdEO0FBRWhELElBQVksWUFJWDtBQUpELFdBQVksWUFBWTtJQUN0Qiw2Q0FBNkIsQ0FBQTtJQUM3Qix5REFBeUMsQ0FBQTtJQUN6QywrREFBK0MsQ0FBQTtBQUNqRCxDQUFDLEVBSlcsWUFBWSxHQUFaLG9CQUFZLEtBQVosb0JBQVksUUFJdkI7QUFhRCxjQUE4QixTQUFRLGFBQVM7SUFVN0MsWUFBWSxJQUE2QjtRQUN2QyxLQUFLLENBQUMsSUFBSSxDQUFDLENBQUM7UUFWZCxhQUFRLEdBQWMsU0FBUyxDQUFDO1FBQ2hDLGVBQVUsR0FBVyxTQUFTLENBQUM7UUFDL0IsU0FBSSxHQUFpQixTQUFTLENBQUM7UUFDL0IsV0FBTSxHQUFZLFNBQVMsQ0FBQztRQUM1QixVQUFLLEdBQVksU0FBUyxDQUFDO1FBQzNCLFNBQUksR0FBWSxTQUFTLENBQUM7UUFDMUIsV0FBTSxHQUFZLFNBQVMsQ0FBQztRQUM1QixlQUFVLEdBQVUsU0FBUyxDQUFDO1FBSzVCLG1CQUFtQjtRQUNuQixNQUFNLENBQUMsbUJBQW1CLENBQUMsSUFBSSxDQUFDLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQztJQUMxRSxDQUFDO0NBQ0Y7QUFoQkQsMkJBZ0JDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29uc3VtZXIgfSBmcm9tIFwiLlwiO1xuaW1wb3J0IHsgQmFzZU1vZGVsLCBCYXNlTW9kZWxTY2hlbWEgfSBmcm9tIFwiLi5cIjtcblxuZXhwb3J0IGVudW0gRG9jdW1lbnRUeXBlIHtcbiAgQlJMX0lERU5USVRZID0gXCJicmxfaWRlbnRpdHlcIixcbiAgQlJMX0lORElWSURVQUxfUkVHID0gXCJicmxfaW5kaXZpZHVhbF9yZWdcIixcbiAgQlJMX0FERFJFU1NfU1RBVEVNRU5UID0gXCJicmxfYWRkcmVzc19zdGF0ZW1lbnRcIlxufVxuXG5leHBvcnQgaW50ZXJmYWNlIERvY3VtZW50U2NoZW1hIGV4dGVuZHMgQmFzZU1vZGVsU2NoZW1hIHtcbiAgY29uc3VtZXI/OiBDb25zdW1lcjtcbiAgY29uc3VtZXJJZDogc3RyaW5nO1xuICB0eXBlOiBEb2N1bWVudFR5cGU7XG4gIG51bWJlcj86IHN0cmluZztcbiAgZnJvbnQ/OiBzdHJpbmc7XG4gIGJhY2s/OiBzdHJpbmc7XG4gIHNlbGZpZT86IHN0cmluZztcbiAgdmVyaWZpZWRBdD86IERhdGU7XG59XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIERvY3VtZW50IGV4dGVuZHMgQmFzZU1vZGVsIGltcGxlbWVudHMgRG9jdW1lbnRTY2hlbWEge1xuICBjb25zdW1lcj86IENvbnN1bWVyID0gdW5kZWZpbmVkO1xuICBjb25zdW1lcklkOiBzdHJpbmcgPSB1bmRlZmluZWQ7XG4gIHR5cGU6IERvY3VtZW50VHlwZSA9IHVuZGVmaW5lZDtcbiAgbnVtYmVyPzogc3RyaW5nID0gdW5kZWZpbmVkO1xuICBmcm9udD86IHN0cmluZyA9IHVuZGVmaW5lZDtcbiAgYmFjaz86IHN0cmluZyA9IHVuZGVmaW5lZDtcbiAgc2VsZmllPzogc3RyaW5nID0gdW5kZWZpbmVkO1xuICB2ZXJpZmllZEF0PzogRGF0ZSA9IHVuZGVmaW5lZDtcblxuICBjb25zdHJ1Y3RvcihkYXRhOiBQYXJ0aWFsPERvY3VtZW50U2NoZW1hPikge1xuICAgIHN1cGVyKGRhdGEpO1xuXG4gICAgLy8gQXNzaWduIGFsbCBwcm9wc1xuICAgIE9iamVjdC5nZXRPd25Qcm9wZXJ0eU5hbWVzKHRoaXMpLm1hcChwcm9wID0+ICh0aGlzW3Byb3BdID0gZGF0YVtwcm9wXSkpO1xuICB9XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRG9jdW1lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9saWIvbW9kZWxzL0NvbnN1bWVyL0RvY3VtZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQ0EsMEJBQWdEO0FBQ2hELHFEQUFvRztBQUVwRyxJQUFZLFlBSVg7QUFKRCxXQUFZLFlBQVk7SUFDdEIsNkNBQTZCLENBQUE7SUFDN0IseURBQXlDLENBQUE7SUFDekMsK0RBQStDLENBQUE7QUFDakQsQ0FBQyxFQUpXLFlBQVksR0FBWixvQkFBWSxLQUFaLG9CQUFZLFFBSXZCO0FBYUQsY0FBOEIsU0FBUSxhQUFTO0lBNEI3QyxZQUFZLElBQTZCO1FBQ3ZDLEtBQUssQ0FBQyxJQUFJLENBQUMsQ0FBQztRQTVCZCxhQUFRLEdBQWMsU0FBUyxDQUFDO1FBRWhDLGVBQVUsR0FBVyxTQUFTLENBQUM7UUFJL0IsU0FBSSxHQUFpQixTQUFTLENBQUM7UUFJL0IsV0FBTSxHQUFZLFNBQVMsQ0FBQztRQUk1QixVQUFLLEdBQVksU0FBUyxDQUFDO1FBRzNCLFNBQUksR0FBWSxTQUFTLENBQUM7UUFHMUIsV0FBTSxHQUFZLFNBQVMsQ0FBQztRQUs1QixlQUFVLEdBQVUsU0FBUyxDQUFDO1FBSzVCLG1CQUFtQjtRQUNuQixNQUFNLENBQUMsbUJBQW1CLENBQUMsSUFBSSxDQUFDLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQztJQUMxRSxDQUFDO0NBQ0Y7QUEvQkM7SUFEQyx3QkFBTSxFQUFFOzs0Q0FDc0I7QUFJL0I7SUFGQyw0QkFBVSxFQUFFO0lBQ1osd0JBQU0sQ0FBQyxZQUFZLENBQUM7O3NDQUNVO0FBSS9CO0lBRkMsNEJBQVUsRUFBRTtJQUNaLDRCQUFVLEVBQUU7O3dDQUNlO0FBSTVCO0lBRkMsNEJBQVUsRUFBRTtJQUNaLDBCQUFRLEVBQUU7O3VDQUNnQjtBQUczQjtJQUZDLDRCQUFVLEVBQUU7SUFDWiwwQkFBUSxFQUFFOztzQ0FDZTtBQUcxQjtJQUZDLDRCQUFVLEVBQUU7SUFDWiwwQkFBUSxFQUFFOzt3Q0FDaUI7QUFLNUI7SUFIQyw0QkFBVSxFQUFFO0lBQ1osd0JBQU0sRUFBRTtJQUNSLHlCQUFPLENBQUMsSUFBSSxJQUFJLEVBQUUsQ0FBQzs4QkFDUCxJQUFJOzRDQUFhO0FBMUJoQywyQkFrQ0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb25zdW1lciB9IGZyb20gXCIuXCI7XG5pbXBvcnQgeyBCYXNlTW9kZWwsIEJhc2VNb2RlbFNjaGVtYSB9IGZyb20gXCIuLlwiO1xuaW1wb3J0IHsgSXNVVUlELCBJc05vdEVtcHR5LCBJc0VudW0sIElzT3B0aW9uYWwsIElzQmFzZTY0LCBJc0RhdGUsIE1heERhdGUgfSBmcm9tIFwiY2xhc3MtdmFsaWRhdG9yXCI7XG5cbmV4cG9ydCBlbnVtIERvY3VtZW50VHlwZSB7XG4gIEJSTF9JREVOVElUWSA9IFwiYnJsX2lkZW50aXR5XCIsXG4gIEJSTF9JTkRJVklEVUFMX1JFRyA9IFwiYnJsX2luZGl2aWR1YWxfcmVnXCIsXG4gIEJSTF9BRERSRVNTX1NUQVRFTUVOVCA9IFwiYnJsX2FkZHJlc3Nfc3RhdGVtZW50XCJcbn1cblxuZXhwb3J0IGludGVyZmFjZSBEb2N1bWVudFNjaGVtYSBleHRlbmRzIEJhc2VNb2RlbFNjaGVtYSB7XG4gIGNvbnN1bWVyPzogQ29uc3VtZXI7XG4gIGNvbnN1bWVySWQ6IHN0cmluZztcbiAgdHlwZTogRG9jdW1lbnRUeXBlO1xuICBudW1iZXI/OiBzdHJpbmc7XG4gIGZyb250Pzogc3RyaW5nO1xuICBiYWNrPzogc3RyaW5nO1xuICBzZWxmaWU/OiBzdHJpbmc7XG4gIHZlcmlmaWVkQXQ/OiBEYXRlO1xufVxuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBEb2N1bWVudCBleHRlbmRzIEJhc2VNb2RlbCBpbXBsZW1lbnRzIERvY3VtZW50U2NoZW1hIHtcbiAgY29uc3VtZXI/OiBDb25zdW1lciA9IHVuZGVmaW5lZDtcbiAgQElzVVVJRCgpXG4gIGNvbnN1bWVySWQ6IHN0cmluZyA9IHVuZGVmaW5lZDtcblxuICBASXNOb3RFbXB0eSgpXG4gIEBJc0VudW0oRG9jdW1lbnRUeXBlKVxuICB0eXBlOiBEb2N1bWVudFR5cGUgPSB1bmRlZmluZWQ7XG5cbiAgQElzT3B0aW9uYWwoKVxuICBASXNOb3RFbXB0eSgpXG4gIG51bWJlcj86IHN0cmluZyA9IHVuZGVmaW5lZDtcblxuICBASXNPcHRpb25hbCgpXG4gIEBJc0Jhc2U2NCgpXG4gIGZyb250Pzogc3RyaW5nID0gdW5kZWZpbmVkO1xuICBASXNPcHRpb25hbCgpXG4gIEBJc0Jhc2U2NCgpXG4gIGJhY2s/OiBzdHJpbmcgPSB1bmRlZmluZWQ7XG4gIEBJc09wdGlvbmFsKClcbiAgQElzQmFzZTY0KClcbiAgc2VsZmllPzogc3RyaW5nID0gdW5kZWZpbmVkO1xuXG4gIEBJc09wdGlvbmFsKClcbiAgQElzRGF0ZSgpXG4gIEBNYXhEYXRlKG5ldyBEYXRlKCkpXG4gIHZlcmlmaWVkQXQ/OiBEYXRlID0gdW5kZWZpbmVkO1xuXG4gIGNvbnN0cnVjdG9yKGRhdGE6IFBhcnRpYWw8RG9jdW1lbnRTY2hlbWE+KSB7XG4gICAgc3VwZXIoZGF0YSk7XG5cbiAgICAvLyBBc3NpZ24gYWxsIHByb3BzXG4gICAgT2JqZWN0LmdldE93blByb3BlcnR5TmFtZXModGhpcykubWFwKHByb3AgPT4gKHRoaXNbcHJvcF0gPSBkYXRhW3Byb3BdKSk7XG4gIH1cbn1cbiJdfQ==

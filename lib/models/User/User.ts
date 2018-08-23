@@ -1,4 +1,5 @@
 import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer, Wallet } from "..";
+import { IsNotEmpty, IsEmail, IsEnum, IsOptional } from "class-validator";
 
 export enum UserStatus {
   ACTIVE = "active",
@@ -27,17 +28,30 @@ export interface UserSchema extends BaseModelSchema {
 }
 
 export default class User extends BaseModel implements UserSchema {
-  firstName: string = undefined;
-  lastName: string = undefined;
+  @IsNotEmpty() firstName: string = undefined;
+
+  @IsNotEmpty() lastName: string = undefined;
+
+  @IsNotEmpty()
+  @IsEmail()
   email: string = undefined;
+
+  @IsNotEmpty()
+  @IsEnum(UserRole)
   role: UserRole = undefined;
+
+  @IsNotEmpty()
+  @IsEnum(UserStatus)
   status: UserStatus = undefined;
-  password?: string = undefined;
-  credentials?: OAuthCredentials = undefined;
-  domain: Domain = undefined;
+
+  @IsNotEmpty() domain: Domain = undefined;
+
+  @IsOptional() password?: string = undefined;
+
   consumer?: Consumer = undefined;
-  virtual: boolean = undefined;
   wallets?: Wallet[] = undefined;
+  credentials?: OAuthCredentials = undefined;
+  virtual: boolean = undefined;
 
   constructor(data: Partial<UserSchema>) {
     super(data);

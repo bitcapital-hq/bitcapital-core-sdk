@@ -3,6 +3,7 @@ import { WalletType } from "./WalletType";
 import { BaseModel, BaseModelSchema } from "..";
 import { StellarWalletData, BankingWalletData } from "./WalletData";
 import { WalletBalance } from "./WalletBalance";
+import { IsNotEmpty, IsEnum } from "class-validator";
 
 export { WalletType, StellarWalletData, BankingWalletData, WalletBalance };
 
@@ -14,8 +15,12 @@ export interface WalletSchema extends BaseModelSchema {
 }
 
 export default class Wallet extends BaseModel implements WalletSchema {
+  @IsNotEmpty()
+  @IsEnum(WalletType)
   type: WalletType = undefined;
-  data: StellarWalletData | BankingWalletData = undefined;
+
+  @IsNotEmpty() data: StellarWalletData | BankingWalletData = undefined;
+
   user?: User | string = undefined;
   balances?: WalletBalance[] = undefined;
 

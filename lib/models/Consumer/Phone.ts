@@ -1,5 +1,6 @@
 import { Consumer } from ".";
 import { BaseModel, BaseModelSchema } from "..";
+import { IsUUID, IsNotEmpty, IsNumber, Max, IsNumberString, IsOptional, IsDate, MaxDate } from "class-validator";
 
 export interface PhoneSchema extends BaseModelSchema {
   consumer?: Consumer;
@@ -11,9 +12,20 @@ export interface PhoneSchema extends BaseModelSchema {
 
 export default class Phone extends BaseModel implements PhoneSchema {
   consumer?: Consumer = undefined;
-  consumerId: string = undefined;
+  @IsUUID() consumerId: string = undefined;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @Max(999)
   code: number = undefined;
+
+  @IsNotEmpty()
+  @IsNumberString()
   number: string = undefined;
+
+  @IsOptional()
+  @IsDate()
+  @MaxDate(new Date())
   verifiedAt?: Date = undefined;
 
   constructor(data: Partial<PhoneSchema>) {

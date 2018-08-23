@@ -28,12 +28,12 @@ export default class User extends BaseModel implements UserSchema {
     email: string;
     role: UserRole;
     status: UserStatus;
-    password?: string;
-    credentials?: OAuthCredentials;
     domain: Domain;
+    password?: string;
     consumer?: Consumer;
-    virtual: boolean;
     wallets?: Wallet[];
+    credentials?: OAuthCredentials;
+    virtual: boolean;
     constructor(data: Partial<UserSchema>);
     readonly name: string;
 }

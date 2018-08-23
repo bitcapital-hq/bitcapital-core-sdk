@@ -1,5 +1,6 @@
 import { Consumer } from ".";
 import { BaseModel, BaseModelSchema } from "..";
+import { IsUUID, IsNotEmpty, IsEnum, IsOptional, IsBase64, IsDate, MaxDate } from "class-validator";
 
 export enum DocumentType {
   BRL_IDENTITY = "brl_identity",
@@ -20,12 +21,29 @@ export interface DocumentSchema extends BaseModelSchema {
 
 export default class Document extends BaseModel implements DocumentSchema {
   consumer?: Consumer = undefined;
-  consumerId: string = undefined;
+  @IsUUID() consumerId: string = undefined;
+
+  @IsNotEmpty()
+  @IsEnum(DocumentType)
   type: DocumentType = undefined;
+
+  @IsOptional()
+  @IsNotEmpty()
   number?: string = undefined;
+
+  @IsOptional()
+  @IsBase64()
   front?: string = undefined;
+  @IsOptional()
+  @IsBase64()
   back?: string = undefined;
+  @IsOptional()
+  @IsBase64()
   selfie?: string = undefined;
+
+  @IsOptional()
+  @IsDate()
+  @MaxDate(new Date())
   verifiedAt?: Date = undefined;
 
   constructor(data: Partial<DocumentSchema>) {

@@ -5,8 +5,8 @@ export interface AssetSchema extends BaseModelSchema {
     wallet?: Wallet;
 }
 export default class Asset extends BaseModel implements AssetSchema {
-    name?: string;
     code: string;
+    name?: string;
     wallet?: Wallet;
     constructor(data: Partial<AssetSchema>);
 }

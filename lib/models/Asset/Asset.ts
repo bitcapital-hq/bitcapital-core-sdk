@@ -1,4 +1,5 @@
 import { BaseModel, BaseModelSchema, Wallet } from "..";
+import { IsOptional, IsNotEmpty } from "class-validator";
 
 export interface AssetSchema extends BaseModelSchema {
   name?: string;
@@ -7,9 +8,11 @@ export interface AssetSchema extends BaseModelSchema {
 }
 
 export default class Asset extends BaseModel implements AssetSchema {
-  name?: string = undefined;
-  code: string = undefined;
-  wallet?: Wallet = undefined;
+  @IsNotEmpty() code: string = undefined;
+
+  @IsOptional() name?: string = undefined;
+
+  @IsOptional() wallet?: Wallet = undefined;
 
   constructor(data: Partial<AssetSchema>) {
     super(data);

@@ -28,6 +28,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "buffer": "^5.0.8",
+    "class-validator": "^0.9.1",
     "js-base64": "^2.4.3",
     "localstorage-polyfill": "^1.0.1",
     "moment": "^2.22.0",
