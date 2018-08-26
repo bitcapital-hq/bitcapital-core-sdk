@@ -33,7 +33,7 @@ export default class Domain extends BaseModel implements DomainSchema {
   @IsAlphanumeric()
   slug: string = undefined;
 
-  @IsFQDN(null, { each: true })
+  @IsFQDN({}, { each: true })
   urls?: string[] = undefined;
 
   users: User[] | null = undefined;

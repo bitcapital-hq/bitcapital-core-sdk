@@ -43,7 +43,7 @@ export default class Document extends BaseModel implements DocumentSchema {
 
   @IsOptional()
   @IsDate()
-  @MaxDate(new Date())
+  @MaxDate(new Date(new Date().getTime() + 5 * 60000)) // Now + 5min for server time differences
   verifiedAt?: Date = undefined;
 
   constructor(data: Partial<DocumentSchema>) {
