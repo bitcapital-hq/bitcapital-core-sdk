@@ -36,7 +36,7 @@ export default class OAuthWebService {
    */
   public static getBasicToken(data: { clientId: string; clientSecret: string }): String {
     const mask = `${data.clientId}:${data.clientSecret}`;
-    return new Buffer(mask).toString("base64");
+    return Buffer.from(mask).toString("base64");
   }
 
   /**
