@@ -1,18 +1,19 @@
+import * as uuid from "uuid/v4";
 import * as hat from "hat";
 import { Document, DocumentSchema, DocumentType } from "../../../lib";
 
 export const TEST_DOCUMENT: DocumentSchema = {
-  consumerId: hat(),
+  consumerId: uuid(),
   type: DocumentType.BRL_IDENTITY,
   number: hat(),
-  front: hat(),
-  back: hat(),
-  selfie: hat(),
+  front: Buffer.from(hat()).toString("base64"),
+  back: Buffer.from(hat()).toString("base64"),
+  selfie: Buffer.from(hat()).toString("base64"),
   verifiedAt: new Date()
 };
 
 describe("lib.models.Consumer.Document", () => {
-  it("should instantiate properly", async () => {
+  it("should instantiate a valid instance", async () => {
     const document = new Document({ ...TEST_DOCUMENT });
 
     expect(document.consumerId).toBe(TEST_DOCUMENT.consumerId);
@@ -22,5 +23,7 @@ describe("lib.models.Consumer.Document", () => {
     expect(document.back).toBe(TEST_DOCUMENT.back);
     expect(document.selfie).toBe(TEST_DOCUMENT.selfie);
     expect(document.verifiedAt).toBe(TEST_DOCUMENT.verifiedAt);
+
+    expect(await document.isValid()).toBe(true);
   });
 });

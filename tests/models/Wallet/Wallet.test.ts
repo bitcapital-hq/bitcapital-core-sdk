@@ -11,5 +11,7 @@ describe("lib.models.Wallet", () => {
     const wallet = new Wallet({ ...TEST_WALLET });
     expect(wallet.type).toBe(TEST_WALLET.type);
     expect(wallet.data).toBe(TEST_WALLET.data);
+
+    expect(await wallet.isValid()).toBe(true);
   });
 });

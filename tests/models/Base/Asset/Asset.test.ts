@@ -1,4 +1,3 @@
-import * as hat from "hat";
 import { Asset } from "../../../../lib";
 
 const TEST_ASSET = {
@@ -7,9 +6,11 @@ const TEST_ASSET = {
 };
 
 describe("lib.models.Asset", () => {
-  it("should instantiate properly", async () => {
-    const domain = new Asset({ ...TEST_ASSET });
-    expect(domain.name).toBe(TEST_ASSET.name);
-    expect(domain.code).toBe(TEST_ASSET.code);
+  it("should instantiate a valid instance", async () => {
+    const asset = new Asset({ ...TEST_ASSET });
+    expect(asset.name).toBe(TEST_ASSET.name);
+    expect(asset.code).toBe(TEST_ASSET.code);
+
+    expect(await asset.isValid()).toBe(true);
   });
 });
