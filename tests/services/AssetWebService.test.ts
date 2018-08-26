@@ -1,6 +1,8 @@
+import * as uuid from "uuid/v4";
 import MockAdapter from "axios-mock-adapter";
 import { AssetWebService } from "../../lib";
 import { TEST_ASSET } from "../models/Asset/Asset.test";
+import { TEST_PAYMENT } from "../models/Payment/Payment.test";
 
 describe("lib.services.AssetWebService", () => {
   beforeAll(() => {
@@ -10,10 +12,11 @@ describe("lib.services.AssetWebService", () => {
     const mock = new MockAdapter((AssetWebService.getInstance() as any).http.client);
 
     mock.onGet("/assets").reply(200, [TEST_ASSET, TEST_ASSET, TEST_ASSET]);
-    mock.onGet("/assets/" + TEST_ASSET.id).reply(200, TEST_ASSET);
+    mock.onGet(`/assets/${TEST_ASSET.id}`).reply(200, TEST_ASSET);
     mock.onPost("/assets").reply(200, TEST_ASSET);
-    mock.onPost("/assets/" + TEST_ASSET.id).reply(200, TEST_ASSET);
-    mock.onDelete("/assets/" + TEST_ASSET.id).reply(200);
+    mock.onPost(`/assets/${TEST_ASSET.id}`).reply(200, TEST_ASSET);
+    mock.onDelete(`/assets/${TEST_ASSET.id}`).reply(200);
+    mock.onPost(`/assets/${TEST_ASSET.id}/emit`).reply(200, TEST_PAYMENT);
   });
 
   it("should find all", async () => {
@@ -45,5 +48,11 @@ describe("lib.services.AssetWebService", () => {
     const one = await AssetWebService.getInstance().delete(TEST_ASSET.id);
 
     expect(one).toEqual(true);
+  });
+
+  it("should emit", async () => {
+    const payment = await AssetWebService.getInstance().emit({ amount: "0", id: TEST_ASSET.id });
+
+    expect(payment).toEqual(TEST_PAYMENT);
   });
 });

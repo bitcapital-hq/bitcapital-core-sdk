@@ -14,7 +14,8 @@ const TEST_WALLET = {
 export const TEST_PAYMENT = {
   id: uuid(),
   source: TEST_WALLET,
-  recipients: [{ ...TEST_RECIPIENT, destination: TEST_WALLET }]
+  recipients: [{ ...TEST_RECIPIENT, destination: TEST_WALLET }],
+  transaction: undefined
 };
 
 describe("lib.models.Payment", () => {
