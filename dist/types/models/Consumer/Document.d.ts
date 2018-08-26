@@ -13,7 +13,7 @@ export interface DocumentSchema extends BaseModelSchema {
     front?: string;
     back?: string;
     selfie?: string;
-    verifiedAt?: Date;
+    verifiedAt?: Date | string;
 }
 export default class Document extends BaseModel implements DocumentSchema {
     consumer?: Consumer;

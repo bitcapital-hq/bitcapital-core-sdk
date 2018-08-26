@@ -5,7 +5,7 @@ export interface PhoneSchema extends BaseModelSchema {
     consumerId: string;
     code: number;
     number: string;
-    verifiedAt?: Date;
+    verifiedAt?: Date | string;
 }
 export default class Phone extends BaseModel implements PhoneSchema {
     consumer?: Consumer;
