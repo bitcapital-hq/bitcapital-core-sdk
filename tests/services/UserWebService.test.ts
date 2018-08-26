@@ -1,6 +1,7 @@
 import * as hat from "hat";
 import MockAdapter from "axios-mock-adapter";
-import { UserWebService, OAuthCredentials, User } from "../../lib";
+import { UserWebService, OAuthCredentials, User, UserSchema } from "../../lib";
+import { TEST_USER } from "../models/User/User.test";
 
 const TEST_CREDENTIALS = {
   token_type: "bearer",
@@ -10,50 +11,70 @@ const TEST_CREDENTIALS = {
   expires_in: 3600
 };
 
-const TEST_USER = {
-  _id: hat(),
-  name: "Test User",
-  email: "user@test.com"
-};
-
 describe("lib.services.UserWebService", () => {
-  it("should have a valid lib interface", async () => {
-    expect(UserWebService).toBeTruthy();
-    expect(UserWebService.getInstance).toBeInstanceOf(Function);
+  beforeAll(() => {
+    UserWebService.initialize({
+      baseURL: "http://localhost:3000/test_url"
+    });
+    const mock = new MockAdapter((UserWebService.getInstance() as any).http.client);
+
+    mock.onGet("/users").reply(200, [TEST_USER, TEST_USER, TEST_USER]);
+    mock.onGet("/users/" + TEST_USER.id).reply(200, TEST_USER);
+    mock.onPost("/users").reply(200, TEST_USER);
+    mock.onPost("/users/" + TEST_USER.id).reply(200, TEST_USER);
+    mock.onDelete("/users/" + TEST_USER.id).reply(200);
   });
 
-  it("should instantiate a simple UserWebService directly", async () => {
-    const user = new UserWebService({ baseURL: "http://localhost:3000/test_url" });
-    expect(user).toBeTruthy();
-    expect((user as any).http.client).toBeTruthy();
+  it("should find all", async () => {
+    const all = await UserWebService.getInstance().findAll({});
+
+    expect(all.length).toBe(3);
+    expect(all[0]).toEqual(TEST_USER);
   });
 
-  it("should instantiate a simple singleton UserWebService", async () => {
-    const user = UserWebService.initialize({ baseURL: "http://localhost:3000/test_url" });
-    expect(user).toBeTruthy();
-    expect((user as any).http.client).toBeTruthy();
-    expect(UserWebService.getInstance()).toEqual(user);
+  it("should find one", async () => {
+    const one = await UserWebService.getInstance().findOne(TEST_USER.id);
+
+    expect(one).toEqual(TEST_USER);
   });
 
-  describe("Success user instance", () => {
-    let user: UserWebService;
+  it("should create one", async () => {
+    const one = await UserWebService.getInstance().create(TEST_USER);
 
-    beforeEach(async () => {
-      // This sets the mock adapter on the default instance
-      user = new UserWebService({
-        baseURL: "http://localhost:3000/test_url"
-      });
+    expect(one).toEqual(TEST_USER);
+  });
 
-      const mock = new MockAdapter((user as any).http.client);
+  it("should update one", async () => {
+    const one = await UserWebService.getInstance().update(TEST_USER.id, TEST_USER);
 
-      // Mock all requests to a simple success
-      mock.onGet("/users/me").reply(200, TEST_USER);
+    expect(one).toEqual(TEST_USER);
+  });
+
+  it("should delete one", async () => {
+    const one = await UserWebService.getInstance().delete(TEST_USER.id);
+
+    expect(one).toEqual(true);
+  });
+});
+
+describe("Success user instance", () => {
+  let user: UserWebService;
+
+  beforeEach(async () => {
+    // This sets the mock adapter on the default instance
+    user = new UserWebService({
+      baseURL: "http://localhost:3000/test_url"
     });
 
-    it("should get an user with a mocked instance", async () => {
-      const response = await user.me(new OAuthCredentials(TEST_CREDENTIALS));
-      expect(response).toBeInstanceOf(User);
-      expect(response.credentials).toBeInstanceOf(OAuthCredentials);
-    });
+    const mock = new MockAdapter((user as any).http.client);
+
+    // Mock all requests to a simple success
+    mock.onGet("/users/me").reply(200, TEST_USER);
+  });
+
+  it("should get an user with a mocked instance", async () => {
+    const response = await user.me(new OAuthCredentials(TEST_CREDENTIALS));
+    expect(response).toBeInstanceOf(User);
+    expect(response.credentials).toBeInstanceOf(OAuthCredentials);
   });
 });
