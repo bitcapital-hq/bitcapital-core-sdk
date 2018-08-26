@@ -3,7 +3,9 @@ import * as hat from "hat";
 import { Document, DocumentSchema, DocumentType } from "../../../lib";
 
 export const TEST_DOCUMENT: DocumentSchema = {
+  id: uuid(),
   consumerId: uuid(),
+  consumer: undefined,
   type: DocumentType.BRL_IDENTITY,
   number: hat(),
   front: Buffer.from(hat()).toString("base64"),

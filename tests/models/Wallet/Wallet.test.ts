@@ -1,8 +1,8 @@
 import * as hat from "hat";
 import * as uuid from "uuid/v4";
-import { Wallet, WalletType, StellarWalletData } from "../../../lib";
+import { Wallet, WalletType, StellarWalletData, WalletSchema } from "../../../lib";
 
-export const TEST_WALLET = {
+export const TEST_WALLET: WalletSchema = {
   id: uuid(),
   type: WalletType.STELLAR,
   data: { publicKey: hat() } as StellarWalletData
