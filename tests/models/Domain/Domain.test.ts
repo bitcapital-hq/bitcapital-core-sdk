@@ -1,11 +1,14 @@
+import * as uuid from "uuid/v4";
 import * as hat from "hat";
-import { Domain, DomainRole } from "../../../lib";
+import { Domain, DomainRole, DomainSchema } from "../../../lib";
 
-const TEST_DOMAIN = {
+export const TEST_DOMAIN: DomainSchema = {
+  id: uuid(),
   name: "Test",
   slug: hat(),
   role: DomainRole.ROOT,
   urls: ["test.btcore.app"],
+  users: [],
   settings: {}
 };
 

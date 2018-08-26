@@ -5,6 +5,7 @@ import { TEST_DOCUMENT } from "./Document.test";
 import { TEST_PHONE } from "./Phone.test";
 
 export const TEST_CONSUMER: ConsumerSchema = {
+  id: uuid(),
   status: ConsumerStatus.PENDING_DOCUMENTS,
   userId: uuid(),
   addresses: [new Address(TEST_ADDRESS)],

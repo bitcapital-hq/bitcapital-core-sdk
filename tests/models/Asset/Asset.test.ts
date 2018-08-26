@@ -1,6 +1,8 @@
 import { AssetSchema, Asset } from "../../../lib";
+import * as uuid from "uuid/v4";
 
 export const TEST_ASSET: AssetSchema = {
+  id: uuid(),
   name: "Name",
   code: "Code "
 };

@@ -1,4 +1,5 @@
 import * as hat from "hat";
+import * as uuid from "uuid/v4";
 import { User, OAuthCredentials, UserRole } from "../../../lib";
 
 const TEST_CREDENTIALS = {
@@ -18,7 +19,8 @@ const TEST_VIRTUAL_CREDENTIALS = {
   virtual: true
 };
 
-const TEST_USER = {
+export const TEST_USER = {
+  id: uuid(),
   firstName: "John Doe",
   lastName: "Connor Bro",
   email: "user@test.com",
