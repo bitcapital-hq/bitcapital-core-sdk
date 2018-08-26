@@ -1,8 +1,10 @@
-import { Asset } from "../../../../lib";
+import { AssetSchema, Asset } from "../../../lib";
+import * as uuid from "uuid/v4";
 
-const TEST_ASSET = {
-  name: "Test Coin",
-  code: "TCN"
+export const TEST_ASSET: AssetSchema = {
+  id: uuid(),
+  name: "Name",
+  code: "Code "
 };
 
 describe("lib.models.Asset", () => {

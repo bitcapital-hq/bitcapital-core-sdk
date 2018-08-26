@@ -1,8 +1,10 @@
 import * as hat from "hat";
-import { StellarWalletData, WalletType, Recipient, Wallet } from "../../../lib";
+import * as uuid from "uuid/v4";
+import { StellarWalletData, WalletType, Recipient, Wallet, RecipientSchema } from "../../../lib";
 
-const TEST_RECIPIENT = {
-  amount: "1.00"
+export const TEST_RECIPIENT: RecipientSchema = {
+  amount: "1.00",
+  destination: uuid()
 };
 
 const TEST_WALLET = {

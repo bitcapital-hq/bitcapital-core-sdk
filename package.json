@@ -39,11 +39,13 @@
   "devDependencies": {
     "@types/jest": "^21.1.2",
     "@types/lodash": "^4.14.104",
+    "@types/uuid": "^3.4.3",
     "@types/winston": "^2.3.9",
     "axios-mock-adapter": "^1.10.0",
     "hat": "^0.0.3",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
+    "jest-silent-reporter": "^0.1.0",
     "lint-staged": "^7.0.0",
     "nativescript-typedoc-theme": "https://github.com/NativeScript/nativescript-typedoc-theme.git",
     "nodemon": "^1.12.1",
@@ -57,6 +59,7 @@
     "tslint-config-prettier": "^1.14.0",
     "typedoc": "^0.9.0",
     "typedoc-clarity-theme": "^1.1.0",
-    "typescript": "^2.5.3"
+    "typescript": "^2.5.3",
+    "uuid": "^3.3.2"
   }
 }

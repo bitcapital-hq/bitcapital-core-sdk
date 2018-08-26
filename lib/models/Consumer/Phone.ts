@@ -7,7 +7,7 @@ export interface PhoneSchema extends BaseModelSchema {
   consumerId: string;
   code: number;
   number: string;
-  verifiedAt?: Date;
+  verifiedAt?: Date | string;
 }
 
 export default class Phone extends BaseModel implements PhoneSchema {
@@ -25,7 +25,7 @@ export default class Phone extends BaseModel implements PhoneSchema {
 
   @IsOptional()
   @IsDate()
-  @MaxDate(new Date())
+  @MaxDate(new Date(new Date().getTime() + 5 * 60000)) // Now + 5min for server time differences
   verifiedAt?: Date = undefined;
 
   constructor(data: Partial<PhoneSchema>) {
@@ -33,5 +33,6 @@ export default class Phone extends BaseModel implements PhoneSchema {
 
     // Assign all props
     Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    this.verifiedAt = data.verifiedAt instanceof Date ? data.verifiedAt : new Date(data.verifiedAt);
   }
 }

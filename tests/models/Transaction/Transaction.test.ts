@@ -12,7 +12,7 @@ const TEST_WALLET = {
 
 describe("lib.models.Transaction", () => {
   it("should instantiate properly", async () => {
-    const recipient = new Transaction({
+    const transaction = new Transaction({
       data: {},
       type: TransactionType.PAYMENT,
       source: new Wallet({ ...TEST_WALLET }),
@@ -28,7 +28,9 @@ describe("lib.models.Transaction", () => {
         })
       ]
     });
-    expect(recipient.source).toBeDefined();
-    expect(recipient.source.type).toBeDefined();
+    expect(transaction.source).toBeDefined();
+    expect(transaction.source.type).toBeDefined();
+
+    expect(await transaction.isValid()).toBe(true);
   });
 });

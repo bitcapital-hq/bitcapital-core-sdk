@@ -1,8 +1,8 @@
-import * as hat from "hat";
+import * as uuid from "uuid/v4";
 import { Address, AddressSchema } from "../../../lib";
 
 export const TEST_ADDRESS: AddressSchema = {
-  consumerId: hat(),
+  consumerId: uuid(),
   country: "Brasil",
   geo: { x: -15.123456, y: 7.987654 },
   city: "São Paulo",
@@ -13,7 +13,7 @@ export const TEST_ADDRESS: AddressSchema = {
 };
 
 describe("lib.models.Consumer.Address", () => {
-  it("should instantiate properly", async () => {
+  it("should instantiate a valid instance", async () => {
     const address = new Address({ ...TEST_ADDRESS });
 
     expect(address.consumerId).toBe(TEST_ADDRESS.consumerId);
@@ -24,5 +24,7 @@ describe("lib.models.Consumer.Address", () => {
     expect(address.address).toBe(TEST_ADDRESS.address);
     expect(address.complement).toBe(TEST_ADDRESS.complement);
     expect(address.number).toBe(TEST_ADDRESS.number);
+
+    expect(await address.isValid()).toBe(true);
   });
 });

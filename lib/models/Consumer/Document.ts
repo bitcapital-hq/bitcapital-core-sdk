@@ -16,7 +16,7 @@ export interface DocumentSchema extends BaseModelSchema {
   front?: string;
   back?: string;
   selfie?: string;
-  verifiedAt?: Date;
+  verifiedAt?: Date | string;
 }
 
 export default class Document extends BaseModel implements DocumentSchema {
@@ -43,7 +43,7 @@ export default class Document extends BaseModel implements DocumentSchema {
 
   @IsOptional()
   @IsDate()
-  @MaxDate(new Date())
+  @MaxDate(new Date(new Date().getTime() + 5 * 60000)) // Now + 5min for server time differences
   verifiedAt?: Date = undefined;
 
   constructor(data: Partial<DocumentSchema>) {
@@ -51,5 +51,6 @@ export default class Document extends BaseModel implements DocumentSchema {
 
     // Assign all props
     Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    this.verifiedAt = data.verifiedAt instanceof Date ? data.verifiedAt : new Date(data.verifiedAt);
   }
 }

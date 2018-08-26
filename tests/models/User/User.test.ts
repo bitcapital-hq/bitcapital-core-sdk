@@ -1,5 +1,6 @@
 import * as hat from "hat";
-import { User, OAuthCredentials, UserRole } from "../../../lib";
+import * as uuid from "uuid/v4";
+import { User, OAuthCredentials, UserRole, UserStatus, UserSchema } from "../../../lib";
 
 const TEST_CREDENTIALS = {
   token_type: "bearer",
@@ -18,11 +19,14 @@ const TEST_VIRTUAL_CREDENTIALS = {
   virtual: true
 };
 
-const TEST_USER = {
+export const TEST_USER: UserSchema = {
+  id: uuid(),
   firstName: "John Doe",
   lastName: "Connor Bro",
   email: "user@test.com",
   role: UserRole.CONSUMER,
+  status: UserStatus.ACTIVE,
+  domain: undefined,
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString()
 };
