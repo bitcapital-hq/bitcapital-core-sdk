@@ -1,7 +1,7 @@
-import Recipient from "./Recipient";
+import { RecipientSchema } from "./Recipient";
 
 export interface PaymentRequestSchema {
   source: string;
-  recipients: Recipient[];
+  recipients: RecipientSchema[];
   asset?: string;
 }
