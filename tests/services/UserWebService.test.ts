@@ -2,6 +2,7 @@ import * as hat from "hat";
 import MockAdapter from "axios-mock-adapter";
 import { UserWebService, OAuthCredentials, User, UserSchema } from "../../lib";
 import { TEST_USER } from "../models/User/User.test";
+import { CRUDWebServiceTest } from "./WebServiceUtil";
 
 const TEST_CREDENTIALS = {
   token_type: "bearer",
@@ -12,49 +13,7 @@ const TEST_CREDENTIALS = {
 };
 
 describe("lib.services.UserWebService", () => {
-  beforeAll(() => {
-    UserWebService.initialize({
-      baseURL: "http://localhost:3000/test_url"
-    });
-    const mock = new MockAdapter((UserWebService.getInstance() as any).http.client);
-
-    mock.onGet("/users").reply(200, [TEST_USER, TEST_USER, TEST_USER]);
-    mock.onGet("/users/" + TEST_USER.id).reply(200, TEST_USER);
-    mock.onPost("/users").reply(200, TEST_USER);
-    mock.onPost("/users/" + TEST_USER.id).reply(200, TEST_USER);
-    mock.onDelete("/users/" + TEST_USER.id).reply(200);
-  });
-
-  it("should find all", async () => {
-    const all = await UserWebService.getInstance().findAll({});
-
-    expect(all.length).toBe(3);
-    expect(all[0]).toEqual(TEST_USER);
-  });
-
-  it("should find one", async () => {
-    const one = await UserWebService.getInstance().findOne(TEST_USER.id);
-
-    expect(one).toEqual(TEST_USER);
-  });
-
-  it("should create one", async () => {
-    const one = await UserWebService.getInstance().create(TEST_USER);
-
-    expect(one).toEqual(TEST_USER);
-  });
-
-  it("should update one", async () => {
-    const one = await UserWebService.getInstance().update(TEST_USER.id, TEST_USER);
-
-    expect(one).toEqual(TEST_USER);
-  });
-
-  it("should delete one", async () => {
-    const one = await UserWebService.getInstance().delete(TEST_USER.id);
-
-    expect(one).toEqual(true);
-  });
+  CRUDWebServiceTest("users", UserWebService, TEST_USER);
 });
 
 describe("Success user instance", () => {

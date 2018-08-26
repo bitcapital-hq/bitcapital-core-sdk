@@ -1,5 +1,5 @@
 {
-  "testRegex": "(./tests/.*|\\.(spec))\\.(ts)$",
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   "mapCoverage": true,
   "collectCoverage": true,
   "testEnvironment": "node",
@@ -24,5 +24,6 @@
     "./build",
     "./tests/setup.ts",
     "./tests/__mock__"
-  ]
+  ],
+  "reporters": ["jest-silent-reporter"]
 }
