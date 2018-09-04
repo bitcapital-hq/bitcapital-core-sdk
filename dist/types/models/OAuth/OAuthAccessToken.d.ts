@@ -13,19 +13,19 @@ export interface UserAgentInformation {
     source?: string;
 }
 export interface OAuthAccessTokenSchema extends BaseModelSchema {
-    accessToken?: string;
-    tokenType: string;
-    client: string | OAuthClientSchema;
-    user: string | User;
+    accessToken: string;
+    tokenType?: string;
+    client?: string | OAuthClientSchema;
+    user?: string | User;
     expires?: Date;
     userAgent?: UserAgentInformation;
 }
 export default class OAuthAccessToken extends BaseModel {
-    accessToken?: string;
-    tokenType: string;
-    client: string | OAuthClient;
-    user: string | User;
+    accessToken: string;
+    tokenType?: string;
+    client?: string | OAuthClient;
+    user?: string | User;
     expires?: Date;
-    userAgent: UserAgentInformation;
+    userAgent?: UserAgentInformation;
     constructor(data: OAuthAccessTokenSchema);
 }
