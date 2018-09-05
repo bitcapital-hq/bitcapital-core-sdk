@@ -15,7 +15,7 @@ describe("lib.services.WalletWebService", () => {
       });
       const mock = new MockAdapter((WalletWebService.getInstance() as any).http.client);
 
-      mock.onGet(`/wallets/${TEST_WALLET.id}/received`).reply(200, [TEST_PAYMENT, TEST_PAYMENT, TEST_PAYMENT]);
+      mock.onGet(`/wallets/${TEST_WALLET.id}/payments`).reply(200, [TEST_PAYMENT, TEST_PAYMENT, TEST_PAYMENT]);
       mock.onGet(`/wallets/root`).reply(200, TEST_WALLET);
       mock.onGet(`/wallets/${TEST_WALLET.id}/users`).reply(200, [TEST_USER, TEST_USER, TEST_USER]);
       mock.onGet(`/wallets/${TEST_WALLET.id}/consumers`).reply(200, [TEST_USER, TEST_USER, TEST_USER]);
@@ -23,7 +23,7 @@ describe("lib.services.WalletWebService", () => {
     });
 
     it("should find received payments", async () => {
-      const received = await WalletWebService.getInstance().received(TEST_WALLET.id, {});
+      const received = await WalletWebService.getInstance().findWalletPayments(TEST_WALLET.id, {});
 
       expect(received.length).toBe(3);
       expect(received[0]).toEqual(TEST_PAYMENT);
@@ -64,7 +64,7 @@ describe("lib.services.WalletWebService", () => {
       });
       const mock = new MockAdapter((WalletWebService.getInstance() as any).http.client);
 
-      mock.onGet(`/wallets/${TEST_WALLET.id}/received`).reply(500);
+      mock.onGet(`/wallets/${TEST_WALLET.id}/payments`).reply(500);
       mock.onGet(`/wallets/root`).reply(500);
       mock.onGet(`/wallets/${TEST_WALLET.id}/users`).reply(500);
       mock.onGet(`/wallets/${TEST_WALLET.id}/consumers`).reply(500);
@@ -73,7 +73,7 @@ describe("lib.services.WalletWebService", () => {
 
     it("should find received payments", async () => {
       expect.assertions(1);
-      return expect(WalletWebService.getInstance().received(TEST_WALLET.id, {})).rejects.toBeTruthy();
+      return expect(WalletWebService.getInstance().findWalletPayments(TEST_WALLET.id, {})).rejects.toBeTruthy();
     });
 
     it("should find root wallet", async () => {

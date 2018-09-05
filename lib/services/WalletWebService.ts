@@ -1,6 +1,6 @@
 import { Session } from "../session";
 import { Http, HttpOptions } from "../base";
-import { Wallet, WalletSchema, User, Transaction, TransactionSchema, Payment } from "../models";
+import { Wallet, WalletSchema, User, Transaction, TransactionSchema, Payment, PaymentSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService from "./base/BaseModelWebService";
 
@@ -75,20 +75,21 @@ export default class WalletWebService implements BaseModelWebService<Wallet, Wal
   }
 
   /**
-   * Find the {#Wallet}'s Income by it's id.
+   * Find the {#Wallet}'s {#Payment}s by it's id.
    *
    * @param id The id of the {#Wallet}
    */
-  public async received(id: string, pagination: Pagination): Promise<PaginatedArray<Payment>> {
+  public async findWalletPayments(id: string, pagination: Pagination): Promise<PaginatedArray<Payment>> {
     const { skip, limit } = pagination;
-    const response = await this.http.get(`/wallets/${id}/received`, null, { params: { skip, limit } });
+    const response = await this.http.get(`/wallets/${id}/payments`, null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
     // Return a paginated array with count information from headers
-    return PaginationUtil.parse(response.data.map(p => new Payment(p)), response.headers);
+    const result = response.data.map((item: PaymentSchema) => new Payment(item));
+    return PaginationUtil.parse(result, response.headers);
   }
 
   /**
