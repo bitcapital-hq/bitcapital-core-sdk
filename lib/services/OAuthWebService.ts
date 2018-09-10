@@ -67,7 +67,7 @@ export default class OAuthWebService {
     const response = await this.http.post("/oauth/token", stringify(request), {
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}`
+        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}` // Get credentials from options
       }
     });
 

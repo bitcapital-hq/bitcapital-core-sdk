@@ -174,6 +174,7 @@ export default class Session {
    * Performs a "client_credentials" authentication using the OAuth 2.0 server and registers it in current session.
    */
   public async clientCredentials(): Promise<User> {
+    // The client ID and client secret will be passed by the OAuthWebService
     const oauth = await OAuthWebService.getInstance().clientCredentials();
 
     try {
