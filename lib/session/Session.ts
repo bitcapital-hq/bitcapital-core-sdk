@@ -1,6 +1,6 @@
 import { User, UserSchema } from "../models";
 import { HttpInterceptor, HttpOptions } from "../base";
-import { Observable, Observer, StorageUtil, LocalStorage } from "../utils";
+import { Observable, Observer, StorageUtil } from "../utils";
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
 import { SessionCredentialsInterceptor, SessionUnauthorizedInterceptor } from "./interceptors";
 
@@ -23,7 +23,7 @@ export default class Session {
 
   constructor(public options: SessionOptions) {
     this.observable = new Observable();
-    this.storage = options.storage || new StorageUtil("session", new LocalStorage(window));
+    this.storage = options.storage || new StorageUtil("session");
 
     // Prepare session interceptors
     this._interceptors = [
