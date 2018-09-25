@@ -142,8 +142,12 @@ export default class Session {
    *
    * @param data The user credentials
    */
-  public async password(data: { username: string; password: string }): Promise<User> {
-    const oauth = await OAuthWebService.getInstance().password(data);
+  public async password(data: { username: string; password: string; scopes?: string[]; scope: "" }): Promise<User> {
+    const oauth = await OAuthWebService.getInstance().password({
+      username: data.username,
+      password: data.password,
+      scope: data.scopes ? data.scopes.join(",") : data.scope
+    });
 
     if (oauth.accessToken) {
       try {
@@ -163,10 +167,8 @@ export default class Session {
    */
   public async refresh(): Promise<User> {
     if (!this.current) return;
-
     const user = await UserWebService.getInstance().me();
     this.register(new User({ ...user, credentials: this.current.credentials } as UserSchema));
-
     return user;
   }
 
