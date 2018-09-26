@@ -67,6 +67,8 @@ export default class Session {
     password(data: {
         username: string;
         password: string;
+        scopes?: string[];
+        scope: "";
     }): Promise<User>;
     /**
      * Refreshs the current user information.

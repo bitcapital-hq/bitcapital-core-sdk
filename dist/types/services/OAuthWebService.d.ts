@@ -29,6 +29,7 @@ export default class OAuthWebService {
     password(data: {
         username: string;
         password: string;
+        scope?: string;
     }): Promise<OAuthCredentials>;
     /**
      * Performs a "client_credentials" authentication using the OAuth 2.0 server.
