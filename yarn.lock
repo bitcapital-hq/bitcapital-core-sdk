@@ -3058,6 +3058,10 @@ number-is-nan@^1.0.0:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/nwmatcher/-/nwmatcher-1.4.4.tgz#2285631f34a95f0d0395cd900c96ed39b58f346e"
 
+nxtep-typedoc-theme@nxtep-io/nxtep-typedoc-theme:
+  version "0.0.7"
+  resolved "https://codeload.github.com/nxtep-io/nxtep-typedoc-theme/tar.gz/153933e11d0d7e10b768f4aec76111c954c76063"
+
 oauth-sign@~0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
