@@ -64,21 +64,20 @@ describe("lib.session.Session", () => {
     beforeEach(async () => {
       // This sets the mock adapter on the default instance
       session = new Session({
-        storage: new StorageUtil("session", new MemoryStorage())
+        storage: new StorageUtil("session", new MemoryStorage()),
+        oauth: {
+          clientId: hat(),
+          clientSecret: hat(),
+          baseURL: "http://localhost:3000/test_url"
+        },
+        http: {
+          baseURL: "http://localhost:3000/test_url"
+        }
       });
 
-      const oauthWebService = OAuthWebService.initialize({
-        clientId: hat(),
-        clientSecret: hat(),
-        baseURL: "http://localhost:3000/test_url"
-      });
-
-      const userWebService = UserWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
-      });
-
-      const oauthMock = new (MockAdapter as any)((oauthWebService as any).http.client);
-      const userMock = new (MockAdapter as any)((userWebService as any).http.client);
+      // Mock session web services for authentication
+      const oauthMock = new (MockAdapter as any)((session.oauthWebService as any).http.client);
+      const userMock = new (MockAdapter as any)((session.userWebService as any).http.client);
 
       // Mock all requests to a simple success
       oauthMock.onPost("/oauth/token").reply(200, TEST_CREDENTIALS);

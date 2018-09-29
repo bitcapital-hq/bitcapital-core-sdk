@@ -3,10 +3,12 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+const Bitcapital_1 = require("./Bitcapital");
 /* Export all available modules */
 __export(require("./base"));
 __export(require("./models"));
 __export(require("./services"));
 __export(require("./utils"));
 __export(require("./session"));
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9saWIvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxrQ0FBa0M7QUFDbEMsNEJBQXVCO0FBQ3ZCLDhCQUF5QjtBQUN6QixnQ0FBMkI7QUFDM0IsNkJBQXdCO0FBQ3hCLCtCQUEwQiIsInNvdXJjZXNDb250ZW50IjpbIi8qIEV4cG9ydCBhbGwgYXZhaWxhYmxlIG1vZHVsZXMgKi9cbmV4cG9ydCAqIGZyb20gXCIuL2Jhc2VcIjtcbmV4cG9ydCAqIGZyb20gXCIuL21vZGVsc1wiO1xuZXhwb3J0ICogZnJvbSBcIi4vc2VydmljZXNcIjtcbmV4cG9ydCAqIGZyb20gXCIuL3V0aWxzXCI7XG5leHBvcnQgKiBmcm9tIFwiLi9zZXNzaW9uXCI7XG4iXX0=
+exports.default = Bitcapital_1.default;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9saWIvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSw2Q0FBc0M7QUFFdEMsa0NBQWtDO0FBQ2xDLDRCQUF1QjtBQUN2Qiw4QkFBeUI7QUFDekIsZ0NBQTJCO0FBQzNCLDZCQUF3QjtBQUN4QiwrQkFBMEI7QUFFMUIsa0JBQWUsb0JBQVUsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBCaXRjYXBpdGFsIGZyb20gXCIuL0JpdGNhcGl0YWxcIjtcblxuLyogRXhwb3J0IGFsbCBhdmFpbGFibGUgbW9kdWxlcyAqL1xuZXhwb3J0ICogZnJvbSBcIi4vYmFzZVwiO1xuZXhwb3J0ICogZnJvbSBcIi4vbW9kZWxzXCI7XG5leHBvcnQgKiBmcm9tIFwiLi9zZXJ2aWNlc1wiO1xuZXhwb3J0ICogZnJvbSBcIi4vdXRpbHNcIjtcbmV4cG9ydCAqIGZyb20gXCIuL3Nlc3Npb25cIjtcblxuZXhwb3J0IGRlZmF1bHQgQml0Y2FwaXRhbDsiXX0=

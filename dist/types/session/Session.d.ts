@@ -1,19 +1,27 @@
 import { User } from "../models";
 import { HttpInterceptor, HttpOptions } from "../base";
 import { Observable, Observer, StorageUtil } from "../utils";
-import { OAuthWebServiceOptions } from "../services";
+import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
 export interface SessionOptions {
     http?: HttpOptions;
-    autoFetch?: boolean;
-    storage?: StorageUtil;
     oauth?: OAuthWebServiceOptions;
+    storage?: StorageUtil;
+    autoFetch?: boolean;
+}
+export interface PasswordGrantOptions {
+    username: string;
+    password: string;
+    scopes?: string[];
+    scope?: string;
 }
 export default class Session {
     options: SessionOptions;
     current?: User;
     storage: StorageUtil;
     observable: Observable;
-    _interceptors: HttpInterceptor[];
+    userWebService: UserWebService;
+    oauthWebService: OAuthWebService;
+    private _interceptors;
     static EVENT_SESSION_CHANGED: string;
     protected static instance: Session;
     constructor(options: SessionOptions);
@@ -64,12 +72,7 @@ export default class Session {
      *
      * @param data The user credentials
      */
-    password(data: {
-        username: string;
-        password: string;
-        scopes?: string[];
-        scope: "";
-    }): Promise<User>;
+    password(data: PasswordGrantOptions): Promise<User>;
     /**
      * Refreshs the current user information.
      */
