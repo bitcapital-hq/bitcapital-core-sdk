@@ -23,7 +23,7 @@ export default class Bitcapital {
      *
      * @param options The bitcapital options and credentials
      */
-    static init(options: BitcapitalOptions): Bitcapital;
+    static initialize(options: BitcapitalOptions): Bitcapital;
     /**
      * Gets the Bitcapital session instance.
      */
@@ -37,8 +37,8 @@ export default class Bitcapital {
      */
     assets(): AssetWebService;
     /**
-    * Interface for the Consumers service.
-    */
+     * Interface for the Consumers service.
+     */
     consumers(): ConsumerWebService;
     /**
      * Interface for the Domains service.
