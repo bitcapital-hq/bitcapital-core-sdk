@@ -112,14 +112,17 @@ session.unsubscribe(observer);
 
 
 Library modules:
-* **Bitcapital.assets():** Handles asset creation, emition and destruction.
-* **Bitcapital.consumers():** Creates, updates, validates and deactivates consumer accounts.
-* **Bitcapital.domains():** Creates, updates and removes domains from the network.
-* **Bitcapital.payments():** Send payments between wallets and access its history.
-* **Bitcapital.users():** Manages user accounts in the network.
-* **Bitcapital.wallets():** Creates, updates and deactivates wallets in the network.
+* **bitcapital.assets():** Handles asset creation, emition and destruction.
+* **bitcapital.consumers():** Creates, updates, validates and deactivates consumer accounts.
+* **bitcapital.domains():** Creates, updates and removes domains from the network.
+* **bitcapital.payments():** Send payments between wallets and access its history.
+* **bitcapital.users():** Manages user accounts in the network.
+* **bitcapital.wallets():** Creates, updates and deactivates wallets in the network.
 
 Internal Modules:
-* **Bitcapital.session():** Manages credentials in the SDK.
-* **Bitcapital.oauth():** Manages authentication in the Bitcapital OAuth 2.0 provider.
+* **bitcapital.session():** Manages credentials in the SDK.
+* **bitcapital.oauth():** Manages authentication in the Bitcapital OAuth 2.0 provider.
 
+## Documentation
+
+Full API specification is in the Roadmap with the highest priority, all code is being prepared for TS Docs.
