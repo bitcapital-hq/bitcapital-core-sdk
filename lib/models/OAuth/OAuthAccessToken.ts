@@ -1,5 +1,6 @@
 import { OAuthClient, OAuthClientSchema } from ".";
 import { BaseModel, BaseModelSchema, User } from "..";
+import OAuthRefreshToken from "./OAuthRefreshToken";
 
 export enum OAuthClientStatus {
   ACTIVE = "active",
@@ -22,6 +23,7 @@ export interface OAuthAccessTokenSchema extends BaseModelSchema {
   user?: string | User;
   expires?: Date;
   userAgent?: UserAgentInformation;
+  refreshToken?: OAuthRefreshToken;
 }
 
 export default class OAuthAccessToken extends BaseModel {
@@ -31,6 +33,7 @@ export default class OAuthAccessToken extends BaseModel {
   user?: string | User;
   expires?: Date;
   userAgent?: UserAgentInformation;
+  refreshToken?: OAuthRefreshToken;
 
   constructor(data: OAuthAccessTokenSchema) {
     super(data);
