@@ -3,7 +3,7 @@ import Bitcapital from "../lib";
 describe("lib.Bitcapital", () => {
   it("should have a valid initialization interface", async () => {
     // Initialize bit capital instance
-    const bitcapital = Bitcapital.init({
+    const bitcapital = Bitcapital.initialize({
       http: {
         baseURL: "http://localhost:3000"
       },

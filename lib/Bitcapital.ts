@@ -44,7 +44,7 @@ export default class Bitcapital {
    *
    * @param options The bitcapital options and credentials
    */
-  public static init(options: BitcapitalOptions) {
+  public static initialize(options: BitcapitalOptions) {
     return new Bitcapital(options);
   }
 
