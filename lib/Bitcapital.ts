@@ -6,9 +6,12 @@ import {
   AssetWebService,
   PaymentWebService,
   UserWebService,
-  WalletWebService
+  WalletWebService,
+  OAuthWebService
 } from "./services";
 import { Session } from "./session";
+import { OAuthStatusResponse } from "./services/response";
+import { User } from "./models";
 
 export interface BitcapitalOptions {
   http: HttpOptions;
@@ -27,16 +30,16 @@ export default class Bitcapital {
    *
    * @param options The bitcapital options and credentials
    */
-  protected constructor(protected options: BitcapitalOptions) {
+  protected constructor(protected readonly options: BitcapitalOptions) {
     // Initialize session instance, OAuth and User web services will be initialized automatically
     this._session = options.session || Session.initialize({ oauth: options.oauth, http: options.http });
 
     // Initialize main web services
-    AssetWebService.initialize({ ...options.http });
-    ConsumerWebService.initialize({ ...options.http });
-    DomainWebService.initialize({ ...options.http });
-    PaymentWebService.initialize({ ...options.http });
-    WalletWebService.initialize({ ...options.http });
+    AssetWebService.initialize({ session: this._session, ...options.http });
+    ConsumerWebService.initialize({ session: this._session, ...options.http });
+    DomainWebService.initialize({ session: this._session, ...options.http });
+    PaymentWebService.initialize({ session: this._session, ...options.http });
+    WalletWebService.initialize({ session: this._session, ...options.http });
   }
 
   /**
@@ -49,58 +52,72 @@ export default class Bitcapital {
   }
 
   /**
+   * Gets the API Status.
+   */
+  public async status(): Promise<OAuthStatusResponse> {
+    return this._session.oauthWebService.status();
+  }
+
+  /**
+   * Gets the currently authenticated user in the SDK, if any.
+   */
+  public current(): User | undefined {
+    return this._session.current;
+  }
+
+  /**
    * Gets the Bitcapital session instance.
    */
-  public session() {
+  public session(): Session {
     return this._session;
   }
 
   /**
    * Interface for the OAuth 2.0 service.
    */
-  public oauth() {
+  public oauth(): OAuthWebService {
     return this._session.oauthWebService;
   }
 
   /**
    * Interface for the Assets service.
    */
-  public assets() {
+  public assets(): AssetWebService {
     return AssetWebService.getInstance();
   }
 
   /**
    * Interface for the Consumers service.
    */
-  public consumers() {
+  public consumers(): ConsumerWebService {
     return ConsumerWebService.getInstance();
   }
 
   /**
    * Interface for the Domains service.
    */
-  public domains() {
+  public domains(): DomainWebService {
     return DomainWebService.getInstance();
   }
 
   /**
    * Interface for the Payments service.
    */
-  public payments() {
+  public payments(): PaymentWebService {
     return PaymentWebService.getInstance();
   }
 
   /**
    * Interface for the Users service.
    */
-  public users() {
+  public users(): UserWebService {
     return UserWebService.getInstance();
   }
 
   /**
    * Interface for the Wallets service.
    */
-  public wallets() {
+  public wallets(): WalletWebService {
     return WalletWebService.getInstance();
   }
 }

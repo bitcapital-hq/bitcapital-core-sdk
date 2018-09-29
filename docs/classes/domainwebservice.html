@@ -70,14 +70,19 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DomainWebService</span>
+						<a href="basemodelwebservice.html" class="tsd-signature-type">BaseModelWebService</a><span class="tsd-signature-symbol">&lt;</span><a href="domain.html" class="tsd-signature-type">Domain</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/domainschema.html" class="tsd-signature-type">DomainSchema</a><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">DomainWebService</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="basemodelwebservice.html" class="tsd-signature-type">BaseModelWebService</a><span class="tsd-signature-symbol">&lt;</span><a href="domain.html" class="tsd-signature-type">Domain</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/domainschema.html" class="tsd-signature-type">DomainSchema</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/basemodelwebserviceintf.html" class="tsd-signature-type">BaseModelWebServiceIntf</a><span class="tsd-signature-symbol">&lt;</span><a href="domain.html" class="tsd-signature-type">Domain</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/domainschema.html" class="tsd-signature-type">DomainSchema</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -87,13 +92,14 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="domainwebservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private-protected tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="domainwebservice.html#http" class="tsd-kind-icon">http</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected tsd-is-external"><a href="domainwebservice.html#http" class="tsd-kind-icon">http</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="domainwebservice.html#options" class="tsd-kind-icon">options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static tsd-is-external"><a href="domainwebservice.html#instance" class="tsd-kind-icon">instance</a></li>
 							</ul>
 						</section>
@@ -105,7 +111,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#findall" class="tsd-kind-icon">find<wbr>All</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#findconsumersbyid" class="tsd-kind-icon">find<wbr>Consumers<wbr>ById</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#findmediatorsbyid" class="tsd-kind-icon">find<wbr>Mediators<wbr>ById</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="domainwebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#findrootdomain" class="tsd-kind-icon">find<wbr>Root<wbr>Domain</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#findusersbyid" class="tsd-kind-icon">find<wbr>Users<wbr>ById</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="domainwebservice.html#update" class="tsd-kind-icon">update</a></li>
@@ -118,23 +124,24 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Domain<wbr>Web<wbr>Service<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/httpoptions.html" class="tsd-signature-type">HttpOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Domain<wbr>Web<wbr>Service<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/domainwebserviceoptions.html" class="tsd-signature-type">DomainWebServiceOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L9">services/DomainWebService.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L10">services/DomainWebService.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/httpoptions.html" class="tsd-signature-type">HttpOptions</a></h5>
+									<h5>options: <a href="../interfaces/domainwebserviceoptions.html" class="tsd-signature-type">DomainWebServiceOptions</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></h4>
@@ -144,13 +151,25 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected tsd-is-external">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected tsd-is-external">
 					<a name="http" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> http</h3>
 					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <a href="http.html" class="tsd-signature-type">Http</a></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#http">http</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L8">services/DomainWebService.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L9">services/DomainWebService.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+					<a name="options" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> options</h3>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/basemodelwebserviceoptions.html" class="tsd-signature-type">BaseModelWebServiceOptions</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#options">options</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/base/BaseModelWebService.ts#L22">services/base/BaseModelWebService.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -160,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L9">services/DomainWebService.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L10">services/DomainWebService.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,7 +196,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L122">services/DomainWebService.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L119">services/DomainWebService.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,8 +226,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L153">services/DomainWebService.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L150">services/DomainWebService.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,8 +258,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#findall">findAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L31">services/DomainWebService.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L28">services/DomainWebService.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -267,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L92">services/DomainWebService.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L89">services/DomainWebService.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +319,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L107">services/DomainWebService.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L104">services/DomainWebService.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -319,17 +340,19 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a name="findone" class="tsd-anchor"></a>
 					<h3>find<wbr>One</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 						<li class="tsd-signature tsd-kind-icon">find<wbr>One<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="domain.html" class="tsd-signature-type">Domain</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#findone">findOne</a></p>
+								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#findone">findOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L49">services/DomainWebService.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L46">services/DomainWebService.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -360,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L62">services/DomainWebService.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L59">services/DomainWebService.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,7 +405,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L77">services/DomainWebService.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L74">services/DomainWebService.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -412,8 +435,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L138">services/DomainWebService.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L135">services/DomainWebService.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -450,7 +474,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L19">services/DomainWebService.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L16">services/DomainWebService.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></h4>
@@ -461,19 +485,19 @@
 					<a name="initialize" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> initialize</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">initialize<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/httpoptions.html" class="tsd-signature-type">HttpOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></li>
+						<li class="tsd-signature tsd-kind-icon">initialize<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/domainwebserviceoptions.html" class="tsd-signature-type">DomainWebServiceOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/cca5ae1/lib/services/DomainWebService.ts#L23">services/DomainWebService.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/services/DomainWebService.ts#L20">services/DomainWebService.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/httpoptions.html" class="tsd-signature-type">HttpOptions</a></h5>
+									<h5>options: <a href="../interfaces/domainwebserviceoptions.html" class="tsd-signature-type">DomainWebServiceOptions</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="domainwebservice.html" class="tsd-signature-type">DomainWebService</a></h4>
@@ -497,11 +521,14 @@
 					<li class="current tsd-kind-class tsd-is-external">
 						<a href="domainwebservice.html" class="tsd-kind-icon">Domain<wbr>Web<wbr>Service</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 								<a href="domainwebservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected tsd-is-external">
 								<a href="domainwebservice.html#http" class="tsd-kind-icon">http</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+								<a href="domainwebservice.html#options" class="tsd-kind-icon">options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static tsd-is-external">
 								<a href="domainwebservice.html#instance" class="tsd-kind-icon">instance</a>
@@ -521,7 +548,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="domainwebservice.html#findmediatorsbyid" class="tsd-kind-icon">find<wbr>Mediators<wbr>ById</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 								<a href="domainwebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">

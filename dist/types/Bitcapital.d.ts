@@ -1,6 +1,8 @@
 import { HttpOptions } from "./base";
-import { OAuthWebServiceOptions, ConsumerWebService, DomainWebService, AssetWebService, PaymentWebService, UserWebService, WalletWebService } from "./services";
+import { OAuthWebServiceOptions, ConsumerWebService, DomainWebService, AssetWebService, PaymentWebService, UserWebService, WalletWebService, OAuthWebService } from "./services";
 import { Session } from "./session";
+import { OAuthStatusResponse } from "./services/response";
+import { User } from "./models";
 export interface BitcapitalOptions {
     http: HttpOptions;
     oauth: OAuthWebServiceOptions;
@@ -10,7 +12,7 @@ export interface BitcapitalOptions {
  * The main interface for the Bitcapital SDK, holds credentials, instance options and all internal modules.
  */
 export default class Bitcapital {
-    protected options: BitcapitalOptions;
+    protected readonly options: BitcapitalOptions;
     protected readonly _session: Session;
     /**
      * Constructs a new Bitcapital instance, not safe to call directly, use the `init()` method.
@@ -25,13 +27,21 @@ export default class Bitcapital {
      */
     static initialize(options: BitcapitalOptions): Bitcapital;
     /**
+     * Gets the API Status.
+     */
+    status(): Promise<OAuthStatusResponse>;
+    /**
+     * Gets the currently authenticated user in the SDK, if any.
+     */
+    current(): User | undefined;
+    /**
      * Gets the Bitcapital session instance.
      */
     session(): Session;
     /**
      * Interface for the OAuth 2.0 service.
      */
-    oauth(): import("./services/OAuthWebService").default;
+    oauth(): OAuthWebService;
     /**
      * Interface for the Assets service.
      */

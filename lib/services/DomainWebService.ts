@@ -1,26 +1,23 @@
-import { Session } from "../session";
-import { Http, HttpOptions } from "../base";
+import { Http } from "../base";
 import { Domain, DomainSchema, User } from "../models";
-import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
+import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
-export default class DomainWebService implements BaseModelWebService<Domain, DomainSchema> {
+export interface DomainWebServiceOptions extends BaseModelWebServiceOptions {}
+
+export default class DomainWebService extends BaseModelWebService<Domain, DomainSchema> {
   protected http: Http;
   protected static instance: DomainWebService;
 
-  constructor(options: HttpOptions) {
-    this.http = new Http(options);
-
-    if (Session.getInstance()) {
-      this.http.interceptors(Session.getInstance().interceptors());
-    }
+  constructor(options: DomainWebServiceOptions) {
+    super(options);
   }
 
   public static getInstance(): DomainWebService {
     return this.instance;
   }
 
-  public static initialize(options: HttpOptions): DomainWebService {
+  public static initialize(options: DomainWebServiceOptions): DomainWebService {
     this.instance = new DomainWebService(options);
     return this.instance;
   }

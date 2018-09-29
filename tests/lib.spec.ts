@@ -14,6 +14,10 @@ describe("lib.Bitcapital", () => {
       }
     });
 
+    // Check bit capital utility methods
+    expect(bitcapital.status).toBeDefined();
+    expect(bitcapital.current).toBeDefined();
+
     // Check bit capital authentication services
     expect(bitcapital.session()).toBeDefined();
     expect(bitcapital.oauth()).toBeDefined();
