@@ -44,8 +44,8 @@ export default class OAuthWebService {
    *
    * @param data The user credentials
    */
-  public async password(data: { username: string; password: string }): Promise<OAuthCredentials> {
-    const request = new OAuthPasswordRequest(data.username, data.password);
+  public async password(data: { username: string; password: string; scope?: string }): Promise<OAuthCredentials> {
+    const request = new OAuthPasswordRequest(data.username, data.password, data.scope);
     const response = await this.http.post("/oauth/token", stringify(request), {
       headers: {
         "Content-type": "application/x-www-form-urlencoded",

@@ -1,13 +1,15 @@
-import { Http, HttpOptions } from "../base";
+import { Http } from "../base";
 import { Domain, DomainSchema, User } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
-export default class DomainWebService implements BaseModelWebService<Domain, DomainSchema> {
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+export interface DomainWebServiceOptions extends BaseModelWebServiceOptions {
+}
+export default class DomainWebService extends BaseModelWebService<Domain, DomainSchema> {
     protected http: Http;
     protected static instance: DomainWebService;
-    constructor(options: HttpOptions);
+    constructor(options: DomainWebServiceOptions);
     static getInstance(): DomainWebService;
-    static initialize(options: HttpOptions): DomainWebService;
+    static initialize(options: DomainWebServiceOptions): DomainWebService;
     /**
      * Find all {#Domain}s
      */

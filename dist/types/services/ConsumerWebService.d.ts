@@ -1,13 +1,15 @@
-import { Http, HttpOptions } from "../base";
-import { User, UserSchema, Document, Wallet, DocumentSchema, DocumentType } from "../models";
+import { Http } from "../base";
+import { Document, DocumentSchema, DocumentType, User, UserSchema, Wallet } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
-export default class ConsumerWebService implements BaseModelWebService<User, UserSchema> {
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {
+}
+export default class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
     protected http: Http;
     protected static instance: ConsumerWebService;
-    constructor(options: HttpOptions);
+    constructor(options: ConsumerWebServiceOptions);
     static getInstance(): ConsumerWebService;
-    static initialize(options: HttpOptions): ConsumerWebService;
+    static initialize(options: ConsumerWebServiceOptions): ConsumerWebService;
     /**
      * Find all {#User} with role {#Consumer}s
      *

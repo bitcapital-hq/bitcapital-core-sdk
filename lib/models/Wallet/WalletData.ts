@@ -1,12 +1,12 @@
 export interface StellarWalletData {
-  publicKey: string;
-  secretKey: string;
+  publicKey?: string;
+  secretKey?: string;
   assets?: string[];
 }
 
 export interface BankingWalletData {
-  bankCode: string;
-  accountAgency: string;
-  accountNumber: string;
-  accountDocument: string;
+  bankCode?: string;
+  accountAgency?: string;
+  accountNumber?: string;
+  accountDocument?: string;
 }

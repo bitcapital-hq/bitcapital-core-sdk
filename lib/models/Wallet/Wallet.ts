@@ -9,7 +9,7 @@ export { WalletType, StellarWalletData, BankingWalletData, WalletBalance };
 
 export interface WalletSchema extends BaseModelSchema {
   type: WalletType;
-  data: StellarWalletData | BankingWalletData;
+  data?: StellarWalletData | BankingWalletData;
   user?: User | string;
   balances?: WalletBalance[];
 }

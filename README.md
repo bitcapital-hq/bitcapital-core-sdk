@@ -30,19 +30,19 @@ Prepare the changes for publishing using the Typescript compiler
 yarn run build
 ```
 
-## OAuth 2.0 Authentication 
+## Configuring your Client 
 
 To start using this SDK you need both a Client ID and a Client Secret, emitted by
-the Bitcapital Core Team. If you don't have yours yet, contact them at [https://core.bitcapital.com.br](https://core.bitcapital.com.br).
+the Bitcapital Core Team. If you don't have yours yet, contact them at [https://bitcapital.com.br/developers](https://bitcapital.com.br/developers).
 
-Configure your Session instance.
+Configure your Bitcapital SDK instance.
 
 ```typescript
-import { Session } from 'bitcapital-core-sdk';
+import Bitcapital from 'bitcapital-core-sdk';
 
 // Initialize the session instance to authenticate
 // using the Bitcapital Core OAuth 2.0 provider.
-const session = Session.initialize({
+const bitcapital = Bitcapital.initialize({
   // Base instance URL for REST API calls
   http: {
     baseURL: 'https://your-instance.btcore.app',
@@ -59,7 +59,7 @@ try {
   // Authenticate a user with email and password from Bitcapital Core
   // If succeeds and available, the credentials will be stored in the 
   // session instance and in the local storage (for browser environments).
-  const user = await session.password({
+  const user = await bitcapital.session().password({
     email: 'user@example.com',
     password: '12345678',
   });
@@ -68,7 +68,7 @@ try {
   console.log(user.credentials.accessToken);
 
   // To logout and clear the current credentials, use the "destroy" action
-  await session.destroy();
+  await bitcapital.session().destroy();
 
 } catch(exception) {
   // Something went wront, probably credentials are invalid
@@ -81,15 +81,15 @@ at any time, in any context, getting its current instance. It is also
 an observable, so it can be watched for changes:
 
 ```typescript
-import { Session, Observer } from 'bitcapital-core-sdk';
+import { Observer } from 'bitcapital-core-sdk';
 
 // Gets the current session instance
-const session = Session.getInstance();
+const session = bitcapital.session();
 
 // Shows the current user instance, if any
 console.log(session.current);
 
-// Prepare a new session observer
+// Prepare a new session observer (typescript notation)
 const observer: Observer = {
   update(event: string, data: User) {
     if(event === Session.EVENT_SESSION_CHANGED) {
@@ -108,3 +108,21 @@ session.subscribe(observer);
 session.unsubscribe(observer);
 ```
 
+## Accessing library modules
+
+
+Library modules:
+* **bitcapital.assets():** Handles asset creation, emition and destruction.
+* **bitcapital.consumers():** Creates, updates, validates and deactivates consumer accounts.
+* **bitcapital.domains():** Creates, updates and removes domains from the network.
+* **bitcapital.payments():** Send payments between wallets and access its history.
+* **bitcapital.users():** Manages user accounts in the network.
+* **bitcapital.wallets():** Creates, updates and deactivates wallets in the network.
+
+Internal Modules:
+* **bitcapital.session():** Manages credentials in the SDK.
+* **bitcapital.oauth():** Manages authentication in the Bitcapital OAuth 2.0 provider.
+
+## Documentation
+
+Full API specification is in the Roadmap with the highest priority, all code is being prepared for TS Docs.

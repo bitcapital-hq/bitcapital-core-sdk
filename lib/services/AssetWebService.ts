@@ -1,26 +1,21 @@
-import { Session } from "../session";
-import { Http, HttpOptions } from "../base";
-import { Asset, AssetSchema, Payment, AssetEmitRequestSchema } from "../models";
-import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
+import { Asset, AssetEmitRequestSchema, AssetSchema, Payment } from "../models";
+import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
-export default class AssetWebService implements BaseModelWebService<Asset, AssetSchema> {
-  protected http: Http;
+export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {}
+
+export default class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
   protected static instance: AssetWebService;
 
-  constructor(options: HttpOptions) {
-    this.http = new Http(options);
-
-    if (Session.getInstance()) {
-      this.http.interceptors(Session.getInstance().interceptors());
-    }
+  constructor(options: AssetWebServiceOptions) {
+    super(options);
   }
 
   public static getInstance(): AssetWebService {
     return this.instance;
   }
 
-  public static initialize(options: HttpOptions): AssetWebService {
+  public static initialize(options: AssetWebServiceOptions): AssetWebService {
     this.instance = new AssetWebService(options);
     return this.instance;
   }

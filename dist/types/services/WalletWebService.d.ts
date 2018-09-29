@@ -1,13 +1,13 @@
-import { Http, HttpOptions } from "../base";
 import { Wallet, WalletSchema, User, Transaction, Payment } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
-export default class WalletWebService implements BaseModelWebService<Wallet, WalletSchema> {
-    protected http: Http;
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {
+}
+export default class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
     protected static instance: WalletWebService;
-    constructor(options: HttpOptions);
+    constructor(options: WalletWebServiceOptions);
     static getInstance(): WalletWebService;
-    static initialize(options: HttpOptions): WalletWebService;
+    static initialize(options: WalletWebServiceOptions): WalletWebService;
     /**
      * Find all {#Wallet}s
      */

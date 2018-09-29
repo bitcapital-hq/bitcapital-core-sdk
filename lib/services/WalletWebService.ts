@@ -1,26 +1,21 @@
-import { Session } from "../session";
-import { Http, HttpOptions } from "../base";
 import { Wallet, WalletSchema, User, Transaction, TransactionSchema, Payment, PaymentSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
-export default class WalletWebService implements BaseModelWebService<Wallet, WalletSchema> {
-  protected http: Http;
+export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {}
+
+export default class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
   protected static instance: WalletWebService;
 
-  constructor(options: HttpOptions) {
-    this.http = new Http(options);
-
-    if (Session.getInstance()) {
-      this.http.interceptors(Session.getInstance().interceptors());
-    }
+  constructor(options: WalletWebServiceOptions) {
+    super(options);
   }
 
   public static getInstance(): WalletWebService {
     return this.instance;
   }
 
-  public static initialize(options: HttpOptions): WalletWebService {
+  public static initialize(options: WalletWebServiceOptions): WalletWebService {
     this.instance = new WalletWebService(options);
     return this.instance;
   }

@@ -1,13 +1,13 @@
-import { Http, HttpOptions } from "../base";
-import { Asset, AssetSchema, Payment, AssetEmitRequestSchema } from "../models";
+import { Asset, AssetEmitRequestSchema, AssetSchema, Payment } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
-export default class AssetWebService implements BaseModelWebService<Asset, AssetSchema> {
-    protected http: Http;
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {
+}
+export default class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
     protected static instance: AssetWebService;
-    constructor(options: HttpOptions);
+    constructor(options: AssetWebServiceOptions);
     static getInstance(): AssetWebService;
-    static initialize(options: HttpOptions): AssetWebService;
+    static initialize(options: AssetWebServiceOptions): AssetWebService;
     /**
      * Find all {#Asset}s
      */

@@ -1,26 +1,23 @@
-import { Session } from "../session";
-import { Http, HttpOptions } from "../base";
-import { User, UserSchema, Document, Wallet, DocumentSchema, DocumentType } from "../models";
-import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
+import { Http } from "../base";
+import { Document, DocumentSchema, DocumentType, User, UserSchema, Wallet } from "../models";
+import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
-export default class ConsumerWebService implements BaseModelWebService<User, UserSchema> {
+export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {}
+
+export default class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
   protected http: Http;
   protected static instance: ConsumerWebService;
 
-  constructor(options: HttpOptions) {
-    this.http = new Http(options);
-
-    if (Session.getInstance()) {
-      this.http.interceptors(Session.getInstance().interceptors());
-    }
+  constructor(options: ConsumerWebServiceOptions) {
+    super(options);
   }
 
   public static getInstance(): ConsumerWebService {
     return this.instance;
   }
 
-  public static initialize(options: HttpOptions): ConsumerWebService {
+  public static initialize(options: ConsumerWebServiceOptions): ConsumerWebService {
     this.instance = new ConsumerWebService(options);
     return this.instance;
   }

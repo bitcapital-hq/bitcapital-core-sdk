@@ -1,26 +1,21 @@
-import { Session } from "../session";
-import { Http, HttpOptions } from "../base";
-import { User, UserSchema, OAuthCredentials, UserRole } from "../models";
-import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
+import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
+import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
-export default class UserWebService implements BaseModelWebService<User, UserSchema> {
-  protected http: Http;
+export interface UserWebServiceOptions extends BaseModelWebServiceOptions {}
+
+export default class UserWebService extends BaseModelWebService<User, UserSchema> {
   protected static instance: UserWebService;
 
-  constructor(options: HttpOptions) {
-    this.http = new Http(options);
-
-    if (Session.getInstance()) {
-      this.http.interceptors(Session.getInstance().interceptors());
-    }
+  constructor(options: UserWebServiceOptions) {
+    super(options);
   }
 
   public static getInstance(): UserWebService {
     return this.instance;
   }
 
-  public static initialize(options: HttpOptions): UserWebService {
+  public static initialize(options: UserWebServiceOptions): UserWebService {
     this.instance = new UserWebService(options);
     return this.instance;
   }
