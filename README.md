@@ -93,4 +93,4 @@ Internal Modules:
 
 ## Documentation
 
-Full API specification is in the Roadmap with the highest priority, all code is being prepared for TS Docs.
+Full API specification is located at: [https://sdk.btcore.app](https://sdk.btcore.app).
