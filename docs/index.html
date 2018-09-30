@@ -122,35 +122,6 @@ yarn <span class="hljs-built_in">test</span>
   <span class="hljs-built_in">console</span>.error(exception);
 }
 </code></pre>
-				<p>The session is a singleton, so you may access the authentication state
-					at any time, in any context, getting its current instance. It is also
-				an observable, so it can be watched for changes:</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Observer } <span class="hljs-keyword">from</span> <span class="hljs-string">'bitcapital-core-sdk'</span>;
-
-<span class="hljs-comment">// Gets the current session instance</span>
-<span class="hljs-keyword">const</span> session = bitcapital.session();
-
-<span class="hljs-comment">// Shows the current user instance, if any</span>
-<span class="hljs-built_in">console</span>.log(session.current);
-
-<span class="hljs-comment">// Prepare a new session observer (typescript notation)</span>
-<span class="hljs-keyword">const</span> observer: Observer = {
-  update(event: <span class="hljs-built_in">string</span>, data: User) {
-    <span class="hljs-keyword">if</span>(event === Session.EVENT_SESSION_CHANGED) {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'User instance has changed in Session'</span>, { user: data });
-    }
-  }
-};
-
-<span class="hljs-comment">// Start listening to session changes, such as credentials</span>
-<span class="hljs-comment">// expiration or a refreshed access token.</span>
-session.subscribe(observer);
-
-<span class="hljs-comment">// ...</span>
-
-<span class="hljs-comment">// Eventually, you can also stop listening to its changes</span>
-session.unsubscribe(observer);
-</code></pre>
 				<h2 id="accessing-library-modules">Accessing library modules</h2>
 				<p>Library modules:</p>
 				<ul>

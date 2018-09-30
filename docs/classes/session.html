@@ -66,6 +66,42 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An abstraction layer to securely store and manage platform credentials.</p>
+					</div>
+					<p>The session is a singleton, so you may access the authentication state
+						at any time, in any context, getting its current instance. It is also
+					an observable, so it can be watched for changes:</p>
+					<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Observer } <span class="hljs-keyword">from</span> <span class="hljs-string">'bitcapital-core-sdk'</span>;
+
+<span class="hljs-comment">// Gets the current session instance</span>
+<span class="hljs-keyword">const</span> session = bitcapital.session();
+
+<span class="hljs-comment">// Shows the current user instance, if any</span>
+<span class="hljs-built_in">console</span>.log(session.current);
+
+<span class="hljs-comment">// Prepare a new session observer (typescript notation)</span>
+<span class="hljs-keyword">const</span> observer: Observer = {
+  update(event: <span class="hljs-built_in">string</span>, data: User) {
+    <span class="hljs-keyword">if</span>(event === Session.EVENT_SESSION_CHANGED) {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'User instance has changed in Session'</span>, { user: data });
+    }
+  }
+};
+
+<span class="hljs-comment">// Start listening to session changes, such as credentials</span>
+<span class="hljs-comment">// expiration or a refreshed access token.</span>
+session.subscribe(observer);
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Eventually, you can also stop listening to its changes</span>
+session.unsubscribe(observer);
+</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -130,7 +166,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L31">session/Session.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,7 +188,7 @@
 					<div class="tsd-signature tsd-kind-icon">_interceptors<span class="tsd-signature-symbol">:</span> <a href="../interfaces/httpinterceptor.html" class="tsd-signature-type">HttpInterceptor</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L27">session/Session.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L62">session/Session.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">current<span class="tsd-signature-symbol">:</span> <a href="user.html" class="tsd-signature-type">User</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L22">session/Session.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L57">session/Session.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,7 +208,7 @@
 					<div class="tsd-signature tsd-kind-icon">oauth<wbr>Web<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="oauthwebservice.html" class="tsd-signature-type">OAuthWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L26">session/Session.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L61">session/Session.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">observable<span class="tsd-signature-symbol">:</span> <a href="observable.html" class="tsd-signature-type">Observable</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L24">session/Session.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L59">session/Session.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/sessionoptions.html" class="tsd-signature-type">SessionOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L33">session/Session.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L68">session/Session.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="storageutil.html" class="tsd-signature-type">StorageUtil</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L23">session/Session.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L58">session/Session.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Web<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="userwebservice.html" class="tsd-signature-type">UserWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L25">session/Session.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L60">session/Session.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -222,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">EVENT_<wbr>SESSION_<wbr>CHANGED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;SESSION_CHANGED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L29">session/Session.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L64">session/Session.ts:64</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -232,7 +268,7 @@
 					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <a href="session.html" class="tsd-signature-type">Session</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L31">session/Session.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -249,7 +285,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L191">session/Session.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L226">session/Session.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L132">session/Session.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L167">session/Session.ts:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +329,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L112">session/Session.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L147">session/Session.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -315,7 +351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L56">session/Session.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L91">session/Session.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -337,7 +373,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L158">session/Session.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L193">session/Session.ts:193</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -368,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L181">session/Session.ts:181</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L216">session/Session.ts:216</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L96">session/Session.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L131">session/Session.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -432,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L121">session/Session.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L156">session/Session.ts:156</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -454,7 +490,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L77">session/Session.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L112">session/Session.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -485,7 +521,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L86">session/Session.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L121">session/Session.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -516,7 +552,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L63">session/Session.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L98">session/Session.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -538,7 +574,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/675272d/lib/session/Session.ts#L67">session/Session.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/00afa74/lib/session/Session.ts#L102">session/Session.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

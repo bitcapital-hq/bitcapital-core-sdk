@@ -14,6 +14,41 @@ export interface PasswordGrantOptions {
     scopes?: string[];
     scope?: string;
 }
+/**
+ * An abstraction layer to securely store and manage platform credentials.
+ *
+ * The session is a singleton, so you may access the authentication state
+ * at any time, in any context, getting its current instance. It is also
+ * an observable, so it can be watched for changes:
+ *
+ * ```typescript
+ * import { Observer } from 'bitcapital-core-sdk';
+ *
+ * // Gets the current session instance
+ * const session = bitcapital.session();
+ *
+ * // Shows the current user instance, if any
+ * console.log(session.current);
+ *
+ * // Prepare a new session observer (typescript notation)
+ * const observer: Observer = {
+ *   update(event: string, data: User) {
+ *     if(event === Session.EVENT_SESSION_CHANGED) {
+ *       console.log('User instance has changed in Session', { user: data });
+ *     }
+ *   }
+ * };
+ *
+ * // Start listening to session changes, such as credentials
+ * // expiration or a refreshed access token.
+ * session.subscribe(observer);
+ *
+ * // ...
+ *
+ * // Eventually, you can also stop listening to its changes
+ * session.unsubscribe(observer);
+ * ```
+ */
 export default class Session {
     options: SessionOptions;
     current?: User;
