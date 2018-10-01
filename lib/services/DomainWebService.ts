@@ -3,6 +3,31 @@ import { Domain, DomainSchema, User } from "../models";
 import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
+export enum PaymentLogType {
+  COMMON = "common",
+  EMIT = "emit",
+  DESTROY = "destroy"
+}
+
+export interface DomainMetricsOptions {
+  start?: Date; // Start of date range for metrics
+  end?: Date; // End of date range for metrics
+  source?: string; // Get metrics for a single source
+  recipient?: string; // Get metrics for a single recipient
+  asset?: string; // Get metrics for a single asset
+  type?: PaymentLogType; // Get metrics for a single payment type
+}
+
+export interface CountMetricsResponse {
+  paymentTime: Date;
+  count: number;
+}
+
+export interface TotalMetricsResponse {
+  paymentTime: Date;
+  totalAmount: number;
+}
+
 export interface DomainWebServiceOptions extends BaseModelWebServiceOptions {}
 
 export default class DomainWebService extends BaseModelWebService<Domain, DomainSchema> {
@@ -155,5 +180,69 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
     }
 
     return true;
+  }
+
+  /**
+   * Gets the cumulative sum of payment amounts grouped by time
+   *
+   * @param {string} id
+   * @param {DomainMetricsOptions} [options]
+   */
+  public async getPaymentsAmountMetrics(id: string, options?: DomainMetricsOptions): Promise<TotalMetricsResponse[]> {
+    const response = await this.http.get(`/domains/${id}/metrics/payments/amount`, { params: options });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data.map(r => ({ time: new Date(r.time), totalAmount: Number(r.total_amount) }));
+  }
+
+  /**
+   * Gets the cumulative count of payment amounts grouped by time
+   *
+   * @param {string} id
+   * @param {DomainMetricsOptions} [options]
+   */
+  public async getPaymentsCountMetrics(id: string, options?: DomainMetricsOptions): Promise<CountMetricsResponse[]> {
+    const response = await this.http.get(`/domains/${id}/metrics/payments/count`, { params: options });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data.map(r => ({ time: new Date(r.time), count: Number(r.count) }));
+  }
+
+  /**
+   * Gets the cumulative count of active users grouped by time
+   *
+   * @param {string} id
+   * @param {DomainMetricsOptions} [options]
+   */
+  public async getActiveUserCountMetrics(id: string, options?: DomainMetricsOptions): Promise<CountMetricsResponse[]> {
+    const response = await this.http.get(`/domains/${id}/metrics/users/count`, { params: options });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data.map(r => ({ time: new Date(r.time), count: Number(r.count) }));
+  }
+
+  /**
+   * Gets the cumulative balance grouped by time
+   *
+   * @param {string} id
+   * @param {DomainMetricsOptions} [options]
+   */
+  public async getBalanceMetrics(id: string, options?: DomainMetricsOptions): Promise<TotalMetricsResponse[]> {
+    const response = await this.http.get(`/domains/${id}/metrics/balance`, { params: options });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data.map(r => ({ time: new Date(r.time), totalAmount: Number(r.total_amount) }));
   }
 }
