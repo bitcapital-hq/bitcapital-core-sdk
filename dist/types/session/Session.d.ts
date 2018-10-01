@@ -14,6 +14,9 @@ export interface PasswordGrantOptions {
     scopes?: string[];
     scope?: string;
 }
+export interface RefreshGrantOptions {
+    refreshToken: string;
+}
 /**
  * An abstraction layer to securely store and manage platform credentials.
  *
@@ -85,7 +88,7 @@ export default class Session {
      * Registers a new user in session, notifying all observers.
      *
      * @param user The user instance
-     * @param {{notify: boolean}} options The operation options
+     * @param options The operation options
      */
     register(user: User, options?: {
         notify: boolean;
@@ -109,9 +112,12 @@ export default class Session {
      */
     password(data: PasswordGrantOptions): Promise<User>;
     /**
-     * Refreshs the current user information.
+     * Performs a "refresh_token" authentication using the OAuth 2.0 server and registers it in current session.
+     * This method is automatically called on requests that return 401
+     *
+     * @param {RefreshGrantOptions} data
      */
-    refresh(): Promise<User>;
+    refreshToken(data: RefreshGrantOptions): Promise<User>;
     /**
      * Performs a "client_credentials" authentication using the OAuth 2.0 server and registers it in current session.
      */
