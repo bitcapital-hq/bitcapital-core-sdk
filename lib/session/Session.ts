@@ -18,6 +18,10 @@ export interface PasswordGrantOptions {
   scope?: string;
 }
 
+export interface RefreshGrantOptions {
+  refreshToken: string;
+}
+
 /**
  * An abstraction layer to securely store and manage platform credentials.
  *
@@ -76,7 +80,22 @@ export default class Session {
     // Prepare session interceptors
     this._interceptors = [
       new SessionCredentialsInterceptor(this),
-      new SessionUnauthorizedInterceptor(() => this.destroy())
+      new SessionUnauthorizedInterceptor(() => {
+        try {
+          const refreshToken = this.current.credentials && this.current.credentials.refreshToken;
+
+          if (refreshToken) {
+            // If there's a refresh token, try to refresh it
+            this.refreshToken({ refreshToken });
+          } else {
+            // No refresh token, just destroy the session
+            this.destroy();
+          }
+        } catch (error) {
+          // Refresh token auth failed, destroy the session
+          this.destroy();
+        }
+      })
     ];
 
     // Fetch session in startup by default
@@ -126,7 +145,7 @@ export default class Session {
    * Registers a new user in session, notifying all observers.
    *
    * @param user The user instance
-   * @param {{notify: boolean}} options The operation options
+   * @param options The operation options
    */
   public async register(user: User, options = { notify: true }) {
     this.current = user;
@@ -197,27 +216,41 @@ export default class Session {
       scope: data.scopes ? data.scopes.join(",") : data.scope
     });
 
-    if (oauth.accessToken) {
-      try {
-        const user = await this.userWebService.me(oauth);
-        return this.register(new User({ ...user, credentials: oauth } as UserSchema));
-      } catch (error) {
-        error.credentials = oauth;
-        throw error;
-      }
+    if (!oauth.accessToken) {
+      throw oauth;
     }
 
-    throw oauth;
+    try {
+      const user = await this.userWebService.me(oauth);
+      return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+    } catch (error) {
+      error.credentials = oauth;
+      throw error;
+    }
   }
 
   /**
-   * Refreshs the current user information.
+   * Performs a "refresh_token" authentication using the OAuth 2.0 server and registers it in current session.
+   * This method is automatically called on requests that return 401
+   *
+   * @param {RefreshGrantOptions} data
    */
-  public async refresh(): Promise<User> {
-    if (!this.current) return;
-    const user = await this.userWebService.me();
-    this.register(new User({ ...user, credentials: this.current.credentials } as UserSchema));
-    return user;
+  public async refreshToken(data: RefreshGrantOptions) {
+    const oauth = await this.oauthWebService.refreshToken({
+      refreshToken: data.refreshToken
+    });
+
+    if (!oauth.accessToken) {
+      throw oauth;
+    }
+
+    try {
+      const user = await this.userWebService.me(oauth);
+      return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+    } catch (error) {
+      error.credentials = oauth;
+      throw error;
+    }
   }
 
   /**

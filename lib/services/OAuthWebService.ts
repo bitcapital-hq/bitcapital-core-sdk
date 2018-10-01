@@ -2,7 +2,7 @@ import { stringify } from "qs";
 import { Buffer } from "buffer";
 import { Http, HttpOptions } from "../base";
 import { OAuthCredentials } from "../models";
-import { OAuthPasswordRequest, OAuthClientCredentialsRequest } from "./request";
+import { OAuthPasswordRequest, OAuthClientCredentialsRequest, OAuthRefreshRequest } from "./request";
 import { OAuthStatusResponse } from "./response";
 
 export interface OAuthWebServiceOptions extends HttpOptions {
@@ -75,6 +75,26 @@ export default class OAuthWebService {
       return new OAuthCredentials(response.data);
     }
     throw response;
+  }
+
+  /**
+   * Performs a "refresh_token" authentication using the OAuth 2.0 server.
+   */
+  public async refreshToken(data: { refreshToken: string }): Promise<OAuthCredentials> {
+    const request = new OAuthRefreshRequest(data.refreshToken);
+
+    const response = await this.http.post("/oauth/token", stringify(request), {
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}` // Get credentials from options
+      }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new OAuthCredentials(response.data);
   }
 
   /**
