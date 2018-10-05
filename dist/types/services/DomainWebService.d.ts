@@ -11,13 +11,13 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
     static getInstance(): DomainWebService;
     static initialize(options: DomainWebServiceOptions): DomainWebService;
     /**
-     * Find all {#Domain}s
+     * Find all Domains.
      */
     findAll(pagination: Pagination): Promise<PaginatedArray<Domain>>;
     /**
-     * Find a {#Domain} by it's id.
+     * Find a Domain.
      *
-     * @param id The id of the {#Domain}
+     * @param id The Domain ID.
      */
     findOne(id: string): Promise<Domain>;
     /**
@@ -25,40 +25,34 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
      */
     findRootDomain(): Promise<Domain>;
     /**
-     * Find the {#User}s from a {#Domain} by it's id.
+     * Find the Users with role Consumer from a Domain.
      *
-     * @param id The id of the {#Domain}
-     */
-    findUsersById(id: string): Promise<User[]>;
-    /**
-     * Find the {#User}s with role {#Consumer} from a {#Domain} by it's id.
-     *
-     * @param id The id of the {#Domain}
+     * @param id The Domain ID.
      */
     findConsumersById(id: string): Promise<User[]>;
     /**
-     * Find the {#User}s with role Mediator from a {#Domain} by it's id.
+     * Find the Users with role Mediator from a Domain.
      *
-     * @param id The id of the {#Domain}
+     * @param id The Domain ID.
      */
     findMediatorsById(id: string): Promise<User[]>;
     /**
-     * Create a new {#Domain}.
+     * Create a new Domain.
      *
-     * @param domain The {#Domain} properties
+     * @param domain The Domain schema.
      */
     create(domain: DomainSchema): Promise<Domain>;
     /**
-     * Partially update an existing {#Domain}.
+     * Partially update an existing Domain.
      *
-     * @param id the id of the {#Domain}
-     * @param domain The values you want to update
+     * @param id The Domain ID.
+     * @param domain The partial Domain schema.
      */
     update(id: string, domain: Partial<DomainSchema>): Promise<Domain>;
     /**
-     * Delete a {#Domain} by it's id.
+     * Delete a Domain.
      *
-     * @param id The id of the {#Domain}
+     * @param id The Domain ID.
      */
     delete(id: string): Promise<boolean>;
 }

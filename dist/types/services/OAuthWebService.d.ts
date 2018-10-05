@@ -13,7 +13,7 @@ export default class OAuthWebService {
     static getInstance(): OAuthWebService;
     static initialize(options: OAuthWebServiceOptions): OAuthWebService;
     /**
-     * Gets basic token for client credentials authentication.
+     * Get a basic token for client credentials authentication.
      *
      * @returns {String}
      */
@@ -22,9 +22,9 @@ export default class OAuthWebService {
         clientSecret: string;
     }): String;
     /**
-     * Performs a "password" authentication using the OAuth 2.0 server.
+     * Perform a "password" authentication using the OAuth 2.0 server.
      *
-     * @param data The user credentials
+     * @param data The user credentials.
      */
     password(data: {
         username: string;
@@ -32,17 +32,17 @@ export default class OAuthWebService {
         scope?: string;
     }): Promise<OAuthCredentials>;
     /**
-     * Performs a "client_credentials" authentication using the OAuth 2.0 server.
+     * Perform a "client_credentials" authentication using the OAuth 2.0 server.
      */
     clientCredentials(): Promise<OAuthCredentials>;
     /**
-     * Revokes one or all tokens from a user using the OAuth 2.0 server.
+     * Revoke one or all tokens from a user using the OAuth 2.0 server.
      *
-     * @param accessToken The user access token
+     * @param accessToken The user access token.
      */
     revoke(accessToken?: String): Promise<void>;
     /**
-     * Gets the server status.
+     * Get the server status.
      */
     status(): Promise<OAuthStatusResponse>;
 }

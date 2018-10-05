@@ -26,7 +26,7 @@ export default class Bitcapital {
   protected readonly _session: Session;
 
   /**
-   * Constructs a new Bitcapital instance, not safe to call directly, use the `init()` method.
+   * Construct a new Bitcapital instance, not safe to call directly, use the `init()` method.
    *
    * @param options The bitcapital options and credentials
    */
@@ -43,30 +43,30 @@ export default class Bitcapital {
   }
 
   /**
-   * Initializes the Bitcapital SDK with credentials.
+   * Initialize the Bitcapital SDK with credentials.
    *
-   * @param options The bitcapital options and credentials
+   * @param options The bitcapital options and credentials.
    */
   public static initialize(options: BitcapitalOptions) {
     return new Bitcapital(options);
   }
 
   /**
-   * Gets the API Status.
+   * Get the API Status.
    */
   public async status(): Promise<OAuthStatusResponse> {
     return this._session.oauthWebService.status();
   }
 
   /**
-   * Gets the currently authenticated user in the SDK, if any.
+   * Get the currently authenticated user in the SDK, if any.
    */
   public current(): User | undefined {
     return this._session.current;
   }
 
   /**
-   * Gets the Bitcapital session instance.
+   * Get the Bitcapital session instance.
    */
   public session(): Session {
     return this._session;

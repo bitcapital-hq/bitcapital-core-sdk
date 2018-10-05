@@ -26,13 +26,6 @@ describe("lib.services.DomainWebService", () => {
       expect(root).toEqual(TEST_DOMAIN);
     });
 
-    it("should find the users", async () => {
-      const users = await DomainWebService.getInstance().findUsersById(TEST_DOMAIN.id);
-
-      expect(users.length).toBe(3);
-      expect(users[0]).toEqual(TEST_USER);
-    });
-
     it("should find the mediators", async () => {
       const mediators = await DomainWebService.getInstance().findConsumersById(TEST_DOMAIN.id);
 
@@ -64,11 +57,6 @@ describe("lib.services.DomainWebService", () => {
     it("should fail to find the root domain", async () => {
       expect.assertions(1);
       return expect(DomainWebService.getInstance().findRootDomain()).rejects.toBeTruthy();
-    });
-
-    it("should fail to find the users", async () => {
-      expect.assertions(1);
-      return expect(DomainWebService.getInstance().findUsersById(TEST_DOMAIN.id)).rejects.toBeTruthy();
     });
 
     it("should fail to find the mediators", async () => {

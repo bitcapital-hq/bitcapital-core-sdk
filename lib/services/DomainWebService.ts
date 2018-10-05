@@ -23,7 +23,7 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
   }
 
   /**
-   * Find all {#Domain}s
+   * Find all Domains.
    */
   public async findAll(pagination: Pagination): Promise<PaginatedArray<Domain>> {
     const { skip, limit } = pagination;
@@ -39,9 +39,9 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
   }
 
   /**
-   * Find a {#Domain} by it's id.
+   * Find a Domain.
    *
-   * @param id The id of the {#Domain}
+   * @param id The Domain ID.
    */
   public async findOne(id: string): Promise<Domain> {
     const response = await this.http.get(`/domains/${id}`);
@@ -67,24 +67,9 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
   }
 
   /**
-   * Find the {#User}s from a {#Domain} by it's id.
+   * Find the Users with role Consumer from a Domain.
    *
-   * @param id The id of the {#Domain}
-   */
-  public async findUsersById(id: string): Promise<User[]> {
-    const response = await this.http.get(`/domains/${id}/users`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return response.data.map(user => new User(user));
-  }
-
-  /**
-   * Find the {#User}s with role {#Consumer} from a {#Domain} by it's id.
-   *
-   * @param id The id of the {#Domain}
+   * @param id The Domain ID.
    */
   public async findConsumersById(id: string): Promise<User[]> {
     const response = await this.http.get(`/domains/${id}/consumers`);
@@ -97,9 +82,9 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
   }
 
   /**
-   * Find the {#User}s with role Mediator from a {#Domain} by it's id.
+   * Find the Users with role Mediator from a Domain.
    *
-   * @param id The id of the {#Domain}
+   * @param id The Domain ID.
    */
   public async findMediatorsById(id: string): Promise<User[]> {
     const response = await this.http.get(`/domains/${id}/mediators`);
@@ -112,9 +97,9 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
   }
 
   /**
-   * Create a new {#Domain}.
+   * Create a new Domain.
    *
-   * @param domain The {#Domain} properties
+   * @param domain The Domain schema.
    */
   public async create(domain: DomainSchema): Promise<Domain> {
     const response = await this.http.post("/domains", domain);
@@ -127,10 +112,10 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
   }
 
   /**
-   * Partially update an existing {#Domain}.
+   * Partially update an existing Domain.
    *
-   * @param id the id of the {#Domain}
-   * @param domain The values you want to update
+   * @param id The Domain ID.
+   * @param domain The partial Domain schema.
    */
   public async update(id: string, domain: Partial<DomainSchema>): Promise<Domain> {
     const response = await this.http.post(`/domains/${id}`, domain);
@@ -143,9 +128,9 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
   }
 
   /**
-   * Delete a {#Domain} by it's id.
+   * Delete a Domain.
    *
-   * @param id The id of the {#Domain}
+   * @param id The Domain ID.
    */
   public async delete(id: string): Promise<boolean> {
     const response = await this.http.delete(`/domains/${id}`);
