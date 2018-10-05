@@ -21,7 +21,7 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Find all {#Asset}s
+   * Find all Assets.
    */
   public async findAll(pagination: Pagination): Promise<PaginatedArray<Asset>> {
     const { skip, limit } = pagination;
@@ -37,9 +37,9 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Find a {#Asset} by it's id.
+   * Find an Asset.
    *
-   * @param id The id of the {#Asset}
+   * @param id The Asset ID.
    */
   public async findOne(id: string): Promise<Asset> {
     const response = await this.http.get(`/assets/${id}`);
@@ -52,11 +52,7 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Emits an {#Asset} by it's id.
-   *
-   * @param id The id of the {#Asset}
-   * @param amount The amount to be emitted
-   * @param [destination] The destination wallet
+   * Emit an Asset.
    */
   public async emit(request: AssetEmitRequestSchema): Promise<Payment> {
     const { id, amount, destination } = request;
@@ -71,9 +67,9 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Create a new {#Asset}.
+   * Create a new Asset.
    *
-   * @param asset The {#Asset} properties
+   * @param asset The Asset schema.
    */
   public async create(asset: AssetSchema): Promise<Asset> {
     const response = await this.http.post("/assets", asset);
@@ -86,10 +82,10 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Partially update an existing {#Asset}.
+   * Partially update an existing Asset.
    *
-   * @param id the id of the {#Asset}
-   * @param asset The values you want to update
+   * @param id The Asset ID.
+   * @param asset The partial Asset schema.
    */
   public async update(id: string, asset: Partial<AssetSchema>): Promise<Asset> {
     const response = await this.http.post(`/assets/${id}`, asset);
@@ -102,9 +98,9 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Delete a {#Asset} by it's id.
+   * Delete a Asset.
    *
-   * @param id The id of the {#Asset}
+   * @param id The Asset ID.
    */
   public async delete(id: string): Promise<boolean> {
     const response = await this.http.delete(`/assets/${id}`);

@@ -1,4 +1,4 @@
-import { Wallet, WalletSchema, User, Transaction, Payment } from "../models";
+import { Wallet, WalletSchema, Transaction, Payment } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {
@@ -9,25 +9,25 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
     static getInstance(): WalletWebService;
     static initialize(options: WalletWebServiceOptions): WalletWebService;
     /**
-     * Find all {#Wallet}s
+     * Find all Wallets.
      */
     findAll(pagination: Pagination): Promise<PaginatedArray<Wallet>>;
     /**
-     * Find a {#Wallet} by it's id.
+     * Find a Wallet.
      *
-     * @param id The id of the {#Wallet}
+     * @param id The Wallet ID.
      */
     findOne(id: string): Promise<Wallet>;
     /**
-     * Find the {#Wallet}'s {#Transaction}s by it's id.
+     * Find the Transactions from a Wallet.
      *
-     * @param id The id of the {#Wallet}
+     * @param id The Wallet ID.
      */
     findWalletTransactions(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>>;
     /**
-     * Find the {#Wallet}'s {#Payment}s by it's id.
+     * Find the Payments from a Wallet.
      *
-     * @param id The id of the {#Wallet}
+     * @param id The Wallet ID.
      */
     findWalletPayments(id: string, pagination: Pagination): Promise<PaginatedArray<Payment>>;
     /**
@@ -35,40 +35,22 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
      */
     findRootWallet(): Promise<Wallet>;
     /**
-     * Find the {#User}s from a {#Wallet} by it's id.
+     * Create a new Wallet.
      *
-     * @param id The id of the {#Wallet}
-     */
-    findUsersById(id: string): Promise<User[]>;
-    /**
-     * Find the {#User}s with role {#Consumer} from a {#Wallet} by it's id.
-     *
-     * @param id The id of the {#Wallet}
-     */
-    findConsumersById(id: string): Promise<User[]>;
-    /**
-     * Find the {#User}s with role Mediator from a {#Wallet} by it's id.
-     *
-     * @param id The id of the {#Wallet}
-     */
-    findMediatorsById(id: string): Promise<User[]>;
-    /**
-     * Create a new {#Wallet}.
-     *
-     * @param wallet The {#Wallet} properties
+     * @param wallet The Wallet schema.
      */
     create(wallet: WalletSchema): Promise<Wallet>;
     /**
-     * Partially update an existing {#Wallet}.
+     * Partially update an existing Wallet.
      *
-     * @param id the id of the {#Wallet}
-     * @param wallet The values you want to update
+     * @param id The Wallet ID.
+     * @param wallet The partial Wallet schema.
      */
     update(id: string, wallet: Partial<WalletSchema>): Promise<Wallet>;
     /**
-     * Delete a {#Wallet} by it's id.
+     * Delete a Wallet.
      *
-     * @param id The id of the {#Wallet}
+     * @param id The Wallet ID.
      */
     delete(id: string): Promise<boolean>;
 }

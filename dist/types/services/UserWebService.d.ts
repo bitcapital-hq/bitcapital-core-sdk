@@ -1,6 +1,6 @@
-import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
-import { PaginatedArray, Pagination } from "../utils";
+import { OAuthCredentials, User, UserSchema, UserRole } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { Pagination, PaginatedArray } from "..";
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export default class UserWebService extends BaseModelWebService<User, UserSchema> {
@@ -9,36 +9,36 @@ export default class UserWebService extends BaseModelWebService<User, UserSchema
     static getInstance(): UserWebService;
     static initialize(options: UserWebServiceOptions): UserWebService;
     /**
-     * Find all {#User}s.
+     * Find all Users by role.
      */
-    findAll(pagination: Pagination, role?: UserRole): Promise<PaginatedArray<User>>;
+    findAllByRole(pagination: Pagination, role: UserRole): Promise<PaginatedArray<User>>;
     /**
-     * Find a {#User} by it's id.
+     * Find an User.
      *
-     * @param id The id of the {#User}
+     * @param id The User ID.
      */
     findOne(id: string): Promise<User>;
     /**
-     * Partially update an existing {#User}.
+     * Create a new User.
      *
-     * @param id the id of the {#User}
-     * @param user The values you want to update
-     */
-    update(id: string, user: Partial<UserSchema>): Promise<User>;
-    /**
-     *  Inserts a new {#User}.
-     *
-     * @param consumer The values you want to insert
+     * @param consumer The User schema.
      */
     create(user: UserSchema): Promise<User>;
     /**
-     * Delete an {$User} by it's id
+     * Partially update an existing User.
      *
-     * @param id The id of the {#User}
+     * @param id the User ID.
+     * @param user The partial User schema.
+     */
+    update(id: string, user: Partial<UserSchema>): Promise<User>;
+    /**
+     * Delete an User.
+     *
+     * @param id The User ID.
      */
     delete(id: string): Promise<boolean>;
     /**
-     * Gets the current {#User} information from the API.
+     * Gets the current User information from the API.
      *
      * @param credentials The OAuth 2.0 credentials for the request
      */
