@@ -11,72 +11,76 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
     static getInstance(): ConsumerWebService;
     static initialize(options: ConsumerWebServiceOptions): ConsumerWebService;
     /**
-     * Find all {#User} with role {#Consumer}s
-     *
-     * @param query The query of the search
+     * Find all Users with role Consumer.
      */
     findAll(pagination: Pagination): Promise<PaginatedArray<User>>;
     /**
-     * Find a {#User} with role {#Consumer} by it's ID
+     * Find a User with role Consumer.
      *
-     * @param id The id of the {#Consumer}
+     * @param id The User ID.
      */
     findOne(id: string): Promise<User>;
     /**
-     * Find the #{Document}s from a {#Consumer} by it's ID
-     * This method won't return pictures
+     * Find the Documents from a User with role Consumer.
+     * This method won't return pictures.
      *
-     * @param id The id of the {#Consumer}
+     * @param id The User ID.
      */
     findDocumentsById(id?: string): Promise<Document[]>;
     /**
-     * Find the {#Document}s from a {#Consumer} by it's ID and the {#Document} type
-     * This method will return pictures
+     * Find the Documents from a User with role Consumer.
+     * This method will return pictures.
      *
-     * @param id The id of the {#Consumer}
+     * @param id The User ID.
      */
     findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document>;
     /**
-     * Find the {#Wallet}s from a {#Consumer} by it's ID
+     * Find the Wallets from a User with role Consumer.
      *
-     * @param id The id of the {#Consumer}
+     * @param id The User ID.
      */
     findWalletsById(id: string): Promise<Wallet[]>;
     /**
-     *  Inserts a new {#Consumer}.
+     * Create a new User with role Consumer.
      *
-     * @param consumer The values you want to insert
+     * @param consumer The User schema.
      */
     create(consumer: UserSchema): Promise<User>;
     /**
-     * Create a new {#Document} on a {#Consumer} by it's ID
+     * Create a new Document on a User with role Consumer.
      *
-     * @param id The id of the {#Consumer}
+     * @param id The User ID.
      */
     createDocument(id: string, document: DocumentSchema): Promise<Document>;
     /**
-     * Partially update an existing {#User} with role {#Consumer}.
+     * Partially update an existing User with role Consumer.
      *
-     * @param id the id of the {#User} with role {#Consumer}
-     * @param consumer The values you want to update
+     * @param id The User ID.
+     * @param consumer The partial User schema.
      */
     update(id: string, consumer: Partial<UserSchema>): Promise<User>;
     /**
-     * Upload a new {#Document} picture to a {#Consumer} by it's ID and the {#Document} type and side
+     * Upload a new Document picture to a User with role Consumer.
      *
-     * @param id The id of the {#Consumer}
+     * @param {string} id The User id.
+     * @param {DocumentType} type The Document type.
+     * @param {("front" | "back" | "selfie")} side The Document picture side.
+     * @param {File} picture The picture to be uploaded.
      */
     uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File): Promise<Document>;
     /**
-     * Upload a new {#Document} picture to a {#Consumer} by it's ID and the {#Document} type and side from base64
+     * Upload a new Document picture to a User with role Consumer using base64.
      *
-     * @param id The id of the {#Consumer}
+     * @param {string} id The User id.
+     * @param {DocumentType} type The Document type.
+     * @param {("front" | "back" | "selfie")} side The Document picture side.
+     * @param {string} picture The base64 representation of the picture to be uploaded.
      */
     uploadDocumentPictureFromBase64(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: string): Promise<Document>;
     /**
-     * Delete a {#User} with role {#Consumer} by it's id
+     * Delete a User with role Consumer.
      *
-     * @param id The id of the {#User} with role {#Consumer}
+     * @param id The User ID.
      */
     delete(id: string): Promise<boolean>;
 }

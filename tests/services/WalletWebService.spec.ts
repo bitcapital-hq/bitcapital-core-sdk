@@ -34,27 +34,6 @@ describe("lib.services.WalletWebService", () => {
 
       expect(root).toEqual(TEST_WALLET);
     });
-
-    it("should find users", async () => {
-      const users = await WalletWebService.getInstance().findUsersById(TEST_WALLET.id);
-
-      expect(users.length).toBe(3);
-      expect(users[0]).toEqual(TEST_USER);
-    });
-
-    it("should find mediators", async () => {
-      const mediators = await WalletWebService.getInstance().findMediatorsById(TEST_WALLET.id);
-
-      expect(mediators.length).toBe(3);
-      expect(mediators[0]).toEqual(TEST_USER);
-    });
-
-    it("should find consumers", async () => {
-      const consumers = await WalletWebService.getInstance().findConsumersById(TEST_WALLET.id);
-
-      expect(consumers.length).toBe(3);
-      expect(consumers[0]).toEqual(TEST_USER);
-    });
   });
 
   describe("Fail cases", () => {
@@ -79,21 +58,6 @@ describe("lib.services.WalletWebService", () => {
     it("should find root wallet", async () => {
       expect.assertions(1);
       return expect(WalletWebService.getInstance().findRootWallet()).rejects.toBeTruthy();
-    });
-
-    it("should find users", async () => {
-      expect.assertions(1);
-      return expect(WalletWebService.getInstance().findUsersById(TEST_WALLET.id)).rejects.toBeTruthy();
-    });
-
-    it("should find mediators", async () => {
-      expect.assertions(1);
-      return expect(WalletWebService.getInstance().findMediatorsById(TEST_WALLET.id)).rejects.toBeTruthy();
-    });
-
-    it("should find consumers", async () => {
-      expect.assertions(1);
-      return expect(WalletWebService.getInstance().findConsumersById(TEST_WALLET.id)).rejects.toBeTruthy();
     });
   });
 });

@@ -1,4 +1,4 @@
-import { Wallet, WalletSchema, User, Transaction, TransactionSchema, Payment, PaymentSchema } from "../models";
+import { Wallet, WalletSchema, Transaction, TransactionSchema, Payment, PaymentSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
@@ -21,7 +21,7 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
   }
 
   /**
-   * Find all {#Wallet}s
+   * Find all Wallets.
    */
   public async findAll(pagination: Pagination): Promise<PaginatedArray<Wallet>> {
     const { skip, limit } = pagination;
@@ -37,9 +37,9 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
   }
 
   /**
-   * Find a {#Wallet} by it's id.
+   * Find a Wallet.
    *
-   * @param id The id of the {#Wallet}
+   * @param id The Wallet ID.
    */
   public async findOne(id: string): Promise<Wallet> {
     const response = await this.http.get(`/wallets/${id}`);
@@ -52,9 +52,9 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
   }
 
   /**
-   * Find the {#Wallet}'s {#Transaction}s by it's id.
+   * Find the Transactions from a Wallet.
    *
-   * @param id The id of the {#Wallet}
+   * @param id The Wallet ID.
    */
   public async findWalletTransactions(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>> {
     const { skip, limit } = pagination;
@@ -70,9 +70,9 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
   }
 
   /**
-   * Find the {#Wallet}'s {#Payment}s by it's id.
+   * Find the Payments from a Wallet.
    *
-   * @param id The id of the {#Wallet}
+   * @param id The Wallet ID.
    */
   public async findWalletPayments(id: string, pagination: Pagination): Promise<PaginatedArray<Payment>> {
     const { skip, limit } = pagination;
@@ -101,54 +101,9 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
   }
 
   /**
-   * Find the {#User}s from a {#Wallet} by it's id.
+   * Create a new Wallet.
    *
-   * @param id The id of the {#Wallet}
-   */
-  public async findUsersById(id: string): Promise<User[]> {
-    const response = await this.http.get(`/wallets/${id}/users`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return response.data.map(user => new User(user));
-  }
-
-  /**
-   * Find the {#User}s with role {#Consumer} from a {#Wallet} by it's id.
-   *
-   * @param id The id of the {#Wallet}
-   */
-  public async findConsumersById(id: string): Promise<User[]> {
-    const response = await this.http.get(`/wallets/${id}/consumers`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return response.data.map(user => new User(user));
-  }
-
-  /**
-   * Find the {#User}s with role Mediator from a {#Wallet} by it's id.
-   *
-   * @param id The id of the {#Wallet}
-   */
-  public async findMediatorsById(id: string): Promise<User[]> {
-    const response = await this.http.get(`/wallets/${id}/mediators`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return response.data.map(user => new User(user));
-  }
-
-  /**
-   * Create a new {#Wallet}.
-   *
-   * @param wallet The {#Wallet} properties
+   * @param wallet The Wallet schema.
    */
   public async create(wallet: WalletSchema): Promise<Wallet> {
     const response = await this.http.post("/wallets", wallet);
@@ -161,10 +116,10 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
   }
 
   /**
-   * Partially update an existing {#Wallet}.
+   * Partially update an existing Wallet.
    *
-   * @param id the id of the {#Wallet}
-   * @param wallet The values you want to update
+   * @param id The Wallet ID.
+   * @param wallet The partial Wallet schema.
    */
   public async update(id: string, wallet: Partial<WalletSchema>): Promise<Wallet> {
     const response = await this.http.post(`/wallets/${id}`, wallet);
@@ -177,9 +132,9 @@ export default class WalletWebService extends BaseModelWebService<Wallet, Wallet
   }
 
   /**
-   * Delete a {#Wallet} by it's id.
+   * Delete a Wallet.
    *
-   * @param id The id of the {#Wallet}
+   * @param id The Wallet ID.
    */
   public async delete(id: string): Promise<boolean> {
     const response = await this.http.delete(`/wallets/${id}`);

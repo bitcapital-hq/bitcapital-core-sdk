@@ -71,12 +71,12 @@
 					<div class="lead">
 						<p>An abstraction layer to securely store and manage platform credentials.</p>
 					</div>
-					<p>The session is a singleton, so you may access the authentication state
+					<p>The Session is a singleton, so you may access the authentication state
 						at any time, in any context, getting its current instance. It is also
 					an observable, so it can be watched for changes:</p>
 					<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Observer } <span class="hljs-keyword">from</span> <span class="hljs-string">'bitcapital-core-sdk'</span>;
 
-<span class="hljs-comment">// Gets the current session instance</span>
+<span class="hljs-comment">// Gets the current Session instance</span>
 <span class="hljs-keyword">const</span> session = bitcapital.session();
 
 <span class="hljs-comment">// Shows the current user instance, if any</span>
@@ -84,14 +84,14 @@
 
 <span class="hljs-comment">// Prepare a new session observer (typescript notation)</span>
 <span class="hljs-keyword">const</span> observer: Observer = {
-  update(event: <span class="hljs-built_in">string</span>, data: User) {
-    <span class="hljs-keyword">if</span>(event === Session.EVENT_SESSION_CHANGED) {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'User instance has changed in Session'</span>, { user: data });
-    }
-  }
+update(event: <span class="hljs-built_in">string</span>, data: User) {
+<span class="hljs-keyword">if</span>(event === Session.EVENT_SESSION_CHANGED) {
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'User instance has changed in Session'</span>, { user: data });
+}
+}
 };
 
-<span class="hljs-comment">// Start listening to session changes, such as credentials</span>
+<span class="hljs-comment">// Start listening to Session changes, such as credentials</span>
 <span class="hljs-comment">// expiration or a refreshed access token.</span>
 session.subscribe(observer);
 
@@ -166,7 +166,7 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -188,7 +188,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">_interceptors<span class="tsd-signature-symbol">:</span> <a href="../interfaces/httpinterceptor.html" class="tsd-signature-type">HttpInterceptor</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L62">session/Session.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L62">session/Session.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -198,7 +198,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">current<span class="tsd-signature-symbol">:</span> <a href="user.html" class="tsd-signature-type">User</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L57">session/Session.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L57">session/Session.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +208,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">oauth<wbr>Web<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="oauthwebservice.html" class="tsd-signature-type">OAuthWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L61">session/Session.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L61">session/Session.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +218,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">observable<span class="tsd-signature-symbol">:</span> <a href="observable.html" class="tsd-signature-type">Observable</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L59">session/Session.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L59">session/Session.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,7 +228,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/sessionoptions.html" class="tsd-signature-type">SessionOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L68">session/Session.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L68">session/Session.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,7 +238,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="storageutil.html" class="tsd-signature-type">StorageUtil</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L58">session/Session.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L58">session/Session.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -248,7 +248,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Web<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="userwebservice.html" class="tsd-signature-type">UserWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L60">session/Session.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L60">session/Session.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,7 +258,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">EVENT_<wbr>SESSION_<wbr>CHANGED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;SESSION_CHANGED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L64">session/Session.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L64">session/Session.ts:64</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -268,7 +268,7 @@ session.unsubscribe(observer);
 					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <a href="session.html" class="tsd-signature-type">Session</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -285,12 +285,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L226">session/Session.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L226">session/Session.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Performs a &quot;client_credentials&quot; authentication using the OAuth 2.0 server and registers it in current session.</p>
+									<p>Perform a &quot;client_credentials&quot; authentication using the OAuth 2.0 server and registers it in current Session.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -307,12 +307,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L167">session/Session.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L167">session/Session.ts:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Destroys the session and clears the storage.</p>
+									<p>Destroy the Session and clears the storage.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -329,12 +329,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L147">session/Session.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L147">session/Session.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Fetches the currently stored session from local storage.</p>
+									<p>Fetch the currently stored Session from local storage.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -351,12 +351,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L91">session/Session.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L91">session/Session.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the sesison interceptors for authorized calls and auto session destruction.</p>
+									<p>Get the Session interceptors for authorized calls and auto Session destruction.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/httpinterceptor.html" class="tsd-signature-type">HttpInterceptor</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -373,12 +373,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L193">session/Session.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L193">session/Session.ts:193</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Performs a &quot;password&quot; authentication using the OAuth 2.0 server and registers it in current session.</p>
+									<p>Perform a &quot;password&quot; authentication using the OAuth 2.0 server and registers it in current Session.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -386,7 +386,7 @@ session.unsubscribe(observer);
 								<li>
 									<h5>data: <a href="../interfaces/passwordgrantoptions.html" class="tsd-signature-type">PasswordGrantOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The user credentials</p>
+										<p>The User credentials.</p>
 									</div>
 								</li>
 							</ul>
@@ -404,12 +404,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L216">session/Session.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L216">session/Session.ts:216</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Refreshs the current user information.</p>
+									<p>Refresh the current User information.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -426,12 +426,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L131">session/Session.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L131">session/Session.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Registers a new user in session, notifying all observers.</p>
+									<p>Register a new User in session, notifying all observers.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -439,13 +439,13 @@ session.unsubscribe(observer);
 								<li>
 									<h5>user: <a href="user.html" class="tsd-signature-type">User</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The user instance</p>
+										<p>The User instance.</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{ notify: true }</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The operation options</p>
+										<p>The operation options.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
@@ -468,12 +468,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L156">session/Session.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L156">session/Session.ts:156</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Reloads the current user using the remote server.</p>
+									<p>Reload the current User using the remote server.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -490,7 +490,7 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L112">session/Session.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L112">session/Session.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -503,7 +503,7 @@ session.unsubscribe(observer);
 								<li>
 									<h5>observable: <a href="../interfaces/observer.html" class="tsd-signature-type">Observer</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The instace to be notified</p>
+										<p>The instace to be notified.</p>
 									</div>
 								</li>
 							</ul>
@@ -521,7 +521,7 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L121">session/Session.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L121">session/Session.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -534,7 +534,7 @@ session.unsubscribe(observer);
 								<li>
 									<h5>observable: <a href="../interfaces/observer.html" class="tsd-signature-type">Observer</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The instance to be removed from listeners</p>
+										<p>The instance to be removed from listeners.</p>
 									</div>
 								</li>
 							</ul>
@@ -552,12 +552,12 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L98">session/Session.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L98">session/Session.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets session singleton instance.</p>
+									<p>Get the Session singleton instance.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="session.html" class="tsd-signature-type">Session</a></h4>
@@ -574,7 +574,7 @@ session.unsubscribe(observer);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/a7d59e1/lib/session/Session.ts#L102">session/Session.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/5667afe/lib/session/Session.ts#L102">session/Session.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
