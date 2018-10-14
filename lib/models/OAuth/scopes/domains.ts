@@ -3,7 +3,7 @@ export enum DomainsScopes {
   READ = "domains:read",
   METRICS = "domains:metrics",
   /* Write scopes */
-  WRITE = "domains:read",
+  WRITE = "domains:write",
   /* Delete scopes */
   DELETE = "domains:delete"
 }
