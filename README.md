@@ -76,6 +76,7 @@ try {
 }
 ```
 
+
 ## Accessing library modules
 
 
@@ -93,4 +94,68 @@ Internal Modules:
 
 ## Documentation
 
+### Library Reference
+
 Full API specification is located at: [https://sdk.btcore.app](https://sdk.btcore.app).
+
+### Using a Custom Storage
+
+The SDK comes with a built-in set of Storage providers: Memory and Local. In NodeJS environments, only Memory is available.
+
+To override the default storage for your platform, pass it in the Session constructor:
+
+```typescript
+// Initialize a custom session with desired storage
+const session = Session.initialize({
+  storage: new StorageUtil('session', new MemoryStorage()),
+  oauth: {
+    baseURL: data.baseURL,
+    clientId: data.clientId,
+    clientSecret: data.clientSecret,
+  },
+  http: {
+    baseURL: data.baseURL,
+  }
+});
+
+// Initialize bitcapital service with specified credentials
+const bitcapital = Bitcapital.initialize({
+  // Pass your custom session instance
+  session,
+  // Other initialization configs...
+  oauth: {
+    baseURL: data.baseURL,
+    clientId: data.clientId,
+    clientSecret: data.clientSecret,
+  },
+  http: {
+    baseURL: data.baseURL,
+  }
+});
+```
+
+**Creating your own Storage provider** 
+
+To implement another Storage mechanism, extend the `StorageUtilEngine` interface.
+
+```typescript
+import { StorageUtilEngine } from "./StorageUtilEngine";
+
+export default class MemoryStorage implements StorageUtilEngine {
+  protected data: any = {};
+
+  async setItem(key: string, value: string): Promise<any> {
+    this.data[key] = value;
+    return value;
+  }
+  async getItem(key: string): Promise<any> {
+    return this.data[key];
+  }
+  async removeItem(key: string): Promise<void> {
+    delete this.data[key];
+  }
+  async clear(): Promise<void> {
+    this.data = {};
+  }
+}
+```
