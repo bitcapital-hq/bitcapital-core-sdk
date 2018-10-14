@@ -15,7 +15,7 @@ export default class OAuthCredentials extends BaseModel {
   tokenType?: string;
   userId?: string;
   expiresAt?: Date;
-  virtual: boolean = false;
+  virtual?: boolean = false;
 
   constructor(data: Partial<OAuthCredentialsSchema>) {
     super(data);

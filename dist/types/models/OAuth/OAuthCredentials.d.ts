@@ -13,6 +13,6 @@ export default class OAuthCredentials extends BaseModel {
     tokenType?: string;
     userId?: string;
     expiresAt?: Date;
-    virtual: boolean;
+    virtual?: boolean;
     constructor(data: Partial<OAuthCredentialsSchema>);
 }
