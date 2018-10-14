@@ -24,5 +24,5 @@ export {
   TransactionSchema
 } from "./Transaction/Transaction";
 
-export * from "./Consumer";
 export * from "./OAuth";
+export * from "./Consumer";
