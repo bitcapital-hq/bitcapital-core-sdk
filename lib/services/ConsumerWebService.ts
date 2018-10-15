@@ -23,9 +23,7 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Find all {#User} with role {#Consumer}s
-   *
-   * @param query The query of the search
+   * Find all Users with role Consumer.
    */
   public async findAll(pagination: Pagination): Promise<PaginatedArray<User>> {
     const { skip, limit } = pagination;
@@ -41,9 +39,9 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Find a {#User} with role {#Consumer} by it's ID
+   * Find a User with role Consumer.
    *
-   * @param id The id of the {#Consumer}
+   * @param id The User ID.
    */
   public async findOne(id: string): Promise<User> {
     const response = await this.http.get(`/consumers/${id}`);
@@ -56,10 +54,10 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Find the #{Document}s from a {#Consumer} by it's ID
-   * This method won't return pictures
+   * Find the Documents from a User with role Consumer.
+   * This method won't return pictures.
    *
-   * @param id The id of the {#Consumer}
+   * @param id The User ID.
    */
   public async findDocumentsById(id: string = "me"): Promise<Document[]> {
     const response = await this.http.get(`/consumers/${id}/documents`);
@@ -72,10 +70,10 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Find the {#Document}s from a {#Consumer} by it's ID and the {#Document} type
-   * This method will return pictures
+   * Find the Documents from a User with role Consumer.
+   * This method will return pictures.
    *
-   * @param id The id of the {#Consumer}
+   * @param id The User ID.
    */
   public async findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document> {
     const response = await this.http.get(`/consumers/${id}/documents/${type}`);
@@ -88,9 +86,9 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Find the {#Wallet}s from a {#Consumer} by it's ID
+   * Find the Wallets from a User with role Consumer.
    *
-   * @param id The id of the {#Consumer}
+   * @param id The User ID.
    */
   public async findWalletsById(id: string): Promise<Wallet[]> {
     const response = await this.http.get(`/consumers/${id}/wallets`);
@@ -103,9 +101,9 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   *  Inserts a new {#Consumer}.
+   * Create a new User with role Consumer.
    *
-   * @param consumer The values you want to insert
+   * @param consumer The User schema.
    */
   public async create(consumer: UserSchema): Promise<User> {
     const response = await this.http.post(`/consumers`, consumer);
@@ -118,9 +116,9 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Create a new {#Document} on a {#Consumer} by it's ID
+   * Create a new Document on a User with role Consumer.
    *
-   * @param id The id of the {#Consumer}
+   * @param id The User ID.
    */
   public async createDocument(id: string, document: DocumentSchema): Promise<Document> {
     const response = await this.http.post(`/consumers/${id}/documents`, document);
@@ -133,10 +131,10 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Partially update an existing {#User} with role {#Consumer}.
+   * Partially update an existing User with role Consumer.
    *
-   * @param id the id of the {#User} with role {#Consumer}
-   * @param consumer The values you want to update
+   * @param id The User ID.
+   * @param consumer The partial User schema.
    */
   public async update(id: string, consumer: Partial<UserSchema>): Promise<User> {
     const response = await this.http.post(`/consumers/${id}`, consumer);
@@ -149,9 +147,12 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Upload a new {#Document} picture to a {#Consumer} by it's ID and the {#Document} type and side
+   * Upload a new Document picture to a User with role Consumer.
    *
-   * @param id The id of the {#Consumer}
+   * @param {string} id The User id.
+   * @param {DocumentType} type The Document type.
+   * @param {("front" | "back" | "selfie")} side The Document picture side.
+   * @param {File} picture The picture to be uploaded.
    */
   public async uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File) {
     const formData = new FormData();
@@ -171,9 +172,12 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Upload a new {#Document} picture to a {#Consumer} by it's ID and the {#Document} type and side from base64
+   * Upload a new Document picture to a User with role Consumer using base64.
    *
-   * @param id The id of the {#Consumer}
+   * @param {string} id The User id.
+   * @param {DocumentType} type The Document type.
+   * @param {("front" | "back" | "selfie")} side The Document picture side.
+   * @param {string} picture The base64 representation of the picture to be uploaded.
    */
   public async uploadDocumentPictureFromBase64(
     id: string,
@@ -191,9 +195,9 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Delete a {#User} with role {#Consumer} by it's id
+   * Delete a User with role Consumer.
    *
-   * @param id The id of the {#User} with role {#Consumer}
+   * @param id The User ID.
    */
   public async delete(id: string): Promise<boolean> {
     const response = await this.http.delete(`/consumers/${id}`);
