@@ -1,36 +1,31 @@
-import { Session } from "../session";
-import { Http, HttpOptions } from "../base";
-import { User, UserSchema, OAuthCredentials, UserRole } from "../models";
-import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
+import { OAuthCredentials, User, UserSchema, UserRole } from "../models";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { Pagination, PaginatedArray, PaginationUtil } from "..";
 
-export default class UserWebService implements BaseModelWebService<User, UserSchema> {
-  protected http: Http;
+export interface UserWebServiceOptions extends BaseModelWebServiceOptions {}
+
+export default class UserWebService extends BaseModelWebService<User, UserSchema> {
   protected static instance: UserWebService;
 
-  constructor(options: HttpOptions) {
-    this.http = new Http(options);
-
-    if (Session.getInstance()) {
-      this.http.interceptors(Session.getInstance().interceptors());
-    }
+  constructor(options: UserWebServiceOptions) {
+    super(options);
   }
 
   public static getInstance(): UserWebService {
     return this.instance;
   }
 
-  public static initialize(options: HttpOptions): UserWebService {
+  public static initialize(options: UserWebServiceOptions): UserWebService {
     this.instance = new UserWebService(options);
     return this.instance;
   }
 
   /**
-   * Find all {#User}s.
+   * Find all Users by role.
    */
-  public async findAll(pagination: Pagination, role?: UserRole): Promise<PaginatedArray<User>> {
+  public async findAllByRole(pagination: Pagination, role: UserRole): Promise<PaginatedArray<User>> {
     const { skip, limit } = pagination;
-    const response = await this.http.get("/users", null, { params: { skip, limit, role } });
+    const response = await this.http.get(`/users/role/${role}`, null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -42,9 +37,9 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
   }
 
   /**
-   * Find a {#User} by it's id.
+   * Find an User.
    *
-   * @param id The id of the {#User}
+   * @param id The User ID.
    */
   public async findOne(id: string): Promise<User> {
     const response = await this.http.get(`/users/${id}`);
@@ -57,25 +52,9 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
   }
 
   /**
-   * Partially update an existing {#User}.
+   * Create a new User.
    *
-   * @param id the id of the {#User}
-   * @param user The values you want to update
-   */
-  public async update(id: string, user: Partial<UserSchema>): Promise<User> {
-    const response = await this.http.post(`/users/${id}`, user);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new User(response.data);
-  }
-
-  /**
-   *  Inserts a new {#User}.
-   *
-   * @param consumer The values you want to insert
+   * @param consumer The User schema.
    */
   public async create(user: UserSchema): Promise<User> {
     const response = await this.http.post(`/users`, user);
@@ -88,9 +67,25 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
   }
 
   /**
-   * Delete an {$User} by it's id
+   * Partially update an existing User.
    *
-   * @param id The id of the {#User}
+   * @param id the User ID.
+   * @param user The partial User schema.
+   */
+  public async update(id: string, user: Partial<UserSchema>): Promise<User> {
+    const response = await this.http.post(`/users/${id}`, user);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new User(response.data);
+  }
+
+  /**
+   * Delete an User.
+   *
+   * @param id The User ID.
    */
   public async delete(id: string): Promise<boolean> {
     const response = await this.http.delete(`/users/${id}`);
@@ -103,7 +98,7 @@ export default class UserWebService implements BaseModelWebService<User, UserSch
   }
 
   /**
-   * Gets the current {#User} information from the API.
+   * Gets the current User information from the API.
    *
    * @param credentials The OAuth 2.0 credentials for the request
    */

@@ -1,6 +1,6 @@
 {
   "name": "bitcapital-core-sdk",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "main": "./dist/index.js",
   "author": "Luis Brito <luis@nxtep.io>",
   "license": "UNLICENSED",
@@ -49,8 +49,9 @@
     "lint-staged": "^7.0.0",
     "nativescript-typedoc-theme": "https://github.com/NativeScript/nativescript-typedoc-theme.git",
     "nodemon": "^1.12.1",
+    "nxtep-typedoc-theme": "nxtep-io/nxtep-typedoc-theme",
     "prettier": "^1.13.7",
-    "serve": "^6.4.8",
+    "serve": "^10.0.2",
     "ts-jest": "^21.1.2",
     "ts-lint": "^4.5.1",
     "ts-node": "^3.3.0",

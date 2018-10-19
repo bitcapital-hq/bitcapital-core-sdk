@@ -30,7 +30,7 @@ export default class OAuthWebService {
   }
 
   /**
-   * Gets basic token for client credentials authentication.
+   * Get a basic token for client credentials authentication.
    *
    * @returns {String}
    */
@@ -40,12 +40,12 @@ export default class OAuthWebService {
   }
 
   /**
-   * Performs a "password" authentication using the OAuth 2.0 server.
+   * Perform a "password" authentication using the OAuth 2.0 server.
    *
-   * @param data The user credentials
+   * @param data The user credentials.
    */
-  public async password(data: { username: string; password: string }): Promise<OAuthCredentials> {
-    const request = new OAuthPasswordRequest(data.username, data.password);
+  public async password(data: { username: string; password: string; scope?: string }): Promise<OAuthCredentials> {
+    const request = new OAuthPasswordRequest(data.username, data.password, data.scope);
     const response = await this.http.post("/oauth/token", stringify(request), {
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
@@ -60,7 +60,7 @@ export default class OAuthWebService {
   }
 
   /**
-   * Performs a "client_credentials" authentication using the OAuth 2.0 server.
+   * Perform a "client_credentials" authentication using the OAuth 2.0 server.
    */
   public async clientCredentials(): Promise<OAuthCredentials> {
     const request = new OAuthClientCredentialsRequest();
@@ -78,9 +78,9 @@ export default class OAuthWebService {
   }
 
   /**
-   * Revokes one or all tokens from a user using the OAuth 2.0 server.
+   * Revoke one or all tokens from a user using the OAuth 2.0 server.
    *
-   * @param accessToken The user access token
+   * @param accessToken The user access token.
    */
   public async revoke(accessToken?: String): Promise<void> {
     const response = await this.http.post(
@@ -98,7 +98,7 @@ export default class OAuthWebService {
   }
 
   /**
-   * Gets the server status.
+   * Get the server status.
    */
   public async status(): Promise<OAuthStatusResponse> {
     const response = await this.http.get(`/`);

@@ -7,7 +7,7 @@ export declare enum DocumentType {
 }
 export interface DocumentSchema extends BaseModelSchema {
     consumer?: Consumer;
-    consumerId: string;
+    consumerId?: string;
     type: DocumentType;
     number?: string;
     front?: string;

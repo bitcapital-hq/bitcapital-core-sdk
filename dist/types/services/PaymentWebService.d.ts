@@ -1,22 +1,22 @@
-import { Http, HttpOptions } from "../base";
-import { Payment, PaymentSchema, PaymentRequestSchema } from "../models";
-import BaseModelWebService from "./base/BaseModelWebService";
-export default class PaymentWebService implements BaseModelWebService<Payment, PaymentSchema> {
-    protected http: Http;
+import { Payment, PaymentRequestSchema, PaymentSchema } from "../models";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {
+}
+export default class PaymentWebService extends BaseModelWebService<Payment, PaymentSchema> {
     protected static instance: PaymentWebService;
-    constructor(options: HttpOptions);
+    constructor(options: PaymentWebServiceOptions);
     static getInstance(): PaymentWebService;
-    static initialize(options: HttpOptions): PaymentWebService;
+    static initialize(options: PaymentWebServiceOptions): PaymentWebService;
     /**
-     * Find a {#Payment} by it's id.
+     * Find a Payment.
      *
-     * @param id The id of the {#Payment}
+     * @param id The Payment ID.
      */
     findOne(id: string): Promise<Payment>;
     /**
-     * Create a {#Payment}
+     * Create a Payment.
      *
-     * @param payment The payment to be created
+     * @param payment The Payment schema
      */
     pay(request: PaymentRequestSchema): Promise<Payment>;
 }

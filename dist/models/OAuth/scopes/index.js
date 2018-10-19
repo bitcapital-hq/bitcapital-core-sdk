@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const assets_1 = require("./assets");
+const domains_1 = require("./domains");
+const users_1 = require("./users");
+const payments_1 = require("./payments");
+const transactions_1 = require("./transactions");
+const wallets_1 = require("./wallets");
+const scopes = {
+    assets: assets_1.AssetsScopes,
+    domains: domains_1.DomainsScopes,
+    users: users_1.UsersScopes,
+    payments: payments_1.PaymentsScopes,
+    transactions: transactions_1.TransactionsScopes,
+    wallets: wallets_1.WalletsScopes
+};
+exports.default = scopes;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9saWIvbW9kZWxzL09BdXRoL3Njb3Blcy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLHFDQUF3QztBQUN4Qyx1Q0FBMEM7QUFDMUMsbUNBQXNDO0FBQ3RDLHlDQUE0QztBQUM1QyxpREFBb0Q7QUFDcEQsdUNBQTBDO0FBRTFDLE1BQU0sTUFBTSxHQUFHO0lBQ2IsTUFBTSxFQUFFLHFCQUFZO0lBQ3BCLE9BQU8sRUFBRSx1QkFBYTtJQUN0QixLQUFLLEVBQUUsbUJBQVc7SUFDbEIsUUFBUSxFQUFFLHlCQUFjO0lBQ3hCLFlBQVksRUFBRSxpQ0FBa0I7SUFDaEMsT0FBTyxFQUFFLHVCQUFhO0NBQ3ZCLENBQUM7QUFFRixrQkFBZSxNQUFNLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBBc3NldHNTY29wZXMgfSBmcm9tIFwiLi9hc3NldHNcIjtcbmltcG9ydCB7IERvbWFpbnNTY29wZXMgfSBmcm9tIFwiLi9kb21haW5zXCI7XG5pbXBvcnQgeyBVc2Vyc1Njb3BlcyB9IGZyb20gXCIuL3VzZXJzXCI7XG5pbXBvcnQgeyBQYXltZW50c1Njb3BlcyB9IGZyb20gXCIuL3BheW1lbnRzXCI7XG5pbXBvcnQgeyBUcmFuc2FjdGlvbnNTY29wZXMgfSBmcm9tIFwiLi90cmFuc2FjdGlvbnNcIjtcbmltcG9ydCB7IFdhbGxldHNTY29wZXMgfSBmcm9tIFwiLi93YWxsZXRzXCI7XG5cbmNvbnN0IHNjb3BlcyA9IHtcbiAgYXNzZXRzOiBBc3NldHNTY29wZXMsXG4gIGRvbWFpbnM6IERvbWFpbnNTY29wZXMsXG4gIHVzZXJzOiBVc2Vyc1Njb3BlcyxcbiAgcGF5bWVudHM6IFBheW1lbnRzU2NvcGVzLFxuICB0cmFuc2FjdGlvbnM6IFRyYW5zYWN0aW9uc1Njb3BlcyxcbiAgd2FsbGV0czogV2FsbGV0c1Njb3Blc1xufTtcblxuZXhwb3J0IGRlZmF1bHQgc2NvcGVzO1xuIl19

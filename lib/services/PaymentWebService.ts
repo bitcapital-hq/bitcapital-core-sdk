@@ -1,33 +1,28 @@
-import { Session } from "../session";
-import { Http, HttpOptions } from "../base";
-import { Payment, PaymentSchema, PaymentRequestSchema } from "../models";
-import BaseModelWebService from "./base/BaseModelWebService";
+import { Payment, PaymentRequestSchema, PaymentSchema } from "../models";
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
-export default class PaymentWebService implements BaseModelWebService<Payment, PaymentSchema> {
-  protected http: Http;
+export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {}
+
+export default class PaymentWebService extends BaseModelWebService<Payment, PaymentSchema> {
   protected static instance: PaymentWebService;
 
-  constructor(options: HttpOptions) {
-    this.http = new Http(options);
-
-    if (Session.getInstance()) {
-      this.http.interceptors(Session.getInstance().interceptors());
-    }
+  constructor(options: PaymentWebServiceOptions) {
+    super(options);
   }
 
   public static getInstance(): PaymentWebService {
     return this.instance;
   }
 
-  public static initialize(options: HttpOptions): PaymentWebService {
+  public static initialize(options: PaymentWebServiceOptions): PaymentWebService {
     this.instance = new PaymentWebService(options);
     return this.instance;
   }
 
   /**
-   * Find a {#Payment} by it's id.
+   * Find a Payment.
    *
-   * @param id The id of the {#Payment}
+   * @param id The Payment ID.
    */
   public async findOne(id: string): Promise<Payment> {
     const response = await this.http.get(`/payments/${id}`);
@@ -40,9 +35,9 @@ export default class PaymentWebService implements BaseModelWebService<Payment, P
   }
 
   /**
-   * Create a {#Payment}
+   * Create a Payment.
    *
-   * @param payment The payment to be created
+   * @param payment The Payment schema
    */
   public async pay(request: PaymentRequestSchema): Promise<Payment> {
     const { source, recipients } = request;

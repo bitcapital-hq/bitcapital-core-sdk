@@ -1,48 +1,44 @@
-import { Http, HttpOptions } from "../base";
-import { Asset, AssetSchema, Payment, AssetEmitRequestSchema } from "../models";
+import { Asset, AssetEmitRequestSchema, AssetSchema, Payment } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService from "./base/BaseModelWebService";
-export default class AssetWebService implements BaseModelWebService<Asset, AssetSchema> {
-    protected http: Http;
+import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {
+}
+export default class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
     protected static instance: AssetWebService;
-    constructor(options: HttpOptions);
+    constructor(options: AssetWebServiceOptions);
     static getInstance(): AssetWebService;
-    static initialize(options: HttpOptions): AssetWebService;
+    static initialize(options: AssetWebServiceOptions): AssetWebService;
     /**
-     * Find all {#Asset}s
+     * Find all Assets.
      */
     findAll(pagination: Pagination): Promise<PaginatedArray<Asset>>;
     /**
-     * Find a {#Asset} by it's id.
+     * Find an Asset.
      *
-     * @param id The id of the {#Asset}
+     * @param id The Asset ID.
      */
     findOne(id: string): Promise<Asset>;
     /**
-     * Emits an {#Asset} by it's id.
-     *
-     * @param id The id of the {#Asset}
-     * @param amount The amount to be emitted
-     * @param [destination] The destination wallet
+     * Emit an Asset.
      */
     emit(request: AssetEmitRequestSchema): Promise<Payment>;
     /**
-     * Create a new {#Asset}.
+     * Create a new Asset.
      *
-     * @param asset The {#Asset} properties
+     * @param asset The Asset schema.
      */
     create(asset: AssetSchema): Promise<Asset>;
     /**
-     * Partially update an existing {#Asset}.
+     * Partially update an existing Asset.
      *
-     * @param id the id of the {#Asset}
-     * @param asset The values you want to update
+     * @param id The Asset ID.
+     * @param asset The partial Asset schema.
      */
     update(id: string, asset: Partial<AssetSchema>): Promise<Asset>;
     /**
-     * Delete a {#Asset} by it's id.
+     * Delete a Asset.
      *
-     * @param id The id of the {#Asset}
+     * @param id The Asset ID.
      */
     delete(id: string): Promise<boolean>;
 }

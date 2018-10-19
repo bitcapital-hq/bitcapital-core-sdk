@@ -30,19 +30,19 @@ Prepare the changes for publishing using the Typescript compiler
 yarn run build
 ```
 
-## OAuth 2.0 Authentication 
+## Configuring your Client 
 
 To start using this SDK you need both a Client ID and a Client Secret, emitted by
-the Bitcapital Core Team. If you don't have yours yet, contact them at [https://core.bitcapital.com.br](https://core.bitcapital.com.br).
+the Bitcapital Core Team. If you don't have yours yet, contact them at [https://bitcapital.com.br/developers](https://bitcapital.com.br/developers).
 
-Configure your Session instance.
+Configure your Bitcapital SDK instance.
 
 ```typescript
-import { Session } from 'bitcapital-core-sdk';
+import Bitcapital from 'bitcapital-core-sdk';
 
 // Initialize the session instance to authenticate
 // using the Bitcapital Core OAuth 2.0 provider.
-const session = Session.initialize({
+const bitcapital = Bitcapital.initialize({
   // Base instance URL for REST API calls
   http: {
     baseURL: 'https://your-instance.btcore.app',
@@ -59,7 +59,7 @@ try {
   // Authenticate a user with email and password from Bitcapital Core
   // If succeeds and available, the credentials will be stored in the 
   // session instance and in the local storage (for browser environments).
-  const user = await session.password({
+  const user = await bitcapital.session().password({
     email: 'user@example.com',
     password: '12345678',
   });
@@ -68,7 +68,7 @@ try {
   console.log(user.credentials.accessToken);
 
   // To logout and clear the current credentials, use the "destroy" action
-  await session.destroy();
+  await bitcapital.session().destroy();
 
 } catch(exception) {
   // Something went wront, probably credentials are invalid
@@ -76,35 +76,86 @@ try {
 }
 ```
 
-The session is a singleton, so you may access the authentication state
-at any time, in any context, getting its current instance. It is also
-an observable, so it can be watched for changes:
+
+## Accessing library modules
+
+
+Library modules:
+* **bitcapital.assets():** Handles asset creation, emition and destruction.
+* **bitcapital.consumers():** Creates, updates, validates and deactivates consumer accounts.
+* **bitcapital.domains():** Creates, updates and removes domains from the network.
+* **bitcapital.payments():** Send payments between wallets and access its history.
+* **bitcapital.users():** Manages user accounts in the network.
+* **bitcapital.wallets():** Creates, updates and deactivates wallets in the network.
+
+Internal Modules:
+* **bitcapital.session():** Manages credentials in the SDK.
+* **bitcapital.oauth():** Manages authentication in the Bitcapital OAuth 2.0 provider.
+
+## Documentation
+
+### Library Reference
+
+Full API specification is located at: [https://sdk.btcore.app](https://sdk.btcore.app).
+
+### Using a Custom Storage
+
+The SDK comes with a built-in set of Storage providers: Memory and Local. In NodeJS environments, only Memory is available.
+
+To override the default storage for your platform, pass it in the Session constructor:
 
 ```typescript
-import { Session, Observer } from 'bitcapital-core-sdk';
-
-// Gets the current session instance
-const session = Session.getInstance();
-
-// Shows the current user instance, if any
-console.log(session.current);
-
-// Prepare a new session observer
-const observer: Observer = {
-  update(event: string, data: User) {
-    if(event === Session.EVENT_SESSION_CHANGED) {
-      console.log('User instance has changed in Session', { user: data });
-    }
+// Initialize a custom session with desired storage
+const session = Session.initialize({
+  storage: new StorageUtil('session', new MemoryStorage()),
+  oauth: {
+    baseURL: data.baseURL,
+    clientId: data.clientId,
+    clientSecret: data.clientSecret,
+  },
+  http: {
+    baseURL: data.baseURL,
   }
-};
+});
 
-// Start listening to session changes, such as credentials
-// expiration or a refreshed access token.
-session.subscribe(observer);
-
-// ...
-
-// Eventually, you can also stop listening to its changes
-session.unsubscribe(observer);
+// Initialize bitcapital service with specified credentials
+const bitcapital = Bitcapital.initialize({
+  // Pass your custom session instance
+  session,
+  // Other initialization configs...
+  oauth: {
+    baseURL: data.baseURL,
+    clientId: data.clientId,
+    clientSecret: data.clientSecret,
+  },
+  http: {
+    baseURL: data.baseURL,
+  }
+});
 ```
 
+**Creating your own Storage provider** 
+
+To implement another Storage mechanism, extend the `StorageUtilEngine` interface.
+
+```typescript
+import { StorageUtilEngine } from "./StorageUtilEngine";
+
+export default class MemoryStorage implements StorageUtilEngine {
+  protected data: any = {};
+
+  async setItem(key: string, value: string): Promise<any> {
+    this.data[key] = value;
+    return value;
+  }
+  async getItem(key: string): Promise<any> {
+    return this.data[key];
+  }
+  async removeItem(key: string): Promise<void> {
+    delete this.data[key];
+  }
+  async clear(): Promise<void> {
+    this.data = {};
+  }
+}
+```
