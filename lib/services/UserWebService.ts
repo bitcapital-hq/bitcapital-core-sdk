@@ -112,11 +112,11 @@ export default class UserWebService extends BaseModelWebService<User, UserSchema
       }
     );
 
-    if (credentials && !credentials.expiresAt && response.headers["x-oauth-bearer-expiration"]) {
+    if (credentials && !credentials.expiresAt && response.headers && response.headers["x-oauth-bearer-expiration"]) {
       credentials.expiresAt = new Date(response.headers["x-oauth-bearer-expiration"]);
     }
 
-    if (credentials && !credentials.scope && response.headers["x-oauth-bearer-scope"]) {
+    if (credentials && !credentials.scope && response.headers && response.headers["x-oauth-bearer-scope"]) {
       credentials.scope = response.headers["x-oauth-bearer-scope"];
     }
 
