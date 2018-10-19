@@ -1,6 +1,6 @@
-import { OAuthCredentials, User, UserSchema, UserRole } from "../models";
+import { PaginatedArray, Pagination, PaginationUtil } from "..";
+import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Pagination, PaginatedArray, PaginationUtil } from "..";
 
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {}
 
@@ -111,6 +111,15 @@ export default class UserWebService extends BaseModelWebService<User, UserSchema
         headers: { Authorization: credentials ? `Bearer ${credentials.accessToken}` : undefined }
       }
     );
+
+    if (credentials && !credentials.expiresAt && response.headers["x-oauth-bearer-expiration"]) {
+      credentials.expiresAt = new Date(response.headers["x-oauth-bearer-expiration"]);
+    }
+
+    if (credentials && !credentials.scope && response.headers["x-oauth-bearer-scope"]) {
+      credentials.scope = response.headers["x-oauth-bearer-scope"];
+    }
+
     return new User({ credentials, ...response.data });
   }
 

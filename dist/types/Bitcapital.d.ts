@@ -14,12 +14,17 @@ export interface BitcapitalOptions {
 export default class Bitcapital {
     protected readonly options: BitcapitalOptions;
     protected readonly _session: Session;
+    protected static _instance: Bitcapital;
     /**
      * Construct a new Bitcapital instance, not safe to call directly, use the `init()` method.
      *
      * @param options The bitcapital options and credentials
      */
     protected constructor(options: BitcapitalOptions);
+    /**
+     * Gets the singleton instance, if already initialized and available.
+     */
+    static getInstance(): Bitcapital | undefined;
     /**
      * Initialize the Bitcapital SDK with credentials.
      *

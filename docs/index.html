@@ -173,7 +173,7 @@ yarn <span class="hljs-built_in">test</span>
 </code></pre>
 				<p><strong>Creating your own Storage provider</strong> </p>
 				<p>To implement another Storage mechanism, extend the <code>StorageUtilEngine</code> interface.</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { StorageUtilEngine } <span class="hljs-keyword">from</span> <span class="hljs-string">"./StorageUtilEngine"</span>;
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { StorageUtilEngine } <span class="hljs-keyword">from</span> <span class="hljs-string">"bitcapital-core-sdk"</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> MemoryStorage <span class="hljs-keyword">implements</span> StorageUtilEngine {
   <span class="hljs-keyword">protected</span> data: <span class="hljs-built_in">any</span> = {};
@@ -193,6 +193,8 @@ yarn <span class="hljs-built_in">test</span>
   }
 }
 </code></pre>
+				<h1 id="license">LICENSE</h1>
+				<p>UNLICENSED</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

@@ -7,7 +7,7 @@ export default class StorageUtil {
   constructor(public label: string, engine?: StorageUtilEngine) {
     if (engine) {
       this.engine = engine;
-    } else if (!engine && typeof process === "object" && process.title !== "browser") {
+    } else if (!engine && typeof process === "object" && process.title === "node") {
       require("localstorage-polyfill");
       this.engine = (global as any).localStorage;
     } else if (!engine && window && window.localStorage) {

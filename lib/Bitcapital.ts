@@ -24,6 +24,7 @@ export interface BitcapitalOptions {
  */
 export default class Bitcapital {
   protected readonly _session: Session;
+  protected static _instance: Bitcapital;
 
   /**
    * Construct a new Bitcapital instance, not safe to call directly, use the `init()` method.
@@ -40,6 +41,18 @@ export default class Bitcapital {
     DomainWebService.initialize({ session: this._session, ...options.http });
     PaymentWebService.initialize({ session: this._session, ...options.http });
     WalletWebService.initialize({ session: this._session, ...options.http });
+
+    // Prepare singleton for easier access
+    if (!Bitcapital._instance) {
+      Bitcapital._instance = this;
+    }
+  }
+
+  /**
+   * Gets the singleton instance, if already initialized and available.
+   */
+  public static getInstance(): Bitcapital | undefined {
+    return this._instance;
   }
 
   /**
