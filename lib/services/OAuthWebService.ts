@@ -1,8 +1,8 @@
-import { stringify } from "qs";
 import { Buffer } from "buffer";
+import { stringify } from "qs";
 import { Http, HttpOptions } from "../base";
 import { OAuthCredentials } from "../models";
-import { OAuthPasswordRequest, OAuthClientCredentialsRequest } from "./request";
+import { OAuthClientCredentialsRequest, OAuthPasswordRequest, OAuthRefreshRequest } from "./request";
 import { OAuthStatusResponse } from "./response";
 
 export interface OAuthWebServiceOptions extends HttpOptions {
@@ -78,7 +78,31 @@ export default class OAuthWebService {
   }
 
   /**
+<<<<<<< HEAD
    * Revoke one or all tokens from a user using the OAuth 2.0 server.
+=======
+   * Performs a "refresh_token" authentication using the OAuth 2.0 server.
+   */
+  public async refreshToken(data: { refreshToken: string }): Promise<OAuthCredentials> {
+    const request = new OAuthRefreshRequest(data.refreshToken);
+
+    const response = await this.http.post("/oauth/token", stringify(request), {
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}` // Get credentials from options
+      }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new OAuthCredentials(response.data);
+  }
+
+  /**
+   * Revokes one or all tokens from a user using the OAuth 2.0 server.
+>>>>>>> a81b0935c8ce42885bf340c00c6076b15c3ce867
    *
    * @param accessToken The user access token.
    */
