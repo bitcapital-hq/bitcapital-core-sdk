@@ -1,6 +1,7 @@
 import { Http, HttpOptions } from "../base";
 import { OAuthCredentials } from "../models";
 import { OAuthStatusResponse } from "./response";
+import OAuthSecretToken, { OAuthSecretTokenResource } from "../models/OAuth/OAuthSecretToken";
 export interface OAuthWebServiceOptions extends HttpOptions {
     clientId: string;
     clientSecret: string;
@@ -15,12 +16,12 @@ export default class OAuthWebService {
     /**
      * Get a basic token for client credentials authentication.
      *
-     * @returns {String}
+     * @returns {string}
      */
     static getBasicToken(data: {
         clientId: string;
         clientSecret: string;
-    }): String;
+    }): string;
     /**
      * Perform a "password" authentication using the OAuth 2.0 server.
      *
@@ -50,7 +51,16 @@ export default class OAuthWebService {
      *
      * @param accessToken The user access token.
      */
-    revoke(accessToken?: String): Promise<void>;
+    revoke(accessToken?: string): Promise<void>;
+    /**
+     * Get a secret token using a accessToken
+     *
+     * @param {string} accessToken The user access token
+     * @param {OAuthSecretTokenResource} resources The resources the secret token will have access to
+     * @param {string[]} [scopes] The scopes the secret token will have access to.
+     * If undefined, will use the default scopes for the user role
+     */
+    secret(accessToken: string, resources: OAuthSecretTokenResource, scopes?: string[]): Promise<OAuthSecretToken>;
     /**
      * Get the server status.
      */
