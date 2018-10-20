@@ -79,9 +79,12 @@ describe("lib.session.Session", () => {
       const oauthMock = new (MockAdapter as any)((session.oauthWebService as any).http.client);
       const userMock = new (MockAdapter as any)((session.userWebService as any).http.client);
 
-      // Mock all requests to a simple success
+      // Mock requests to a simple success
       oauthMock.onPost("/oauth/token").reply(200, TEST_CREDENTIALS);
       userMock.onGet("/users/me").reply(200, TEST_USER);
+
+      // Mock find all users request to 401 so we can test refresh token
+      userMock.onGet("/users").reply(401);
     });
 
     afterEach(async () => {
@@ -91,7 +94,7 @@ describe("lib.session.Session", () => {
       session = undefined;
     });
 
-    it("should authenticate with a mocked instance", async () => {
+    it("should password authenticate with a mocked instance", async () => {
       const response = await session.password({
         username: "test",
         password: "test"
@@ -106,6 +109,38 @@ describe("lib.session.Session", () => {
 
       await session.destroy();
       expect(session.current).toBeFalsy();
+    });
+
+    it("should refresh token authenticate with a mocked instance", async () => {
+      const response = await session.refreshToken({
+        refreshToken: hat()
+      });
+
+      expect(response).toBeInstanceOf(User);
+      expect(response.credentials).toBeInstanceOf(OAuthCredentials);
+      expect(session.current).toBe(response);
+
+      await (session as any).fetch();
+      expect(session.current).toBeTruthy();
+
+      await session.destroy();
+      expect(session.current).toBeFalsy();
+    });
+
+    it("should try to refresh token authenticate on the first 401 response", async () => {
+      // Authenticate the user
+      await session.password({
+        username: "test",
+        password: "test"
+      });
+
+      // Make a call that will return 401, as if the token was revoked or expired
+      try {
+        await session.userWebService.findAll({});
+      } catch {}
+
+      // Check if the session performed a refresh token authentication
+      expect(session.current).toBeInstanceOf(User);
     });
 
     it("should publish the right events", async () => {

@@ -56,10 +56,18 @@ describe("lib.services.OAuthWebService", () => {
       mock.onPost("/oauth/token").reply(200, TEST_CREDENTIALS);
     });
 
-    it("should get a token with a mocked instance", async () => {
+    it("should perform a password authentication with a mocked instance", async () => {
       const response = await oauth.password({
         username: "test",
         password: "test"
+      });
+
+      expect(response).toBeInstanceOf(OAuthCredentials);
+    });
+
+    it("should perform a refresh token authentication with a mocked instance", async () => {
+      const response = await oauth.refreshToken({
+        refreshToken: hat()
       });
 
       expect(response).toBeInstanceOf(OAuthCredentials);
@@ -79,7 +87,7 @@ describe("lib.services.OAuthWebService", () => {
 
       const mock = new MockAdapter((oauth as any).http.client);
 
-      // Mock all requests to a simple success
+      // Mock all requests to a simple fail
       mock.onPost("/oauth/token").networkError();
     });
 

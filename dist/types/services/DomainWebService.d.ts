@@ -2,6 +2,27 @@ import { Http } from "../base";
 import { Domain, DomainSchema, User } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+export declare enum PaymentLogType {
+    COMMON = "common",
+    EMIT = "emit",
+    DESTROY = "destroy"
+}
+export interface DomainMetricsOptions {
+    start?: Date;
+    end?: Date;
+    source?: string;
+    recipient?: string;
+    asset?: string;
+    type?: PaymentLogType;
+}
+export interface CountMetricsResponse {
+    paymentTime: Date;
+    count: number;
+}
+export interface TotalMetricsResponse {
+    paymentTime: Date;
+    totalAmount: number;
+}
 export interface DomainWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export default class DomainWebService extends BaseModelWebService<Domain, DomainSchema> {
@@ -55,4 +76,32 @@ export default class DomainWebService extends BaseModelWebService<Domain, Domain
      * @param id The Domain ID.
      */
     delete(id: string): Promise<boolean>;
+    /**
+     * Gets the cumulative sum of payment amounts grouped by time
+     *
+     * @param {string} id
+     * @param {DomainMetricsOptions} [options]
+     */
+    getPaymentsAmountMetrics(id: string, options?: DomainMetricsOptions): Promise<TotalMetricsResponse[]>;
+    /**
+     * Gets the cumulative count of payment amounts grouped by time
+     *
+     * @param {string} id
+     * @param {DomainMetricsOptions} [options]
+     */
+    getPaymentsCountMetrics(id: string, options?: DomainMetricsOptions): Promise<CountMetricsResponse[]>;
+    /**
+     * Gets the cumulative count of active users grouped by time
+     *
+     * @param {string} id
+     * @param {DomainMetricsOptions} [options]
+     */
+    getActiveUserCountMetrics(id: string, options?: DomainMetricsOptions): Promise<CountMetricsResponse[]>;
+    /**
+     * Gets the cumulative balance grouped by time
+     *
+     * @param {string} id
+     * @param {DomainMetricsOptions} [options]
+     */
+    getBalanceMetrics(id: string, options?: DomainMetricsOptions): Promise<TotalMetricsResponse[]>;
 }
