@@ -1,6 +1,6 @@
-import { OAuthCredentials, User, UserSchema, UserRole } from "../models";
+import { PaginatedArray, Pagination } from "..";
+import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Pagination, PaginatedArray } from "..";
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export default class UserWebService extends BaseModelWebService<User, UserSchema> {

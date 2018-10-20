@@ -1,4 +1,4 @@
-import { validate, IsOptional, IsUUID } from "class-validator";
+import { IsOptional, IsUUID, validate, ValidationError } from "class-validator";
 
 export interface BaseModelSchema {
   id?: string;
@@ -31,7 +31,7 @@ export default class BaseModel {
    *
    * @param {boolean} [toString] If toString is true, this will return a formatted error string
    */
-  public async isValid(toString?: boolean) {
+  public async isValid(toString?: boolean): Promise<string | true | ValidationError[]> {
     const errors = await validate(this);
 
     if (errors.length === 0) {

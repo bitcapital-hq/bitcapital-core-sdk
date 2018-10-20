@@ -139,7 +139,7 @@ const bitcapital = Bitcapital.initialize({
 To implement another Storage mechanism, extend the `StorageUtilEngine` interface.
 
 ```typescript
-import { StorageUtilEngine } from "./StorageUtilEngine";
+import { StorageUtilEngine } from "bitcapital-core-sdk";
 
 export default class MemoryStorage implements StorageUtilEngine {
   protected data: any = {};
@@ -159,3 +159,7 @@ export default class MemoryStorage implements StorageUtilEngine {
   }
 }
 ```
+
+# LICENSE
+
+UNLICENSED

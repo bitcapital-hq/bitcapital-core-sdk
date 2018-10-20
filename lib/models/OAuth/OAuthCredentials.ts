@@ -7,19 +7,20 @@ export interface OAuthCredentialsSchema extends BaseModelSchema {
   expires_in?: number;
   user_id?: string;
   virtual?: boolean;
+  scope: string[];
 }
 
 export default class OAuthCredentials extends BaseModel {
+  virtual?: boolean = false;
   accessToken: string;
   refreshToken?: string;
   tokenType?: string;
   userId?: string;
   expiresAt?: Date;
-  virtual?: boolean = false;
+  scope: string[];
 
   constructor(data: Partial<OAuthCredentialsSchema>) {
     super(data);
-
     this.accessToken = data.access_token;
     this.refreshToken = data.refresh_token;
     this.tokenType = data.token_type;

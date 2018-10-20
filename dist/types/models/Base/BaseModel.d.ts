@@ -1,3 +1,4 @@
+import { ValidationError } from "class-validator";
 export interface BaseModelSchema {
     id?: string;
     createdAt?: string | Date;
@@ -13,5 +14,5 @@ export default class BaseModel {
      *
      * @param {boolean} [toString] If toString is true, this will return a formatted error string
      */
-    isValid(toString?: boolean): Promise<string | true | import("../../../node_modules/class-validator/validation/ValidationError").ValidationError[]>;
+    isValid(toString?: boolean): Promise<string | true | ValidationError[]>;
 }
