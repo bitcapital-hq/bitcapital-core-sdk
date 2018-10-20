@@ -1,9 +1,10 @@
-import { stringify } from "qs";
 import { Buffer } from "buffer";
+import { stringify } from "qs";
 import { Http, HttpOptions } from "../base";
 import { OAuthCredentials } from "../models";
-import { OAuthPasswordRequest, OAuthClientCredentialsRequest } from "./request";
+import { OAuthClientCredentialsRequest, OAuthPasswordRequest, OAuthRefreshRequest } from "./request";
 import { OAuthStatusResponse } from "./response";
+import OAuthSecretToken, { OAuthSecretTokenResource } from "../models/OAuth/OAuthSecretToken";
 
 export interface OAuthWebServiceOptions extends HttpOptions {
   clientId: string;
@@ -32,9 +33,9 @@ export default class OAuthWebService {
   /**
    * Get a basic token for client credentials authentication.
    *
-   * @returns {String}
+   * @returns {string}
    */
-  public static getBasicToken(data: { clientId: string; clientSecret: string }): String {
+  public static getBasicToken(data: { clientId: string; clientSecret: string }): string {
     const mask = `${data.clientId}:${data.clientSecret}`;
     return Buffer.from(mask).toString("base64");
   }
@@ -78,16 +79,43 @@ export default class OAuthWebService {
   }
 
   /**
+<<<<<<< HEAD
    * Revoke one or all tokens from a user using the OAuth 2.0 server.
+=======
+   * Performs a "refresh_token" authentication using the OAuth 2.0 server.
+   */
+  public async refreshToken(data: { refreshToken: string }): Promise<OAuthCredentials> {
+    const request = new OAuthRefreshRequest(data.refreshToken);
+
+    const response = await this.http.post("/oauth/token", stringify(request), {
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}` // Get credentials from options
+      }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new OAuthCredentials(response.data);
+  }
+
+  /**
+   * Revokes one or all tokens from a user using the OAuth 2.0 server.
+>>>>>>> a81b0935c8ce42885bf340c00c6076b15c3ce867
    *
    * @param accessToken The user access token.
    */
-  public async revoke(accessToken?: String): Promise<void> {
+  public async revoke(accessToken?: string): Promise<void> {
     const response = await this.http.post(
       "/oauth/revoke",
       { accessToken },
       {
-        headers: { "Content-type": "application/x-www-form-urlencoded" }
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded",
+          Authorization: `Basic ${OAuthWebService.getBasicToken(this.options)}` // Get credentials from options
+        }
       }
     );
 
@@ -95,6 +123,33 @@ export default class OAuthWebService {
     if (!response || response.status !== 200) {
       throw response;
     }
+  }
+
+  /**
+   * Get a secret token using a accessToken
+   *
+   * @param {string} accessToken The user access token
+   * @param {OAuthSecretTokenResource} resources The resources the secret token will have access to
+   * @param {string[]} [scopes] The scopes the secret token will have access to.
+   * If undefined, will use the default scopes for the user role
+   */
+  public async secret(accessToken: string, resources: OAuthSecretTokenResource, scopes?: string[]) {
+    const response = await this.http.post(
+      "/oauth/secret",
+      { resources, scopes },
+      {
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    );
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new OAuthSecretToken(response.data);
   }
 
   /**

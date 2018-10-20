@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class OAuthRefreshRequest {
+    constructor(refresh_token) {
+        this.grant_type = "refresh_token";
+        this.refresh_token = refresh_token;
+    }
+}
+exports.default = OAuthRefreshRequest;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiT0F1dGhSZWZyZXNoUmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9zZXJ2aWNlcy9yZXF1ZXN0L09BdXRoUmVmcmVzaFJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQTtJQUlFLFlBQVksYUFBcUI7UUFDL0IsSUFBSSxDQUFDLFVBQVUsR0FBRyxlQUFlLENBQUM7UUFDbEMsSUFBSSxDQUFDLGFBQWEsR0FBRyxhQUFhLENBQUM7SUFDckMsQ0FBQztDQUNGO0FBUkQsc0NBUUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBjbGFzcyBPQXV0aFJlZnJlc2hSZXF1ZXN0IHtcbiAgZ3JhbnRfdHlwZTogc3RyaW5nO1xuICByZWZyZXNoX3Rva2VuOiBzdHJpbmc7XG5cbiAgY29uc3RydWN0b3IocmVmcmVzaF90b2tlbjogc3RyaW5nKSB7XG4gICAgdGhpcy5ncmFudF90eXBlID0gXCJyZWZyZXNoX3Rva2VuXCI7XG4gICAgdGhpcy5yZWZyZXNoX3Rva2VuID0gcmVmcmVzaF90b2tlbjtcbiAgfVxufVxuIl19
