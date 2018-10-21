@@ -9,7 +9,9 @@ describe("lib.services.PaymentWebService", () => {
   describe("Success cases", () => {
     beforeAll(() => {
       PaymentWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((PaymentWebService.getInstance() as any).http.client);
 
@@ -37,7 +39,9 @@ describe("lib.services.PaymentWebService", () => {
   describe("Fail cases", () => {
     beforeAll(() => {
       PaymentWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((PaymentWebService.getInstance() as any).http.client);
 

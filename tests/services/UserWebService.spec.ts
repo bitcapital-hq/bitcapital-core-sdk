@@ -22,7 +22,9 @@ describe("Success user instance", () => {
   beforeEach(async () => {
     // This sets the mock adapter on the default instance
     user = new UserWebService({
-      baseURL: "http://localhost:3000/test_url"
+      baseURL: "http://localhost:3000/test_url",
+      clientId: "test",
+      clientSecret: "test"
     });
 
     const mock = new MockAdapter((user as any).http.client);

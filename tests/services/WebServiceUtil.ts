@@ -4,7 +4,9 @@ export const CRUDWebServiceTest = (endpoint: string, webServiceInstance, respons
   describe("Success cases", () => {
     beforeAll(() => {
       webServiceInstance.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((webServiceInstance.getInstance() as any).http.client);
 

@@ -10,7 +10,9 @@ describe("lib.services.DomainWebService", () => {
   describe("Success cases", () => {
     beforeAll(() => {
       DomainWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((DomainWebService.getInstance() as any).http.client);
 

@@ -10,7 +10,9 @@ describe("lib.services.AssetWebService", () => {
   describe("Success cases", () => {
     beforeAll(() => {
       AssetWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((AssetWebService.getInstance() as any).http.client);
 
@@ -27,7 +29,9 @@ describe("lib.services.AssetWebService", () => {
   describe("Fail cases", () => {
     beforeAll(() => {
       AssetWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((AssetWebService.getInstance() as any).http.client);
 

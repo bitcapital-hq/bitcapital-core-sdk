@@ -11,7 +11,9 @@ describe("lib.services.WalletWebService", () => {
   describe("Success cases", () => {
     beforeAll(() => {
       WalletWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((WalletWebService.getInstance() as any).http.client);
 
@@ -39,7 +41,9 @@ describe("lib.services.WalletWebService", () => {
   describe("Fail cases", () => {
     beforeAll(() => {
       WalletWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((WalletWebService.getInstance() as any).http.client);
 
