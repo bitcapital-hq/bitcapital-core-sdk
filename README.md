@@ -6,14 +6,14 @@ A multi-platform SDK for accessing the Bitcapital Core services in JS and TS env
 
 ## Getting started (From GitHub)
 
-Install as a project dependency using Yarn.
+Install as a project dependency using Yarn, remember to specify the desired version.
 ```bash
-yarn add "github:nxtep-io/bitcapital-core-sdk#1.0.0";
+yarn add "github:bitcapital-hq/bitcapital-core-sdk#1.3.0";
 ```
 
 Or use NPM:
 ```bash
-npm install "git+https://github.com/nxtep-io/bitcapital-core-sdk.git#1.0.0";
+npm install "git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git#1.3.0";
 ```
 
 
@@ -91,6 +91,9 @@ Library modules:
 Internal Modules:
 * **bitcapital.session():** Manages credentials in the SDK.
 * **bitcapital.oauth():** Manages authentication in the Bitcapital OAuth 2.0 provider.
+
+Utility Modules:
+* **bitcapital.sign():** Handles requests signature. Automatically called in required API requests.
 
 ## Documentation
 
