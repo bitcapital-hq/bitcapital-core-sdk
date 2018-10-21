@@ -6,7 +6,6 @@ export { default as Payment, PaymentSchema } from "./Payment/Payment";
 export { PaymentRequestSchema } from "./Payment/PaymentRequest";
 export { default as Recipient, RecipientSchema } from "./Payment/Recipient";
 export { default as Asset, AssetSchema } from "./Asset/Asset";
-export { AssetEmitRequestSchema } from "./Asset/AssetEmitRequest";
 export { default as Transaction, TransactionType, TransactionAdditionalData, TransactionSchema } from "./Transaction/Transaction";
 export * from "./OAuth";
 export * from "./Consumer";

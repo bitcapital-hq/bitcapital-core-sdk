@@ -1,22 +1,23 @@
-import { HttpOptions } from "./base";
+import { User } from "./models";
 import {
-  OAuthWebServiceOptions,
+  AssetWebService,
   ConsumerWebService,
   DomainWebService,
-  AssetWebService,
+  OAuthWebService,
+  OAuthWebServiceOptions,
   PaymentWebService,
   UserWebService,
-  WalletWebService,
-  OAuthWebService
+  WalletWebService
 } from "./services";
-import { Session } from "./session";
+import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
-import { User } from "./models";
+import { Session } from "./session";
 
 export interface BitcapitalOptions {
-  http: HttpOptions;
-  oauth: OAuthWebServiceOptions;
   session?: Session;
+  baseURL: string;
+  clientId: string;
+  clientSecret: string;
 }
 
 /**
@@ -33,14 +34,23 @@ export default class Bitcapital {
    */
   protected constructor(protected readonly options: BitcapitalOptions) {
     // Initialize session instance, OAuth and User web services will be initialized automatically
-    this._session = options.session || Session.initialize({ oauth: options.oauth, http: options.http });
+    this._session =
+      options.session ||
+      Session.initialize({
+        oauth: {
+          ...(options as OAuthWebServiceOptions)
+        },
+        http: {
+          ...(options as BaseModelWebServiceOptions)
+        }
+      });
 
     // Initialize main web services
-    AssetWebService.initialize({ session: this._session, ...options.http });
-    ConsumerWebService.initialize({ session: this._session, ...options.http });
-    DomainWebService.initialize({ session: this._session, ...options.http });
-    PaymentWebService.initialize({ session: this._session, ...options.http });
-    WalletWebService.initialize({ session: this._session, ...options.http });
+    AssetWebService.initialize({ ...options });
+    ConsumerWebService.initialize({ ...options });
+    DomainWebService.initialize({ ...options });
+    PaymentWebService.initialize({ ...options });
+    WalletWebService.initialize({ ...options });
 
     // Prepare singleton for easier access
     if (!Bitcapital._instance) {

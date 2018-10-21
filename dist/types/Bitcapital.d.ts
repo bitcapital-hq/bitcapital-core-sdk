@@ -1,12 +1,12 @@
-import { HttpOptions } from "./base";
-import { OAuthWebServiceOptions, ConsumerWebService, DomainWebService, AssetWebService, PaymentWebService, UserWebService, WalletWebService, OAuthWebService } from "./services";
-import { Session } from "./session";
-import { OAuthStatusResponse } from "./services/response";
 import { User } from "./models";
+import { AssetWebService, ConsumerWebService, DomainWebService, OAuthWebService, PaymentWebService, UserWebService, WalletWebService } from "./services";
+import { OAuthStatusResponse } from "./services/response";
+import { Session } from "./session";
 export interface BitcapitalOptions {
-    http: HttpOptions;
-    oauth: OAuthWebServiceOptions;
     session?: Session;
+    baseURL: string;
+    clientId: string;
+    clientSecret: string;
 }
 /**
  * The main interface for the Bitcapital SDK, holds credentials, instance options and all internal modules.

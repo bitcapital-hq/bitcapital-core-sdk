@@ -1,3 +1,4 @@
+import { Request } from "../utils";
 import { Payment, PaymentRequestSchema, PaymentSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
@@ -35,7 +36,7 @@ export default class PaymentWebService extends BaseModelWebService<Payment, Paym
   }
 
   /**
-   * Create a Payment.
+   * Sends a new Payment to the network, from a single source wallet splitting into multiple payment recipients.
    *
    * @param payment The Payment schema
    */
@@ -44,7 +45,14 @@ export default class PaymentWebService extends BaseModelWebService<Payment, Paym
     const asset = request.asset ? request.asset : "";
 
     const url = `/payments/${asset}`;
-    const response = await this.http.post(url, { source, recipients });
+    const body = { source, recipients };
+    const signature = Request.sign(this.options.clientSecret, {
+      url,
+      method: "POST",
+      body: JSON.stringify(body)
+    });
+
+    const response = await this.http.post(url, body, { headers: { ...signature } });
 
     if (!response || response.status !== 200) {
       throw response;

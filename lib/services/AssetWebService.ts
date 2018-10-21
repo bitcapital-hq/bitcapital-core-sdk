@@ -1,13 +1,14 @@
-import { Asset, AssetEmitRequestSchema, AssetSchema, Payment } from "../models";
-import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
+import { Asset, AssetSchema, Payment } from "../models";
+import { PaginatedArray, Pagination, PaginationUtil, Request } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { AssetEmitRequestSchema, AssetDestroyRequestSchema } from "./request";
 
 export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {}
 
 export default class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
   protected static instance: AssetWebService;
 
-  constructor(options: AssetWebServiceOptions) {
+  constructor(protected readonly options: AssetWebServiceOptions) {
     super(options);
   }
 
@@ -21,7 +22,7 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Find all Assets.
+   * Find all Assets in the platform.
    */
   public async findAll(pagination: Pagination): Promise<PaginatedArray<Asset>> {
     const { skip, limit } = pagination;
@@ -37,7 +38,7 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Find an Asset.
+   * Find an Asset based on its ID.
    *
    * @param id The Asset ID.
    */
@@ -52,12 +53,20 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Emit an Asset.
+   * Emits an Asset to a specific wallet. If none supplied, will be emited to the mediator wallet.
    */
   public async emit(request: AssetEmitRequestSchema): Promise<Payment> {
     const { id, amount, destination } = request;
+    const body = { amount, destination };
+    const signature = Request.sign(this.options.clientSecret, {
+      method: "POST",
+      url: `/assets/${id}/emit`,
+      body: JSON.stringify(body)
+    });
 
-    const response = await this.http.post(`/assets/${id}/emit`, { amount, destination });
+    const response = await this.http.post(`/assets/${id}/emit`, body, {
+      headers: { ...signature }
+    });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -67,7 +76,30 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Create a new Asset.
+   * Destroys an amount of Assets from a specific wallet. If none supplied, will be destroyed from the mediator wallet.
+   */
+  public async destroy(request: AssetDestroyRequestSchema): Promise<Payment> {
+    const { id, amount, source } = request;
+    const body = { amount, source };
+    const signature = Request.sign(this.options.clientSecret, {
+      method: "POST",
+      url: `/assets/${id}/destroy`,
+      body: JSON.stringify(body)
+    });
+
+    const response = await this.http.post(`/assets/${id}/destroy`, body, {
+      headers: { ...signature }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Payment(response.data);
+  }
+
+  /**
+   * Create a new Asset in the platform.
    *
    * @param asset The Asset schema.
    */
@@ -98,7 +130,7 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   }
 
   /**
-   * Delete a Asset.
+   * Delete an Asset from the platform.
    *
    * @param id The Asset ID.
    */
