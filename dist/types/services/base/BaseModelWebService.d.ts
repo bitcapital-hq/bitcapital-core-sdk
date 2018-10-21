@@ -4,6 +4,8 @@ import { Session } from "../../session";
 import { PaginatedArray, Pagination } from "../../utils";
 export interface BaseModelWebServiceOptions extends HttpOptions {
     session?: Session;
+    clientId?: string;
+    clientSecret?: string;
 }
 export interface BaseModelWebServiceIntf<T extends BaseModel, U extends BaseModelSchema> {
     findAll?(pagination?: Pagination): Promise<PaginatedArray<T>>;

@@ -11,7 +11,9 @@ describe("lib.services.ConsumerWebService", () => {
   describe("Success cases", () => {
     beforeAll(() => {
       ConsumerWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((ConsumerWebService.getInstance() as any).http.client);
 
@@ -51,7 +53,9 @@ describe("lib.services.ConsumerWebService", () => {
   describe("Fail cases", () => {
     beforeAll(() => {
       ConsumerWebService.initialize({
-        baseURL: "http://localhost:3000/test_url"
+        baseURL: "http://localhost:3000/test_url",
+        clientId: "test",
+        clientSecret: "test"
       });
       const mock = new MockAdapter((ConsumerWebService.getInstance() as any).http.client);
 

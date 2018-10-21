@@ -1,9 +1,10 @@
+import { HttpInterceptor } from "../base";
 import { User } from "../models";
-import { HttpInterceptor, HttpOptions } from "../base";
-import { Observable, Observer, StorageUtil } from "../utils";
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
+import { BaseModelWebServiceOptions } from "../services/base/BaseModelWebService";
+import { Observable, Observer, StorageUtil } from "../utils";
 export interface SessionOptions {
-    http?: HttpOptions;
+    http?: BaseModelWebServiceOptions;
     oauth?: OAuthWebServiceOptions;
     storage?: StorageUtil;
     autoFetch?: boolean;

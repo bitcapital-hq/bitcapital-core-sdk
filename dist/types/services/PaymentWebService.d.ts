@@ -14,7 +14,7 @@ export default class PaymentWebService extends BaseModelWebService<Payment, Paym
      */
     findOne(id: string): Promise<Payment>;
     /**
-     * Create a Payment.
+     * Sends a new Payment to the network, from a single source wallet splitting into multiple payment recipients.
      *
      * @param payment The Payment schema
      */
