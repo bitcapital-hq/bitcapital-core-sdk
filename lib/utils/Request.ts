@@ -17,7 +17,7 @@ export default class RequestUtil {
    * Generates headers for request signing.
    */
   public static sign(secret: string, req: RequestSigningOptions): RequestSigningHeaders {
-    const now = req.timestamp || Date.now();
+    const now = req.timestamp ? req.timestamp : Date.now();
     const payload = [req.method, req.url, now];
 
     // Check if should sign body as well
