@@ -43,16 +43,11 @@ import Bitcapital from 'bitcapital-core-sdk';
 // Initialize the session instance to authenticate
 // using the Bitcapital Core OAuth 2.0 provider.
 const bitcapital = Bitcapital.initialize({
-  // Base instance URL for REST API calls
-  http: {
-    baseURL: 'https://your-instance.btcore.app',
-  },
-  // Base instance URL for OAuth 2.0 requests
-  oauth: {
-    baseURL: 'https://your-instance.btcore.app',
-    clientId: '< YOUR CLIENT_ID HERE >',
-    clientSecret: '< YOUR CLIENT_SECRET HERE >',
-  }
+  // Instance URL for REST API calls
+  baseURL: 'https://your-instance.btcore.app',
+  // Credentials for OAuth 2.0 requests
+  clientId: '< YOUR CLIENT_ID HERE >',
+  clientSecret: '< YOUR CLIENT_SECRET HERE >',
 });
 
 try {
@@ -118,6 +113,8 @@ const session = Session.initialize({
   },
   http: {
     baseURL: data.baseURL,
+    clientId: data.clientId,
+    clientSecret: data.clientSecret,
   }
 });
 
@@ -126,14 +123,9 @@ const bitcapital = Bitcapital.initialize({
   // Pass your custom session instance
   session,
   // Other initialization configs...
-  oauth: {
-    baseURL: data.baseURL,
-    clientId: data.clientId,
-    clientSecret: data.clientSecret,
-  },
-  http: {
-    baseURL: data.baseURL,
-  }
+  baseURL: data.baseURL,
+  clientId: data.clientId,
+  clientSecret: data.clientSecret,
 });
 ```
 
