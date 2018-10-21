@@ -96,7 +96,7 @@ Utility Modules:
 
 Full API specification is located at: [https://sdk.btcore.app](https://sdk.btcore.app).
 
-### Using a Custom Storage
+### Using a Custom Session
 
 The SDK comes with a built-in set of Storage providers: Memory and Local. In NodeJS environments, only Memory is available.
 
@@ -129,7 +129,7 @@ const bitcapital = Bitcapital.initialize({
 });
 ```
 
-**Creating your own Storage provider** 
+**Creating a custom Storage provider** 
 
 To implement another Storage mechanism, extend the `StorageUtilEngine` interface.
 
