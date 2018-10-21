@@ -12,6 +12,7 @@ import {
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
+import { RequestSigningOptions, RequestUtil } from "./utils";
 
 export interface BitcapitalOptions {
   session?: Session;
@@ -72,6 +73,15 @@ export default class Bitcapital {
    */
   public static initialize(options: BitcapitalOptions) {
     return new Bitcapital(options);
+  }
+
+  /**
+   * Generate signature headers for the specificed request.
+   *
+   * @param request The request object
+   */
+  public sign(request: RequestSigningOptions) {
+    return RequestUtil.sign(this.options.clientSecret, request);
   }
 
   /**

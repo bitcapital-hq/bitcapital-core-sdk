@@ -2,6 +2,7 @@ import { User } from "./models";
 import { AssetWebService, ConsumerWebService, DomainWebService, OAuthWebService, PaymentWebService, UserWebService, WalletWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
+import { RequestSigningOptions } from "./utils";
 export interface BitcapitalOptions {
     session?: Session;
     baseURL: string;
@@ -31,6 +32,12 @@ export default class Bitcapital {
      * @param options The bitcapital options and credentials.
      */
     static initialize(options: BitcapitalOptions): Bitcapital;
+    /**
+     * Generate signature headers for the specificed request.
+     *
+     * @param request The request object
+     */
+    sign(request: RequestSigningOptions): import("./utils/Request").RequestSigningHeaders;
     /**
      * Get the API Status.
      */

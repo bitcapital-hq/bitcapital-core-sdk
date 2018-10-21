@@ -21,7 +21,7 @@ export default class RequestUtil {
     const payload = [req.method, req.url, now];
 
     // Check if should sign body as well
-    if (req.method.toUpperCase() === "POST" || req.method.toUpperCase() === "PUT") {
+    if ((req.body && req.method.toUpperCase() === "POST") || req.method.toUpperCase() === "PUT") {
       payload.push(req.body);
     }
 
