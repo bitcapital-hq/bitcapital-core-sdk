@@ -1,5 +1,5 @@
 import { Asset, AssetSchema, Payment } from "../models";
-import { PaginatedArray, Pagination, PaginationUtil, Request } from "../utils";
+import { PaginatedArray, Pagination, PaginationUtil, RequestUtil } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 import { AssetEmitRequestSchema, AssetDestroyRequestSchema } from "./request";
 
@@ -58,7 +58,7 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   public async emit(request: AssetEmitRequestSchema): Promise<Payment> {
     const { id, amount, destination } = request;
     const body = { amount, destination };
-    const signature = Request.sign(this.options.clientSecret, {
+    const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/assets/${id}/emit`,
       body: JSON.stringify(body)
@@ -81,7 +81,7 @@ export default class AssetWebService extends BaseModelWebService<Asset, AssetSch
   public async destroy(request: AssetDestroyRequestSchema): Promise<Payment> {
     const { id, amount, source } = request;
     const body = { amount, source };
-    const signature = Request.sign(this.options.clientSecret, {
+    const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/assets/${id}/destroy`,
       body: JSON.stringify(body)

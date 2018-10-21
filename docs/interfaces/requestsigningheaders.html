@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PaymentSchema | bitcapital-core-sdk (v1.2.0)</title>
+	<title>RequestSigningHeaders | bitcapital-core-sdk (v1.2.0)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="paymentschema.html">PaymentSchema</a>
+					<a href="requestsigningheaders.html">RequestSigningHeaders</a>
 				</li>
 			</ul>
-			<h1>Interface PaymentSchema</h1>
+			<h1>Interface RequestSigningHeaders</h1>
 		</div>
 	</div>
 </header>
@@ -70,19 +70,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="basemodelschema.html" class="tsd-signature-type">BaseModelSchema</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">PaymentSchema</span>
-							</li>
-						</ul>
+						<span class="target">RequestSigningHeaders</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/payment.html" class="tsd-signature-type">Payment</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -92,13 +81,8 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="paymentschema.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="paymentschema.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="paymentschema.html#recipients" class="tsd-kind-icon">recipients</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="paymentschema.html#source" class="tsd-kind-icon">source</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="paymentschema.html#totalamount" class="tsd-kind-icon">total<wbr>Amount</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="paymentschema.html#transaction" class="tsd-kind-icon">transaction</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="paymentschema.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="requestsigningheaders.html#x_request_signature" class="tsd-kind-icon">X-<wbr><wbr>Request-<wbr><wbr>Signature</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="requestsigningheaders.html#x_request_timestamp" class="tsd-kind-icon">X-<wbr><wbr>Request-<wbr><wbr>Timestamp</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,76 +90,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-					<a name="createdat" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> created<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="x_request_signature" class="tsd-anchor"></a>
+					<h3>X-<wbr><wbr>Request-<wbr><wbr>Signature</h3>
+					<div class="tsd-signature tsd-kind-icon">X-<wbr><wbr>Request-<wbr><wbr>Signature<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="basemodelschema.html">BaseModelSchema</a>.<a href="basemodelschema.html#createdat">createdAt</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/models/Base/BaseModel.ts#L5">models/Base/BaseModel.ts:5</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-					<a name="id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="basemodelschema.html">BaseModelSchema</a>.<a href="basemodelschema.html#id">id</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/models/Base/BaseModel.ts#L4">models/Base/BaseModel.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/utils/Request.ts#L4">utils/Request.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="recipients" class="tsd-anchor"></a>
-					<h3>recipients</h3>
-					<div class="tsd-signature tsd-kind-icon">recipients<span class="tsd-signature-symbol">:</span> <a href="../classes/recipient.html" class="tsd-signature-type">Recipient</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="x_request_timestamp" class="tsd-anchor"></a>
+					<h3>X-<wbr><wbr>Request-<wbr><wbr>Timestamp</h3>
+					<div class="tsd-signature tsd-kind-icon">X-<wbr><wbr>Request-<wbr><wbr>Timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/models/Payment/Payment.ts#L8">models/Payment/Payment.ts:8</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="source" class="tsd-anchor"></a>
-					<h3>source</h3>
-					<div class="tsd-signature tsd-kind-icon">source<span class="tsd-signature-symbol">:</span> <a href="../classes/wallet.html" class="tsd-signature-type">Wallet</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/models/Payment/Payment.ts#L7">models/Payment/Payment.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="totalamount" class="tsd-anchor"></a>
-					<h3>total<wbr>Amount</h3>
-					<div class="tsd-signature tsd-kind-icon">total<wbr>Amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/models/Payment/Payment.ts#L9">models/Payment/Payment.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="transaction" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> transaction</h3>
-					<div class="tsd-signature tsd-kind-icon">transaction<span class="tsd-signature-symbol">:</span> <a href="../classes/transaction.html" class="tsd-signature-type">Transaction</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/models/Payment/Payment.ts#L10">models/Payment/Payment.ts:10</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-					<a name="updatedat" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> updated<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="basemodelschema.html">BaseModelSchema</a>.<a href="basemodelschema.html#updatedat">updatedAt</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/models/Base/BaseModel.ts#L6">models/Base/BaseModel.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/eddcb5a/lib/utils/Request.ts#L5">utils/Request.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -194,28 +125,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-is-external">
-						<a href="paymentschema.html" class="tsd-kind-icon">Payment<wbr>Schema</a>
+						<a href="requestsigningheaders.html" class="tsd-kind-icon">Request<wbr>Signing<wbr>Headers</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-								<a href="paymentschema.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-								<a href="paymentschema.html#id" class="tsd-kind-icon">id</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="requestsigningheaders.html#x_request_signature" class="tsd-kind-icon">X-<wbr><wbr>Request-<wbr><wbr>Signature</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="paymentschema.html#recipients" class="tsd-kind-icon">recipients</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="paymentschema.html#source" class="tsd-kind-icon">source</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="paymentschema.html#totalamount" class="tsd-kind-icon">total<wbr>Amount</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="paymentschema.html#transaction" class="tsd-kind-icon">transaction</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-								<a href="paymentschema.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
+								<a href="requestsigningheaders.html#x_request_timestamp" class="tsd-kind-icon">X-<wbr><wbr>Request-<wbr><wbr>Timestamp</a>
 							</li>
 						</ul>
 					</li>

@@ -1,4 +1,4 @@
-import { Request } from "../utils";
+import { RequestUtil } from "../utils";
 import { Payment, PaymentRequestSchema, PaymentSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
@@ -46,7 +46,7 @@ export default class PaymentWebService extends BaseModelWebService<Payment, Paym
 
     const url = `/payments/${asset}`;
     const body = { source, recipients };
-    const signature = Request.sign(this.options.clientSecret, {
+    const signature = RequestUtil.sign(this.options.clientSecret, {
       url,
       method: "POST",
       body: JSON.stringify(body)

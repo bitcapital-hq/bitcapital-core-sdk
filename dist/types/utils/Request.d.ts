@@ -1,6 +1,6 @@
 export interface RequestSigningHeaders {
-    'X-Request-Signature': string;
-    'X-Request-Timestamp': string;
+    "X-Request-Signature": string;
+    "X-Request-Timestamp": string;
 }
 export default class RequestUtil {
     /**
