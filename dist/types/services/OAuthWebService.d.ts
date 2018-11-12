@@ -37,9 +37,6 @@ export default class OAuthWebService {
      */
     clientCredentials(): Promise<OAuthCredentials>;
     /**
-  <<<<<<< HEAD
-     * Revoke one or all tokens from a user using the OAuth 2.0 server.
-  =======
      * Performs a "refresh_token" authentication using the OAuth 2.0 server.
      */
     refreshToken(data: {
@@ -47,7 +44,6 @@ export default class OAuthWebService {
     }): Promise<OAuthCredentials>;
     /**
      * Revokes one or all tokens from a user using the OAuth 2.0 server.
-  >>>>>>> a81b0935c8ce42885bf340c00c6076b15c3ce867
      *
      * @param accessToken The user access token.
      */
