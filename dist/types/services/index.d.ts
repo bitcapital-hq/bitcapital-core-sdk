@@ -6,3 +6,4 @@ export { default as OAuthWebService, OAuthWebServiceOptions } from "./OAuthWebSe
 export { default as UserWebService } from "./UserWebService";
 export { default as WalletWebService } from "./WalletWebService";
 export { default as PaymentWebService } from "./PaymentWebService";
+export * from "./request";
