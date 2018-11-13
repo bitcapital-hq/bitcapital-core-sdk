@@ -17,11 +17,11 @@ export interface UserSchema extends BaseModelSchema {
   firstName: string;
   lastName: string;
   email: string;
-  role: UserRole;
-  status: UserStatus;
+  role?: UserRole;
+  status?: UserStatus;
   password?: string;
   credentials?: OAuthCredentials;
-  domain: Domain;
+  domain?: Domain;
   consumer?: Consumer;
   virtual?: boolean;
   wallets?: Wallet[];
