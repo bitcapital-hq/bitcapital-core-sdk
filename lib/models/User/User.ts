@@ -36,15 +36,15 @@ export default class User extends BaseModel implements UserSchema {
   @IsEmail()
   email: string = undefined;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(UserRole)
-  role: UserRole = undefined;
+  role?: UserRole = undefined;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(UserStatus)
-  status: UserStatus = undefined;
+  status?: UserStatus = undefined;
 
-  @IsNotEmpty() domain: Domain = undefined;
+  @IsOptional() domain?: Domain = undefined;
 
   @IsOptional() password?: string = undefined;
 

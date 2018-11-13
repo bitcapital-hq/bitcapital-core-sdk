@@ -26,9 +26,9 @@ export default class User extends BaseModel implements UserSchema {
     firstName: string;
     lastName: string;
     email: string;
-    role: UserRole;
-    status: UserStatus;
-    domain: Domain;
+    role?: UserRole;
+    status?: UserStatus;
+    domain?: Domain;
     password?: string;
     consumer?: Consumer;
     wallets?: Wallet[];
