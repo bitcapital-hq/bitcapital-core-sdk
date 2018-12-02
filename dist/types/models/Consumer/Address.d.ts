@@ -15,15 +15,19 @@ export interface AddressSchema extends BaseModelSchema {
     };
     city: string;
     code: string;
+    state: string;
     address: string;
     complement: string;
     number: string;
+    reference?: string;
 }
 export default class Address extends BaseModel implements AddressSchema {
-    type?: AddressType;
     consumer?: Consumer;
     consumerId: string;
+    type?: AddressType;
+    reference?: string;
     country: string;
+    state: string;
     city: string;
     code: string;
     address: string;

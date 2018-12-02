@@ -3,6 +3,7 @@ import { Address, AddressSchema } from "../../../lib";
 
 export const TEST_ADDRESS: AddressSchema = {
   consumerId: uuid(),
+  state: "SP",
   country: "Brasil",
   geo: { x: -15.123456, y: 7.987654 },
   city: "São Paulo",
