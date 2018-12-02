@@ -3,7 +3,7 @@ import { Phone, PhoneSchema } from "../../../lib";
 
 export const TEST_PHONE: PhoneSchema = {
   consumerId: uuid(),
-  code: 55,
+  code: "55",
   number: "999999999",
   verifiedAt: new Date()
 };
