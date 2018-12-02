@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>bitcapital-core-sdk (v1.2.0)</title>
+	<title>bitcapital-core-sdk (v1.2.2)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">bitcapital-core-sdk (v1.2.0)</a>
+					<a href="index.html" class="title">bitcapital-core-sdk (v1.2.2)</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> bitcapital-core-sdk (v1.2.0)</h1>
+			<h1> bitcapital-core-sdk (v1.2.2)</h1>
 		</div>
 	</div>
 </header>
@@ -67,11 +67,11 @@
 				<h1 id="bitcapital-core-sdk">bitcapital-core-sdk</h1>
 				<p>A multi-platform SDK for accessing the Bitcapital Core services in JS and TS environments.</p>
 				<h2 id="getting-started-from-github-">Getting started (From GitHub)</h2>
-				<p>Install as a project dependency using Yarn.</p>
-				<pre><code class="lang-bash">yarn add <span class="hljs-string">"github:nxtep-io/bitcapital-core-sdk#1.0.0"</span>;
+				<p>Install as a project dependency using Yarn, remember to specify the desired version.</p>
+				<pre><code class="lang-bash">yarn add <span class="hljs-string">"github:bitcapital-hq/bitcapital-core-sdk#1.3.0"</span>;
 </code></pre>
 				<p>Or use NPM:</p>
-				<pre><code class="lang-bash">npm install <span class="hljs-string">"git+https://github.com/nxtep-io/bitcapital-core-sdk.git#1.0.0"</span>;
+				<pre><code class="lang-bash">npm install <span class="hljs-string">"git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git#1.3.0"</span>;
 </code></pre>
 				<h2 id="getting-started-from-source-">Getting started (From source)</h2>
 				<p>Install the dependencies and make sure everything is OK by running the automated tests.</p>
@@ -90,16 +90,11 @@ yarn <span class="hljs-built_in">test</span>
 <span class="hljs-comment">// Initialize the session instance to authenticate</span>
 <span class="hljs-comment">// using the Bitcapital Core OAuth 2.0 provider.</span>
 <span class="hljs-keyword">const</span> bitcapital = Bitcapital.initialize({
-  <span class="hljs-comment">// Base instance URL for REST API calls</span>
-  http: {
-    baseURL: <span class="hljs-string">'https://your-instance.btcore.app'</span>,
-  },
-  <span class="hljs-comment">// Base instance URL for OAuth 2.0 requests</span>
-  oauth: {
-    baseURL: <span class="hljs-string">'https://your-instance.btcore.app'</span>,
-    clientId: <span class="hljs-string">'&lt; YOUR CLIENT_ID HERE &gt;'</span>,
-    clientSecret: <span class="hljs-string">'&lt; YOUR CLIENT_SECRET HERE &gt;'</span>,
-  }
+  <span class="hljs-comment">// Instance URL for REST API calls</span>
+  baseURL: <span class="hljs-string">'https://your-instance.btcore.app'</span>,
+  <span class="hljs-comment">// Credentials for OAuth 2.0 requests</span>
+  clientId: <span class="hljs-string">'&lt; YOUR CLIENT_ID HERE &gt;'</span>,
+  clientSecret: <span class="hljs-string">'&lt; YOUR CLIENT_SECRET HERE &gt;'</span>,
 });
 
 <span class="hljs-keyword">try</span> {
@@ -137,10 +132,14 @@ yarn <span class="hljs-built_in">test</span>
 					<li><strong>bitcapital.session():</strong> Manages credentials in the SDK.</li>
 					<li><strong>bitcapital.oauth():</strong> Manages authentication in the Bitcapital OAuth 2.0 provider.</li>
 				</ul>
+				<p>Utility Modules:</p>
+				<ul>
+					<li><strong>bitcapital.sign():</strong> Handles requests signature. Automatically called in required API requests.</li>
+				</ul>
 				<h2 id="documentation">Documentation</h2>
 				<h3 id="library-reference">Library Reference</h3>
 				<p>Full API specification is located at: <a href="https://sdk.btcore.app">https://sdk.btcore.app</a>.</p>
-				<h3 id="using-a-custom-storage">Using a Custom Storage</h3>
+				<h3 id="using-a-custom-session">Using a Custom Session</h3>
 				<p>The SDK comes with a built-in set of Storage providers: Memory and Local. In NodeJS environments, only Memory is available.</p>
 				<p>To override the default storage for your platform, pass it in the Session constructor:</p>
 				<pre><code class="lang-typescript"><span class="hljs-comment">// Initialize a custom session with desired storage</span>
@@ -153,6 +152,8 @@ yarn <span class="hljs-built_in">test</span>
   },
   http: {
     baseURL: data.baseURL,
+    clientId: data.clientId,
+    clientSecret: data.clientSecret,
   }
 });
 
@@ -161,17 +162,12 @@ yarn <span class="hljs-built_in">test</span>
   <span class="hljs-comment">// Pass your custom session instance</span>
   session,
   <span class="hljs-comment">// Other initialization configs...</span>
-  oauth: {
-    baseURL: data.baseURL,
-    clientId: data.clientId,
-    clientSecret: data.clientSecret,
-  },
-  http: {
-    baseURL: data.baseURL,
-  }
+  baseURL: data.baseURL,
+  clientId: data.clientId,
+  clientSecret: data.clientSecret,
 });
 </code></pre>
-				<p><strong>Creating your own Storage provider</strong> </p>
+				<p><strong>Creating a custom Storage provider</strong> </p>
 				<p>To implement another Storage mechanism, extend the <code>StorageUtilEngine</code> interface.</p>
 				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { StorageUtilEngine } <span class="hljs-keyword">from</span> <span class="hljs-string">"bitcapital-core-sdk"</span>;
 
@@ -208,6 +204,9 @@ yarn <span class="hljs-built_in">test</span>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum tsd-is-external">
+						<a href="enums/addresstype.html" class="tsd-kind-icon">Address<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-is-external">
 						<a href="enums/assetsscopes.html" class="tsd-kind-icon">Assets<wbr>Scopes</a>
 					</li>
 					<li class=" tsd-kind-enum tsd-is-external">
@@ -230,6 +229,9 @@ yarn <span class="hljs-built_in">test</span>
 					</li>
 					<li class=" tsd-kind-enum tsd-is-external">
 						<a href="enums/paymentsscopes.html" class="tsd-kind-icon">Payments<wbr>Scopes</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-is-external">
+						<a href="enums/phonetype.html" class="tsd-kind-icon">Phone<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-enum tsd-is-external">
 						<a href="enums/transactiontype.html" class="tsd-kind-icon">Transaction<wbr>Type</a>
