@@ -18,11 +18,13 @@ export interface ConsumerSchema extends BaseModelSchema {
     documents?: Document[];
     phones?: Phone[];
     addresses?: Address[];
+    taxId: string;
 }
 export default class Consumer extends BaseModel implements ConsumerSchema {
     user?: User;
     userId: string;
     status: ConsumerStatus;
+    taxId: string;
     documents?: Document[];
     phones?: Phone[];
     addresses?: Address[];

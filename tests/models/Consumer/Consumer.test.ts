@@ -10,7 +10,8 @@ export const TEST_CONSUMER: ConsumerSchema = {
   userId: uuid(),
   addresses: [new Address(TEST_ADDRESS)],
   documents: [new Document(TEST_DOCUMENT)],
-  phones: [new Phone(TEST_PHONE)]
+  phones: [new Phone(TEST_PHONE)],
+  taxId: "30755910095"
 };
 
 describe("lib.models.Consumer.Consumer", () => {
@@ -22,6 +23,7 @@ describe("lib.models.Consumer.Consumer", () => {
     expect(consumer.addresses).toBe(TEST_CONSUMER.addresses);
     expect(consumer.documents).toBe(TEST_CONSUMER.documents);
     expect(consumer.phones).toBe(TEST_CONSUMER.phones);
+    expect(consumer.taxId).toBe(TEST_CONSUMER.taxId);
 
     expect(await consumer.isValid()).toBe(true);
   });

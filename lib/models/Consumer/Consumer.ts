@@ -21,6 +21,7 @@ export interface ConsumerSchema extends BaseModelSchema {
   documents?: Document[];
   phones?: Phone[];
   addresses?: Address[];
+  taxId: string;
 }
 
 export default class Consumer extends BaseModel implements ConsumerSchema {
@@ -30,6 +31,8 @@ export default class Consumer extends BaseModel implements ConsumerSchema {
   @IsNotEmpty()
   @IsEnum(ConsumerStatus)
   status: ConsumerStatus = undefined;
+
+  @IsNotEmpty() taxId: string = undefined;
 
   documents?: Document[] = undefined;
   phones?: Phone[] = undefined;
