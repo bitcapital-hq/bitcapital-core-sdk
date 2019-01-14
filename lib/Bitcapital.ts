@@ -1,6 +1,7 @@
 import { User } from "./models";
 import {
   AssetWebService,
+  CardWebService,
   ConsumerWebService,
   DomainWebService,
   OAuthWebService,
@@ -48,6 +49,7 @@ export default class Bitcapital {
 
     // Initialize main web services
     AssetWebService.initialize({ ...options });
+    CardWebService.initialize({ ...options });
     ConsumerWebService.initialize({ ...options });
     DomainWebService.initialize({ ...options });
     PaymentWebService.initialize({ ...options });
@@ -124,6 +126,13 @@ export default class Bitcapital {
    */
   public consumers(): ConsumerWebService {
     return ConsumerWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Card service.
+   */
+  public cards(): CardWebService {
+    return CardWebService.getInstance();
   }
 
   /**
