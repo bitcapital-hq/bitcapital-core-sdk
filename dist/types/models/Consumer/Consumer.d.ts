@@ -1,32 +1,19 @@
-import { Address, Document, Phone } from ".";
-import { BaseModel, BaseModelSchema, User } from "..";
-export declare enum ConsumerStatus {
-    PENDING_DOCUMENTS = "pending_documents",
-    PENDING_SELFIE = "pending_selfie",
-    PROCESSING = "processing",
-    VERIFIED = "verified",
-    SUSPENDED = "suspended",
-    DELETED = "deleted",
-    INVALID_DOCUMENTS = "invalid_documennts",
-    INVALID_SELFIE = "invalid_selfie",
-    MANUAL_VERIFICATION = "manual_verification"
-}
+import { Address, AddressSchema, Document, DocumentSchema, Phone, PhoneSchema, ConsumerState, ConsumerStateSchema } from ".";
+import { BaseModel, BaseModelSchema, User, UserSchema } from "..";
 export interface ConsumerSchema extends BaseModelSchema {
-    status: ConsumerStatus;
-    user?: User;
-    userId: string;
-    documents?: Document[];
-    phones?: Phone[];
-    addresses?: Address[];
+    user?: UserSchema;
+    documents?: DocumentSchema[];
+    phones?: PhoneSchema[];
+    addresses?: AddressSchema[];
     taxId: string;
+    states?: ConsumerStateSchema[];
 }
-export default class Consumer extends BaseModel implements ConsumerSchema {
+export declare class Consumer extends BaseModel implements ConsumerSchema {
     user?: User;
-    userId: string;
-    status: ConsumerStatus;
     taxId: string;
+    addresses: Address[];
     documents?: Document[];
-    phones?: Phone[];
-    addresses?: Address[];
+    phones: Phone[];
+    states?: ConsumerState[];
     constructor(data: Partial<ConsumerSchema>);
 }

@@ -1,4 +1,6 @@
-export { default as Address, AddressSchema } from "./Address";
-export { default as Consumer, ConsumerSchema, ConsumerStatus } from "./Consumer";
-export { default as Document, DocumentSchema, DocumentType } from "./Document";
-export { default as Phone, PhoneSchema } from "./Phone";
+export * from "./Address";
+export * from "./Consumer";
+export * from "./Document";
+export * from "./Phone";
+export * from "./State";
+export * from "./Status";

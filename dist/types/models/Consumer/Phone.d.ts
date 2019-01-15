@@ -6,18 +6,15 @@ export declare enum PhoneType {
     MOBILE = "mobile"
 }
 export interface PhoneSchema extends BaseModelSchema {
-    type?: PhoneType;
     consumer?: Consumer;
-    consumerId: string;
     code: string;
     number: string;
     extension?: string;
-    verifiedAt?: Date | string;
+    verifiedAt?: Date;
 }
-export default class Phone extends BaseModel implements PhoneSchema {
-    type: PhoneType;
+export declare class Phone extends BaseModel implements PhoneSchema {
     consumer?: Consumer;
-    consumerId: string;
+    type: PhoneType;
     code: string;
     number: string;
     extension?: string;
