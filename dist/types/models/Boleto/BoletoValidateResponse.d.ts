@@ -1,14 +1,3 @@
-export interface BoletoValidateResponseSchema {
-    paid: boolean;
-    boletoInfo: BoletoInfo;
-    paymentInfo: PaymentInfo;
-}
-export declare class BoletoValidateResponse implements BoletoValidateResponseSchema {
-    paid: boolean;
-    boletoInfo: BoletoInfo;
-    paymentInfo: PaymentInfo;
-    constructor(data: Partial<BoletoValidateResponseSchema>);
-}
 export interface BoletoInfoSchema {
     description: string;
     amount: number;
@@ -23,35 +12,6 @@ export declare class BoletoInfo implements BoletoInfoSchema {
     hasExpirationDate: boolean;
     barcodeNumber: string;
     constructor(data: Partial<BoletoInfoSchema>);
-}
-export interface PaymentInfoSchema {
-    contractId: string;
-    idNumber: string;
-    traders: TradersInfo;
-    expiresAt: Date;
-    totalAmount: number;
-    amountDetails: PaymentAmountDetails;
-    acceptPartialAmount: PartialAmountDetails;
-    barcode: string;
-    digitableLine: string;
-    paymentDeadline: Date;
-    validDate: boolean;
-    nextBusinessDay: string;
-}
-export declare class PaymentInfo implements PaymentInfoSchema {
-    contractId: string;
-    idNumber: string;
-    traders: TradersInfo;
-    expiresAt: Date;
-    totalAmount: number;
-    amountDetails: PaymentAmountDetails;
-    acceptPartialAmount: PartialAmountDetails;
-    barcode: string;
-    digitableLine: string;
-    paymentDeadline: Date;
-    validDate: boolean;
-    nextBusinessDay: string;
-    constructor(data: Partial<PaymentInfoSchema>);
 }
 export interface TradersInfoSchema {
     recipient: string;
@@ -91,4 +51,44 @@ export declare class PaymentAmountDetails implements PaymentAmountDetailsSchema 
     paymentAmountUpdated: number;
     calculationDate: Date;
     constructor(data: Partial<PaymentAmountDetailsSchema>);
+}
+export interface PaymentInfoSchema {
+    contractId: string;
+    idNumber: string;
+    traders: TradersInfo;
+    expiresAt: Date;
+    totalAmount: number;
+    amountDetails: PaymentAmountDetails;
+    acceptPartialAmount: PartialAmountDetails;
+    barcode: string;
+    digitableLine: string;
+    paymentDeadline: Date;
+    validDate: boolean;
+    nextBusinessDay: string;
+}
+export declare class PaymentInfo implements PaymentInfoSchema {
+    contractId: string;
+    idNumber: string;
+    traders: TradersInfo;
+    expiresAt: Date;
+    totalAmount: number;
+    amountDetails: PaymentAmountDetails;
+    acceptPartialAmount: PartialAmountDetails;
+    barcode: string;
+    digitableLine: string;
+    paymentDeadline: Date;
+    validDate: boolean;
+    nextBusinessDay: string;
+    constructor(data: Partial<PaymentInfoSchema>);
+}
+export interface BoletoValidateResponseSchema {
+    paid: boolean;
+    boletoInfo: BoletoInfo;
+    paymentInfo: PaymentInfo;
+}
+export declare class BoletoValidateResponse implements BoletoValidateResponseSchema {
+    paid: boolean;
+    boletoInfo: BoletoInfo;
+    paymentInfo: PaymentInfo;
+    constructor(data: Partial<BoletoValidateResponseSchema>);
 }
