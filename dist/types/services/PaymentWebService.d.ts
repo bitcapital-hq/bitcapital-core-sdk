@@ -1,13 +1,6 @@
 import { Payment, PaymentSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-export interface PaymentRequestSchema {
-    source: string;
-    recipients: {
-        destination: string;
-        amount: string;
-    };
-    asset?: string;
-}
+import { PaymentRequest } from "./request";
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export default class PaymentWebService extends BaseModelWebService<Payment, PaymentSchema> {
@@ -26,5 +19,5 @@ export default class PaymentWebService extends BaseModelWebService<Payment, Paym
      *
      * @param payment The Payment schema
      */
-    pay(request: PaymentRequestSchema): Promise<Payment>;
+    pay(request: PaymentRequest): Promise<Payment>;
 }
