@@ -1,4 +1,4 @@
-import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer, Wallet } from "..";
+import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer, Wallet, ConsumerSchema, WalletSchema } from "..";
 export declare enum UserStatus {
     ACTIVE = "active",
     INACTIVE = "inactive"
@@ -7,7 +7,8 @@ export declare enum UserRole {
     ADMIN = "admin",
     AUDIT = "audit",
     MEDIATOR = "mediator",
-    CONSUMER = "consumer"
+    CONSUMER = "consumer",
+    PUBLIC = "public"
 }
 export interface UserSchema extends BaseModelSchema {
     firstName: string;
@@ -18,11 +19,11 @@ export interface UserSchema extends BaseModelSchema {
     password?: string;
     credentials?: OAuthCredentials;
     domain?: Domain;
-    consumer?: Consumer;
+    consumer?: ConsumerSchema;
     virtual?: boolean;
-    wallets?: Wallet[];
+    wallets?: WalletSchema[];
 }
-export default class User extends BaseModel implements UserSchema {
+export declare class User extends BaseModel implements UserSchema {
     firstName: string;
     lastName: string;
     email: string;

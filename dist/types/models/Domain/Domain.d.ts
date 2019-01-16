@@ -1,9 +1,5 @@
-import { BaseModel, BaseModelSchema, User } from "..";
-export interface DomainSettings {
-    logo?: string;
-    primaryColor?: string;
-    tintColor?: string;
-}
+import { DomainSettings, DomainSettingsSchema } from ".";
+import { BaseModel, BaseModelSchema, User, UserSchema } from "..";
 export declare enum DomainRole {
     ROOT = "root",
     COMMON = "common"
@@ -11,19 +7,19 @@ export declare enum DomainRole {
 export interface DomainSchema extends BaseModelSchema {
     name: string;
     role: DomainRole;
-    slug: string;
-    test?: boolean;
+    test: boolean;
     urls?: string[];
-    users: User[] | null;
-    settings: DomainSettings;
+    postbackUrl?: string;
+    users?: UserSchema[];
+    settings: DomainSettingsSchema;
 }
-export default class Domain extends BaseModel implements DomainSchema {
+export declare class Domain extends BaseModel implements DomainSchema {
     name: string;
     role: DomainRole;
-    slug: string;
     urls?: string[];
-    users: User[] | null;
+    postbackUrl?: string;
+    test: boolean;
+    users?: User[];
     settings: DomainSettings;
-    test?: boolean;
     constructor(data: Partial<DomainSchema>);
 }

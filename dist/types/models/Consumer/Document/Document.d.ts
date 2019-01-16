@@ -1,6 +1,6 @@
 import { Consumer } from "..";
 import { BaseModel, BaseModelSchema } from "../..";
-import { DocumentState } from "./State";
+import { DocumentState } from "./DocumentState";
 export declare enum DocumentType {
     TAX_ID = "tax_id",
     BRL_IDENTITY = "brl_identity",

@@ -4,7 +4,7 @@ export interface BaseModelSchema {
     createdAt?: string | Date;
     updatedAt?: string | Date;
 }
-export default class BaseModel {
+export declare class BaseModel {
     id?: string;
     createdAt?: Date;
     updatedAt?: Date;

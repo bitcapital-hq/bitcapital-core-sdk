@@ -1,7 +1,6 @@
 import { Http, HttpOptions } from "../base";
-import { OAuthCredentials } from "../models";
+import { OAuthSecretToken, OAuthCredentials, OAuthSecretTokenResource } from "../models";
 import { OAuthStatusResponse } from "./response";
-import OAuthSecretToken, { OAuthSecretTokenResource } from "../models/OAuth/OAuthSecretToken";
 export interface OAuthWebServiceOptions extends HttpOptions {
     clientId: string;
     clientSecret: string;
