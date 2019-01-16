@@ -2,11 +2,6 @@ export { default as BaseModel, BaseModelSchema } from "./Base/BaseModel";
 export { default as User, UserSchema, UserStatus, UserRole } from "./User/User";
 export { default as Domain, DomainSchema, DomainRole } from "./Domain/Domain";
 
-export * from "./Boleto/Boleto";
-export * from "./Boleto/BoletoPaymentRequest";
-export * from "./Boleto/BoletoPaymentResponse";
-export * from "./Boleto/BoletoValidateResponse";
-
 export {
   default as Wallet,
   WalletSchema,
@@ -27,6 +22,11 @@ export {
   TransactionAdditionalData,
   TransactionSchema
 } from "./Transaction/Transaction";
+
+export * from "./Boleto/Boleto";
+export * from "./Boleto/BoletoPaymentRequest";
+export * from "./Boleto/BoletoPaymentResponse";
+export * from "./Boleto/BoletoValidateResponse";
 
 export * from "./OAuth";
 export * from "./Consumer";
