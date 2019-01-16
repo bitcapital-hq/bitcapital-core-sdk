@@ -1,11 +1,7 @@
 import { BaseModel, BaseModelSchema, User } from "..";
-import { IsNotEmpty, IsEnum, IsAlphanumeric, IsFQDN } from "class-validator";
-
-export interface DomainSettings {
-  logo?: string;
-  primaryColor?: string;
-  tintColor?: string;
-}
+import { IsNotEmpty, IsEnum, IsFQDN, IsOptional } from "class-validator";
+import { UserSchema } from "../User/User";
+import { DomainSettings, DomainSettingsSchema } from "./DomainSettings";
 
 export enum DomainRole {
   ROOT = "root",
@@ -15,11 +11,11 @@ export enum DomainRole {
 export interface DomainSchema extends BaseModelSchema {
   name: string;
   role: DomainRole;
-  slug: string;
-  test?: boolean;
+  test: boolean;
   urls?: string[];
-  users: User[] | null;
-  settings: DomainSettings;
+  postbackUrl?: string;
+  users?: UserSchema[];
+  settings: DomainSettingsSchema;
 }
 
 export default class Domain extends BaseModel implements DomainSchema {
@@ -29,21 +25,25 @@ export default class Domain extends BaseModel implements DomainSchema {
   @IsEnum(DomainRole)
   role: DomainRole = undefined;
 
-  @IsNotEmpty()
-  @IsAlphanumeric()
-  slug: string = undefined;
-
+  @IsOptional()
   @IsFQDN({}, { each: true })
   urls?: string[] = undefined;
 
-  users: User[] | null = undefined;
+  @IsOptional()
+  @IsFQDN()
+  postbackUrl?: string;
+
+  @IsNotEmpty() test: boolean = undefined;
+
+  users?: User[] = undefined;
   settings: DomainSettings = undefined;
-  test?: boolean = undefined;
 
   constructor(data: Partial<DomainSchema>) {
     super(data);
 
-    // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    Object.assign(this, data);
+
+    this.users = data.users && data.users.map(user => new User(user));
+    this.settings = data.settings && new DomainSettings(data.settings);
   }
 }
