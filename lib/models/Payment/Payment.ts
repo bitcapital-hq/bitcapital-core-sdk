@@ -1,7 +1,4 @@
-import { BaseModel, BaseModelSchema } from "..";
-import Wallet, { WalletSchema } from "../Wallet/Wallet";
-import Transaction from "../Transaction/Transaction";
-import Asset, { AssetSchema } from "../Asset/Asset";
+import { BaseModel, BaseModelSchema, Transaction, WalletSchema, AssetSchema, Wallet, Asset } from "..";
 
 export enum PaymentType {
   DEPOSIT = "deposit",
@@ -17,7 +14,7 @@ export interface PaymentSchema extends BaseModelSchema {
   asset?: AssetSchema;
 }
 
-export default class Payment extends BaseModel implements PaymentSchema {
+export class Payment extends BaseModel implements PaymentSchema {
   type: PaymentType;
   transaction: Transaction;
   amount: string;

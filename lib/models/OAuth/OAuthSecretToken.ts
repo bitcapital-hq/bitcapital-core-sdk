@@ -14,7 +14,7 @@ export interface OAuthSecretTokenSchema extends BaseModelSchema {
   resources: OAuthSecretTokenResource[];
 }
 
-export default class OAuthSecretToken extends BaseModel implements OAuthSecretTokenSchema {
+export class OAuthSecretToken extends BaseModel implements OAuthSecretTokenSchema {
   id: string;
   secretToken: string;
   expires: Date;

@@ -1,11 +1,17 @@
-import User, { UserSchema } from "../User/User";
-import { BaseModel, BaseModelSchema } from "..";
-import { StellarWalletData, CardsWalletData } from "./WalletData";
-import { WalletBalance } from "./WalletBalance";
+import {
+  BaseModel,
+  BaseModelSchema,
+  UserSchema,
+  AssetSchema,
+  TransactionSchema,
+  PaymentSchema,
+  User,
+  Asset,
+  Transaction,
+  Payment
+} from "..";
+import { StellarWalletData, CardsWalletData, WalletBalance } from ".";
 import { IsNotEmpty, IsEnum } from "class-validator";
-import Asset, { AssetSchema } from "../Asset/Asset";
-import { TransactionSchema, Transaction } from "../Transaction";
-import Payment, { PaymentSchema } from "../Payment/Payment";
 
 export enum WalletStatus {
   PENDING = "pending",

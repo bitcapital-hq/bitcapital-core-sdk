@@ -20,7 +20,7 @@ export interface OAuthClientSchema extends BaseModelSchema {
   domainId?: string;
 }
 
-export default class OAuthClient extends BaseModel implements OAuthClientSchema {
+export class OAuthClient extends BaseModel implements OAuthClientSchema {
   clientId: string;
   clientSecret: string;
   platform: OAuthClientPlatform;

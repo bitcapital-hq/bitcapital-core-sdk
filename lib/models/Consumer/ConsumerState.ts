@@ -1,4 +1,5 @@
-import { BaseModel, Consumer, ConsumerStatus } from "..";
+import { BaseModel } from "..";
+import { Consumer, ConsumerStatus } from ".";
 
 export interface ConsumerStateSchema {
   consumer: Consumer;

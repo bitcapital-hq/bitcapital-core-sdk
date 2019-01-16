@@ -6,7 +6,7 @@ export interface BaseModelSchema {
   updatedAt?: string | Date;
 }
 
-export default class BaseModel {
+export class BaseModel {
   @IsOptional()
   @IsUUID()
   id?: string;

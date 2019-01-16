@@ -1,5 +1,5 @@
 import { ValidateNested } from "class-validator";
-import { DomainSettingsLocks } from "./DomainSettingsLocks";
+import { DomainSettingsLocks } from ".";
 
 export interface DomainSettingsSchema {
   logo?: string;

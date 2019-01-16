@@ -14,7 +14,7 @@ export type ScopeType =
   | TransactionsScopes
   | WalletsScopes;
 
-const Scopes = {
+export const Scopes = {
   assets: AssetsScopes,
   domains: DomainsScopes,
   oAuthClients: OAuthClientScopes,
@@ -23,5 +23,3 @@ const Scopes = {
   transactions: TransactionsScopes,
   wallets: WalletsScopes
 };
-
-export default Scopes;

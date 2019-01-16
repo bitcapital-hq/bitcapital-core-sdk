@@ -1,9 +1,6 @@
-import { BaseModel, BaseModelSchema } from "..";
-import Wallet, { WalletSchema } from "../Wallet/Wallet";
-import Payment, { PaymentSchema } from "../Payment/Payment";
+import { TransactionState, TransactionStateSchema } from ".";
+import { BaseModel, BaseModelSchema, WalletSchema, PaymentSchema, UserSchema, Wallet, User, Payment } from "..";
 import { IsNotEmpty, IsEnum } from "class-validator";
-import { TransactionStateSchema, TransactionState } from "./TransactionState";
-import User, { UserSchema } from "../User/User";
 
 export enum TransactionType {
   CREATE_ACCOUNT = "create_account",

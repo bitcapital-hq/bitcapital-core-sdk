@@ -1,7 +1,6 @@
-import { BaseModel, BaseModelSchema, User } from "..";
+import { DomainSettings, DomainSettingsSchema } from ".";
+import { BaseModel, BaseModelSchema, User, UserSchema } from "..";
 import { IsNotEmpty, IsEnum, IsFQDN, IsOptional } from "class-validator";
-import { UserSchema } from "../User/User";
-import { DomainSettings, DomainSettingsSchema } from "./DomainSettings";
 
 export enum DomainRole {
   ROOT = "root",
@@ -18,7 +17,7 @@ export interface DomainSchema extends BaseModelSchema {
   settings: DomainSettingsSchema;
 }
 
-export default class Domain extends BaseModel implements DomainSchema {
+export class Domain extends BaseModel implements DomainSchema {
   @IsNotEmpty() name: string = undefined;
 
   @IsNotEmpty()
