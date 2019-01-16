@@ -1,39 +1,52 @@
-import { TransactionType } from "./TransactionType";
 import { BaseModel, BaseModelSchema } from "..";
-import Wallet from "../Wallet/Wallet";
-import Payment from "../Payment/Payment";
+import Wallet, { WalletSchema } from "../Wallet/Wallet";
+import Payment, { PaymentSchema } from "../Payment/Payment";
 import { IsNotEmpty, IsEnum } from "class-validator";
+import { TransactionStateSchema, TransactionState } from "./TransactionState";
+import User, { UserSchema } from "../User/User";
 
-export { TransactionType };
+export enum TransactionType {
+  CREATE_ACCOUNT = "create_account",
+  CHANGE_TRUST = "change_trust",
+  PAYMENT = "payment"
+}
 
 export interface TransactionAdditionalData {
   hash?: string;
-  assetId?: string;
-  assetCode?: string;
+  asset_id?: string;
+  wallet_id?: string;
+  asset_code?: string;
+  conductorType?: "boleto" | "teddoc";
 }
 
 export interface TransactionSchema extends BaseModelSchema {
-  data: TransactionAdditionalData;
   type: TransactionType;
-  source: Wallet;
-  payments?: Payment[];
+  source: WalletSchema;
+  payments?: PaymentSchema[];
+  states?: TransactionStateSchema[];
+  createdBy?: UserSchema;
+  additionalData?: TransactionAdditionalData;
 }
 
-export default class Transaction extends BaseModel implements TransactionSchema {
-  @IsNotEmpty() data: TransactionAdditionalData = undefined;
-
+export class Transaction extends BaseModel implements TransactionSchema {
   @IsNotEmpty()
   @IsEnum(TransactionType)
   type: TransactionType = undefined;
 
-  @IsNotEmpty() source: Wallet = undefined;
-
+  source: Wallet = undefined;
+  createdBy?: User = undefined;
   payments?: Payment[] = undefined;
+  states?: TransactionState[] = undefined;
+  additionalData?: TransactionAdditionalData = undefined;
 
   constructor(data: Partial<TransactionSchema>) {
     super(data);
 
-    // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    Object.assign(this, data);
+
+    this.source = data.source && new Wallet(data.source);
+    this.createdBy = data.createdBy && new User(data.createdBy);
+    this.payments = data.payments && data.payments.map(payment => new Payment(payment));
+    this.states = data.states && data.states.map(state => new TransactionState(state));
   }
 }
