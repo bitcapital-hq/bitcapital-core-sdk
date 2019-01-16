@@ -1,5 +1,8 @@
 import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer, Wallet } from "..";
 import { IsNotEmpty, IsEmail, IsEnum, IsOptional } from "class-validator";
+import { WalletSchema } from "../Wallet/Wallet";
+import { ConsumerSchema } from "../Consumer";
+import { OAuthCredentialsSchema } from "../OAuth";
 
 export enum UserStatus {
   ACTIVE = "active",
@@ -10,7 +13,8 @@ export enum UserRole {
   ADMIN = "admin",
   AUDIT = "audit",
   MEDIATOR = "mediator",
-  CONSUMER = "consumer"
+  CONSUMER = "consumer",
+  PUBLIC = "public"
 }
 
 export interface UserSchema extends BaseModelSchema {
@@ -20,11 +24,11 @@ export interface UserSchema extends BaseModelSchema {
   role?: UserRole;
   status?: UserStatus;
   password?: string;
-  credentials?: OAuthCredentials;
+  credentials?: OAuthCredentialsSchema;
   domain?: Domain;
-  consumer?: Consumer;
+  consumer?: ConsumerSchema;
   virtual?: boolean;
-  wallets?: Wallet[];
+  wallets?: WalletSchema[];
 }
 
 export default class User extends BaseModel implements UserSchema {
@@ -56,18 +60,15 @@ export default class User extends BaseModel implements UserSchema {
   constructor(data: Partial<UserSchema>) {
     super(data);
 
-    // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    Object.assign(this, data);
 
-    this.virtual =
-      data.credentials && data.credentials.virtual ? data.credentials.virtual : data.virtual || this.virtual;
+    this.consumer = data.consumer && new Consumer(data.consumer);
+    this.wallets = data.wallets && data.wallets.map(wallet => new Wallet(wallet));
+    this.credentials = data.credentials && new OAuthCredentials(data.credentials);
 
-    // Relationship attributes enforcing
-    this.credentials = data.credentials
-      ? data.credentials instanceof OAuthCredentials
-        ? data.credentials
-        : new OAuthCredentials(data.credentials)
-      : undefined;
+    if (data.virtual === undefined && data.credentials !== undefined && data.credentials.virtual !== undefined) {
+      this.virtual = data.credentials.virtual;
+    }
   }
 
   get name() {
