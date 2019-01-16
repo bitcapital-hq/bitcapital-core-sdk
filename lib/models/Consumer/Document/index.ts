@@ -1,3 +1,3 @@
 export * from "./Document";
-export * from "./State";
-export * from "./Status";
+export * from "./DocumentState";
+export * from "./DocumentStatus";

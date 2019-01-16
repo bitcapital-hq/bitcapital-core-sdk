@@ -1,7 +1,7 @@
 import { Consumer } from "..";
 import { BaseModel, BaseModelSchema } from "../..";
 import { IsNotEmpty, IsEnum, IsOptional, IsBase64, IsDate, MinDate } from "class-validator";
-import { DocumentState } from "./State";
+import { DocumentState } from "./DocumentState";
 
 export enum DocumentType {
   TAX_ID = "tax_id", // CPF
