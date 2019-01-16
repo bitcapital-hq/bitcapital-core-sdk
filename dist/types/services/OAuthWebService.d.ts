@@ -5,7 +5,7 @@ export interface OAuthWebServiceOptions extends HttpOptions {
     clientId: string;
     clientSecret: string;
 }
-export default class OAuthWebService {
+export declare class OAuthWebService {
     protected options: OAuthWebServiceOptions;
     protected http: Http;
     protected static instance: OAuthWebService;

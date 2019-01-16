@@ -1,5 +1,5 @@
 import { User } from "./models";
-import { AssetWebService, ConsumerWebService, DomainWebService, OAuthWebService, PaymentWebService, UserWebService, WalletWebService } from "./services";
+import { AddressWebService, AssetWebService, ConsumerWebService, DocumentWebService, DomainWebService, OAuthWebService, PaymentWebService, PhoneWebService, UserWebService, WalletWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
 import { RequestSigningOptions } from "./utils";
@@ -55,6 +55,10 @@ export default class Bitcapital {
      */
     oauth(): OAuthWebService;
     /**
+     * Interface for the Addresses service.
+     */
+    addresses(): AddressWebService;
+    /**
      * Interface for the Assets service.
      */
     assets(): AssetWebService;
@@ -63,6 +67,10 @@ export default class Bitcapital {
      */
     consumers(): ConsumerWebService;
     /**
+     * Interface for the Documents service.
+     */
+    documents(): DocumentWebService;
+    /**
      * Interface for the Domains service.
      */
     domains(): DomainWebService;
@@ -70,6 +78,10 @@ export default class Bitcapital {
      * Interface for the Payments service.
      */
     payments(): PaymentWebService;
+    /**
+     * Interface for the Phones service.
+     */
+    phones(): PhoneWebService;
     /**
      * Interface for the Users service.
      */

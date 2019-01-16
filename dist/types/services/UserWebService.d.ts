@@ -1,9 +1,9 @@
 import { PaginatedArray, Pagination } from "..";
 import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {
 }
-export default class UserWebService extends BaseModelWebService<User, UserSchema> {
+export declare class UserWebService extends BaseModelWebService<User, UserSchema> {
     protected static instance: UserWebService;
     constructor(options: UserWebServiceOptions);
     static getInstance(): UserWebService;

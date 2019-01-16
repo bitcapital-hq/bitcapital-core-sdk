@@ -1,10 +1,10 @@
 import { Wallet, WalletSchema, Transaction, TransactionSchema, Payment, PaymentSchema } from "../models";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
+export class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
   protected static instance: WalletWebService;
 
   constructor(options: WalletWebServiceOptions) {

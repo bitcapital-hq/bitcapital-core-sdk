@@ -1,10 +1,10 @@
 import { Asset, AssetSchema, Payment } from "../models";
 import { PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 import { AssetEmitRequestSchema, AssetDestroyRequestSchema } from "./request";
 export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {
 }
-export default class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
+export declare class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
     protected readonly options: AssetWebServiceOptions;
     protected static instance: AssetWebService;
     constructor(options: AssetWebServiceOptions);
