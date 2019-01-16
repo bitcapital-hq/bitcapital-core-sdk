@@ -1,6 +1,12 @@
 import { RequestUtil } from "../utils";
-import { Payment, PaymentRequestSchema, PaymentSchema } from "../models";
+import { Payment, PaymentSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+
+export interface PaymentRequestSchema {
+  source: string;
+  recipients: { destination: string; amount: string };
+  asset?: string;
+}
 
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {}
 
