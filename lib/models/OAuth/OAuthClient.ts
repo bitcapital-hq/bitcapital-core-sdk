@@ -1,5 +1,12 @@
 import { BaseModel, BaseModelSchema } from "..";
 
+export enum OAuthClientPlatform {
+  ROOT = "root",
+  API = "api",
+  WEB = "web",
+  TEST = "test"
+}
+
 export enum OAuthClientStatus {
   ACTIVE = "active",
   INACTIVE = "inactive"
@@ -7,22 +14,22 @@ export enum OAuthClientStatus {
 
 export interface OAuthClientSchema extends BaseModelSchema {
   clientId: string;
-  clientSecret?: string;
-  platform: string;
+  clientSecret: string;
+  platform: OAuthClientPlatform;
   status: OAuthClientStatus;
+  domainId?: string;
 }
 
 export default class OAuthClient extends BaseModel implements OAuthClientSchema {
   clientId: string;
-  clientSecret?: string;
-  platform: string;
+  clientSecret: string;
+  platform: OAuthClientPlatform;
   status: OAuthClientStatus;
+  domainId?: string;
 
   constructor(data: OAuthClientSchema) {
     super(data);
-    this.clientId = data.clientId;
-    this.clientSecret = data.clientSecret;
-    this.platform = data.platform;
-    this.status = data.status;
+
+    Object.assign(this, data);
   }
 }
