@@ -8,4 +8,6 @@ export { default as UserWebService } from "./UserWebService";
 export { default as WalletWebService } from "./WalletWebService";
 export { default as PaymentWebService } from "./PaymentWebService";
 
+export * from "./BankingWebService";
+
 export * from "./request";

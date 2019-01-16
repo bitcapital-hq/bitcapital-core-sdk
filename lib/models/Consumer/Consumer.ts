@@ -1,6 +1,7 @@
 import { Address, Document, Phone } from ".";
 import { BaseModel, BaseModelSchema, User } from "..";
 import { IsNotEmpty, IsEnum, IsUUID } from "class-validator";
+import { Banking } from "./Banking";
 
 export enum ConsumerStatus {
   PENDING_DOCUMENTS = "pending_documents",
@@ -21,6 +22,7 @@ export interface ConsumerSchema extends BaseModelSchema {
   documents?: Document[];
   phones?: Phone[];
   addresses?: Address[];
+  bankings?: Banking[];
   taxId: string;
 }
 
@@ -37,10 +39,11 @@ export default class Consumer extends BaseModel implements ConsumerSchema {
   documents?: Document[] = undefined;
   phones?: Phone[] = undefined;
   addresses?: Address[] = undefined;
+  bankings?: Banking[] = undefined;
 
   constructor(data: Partial<ConsumerSchema>) {
     super(data);
     // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    Object.assign(this, data);
   }
 }

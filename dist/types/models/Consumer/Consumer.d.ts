@@ -1,5 +1,6 @@
 import { Address, Document, Phone } from ".";
 import { BaseModel, BaseModelSchema, User } from "..";
+import { Banking } from "./Banking";
 export declare enum ConsumerStatus {
     PENDING_DOCUMENTS = "pending_documents",
     PENDING_SELFIE = "pending_selfie",
@@ -18,6 +19,7 @@ export interface ConsumerSchema extends BaseModelSchema {
     documents?: Document[];
     phones?: Phone[];
     addresses?: Address[];
+    bankings?: Banking[];
     taxId: string;
 }
 export default class Consumer extends BaseModel implements ConsumerSchema {
@@ -28,5 +30,6 @@ export default class Consumer extends BaseModel implements ConsumerSchema {
     documents?: Document[];
     phones?: Phone[];
     addresses?: Address[];
+    bankings?: Banking[];
     constructor(data: Partial<ConsumerSchema>);
 }
