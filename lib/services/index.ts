@@ -1,6 +1,7 @@
 export { default as BaseModelWebService } from "./base/BaseModelWebService";
 
 export { default as AssetWebService } from "./AssetWebService";
+export { default as BoletoWebService } from "./BoletoWebService";
 export { default as ConsumerWebService } from "./ConsumerWebService";
 export { default as DomainWebService } from "./DomainWebService";
 export { default as OAuthWebService, OAuthWebServiceOptions } from "./OAuthWebService";

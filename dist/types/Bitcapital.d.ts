@@ -1,5 +1,5 @@
 import { User } from "./models";
-import { AssetWebService, ConsumerWebService, DomainWebService, OAuthWebService, PaymentWebService, UserWebService, WalletWebService } from "./services";
+import { AssetWebService, ConsumerWebService, DomainWebService, OAuthWebService, PaymentWebService, UserWebService, WalletWebService, BoletoWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
 import { RequestSigningOptions } from "./utils";
@@ -58,6 +58,10 @@ export default class Bitcapital {
      * Interface for the Assets service.
      */
     assets(): AssetWebService;
+    /**
+     * Interface for the Boleto service.
+     */
+    boletos(): BoletoWebService;
     /**
      * Interface for the Consumers service.
      */

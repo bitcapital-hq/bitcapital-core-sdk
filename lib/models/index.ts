@@ -2,6 +2,11 @@ export { default as BaseModel, BaseModelSchema } from "./Base/BaseModel";
 export { default as User, UserSchema, UserStatus, UserRole } from "./User/User";
 export { default as Domain, DomainSchema, DomainRole } from "./Domain/Domain";
 
+export { default as Boleto, BoletoSchema } from "./Boleto/Boleto";
+export { BoletoPaymentRequestSchema } from "./Boleto/BoletoPaymentRequest";
+export { default as BoletoPaymentResponse, BoletoPaymentResponseSchema } from "./Boleto/BoletoPaymentResponse";
+export { default as BoletoValidateResponse, BoletoValidateResponseSchema } from "./Boleto/BoletoValidateResponse";
+
 export {
   default as Wallet,
   WalletSchema,
