@@ -1,5 +1,6 @@
-export * from "./Asset";
 export * from "./Base";
+
+export * from "./Asset";
 export * from "./Consumer";
 export * from "./Domain";
 export * from "./OAuth";
