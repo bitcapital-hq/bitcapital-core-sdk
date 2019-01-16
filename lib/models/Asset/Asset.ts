@@ -1,10 +1,14 @@
 import { BaseModel, BaseModelSchema, Wallet } from "..";
 import { IsOptional, IsNotEmpty } from "class-validator";
+import { WalletSchema } from "../Wallet/Wallet";
+import Payment, { PaymentSchema } from "../Payment/Payment";
 
 export interface AssetSchema extends BaseModelSchema {
   name?: string;
   code: string;
-  wallet?: Wallet;
+  issuer: WalletSchema;
+  wallets?: WalletSchema[];
+  payments?: PaymentSchema[];
 }
 
 export default class Asset extends BaseModel implements AssetSchema {
@@ -12,12 +16,17 @@ export default class Asset extends BaseModel implements AssetSchema {
 
   @IsOptional() name?: string = undefined;
 
-  @IsOptional() wallet?: Wallet = undefined;
+  issuer: Wallet = undefined;
+  wallets?: Wallet[] = undefined;
+  payments?: Payment[] = undefined;
 
   constructor(data: Partial<AssetSchema>) {
     super(data);
 
-    // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    Object.assign(this, data);
+
+    this.issuer = data.issuer && new Wallet(data.issuer);
+    this.wallets = data.wallets && data.wallets.map(wallet => new Wallet(wallet));
+    this.payments = data.payments && data.payments.map(payments => new Payment(payments));
   }
 }
