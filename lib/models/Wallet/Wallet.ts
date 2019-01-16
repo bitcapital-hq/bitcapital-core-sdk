@@ -31,11 +31,11 @@ export interface WalletSchema extends BaseModelSchema {
   stellar: StellarWalletData;
   additionalData?: CardsWalletData;
   balances?: WalletBalance[];
-  user: UserSchema;
-  issuedAssets: AssetSchema[];
-  assets: AssetSchema[];
-  transactions: TransactionSchema[];
-  received: PaymentSchema[];
+  user?: UserSchema;
+  issuedAssets?: AssetSchema[];
+  assets?: AssetSchema[];
+  transactions?: TransactionSchema[];
+  received?: PaymentSchema[];
 }
 
 export class Wallet extends BaseModel implements WalletSchema {
@@ -50,11 +50,11 @@ export class Wallet extends BaseModel implements WalletSchema {
   stellar: StellarWalletData;
   additionalData?: CardsWalletData;
   balances?: WalletBalance[];
-  user: User;
-  issuedAssets: Asset[];
-  assets: Asset[];
-  transactions: Transaction[];
-  received: Payment[];
+  user?: User;
+  issuedAssets?: Asset[];
+  assets?: Asset[];
+  transactions?: Transaction[];
+  received?: Payment[];
 
   constructor(data: Partial<WalletSchema>) {
     super(data);

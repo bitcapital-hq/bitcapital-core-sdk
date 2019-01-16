@@ -1,4 +1,5 @@
 import { BaseModel, BaseModelSchema, Transaction, WalletSchema, AssetSchema, Wallet, Asset } from "..";
+import { TransactionSchema } from "../Transaction";
 
 export enum PaymentType {
   DEPOSIT = "deposit",
@@ -8,17 +9,17 @@ export enum PaymentType {
 
 export interface PaymentSchema extends BaseModelSchema {
   type: PaymentType;
-  transaction: Transaction;
   amount: string;
-  destination: WalletSchema;
+  destination?: WalletSchema;
+  transaction?: TransactionSchema;
   asset?: AssetSchema;
 }
 
 export class Payment extends BaseModel implements PaymentSchema {
   type: PaymentType;
-  transaction: Transaction;
   amount: string;
-  destination: Wallet;
+  transaction?: Transaction;
+  destination?: Wallet;
   asset?: Asset;
 
   constructor(data: Partial<PaymentSchema>) {
