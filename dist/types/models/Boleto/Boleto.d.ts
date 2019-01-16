@@ -17,7 +17,7 @@ export interface BoletoSchema extends BaseModelSchema {
     digitableLine?: string;
     isRegistered?: boolean;
 }
-export default class Boleto extends BaseModel implements BoletoSchema {
+export declare class Boleto extends BaseModel implements BoletoSchema {
     conductorId?: number;
     documentNumber?: string;
     expiresAt: Date;

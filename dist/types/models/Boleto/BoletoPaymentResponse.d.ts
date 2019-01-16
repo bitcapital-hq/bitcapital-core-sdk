@@ -10,7 +10,7 @@ export interface BoletoPaymentResponseSchema {
     taxAmount: number;
     amount: number;
 }
-export default class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
+export declare class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
     paymentId: number;
     accountId: number;
     status: string;

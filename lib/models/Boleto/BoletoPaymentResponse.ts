@@ -13,19 +13,19 @@ export interface BoletoPaymentResponseSchema {
   amount: number;
 }
 
-export default class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
-  @IsNotEmpty() paymentId: number;
-  @IsNotEmpty() accountId: number;
-  @IsNotEmpty() status: string;
-  @IsNotEmpty() description: string;
-  @IsNotEmpty() barcode: string;
-  @IsNotEmpty() expiresAt: Date;
-  @IsNotEmpty() recipientName: string;
-  @IsNotEmpty() discount: number;
-  @IsNotEmpty() taxAmount: number;
-  @IsNotEmpty() amount: number;
+export class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
+  @IsNotEmpty() paymentId: number = undefined;
+  @IsNotEmpty() accountId: number = undefined;
+  @IsNotEmpty() status: string = undefined;
+  @IsNotEmpty() description: string = undefined;
+  @IsNotEmpty() barcode: string = undefined;
+  @IsNotEmpty() expiresAt: Date = undefined;
+  @IsNotEmpty() recipientName: string = undefined;
+  @IsNotEmpty() discount: number = undefined;
+  @IsNotEmpty() taxAmount: number = undefined;
+  @IsNotEmpty() amount: number = undefined;
 
   constructor(data: Partial<BoletoPaymentResponse>) {
-    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    Object.assign(this, data);
   }
 }
