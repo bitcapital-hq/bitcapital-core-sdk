@@ -1,10 +1,12 @@
 import { AssetSchema, Asset } from "../../../lib";
 import * as uuid from "uuid/v4";
+import { TEST_WALLET } from "../Wallet/Wallet.test";
 
 export const TEST_ASSET: AssetSchema = {
   id: uuid(),
   name: "Name",
-  code: "Code "
+  code: "Code ",
+  issuer: TEST_WALLET
 };
 
 describe("lib.models.Asset", () => {

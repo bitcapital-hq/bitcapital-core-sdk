@@ -1,35 +1,23 @@
-import * as hat from "hat";
 import * as uuid from "uuid/v4";
-import { StellarWalletData, WalletType, Recipient, Wallet, Payment } from "../../../lib";
+import { Wallet, Payment, PaymentType, PaymentSchema } from "../../../lib";
+import { TEST_WALLET } from "../Wallet/Wallet.test";
 
 const TEST_RECIPIENT = {
   amount: "1.00"
 };
 
-const TEST_WALLET = {
-  type: WalletType.STELLAR,
-  data: { publicKey: hat() } as StellarWalletData
-};
-
-export const TEST_PAYMENT = {
+export const TEST_PAYMENT: PaymentSchema = {
   id: uuid(),
-  source: TEST_WALLET,
-  recipients: [{ ...TEST_RECIPIENT, destination: TEST_WALLET }],
-  transaction: undefined
+  type: PaymentType.TRANSFER,
+  amount: "123.45",
+  destination: TEST_WALLET
 };
 
 describe("lib.models.Payment", () => {
   it("should instantiate properly", async () => {
-    const recipient = new Payment({
-      source: new Wallet({ ...TEST_WALLET }),
-      recipients: [
-        new Recipient({
-          ...TEST_RECIPIENT,
-          destination: new Wallet({ ...TEST_WALLET })
-        })
-      ]
-    });
-    expect(recipient.source).toBeDefined();
-    expect(recipient.source.type).toBeDefined();
+    const payment = new Payment(TEST_PAYMENT);
+
+    expect(payment.type).toBe(PaymentType.TRANSFER);
+    expect(payment.amount).toBe("123.45");
   });
 });

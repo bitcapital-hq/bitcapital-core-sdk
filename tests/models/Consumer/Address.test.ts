@@ -1,8 +1,7 @@
-import * as uuid from "uuid/v4";
-import { Address, AddressSchema } from "../../../lib";
+import { Address, AddressSchema, AddressType } from "../../../lib";
 
 export const TEST_ADDRESS: AddressSchema = {
-  consumerId: uuid(),
+  type: AddressType.HOME,
   state: "SP",
   country: "Brasil",
   geo: { x: -15.123456, y: 7.987654 },
@@ -17,7 +16,7 @@ describe("lib.models.Consumer.Address", () => {
   it("should instantiate a valid instance", async () => {
     const address = new Address({ ...TEST_ADDRESS });
 
-    expect(address.consumerId).toBe(TEST_ADDRESS.consumerId);
+    expect(address.type).toBe(TEST_ADDRESS.type);
     expect(address.country).toBe(TEST_ADDRESS.country);
     expect(address.geo).toBe(TEST_ADDRESS.geo);
     expect(address.city).toBe(TEST_ADDRESS.city);
