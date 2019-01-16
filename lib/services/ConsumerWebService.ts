@@ -146,6 +146,18 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
    * @param consumer The partial User schema.
    */
   public async update(id: string, consumer: Partial<UserSchema>): Promise<User> {
+    if (consumer.consumer) {
+      if (consumer.consumer.addresses) {
+        throw new Error("Addresses should be updated on it's own service");
+      }
+      if (consumer.consumer.documents) {
+        throw new Error("Documents should be updated on it's own service");
+      }
+      if (consumer.consumer.phones) {
+        throw new Error("Phones should be updated on it's own service");
+      }
+    }
+
     const response = await this.http.post(`/consumers/${id}`, consumer);
 
     if (!response || response.status !== 200) {
