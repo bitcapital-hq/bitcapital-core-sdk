@@ -5,7 +5,6 @@ import {
   Domain,
   Consumer,
   Wallet,
-  OAuthCredentialsSchema,
   ConsumerSchema,
   WalletSchema
 } from "..";
@@ -31,7 +30,7 @@ export interface UserSchema extends BaseModelSchema {
   role?: UserRole;
   status?: UserStatus;
   password?: string;
-  credentials?: OAuthCredentialsSchema;
+  credentials?: OAuthCredentials;
   domain?: Domain;
   consumer?: ConsumerSchema;
   virtual?: boolean;

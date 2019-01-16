@@ -19,14 +19,19 @@ export class OAuthCredentials extends BaseModel {
   expiresAt?: Date;
   scope: string[];
 
-  constructor(data: Partial<OAuthCredentialsSchema>) {
+  constructor(data: Partial<OAuthCredentialsSchema | OAuthCredentials>) {
     super(data);
 
-    this.accessToken = data.access_token;
-    this.refreshToken = data.refresh_token;
-    this.tokenType = data.token_type;
-    this.expiresAt = new Date(Date.now() + data.expires_in * 1000);
-    this.userId = data.user_id;
-    this.virtual = data.virtual || this.virtual;
+    Object.assign(this, data);
+
+    const instance = data as Partial<OAuthCredentials>;
+    const schema = data as Partial<OAuthCredentialsSchema>;
+
+    this.accessToken = instance.accessToken || schema.access_token;
+    this.refreshToken = instance.refreshToken || schema.refresh_token;
+    this.tokenType = instance.tokenType || schema.token_type;
+    this.expiresAt = instance.expiresAt || new Date(Date.now() + schema.expires_in * 1000);
+    this.userId = instance.userId || schema.user_id;
+    this.virtual = instance.virtual || schema.virtual || this.virtual;
   }
 }
