@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "../../../node_modules/class-validator";
+import { IsNotEmpty, validate, ValidationError } from "class-validator";
 
 export interface BoletoPaymentResponseSchema {
   paymentId: number;
@@ -27,5 +27,24 @@ export class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
 
   constructor(data: Partial<BoletoPaymentResponse>) {
     Object.assign(this, data);
+  }
+
+  /**
+   * Returns true if the model is valid or an array of validation errors if invalid
+   *
+   * @param {boolean} [toString] If toString is true, this will return a formatted error string
+   */
+  public async isValid(toString?: boolean): Promise<string | true | ValidationError[]> {
+    const errors = await validate(this);
+
+    if (errors.length === 0) {
+      return true;
+    }
+
+    if (toString) {
+      return errors.map(error => error.toString(true)).join("; ");
+    }
+
+    return errors;
   }
 }

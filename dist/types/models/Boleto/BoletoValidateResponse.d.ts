@@ -1,3 +1,4 @@
+import { ValidationError } from "../../../node_modules/class-validator";
 export interface BoletoInfoSchema {
     description: string;
     amount: number;
@@ -91,4 +92,10 @@ export declare class BoletoValidateResponse implements BoletoValidateResponseSch
     boletoInfo: BoletoInfo;
     paymentInfo: PaymentInfo;
     constructor(data: Partial<BoletoValidateResponseSchema>);
+    /**
+     * Returns true if the model is valid or an array of validation errors if invalid
+     *
+     * @param {boolean} [toString] If toString is true, this will return a formatted error string
+     */
+    isValid(toString?: boolean): Promise<string | true | ValidationError[]>;
 }
