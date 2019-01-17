@@ -32,14 +32,14 @@ describe("lib.services.DomainWebService", () => {
     it("should find the mediators", async () => {
       const mediators = await DomainWebService.getInstance().findConsumersById(domainSchema.id);
 
-      expect(mediators.length).toBe(3);
+      expect(mediators.length).toBe(domainSchema.users.length);
       expect(mediators[0]).toEqual(domainSchema.users[0]);
     });
 
     it("should find the consumers", async () => {
       const consumers = await DomainWebService.getInstance().findMediatorsById(domainSchema.id);
 
-      expect(consumers.length).toBe(3);
+      expect(consumers.length).toBe(domainSchema.users.length);
       expect(consumers[0]).toEqual(domainSchema.users[0]);
     });
   });

@@ -52,7 +52,7 @@ describe("lib.services.ConsumerWebService", () => {
     it("should find wallets", async () => {
       const wallets = await ConsumerWebService.getInstance().findWalletsById(userSchema.id);
 
-      expect(wallets.length).toBe(3);
+      expect(wallets.length).toBe(userSchema.wallets.length);
       expect(wallets[0]).toMatchObject(userSchema.wallets[0]);
     });
   });
