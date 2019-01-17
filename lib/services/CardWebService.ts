@@ -53,6 +53,12 @@ export default class CardWebService extends BaseModelWebService<Card, CardSchema
   }
 
   public async findOne(id: string): Promise<Card> {
-    throw new Error(`The card with ID ${id} can not be found: method not implemented`);
+    const response = await this.http.get(`/cards/${id}`);
+
+    if (!response || !response.data || response.status !== 200) {
+      throw response;
+    }
+
+    return new Card(response.data);
   }
 }
