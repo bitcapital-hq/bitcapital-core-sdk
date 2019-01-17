@@ -35,5 +35,5 @@ export declare class Address extends BaseModel implements AddressSchema {
         x: number;
         y: number;
     };
-    constructor(data: Partial<AddressSchema>);
+    constructor(data?: Partial<AddressSchema>);
 }

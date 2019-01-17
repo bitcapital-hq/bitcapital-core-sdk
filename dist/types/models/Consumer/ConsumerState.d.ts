@@ -9,5 +9,5 @@ export declare class ConsumerState extends BaseModel implements ConsumerStateSch
     consumer: Consumer;
     status: ConsumerStatus;
     additionalData?: any;
-    constructor(data: Partial<ConsumerStateSchema>);
+    constructor(data?: Partial<ConsumerStateSchema>);
 }

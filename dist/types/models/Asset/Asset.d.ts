@@ -12,5 +12,5 @@ export declare class Asset extends BaseModel implements AssetSchema {
     issuer: Wallet;
     wallets?: Wallet[];
     payments?: Payment[];
-    constructor(data: Partial<AssetSchema>);
+    constructor(data?: Partial<AssetSchema>);
 }

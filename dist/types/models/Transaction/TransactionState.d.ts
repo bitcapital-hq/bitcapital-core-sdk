@@ -9,5 +9,5 @@ export declare class TransactionState extends BaseModel implements TransactionSt
     consumer: Transaction;
     status: TransactionStatus;
     additionalData?: any;
-    constructor(data: Partial<TransactionStateSchema>);
+    constructor(data?: Partial<TransactionStateSchema>);
 }

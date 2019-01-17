@@ -21,5 +21,5 @@ export declare class Domain extends BaseModel implements DomainSchema {
     test: boolean;
     users?: User[];
     settings: DomainSettings;
-    constructor(data: Partial<DomainSchema>);
+    constructor(data?: Partial<DomainSchema>);
 }

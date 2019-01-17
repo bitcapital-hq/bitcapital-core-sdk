@@ -9,5 +9,5 @@ export declare class DocumentState extends BaseModel implements DocumentStateSch
     document: Document;
     status: DocumentStatus;
     additionalData?: any;
-    constructor(data: Partial<DocumentStateSchema>);
+    constructor(data?: Partial<DocumentStateSchema>);
 }

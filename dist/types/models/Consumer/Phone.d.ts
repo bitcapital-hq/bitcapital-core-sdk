@@ -19,5 +19,5 @@ export declare class Phone extends BaseModel implements PhoneSchema {
     number: string;
     extension?: string;
     verifiedAt?: Date;
-    constructor(data: Partial<PhoneSchema>);
+    constructor(data?: Partial<PhoneSchema>);
 }

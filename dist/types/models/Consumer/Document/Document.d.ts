@@ -45,5 +45,5 @@ export declare class Document extends BaseModel implements DocumentSchema {
     back?: string;
     selfie?: string;
     expiresAt?: Date;
-    constructor(data: Partial<DocumentSchema>);
+    constructor(data?: Partial<DocumentSchema>);
 }

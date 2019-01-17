@@ -35,6 +35,6 @@ export declare class User extends BaseModel implements UserSchema {
     wallets?: Wallet[];
     credentials?: OAuthCredentials;
     virtual: boolean;
-    constructor(data: Partial<UserSchema>);
+    constructor(data?: Partial<UserSchema>);
     readonly name: string;
 }

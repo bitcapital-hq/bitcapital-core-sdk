@@ -18,5 +18,5 @@ export declare class OAuthSecretToken extends BaseModel implements OAuthSecretTo
     user: User;
     scope: string[];
     resources: OAuthSecretTokenResource[];
-    constructor(data: Partial<OAuthSecretTokenSchema>);
+    constructor(data?: Partial<OAuthSecretTokenSchema>);
 }

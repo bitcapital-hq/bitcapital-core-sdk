@@ -27,5 +27,5 @@ export declare class Transaction extends BaseModel implements TransactionSchema 
     payments?: Payment[];
     states?: TransactionState[];
     additionalData?: TransactionAdditionalData;
-    constructor(data: Partial<TransactionSchema>);
+    constructor(data?: Partial<TransactionSchema>);
 }

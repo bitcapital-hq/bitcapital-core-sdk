@@ -15,5 +15,5 @@ export declare class Consumer extends BaseModel implements ConsumerSchema {
     documents?: Document[];
     phones: Phone[];
     states?: ConsumerState[];
-    constructor(data: Partial<ConsumerSchema>);
+    constructor(data?: Partial<ConsumerSchema>);
 }

@@ -16,5 +16,5 @@ export declare class OAuthCredentials extends BaseModel {
     userId?: string;
     expiresAt?: Date;
     scope: string[];
-    constructor(data: Partial<OAuthCredentialsSchema | OAuthCredentials>);
+    constructor(data?: Partial<OAuthCredentialsSchema | OAuthCredentials>);
 }
