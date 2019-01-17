@@ -2,10 +2,11 @@ import { DomainWebService } from "../../lib";
 import { TEST_DOMAIN } from "../models/Domain/Domain.test";
 import { CRUDWebServiceTest } from "./WebServiceUtil";
 import MockAdapter from "axios-mock-adapter";
-import { TEST_USER } from "../models/User/User.test";
+
+const domainSchema = TEST_DOMAIN();
 
 describe("lib.services.DomainWebService", () => {
-  CRUDWebServiceTest("domains", DomainWebService, TEST_DOMAIN);
+  CRUDWebServiceTest("domains", DomainWebService, domainSchema);
 
   describe("Success cases", () => {
     beforeAll(() => {
@@ -16,30 +17,30 @@ describe("lib.services.DomainWebService", () => {
       });
       const mock = new MockAdapter((DomainWebService.getInstance() as any).http.client);
 
-      mock.onGet(`/domains/root`).reply(200, TEST_DOMAIN);
-      mock.onGet(`/domains/${TEST_DOMAIN.id}/users`).reply(200, [TEST_USER, TEST_USER, TEST_USER]);
-      mock.onGet(`/domains/${TEST_DOMAIN.id}/consumers`).reply(200, [TEST_USER, TEST_USER, TEST_USER]);
-      mock.onGet(`/domains/${TEST_DOMAIN.id}/mediators`).reply(200, [TEST_USER, TEST_USER, TEST_USER]);
+      mock.onGet(`/domains/root`).reply(200, domainSchema);
+      mock.onGet(`/domains/${domainSchema.id}/users`).reply(200, domainSchema.users);
+      mock.onGet(`/domains/${domainSchema.id}/consumers`).reply(200, domainSchema.users);
+      mock.onGet(`/domains/${domainSchema.id}/mediators`).reply(200, domainSchema.users);
     });
 
     it("should find the root domain", async () => {
       const root = await DomainWebService.getInstance().findRootDomain();
 
-      expect(root).toEqual(TEST_DOMAIN);
+      expect(root).toEqual(domainSchema);
     });
 
     it("should find the mediators", async () => {
-      const mediators = await DomainWebService.getInstance().findConsumersById(TEST_DOMAIN.id);
+      const mediators = await DomainWebService.getInstance().findConsumersById(domainSchema.id);
 
       expect(mediators.length).toBe(3);
-      expect(mediators[0]).toEqual(TEST_USER);
+      expect(mediators[0]).toEqual(domainSchema.users[0]);
     });
 
     it("should find the consumers", async () => {
-      const consumers = await DomainWebService.getInstance().findMediatorsById(TEST_DOMAIN.id);
+      const consumers = await DomainWebService.getInstance().findMediatorsById(domainSchema.id);
 
       expect(consumers.length).toBe(3);
-      expect(consumers[0]).toEqual(TEST_USER);
+      expect(consumers[0]).toEqual(domainSchema.users[0]);
     });
   });
 
@@ -51,9 +52,9 @@ describe("lib.services.DomainWebService", () => {
       const mock = new MockAdapter((DomainWebService.getInstance() as any).http.client);
 
       mock.onGet(`/domains/root`).reply(500);
-      mock.onGet(`/domains/${TEST_DOMAIN.id}/users`).reply(500);
-      mock.onGet(`/domains/${TEST_DOMAIN.id}/consumers`).reply(500);
-      mock.onGet(`/domains/${TEST_DOMAIN.id}/mediators`).reply(500);
+      mock.onGet(`/domains/${domainSchema.id}/users`).reply(500);
+      mock.onGet(`/domains/${domainSchema.id}/consumers`).reply(500);
+      mock.onGet(`/domains/${domainSchema.id}/mediators`).reply(500);
     });
 
     it("should fail to find the root domain", async () => {
@@ -63,12 +64,12 @@ describe("lib.services.DomainWebService", () => {
 
     it("should fail to find the mediators", async () => {
       expect.assertions(1);
-      return expect(DomainWebService.getInstance().findConsumersById(TEST_DOMAIN.id)).rejects.toBeTruthy();
+      return expect(DomainWebService.getInstance().findConsumersById(domainSchema.id)).rejects.toBeTruthy();
     });
 
     it("should fail to find the consumers", async () => {
       expect.assertions(1);
-      return expect(DomainWebService.getInstance().findMediatorsById(TEST_DOMAIN.id)).rejects.toBeTruthy();
+      return expect(DomainWebService.getInstance().findMediatorsById(domainSchema.id)).rejects.toBeTruthy();
     });
   });
 });

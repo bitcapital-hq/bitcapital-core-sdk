@@ -10,6 +10,7 @@ import {
   OAuthCredentialsSchema
 } from "../../../lib";
 import { TEST_CONSUMER } from "../Consumer/Consumer.test";
+import { TEST_WALLET } from "../Wallet/Wallet.test";
 
 const TEST_CREDENTIALS = (virtual: boolean = false): OAuthCredentialsSchema => ({
   virtual,
@@ -28,9 +29,10 @@ export const TEST_USER = (
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   email: faker.internet.email(),
-  role: UserRole[faker.random.number(5)] as UserRole,
+  role: UserRole.PUBLIC,
   status: UserStatus.ACTIVE,
   consumer: options.consumer ? TEST_CONSUMER() : undefined,
+  wallets: Array.from({ length: faker.random.number(3) }, () => TEST_WALLET()),
   credentials: options.credentials
     ? new OAuthCredentials(TEST_CREDENTIALS(options.credentials === "virtual"))
     : undefined

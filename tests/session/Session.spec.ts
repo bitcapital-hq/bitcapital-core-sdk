@@ -1,8 +1,6 @@
 import * as hat from "hat";
 import * as MockAdapter from "axios-mock-adapter";
-import { User, OAuthCredentials, Session, StorageUtil, MemoryStorage } from "../../lib";
-import OAuthWebService from "../../lib/services/OAuthWebService";
-import UserWebService from "../../lib/services/UserWebService";
+import { User, UserRole, OAuthCredentials, Session, StorageUtil, MemoryStorage } from "../../lib";
 
 jest.useFakeTimers();
 
@@ -136,7 +134,7 @@ describe("lib.session.Session", () => {
 
       // Make a call that will return 401, as if the token was revoked or expired
       try {
-        await session.userWebService.findAll({});
+        await session.userWebService.findAllByRole({}, UserRole.CONSUMER);
       } catch {}
 
       // Check if the session performed a refresh token authentication
@@ -146,7 +144,7 @@ describe("lib.session.Session", () => {
     it("should publish the right events", async () => {
       let notified = false;
       const observer = {
-        update(eventName: string) {
+        update() {
           notified = true;
         }
       };

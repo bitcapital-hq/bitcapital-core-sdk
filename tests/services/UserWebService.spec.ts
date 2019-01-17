@@ -1,8 +1,10 @@
 import * as hat from "hat";
 import MockAdapter from "axios-mock-adapter";
-import { UserWebService, OAuthCredentials, User, UserSchema } from "../../lib";
+import { UserWebService, OAuthCredentials, User } from "../../lib";
 import { TEST_USER } from "../models/User/User.test";
 import { CRUDWebServiceTest } from "./WebServiceUtil";
+
+const userSchema = TEST_USER();
 
 const TEST_CREDENTIALS = {
   token_type: "bearer",
@@ -13,7 +15,7 @@ const TEST_CREDENTIALS = {
 };
 
 describe("lib.services.UserWebService", () => {
-  CRUDWebServiceTest("users", UserWebService, TEST_USER);
+  CRUDWebServiceTest("users", UserWebService, userSchema);
 });
 
 describe("Success user instance", () => {
@@ -30,7 +32,7 @@ describe("Success user instance", () => {
     const mock = new MockAdapter((user as any).http.client);
 
     // Mock all requests to a simple success
-    mock.onGet("/users/me").reply(200, TEST_USER);
+    mock.onGet("/users/me").reply(200, userSchema);
   });
 
   it("should get an user with a mocked instance", async () => {
