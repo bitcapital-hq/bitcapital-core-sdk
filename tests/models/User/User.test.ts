@@ -1,78 +1,80 @@
-import * as hat from "hat";
 import * as uuid from "uuid/v4";
-import { User, OAuthCredentials, UserRole, UserStatus, UserSchema } from "../../../lib";
+import * as faker from "faker";
+import {
+  User,
+  OAuthCredentials,
+  UserRole,
+  UserStatus,
+  UserSchema,
+  Consumer,
+  OAuthCredentialsSchema
+} from "../../../lib";
+import { TEST_CONSUMER } from "../Consumer/Consumer.test";
 
-const TEST_CREDENTIALS = {
+const TEST_CREDENTIALS = (virtual: boolean = false): OAuthCredentialsSchema => ({
+  virtual,
   token_type: "bearer",
-  access_token: hat(),
-  refresh_token: hat(),
-  user_id: hat(),
-  expires_in: 3600
-};
-
-const TEST_VIRTUAL_CREDENTIALS = {
-  token_type: "bearer",
-  access_token: hat(),
-  refresh_token: hat(),
-  user_id: hat(),
+  access_token: uuid(),
+  refresh_token: uuid(),
+  user_id: uuid(),
   expires_in: 3600,
-  virtual: true
-};
+  scope: []
+});
 
-export const TEST_USER: UserSchema = {
+export const TEST_USER = (
+  options: { consumer: boolean; credentials: false | "common" | "virtual" } = { consumer: false, credentials: false }
+): UserSchema => ({
   id: uuid(),
-  firstName: "John Doe",
-  lastName: "Connor Bro",
-  email: "user@test.com",
-  role: UserRole.CONSUMER,
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  role: UserRole[faker.random.number(5)] as UserRole,
   status: UserStatus.ACTIVE,
-  domain: undefined,
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString()
-};
+  consumer: options.consumer ? TEST_CONSUMER() : undefined,
+  credentials: options.credentials
+    ? new OAuthCredentials(TEST_CREDENTIALS(options.credentials === "virtual"))
+    : undefined
+});
 
 describe("lib.models.User", () => {
   it("should instantiate properly without credentials", async () => {
-    const user = new User({ ...TEST_USER });
+    const schema = TEST_USER({ consumer: true, credentials: false });
+    const user = new User(schema);
 
-    expect(user).toBeTruthy();
-    expect(user.firstName).toBe(TEST_USER.firstName);
-    expect(user.lastName).toBe(TEST_USER.lastName);
-    expect(user.email).toBe(TEST_USER.email);
-    expect(user.credentials).toBeUndefined();
+    expect(user.id).toBe(schema.id);
+    expect(user.firstName).toBe(schema.firstName);
+    expect(user.lastName).toBe(schema.lastName);
+    expect(user.email).toBe(schema.email);
+    expect(user.role).toBe(schema.role);
+    expect(user.status).toBe(schema.status);
+    expect(user.consumer).toBeInstanceOf(Consumer);
   });
 
   it("should instantiate properly with credentials instance", async () => {
-    const credentials = new OAuthCredentials(TEST_CREDENTIALS);
-    const user = new User({ credentials, ...TEST_USER });
+    const schema = TEST_USER({ consumer: true, credentials: "common" });
+    const user = new User(schema);
 
-    expect(user).toBeTruthy();
-    expect(user.firstName).toBe(TEST_USER.firstName);
-    expect(user.lastName).toBe(TEST_USER.lastName);
-    expect(user.email).toBe(TEST_USER.email);
+    expect(user.id).toBe(schema.id);
+    expect(user.firstName).toBe(schema.firstName);
+    expect(user.lastName).toBe(schema.lastName);
+    expect(user.email).toBe(schema.email);
+    expect(user.role).toBe(schema.role);
+    expect(user.status).toBe(schema.status);
     expect(user.credentials).toBeInstanceOf(OAuthCredentials);
   });
 
   it("should instantiate properly with virtual credentials instance", async () => {
-    const credentials = new OAuthCredentials(TEST_VIRTUAL_CREDENTIALS);
-    const user = new User({ credentials, ...TEST_USER });
+    const schema = TEST_USER({ consumer: true, credentials: "virtual" });
+    const user = new User(schema);
 
-    expect(user).toBeTruthy();
+    expect(user.id).toBe(schema.id);
+    expect(user.firstName).toBe(schema.firstName);
+    expect(user.lastName).toBe(schema.lastName);
+    expect(user.email).toBe(schema.email);
+    expect(user.role).toBe(schema.role);
+    expect(user.status).toBe(schema.status);
+    expect(user.credentials).toBeInstanceOf(OAuthCredentials);
     expect(user.virtual).toBe(true);
-    expect(user.firstName).toBe(TEST_USER.firstName);
-    expect(user.lastName).toBe(TEST_USER.lastName);
-    expect(user.email).toBe(TEST_USER.email);
-    expect(user.credentials).toBeInstanceOf(OAuthCredentials);
-  });
-
-  it("should instantiate properly with credentials raw data", async () => {
-    const user = new User({ credentials: TEST_CREDENTIALS as any, ...TEST_USER });
-
-    expect(user).toBeTruthy();
-    expect(user.firstName).toBe(TEST_USER.firstName);
-    expect(user.lastName).toBe(TEST_USER.lastName);
-    expect(user.email).toBe(TEST_USER.email);
-    expect(user.credentials).toBeInstanceOf(OAuthCredentials);
   });
 
   it("should handle the name getter and setter properly", async () => {

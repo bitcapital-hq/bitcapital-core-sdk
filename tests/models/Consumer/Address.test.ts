@@ -1,29 +1,39 @@
+import * as faker from "faker";
+import * as uuid from "uuid/v4";
 import { Address, AddressSchema, AddressType } from "../../../lib";
 
-export const TEST_ADDRESS: AddressSchema = {
+export const TEST_ADDRESS = (): AddressSchema => ({
+  id: uuid(),
   type: AddressType.HOME,
-  state: "SP",
-  country: "Brasil",
-  geo: { x: -15.123456, y: 7.987654 },
-  city: "São Paulo",
-  code: "13000000",
-  street: "Example Street",
-  complement: "Around the corner",
-  number: "1234"
-};
+  street: faker.address.streetAddress(),
+  state: faker.address.state(),
+  city: faker.address.city(),
+  code: faker.address.zipCode(),
+  // Half addresses will have no complement
+  complement: Math.random() > 0.5 ? faker.address.secondaryAddress() : undefined,
+  country: faker.address.country(),
+  number: String(Math.floor(Math.random() * 100)),
+  geo: {
+    x: Number(faker.address.latitude()),
+    y: Number(faker.address.longitude())
+  }
+});
 
 describe("lib.models.Consumer.Address", () => {
   it("should instantiate a valid instance", async () => {
-    const address = new Address({ ...TEST_ADDRESS });
+    const schema = TEST_ADDRESS();
+    const address = new Address(schema);
 
-    expect(address.type).toBe(TEST_ADDRESS.type);
-    expect(address.country).toBe(TEST_ADDRESS.country);
-    expect(address.geo).toBe(TEST_ADDRESS.geo);
-    expect(address.city).toBe(TEST_ADDRESS.city);
-    expect(address.code).toBe(TEST_ADDRESS.code);
-    expect(address.street).toBe(TEST_ADDRESS.street);
-    expect(address.complement).toBe(TEST_ADDRESS.complement);
-    expect(address.number).toBe(TEST_ADDRESS.number);
+    expect(address.id).toBe(schema.id);
+    expect(address.type).toBe(schema.type);
+    expect(address.country).toBe(schema.country);
+    expect(address.geo).toMatchObject(schema.geo);
+    expect(address.state).toBe(schema.state);
+    expect(address.city).toBe(schema.city);
+    expect(address.code).toBe(schema.code);
+    expect(address.street).toBe(schema.street);
+    expect(address.complement).toBe(schema.complement);
+    expect(address.number).toBe(schema.number);
 
     expect(await address.isValid()).toBe(true);
   });

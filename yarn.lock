@@ -42,6 +42,10 @@
   version "3.1.43"
   resolved "https://registry.yarnpkg.com/@types/crypto-js/-/crypto-js-3.1.43.tgz#b859347d6289ba13e347c335a4c9efa63337a748"
 
+"@types/faker@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-4.1.4.tgz#5e5bcd81a6ecf85fb6150f7eb857e755a09fd91f"
+
 "@types/fs-extra@4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-4.0.0.tgz#1dd742ad5c9bce308f7a52d02ebc01421bc9102f"
@@ -845,6 +849,10 @@ cosmiconfig@^5.0.2:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
+cpf@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/cpf/-/cpf-2.0.1.tgz#7979eb33f0a14e8217292944311faaba82cb7f02"
+
 create-error-class@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
@@ -1233,6 +1241,10 @@ extsprintf@^1.2.0:
 eyes@0.1.x:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/eyes/-/eyes-0.1.8.tgz#62cf120234c683785d902348a800ef3e0cc20bc0"
+
+faker@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-4.1.0.tgz#1e45bbbecc6774b3c195fad2835109c6d748cc3f"
 
 fast-deep-equal@^2.0.1:
   version "2.0.1"
