@@ -36,7 +36,7 @@ export class Transaction extends BaseModel implements TransactionSchema {
   states?: TransactionState[] = undefined;
   additionalData?: TransactionAdditionalData = undefined;
 
-  constructor(data: Partial<TransactionSchema>) {
+  constructor(data: Partial<TransactionSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

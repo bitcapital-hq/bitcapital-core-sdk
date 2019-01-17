@@ -68,7 +68,7 @@ export class Document extends BaseModel implements DocumentSchema {
   @MinDate(new Date()) // Don't allow expired documents
   expiresAt?: Date = undefined;
 
-  constructor(data: Partial<DocumentSchema>) {
+  constructor(data: Partial<DocumentSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

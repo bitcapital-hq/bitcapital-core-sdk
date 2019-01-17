@@ -19,7 +19,7 @@ export class OAuthCredentials extends BaseModel {
   expiresAt?: Date;
   scope: string[];
 
-  constructor(data: Partial<OAuthCredentialsSchema | OAuthCredentials>) {
+  constructor(data: Partial<OAuthCredentialsSchema | OAuthCredentials> = {}) {
     super(data);
 
     Object.assign(this, data);

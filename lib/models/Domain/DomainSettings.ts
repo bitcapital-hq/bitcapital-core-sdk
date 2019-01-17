@@ -15,7 +15,7 @@ export class DomainSettings implements DomainSettingsSchema {
 
   @ValidateNested() locks: DomainSettingsLocks = undefined;
 
-  constructor(data?: Partial<DomainSettings>) {
+  constructor(data: Partial<DomainSettings> = {}) {
     Object.assign(data, this);
 
     this.locks = data.locks && new DomainSettingsLocks(data.locks);

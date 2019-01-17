@@ -36,7 +36,7 @@ export class Address extends BaseModel implements AddressSchema {
 
   geo: { x: number; y: number } = undefined;
 
-  constructor(data: Partial<AddressSchema>) {
+  constructor(data: Partial<AddressSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

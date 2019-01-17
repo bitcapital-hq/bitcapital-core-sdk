@@ -12,7 +12,7 @@ export class DocumentState extends BaseModel implements DocumentStateSchema {
   status: DocumentStatus;
   additionalData?: any;
 
-  constructor(data: Partial<DocumentStateSchema>) {
+  constructor(data: Partial<DocumentStateSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

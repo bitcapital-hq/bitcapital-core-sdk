@@ -37,7 +37,7 @@ export class Domain extends BaseModel implements DomainSchema {
   users?: User[] = undefined;
   settings: DomainSettings = undefined;
 
-  constructor(data: Partial<DomainSchema>) {
+  constructor(data: Partial<DomainSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

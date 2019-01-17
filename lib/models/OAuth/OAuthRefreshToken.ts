@@ -18,7 +18,7 @@ export class OAuthRefreshToken extends BaseModel implements OAuthRefreshTokenSch
   client: OAuthClient;
   accessToken: OAuthAccessToken;
 
-  constructor(data: Partial<OAuthRefreshToken>) {
+  constructor(data: Partial<OAuthRefreshToken> = {}) {
     super(data);
 
     this.id = data.id;

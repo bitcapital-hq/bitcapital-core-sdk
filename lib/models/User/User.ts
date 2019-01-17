@@ -63,7 +63,7 @@ export class User extends BaseModel implements UserSchema {
   credentials?: OAuthCredentials = undefined;
   virtual: boolean = undefined;
 
-  constructor(data: Partial<UserSchema>) {
+  constructor(data: Partial<UserSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

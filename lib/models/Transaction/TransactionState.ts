@@ -12,7 +12,7 @@ export class TransactionState extends BaseModel implements TransactionStateSchem
   status: TransactionStatus;
   additionalData?: any;
 
-  constructor(data: Partial<TransactionStateSchema>) {
+  constructor(data: Partial<TransactionStateSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

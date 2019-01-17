@@ -36,7 +36,7 @@ export class Phone extends BaseModel implements PhoneSchema {
   @MaxDate(new Date(new Date().getTime() + 5 * 60000)) // Now + 5min for server time differences
   verifiedAt?: Date = undefined;
 
-  constructor(data: Partial<PhoneSchema>) {
+  constructor(data: Partial<PhoneSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

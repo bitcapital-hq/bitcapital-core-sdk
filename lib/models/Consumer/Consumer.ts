@@ -30,7 +30,7 @@ export class Consumer extends BaseModel implements ConsumerSchema {
   phones: Phone[] = undefined;
   states?: ConsumerState[];
 
-  constructor(data: Partial<ConsumerSchema>) {
+  constructor(data: Partial<ConsumerSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

@@ -56,7 +56,7 @@ export class Wallet extends BaseModel implements WalletSchema {
   transactions?: Transaction[];
   received?: Payment[];
 
-  constructor(data: Partial<WalletSchema>) {
+  constructor(data: Partial<WalletSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

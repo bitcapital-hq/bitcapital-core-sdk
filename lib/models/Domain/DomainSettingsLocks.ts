@@ -17,54 +17,54 @@ export class DomainSettingsLocks implements DomainSettingsLocksSchema {
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_single_transaction_value = undefined;
+  total_single_transaction_value = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_recent_transactions_value_monthly = undefined;
+  total_recent_transactions_value_monthly = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_recent_transactions_value_weekly = undefined;
+  total_recent_transactions_value_weekly = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_recent_transactions_value_daily = undefined;
+  total_recent_transactions_value_daily = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_sent_transactions_value_monthly = undefined;
+  total_sent_transactions_value_monthly = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_sent_transactions_value_weekly = undefined;
+  total_sent_transactions_value_weekly = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_sent_transactions_value_daily = undefined;
+  total_sent_transactions_value_daily = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_received_transactions_value_monthly = undefined;
+  total_received_transactions_value_monthly = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_received_transactions_value_weekly = undefined;
+  total_received_transactions_value_weekly = 0;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  total_received_transactions_value_daily = undefined;
+  total_received_transactions_value_daily = 0;
 
-  constructor(data?: Partial<DomainSettingsLocks>) {
+  constructor(data: Partial<DomainSettingsLocks> = {}) {
     Object.assign(data, this);
   }
 }

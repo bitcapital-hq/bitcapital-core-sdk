@@ -22,7 +22,7 @@ export class OAuthSecretToken extends BaseModel implements OAuthSecretTokenSchem
   scope: string[] = [];
   resources: OAuthSecretTokenResource[] = [];
 
-  constructor(data: Partial<OAuthSecretTokenSchema>) {
+  constructor(data: Partial<OAuthSecretTokenSchema> = {}) {
     super(data);
 
     Object.assign(this, data);

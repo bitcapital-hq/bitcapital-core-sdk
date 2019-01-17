@@ -22,7 +22,7 @@ export class Payment extends BaseModel implements PaymentSchema {
   destination?: Wallet;
   asset?: Asset;
 
-  constructor(data: Partial<PaymentSchema>) {
+  constructor(data: Partial<PaymentSchema> = {}) {
     super(data);
 
     Object.assign(this, data);
