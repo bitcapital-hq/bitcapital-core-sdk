@@ -1,17 +1,23 @@
 import User from "../User/User";
 import { BaseModel, BaseModelSchema } from "..";
 
-export interface CardSchema extends BaseModelSchema {
-  user?: User | string;
+export enum CardStatus {
+  AVAIABLE = "available",
+  BLOCKED = "blocked",
+  CANCELLED = "cancelled"
 }
 
-export default class Card extends BaseModel implements CardSchema {
+export interface CardSchema extends BaseModelSchema {
+  user?: User | string;
+  status: string;
+}
+
+export class Card extends BaseModel implements CardSchema {
   user?: User | string = undefined;
+  status: string = undefined;
 
   constructor(data: Partial<CardSchema>) {
     super(data);
-
-    // Assign all props
-    Object.getOwnPropertyNames(this).map(prop => (this[prop] = data[prop]));
+    Object.assign(this, data);
   }
 }

@@ -1,5 +1,6 @@
 import { BaseModel, BaseModelSchema, OAuthCredentials, Domain, Consumer, Wallet } from "..";
 import { IsNotEmpty, IsEmail, IsEnum, IsOptional } from "class-validator";
+import { Card } from "../";
 
 export enum UserStatus {
   ACTIVE = "active",
@@ -25,6 +26,7 @@ export interface UserSchema extends BaseModelSchema {
   consumer?: Consumer;
   virtual?: boolean;
   wallets?: Wallet[];
+  cards?: Card[];
 }
 
 export default class User extends BaseModel implements UserSchema {
@@ -50,6 +52,7 @@ export default class User extends BaseModel implements UserSchema {
 
   consumer?: Consumer = undefined;
   wallets?: Wallet[] = undefined;
+  cards?: Card[] = undefined;
   credentials?: OAuthCredentials = undefined;
   virtual: boolean = undefined;
 

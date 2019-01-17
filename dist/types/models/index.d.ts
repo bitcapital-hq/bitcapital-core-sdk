@@ -9,3 +9,5 @@ export { default as Asset, AssetSchema } from "./Asset/Asset";
 export { default as Transaction, TransactionType, TransactionAdditionalData, TransactionSchema } from "./Transaction/Transaction";
 export * from "./OAuth";
 export * from "./Consumer";
+export * from "./Card/Card";
+export * from "./Card/CardBlockRequest";
