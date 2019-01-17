@@ -1,11 +1,20 @@
 import MockAdapter from "axios-mock-adapter";
 import * as uuid from "uuid/v4";
-import { PaymentWebService } from "../../lib";
+import { PaymentWebService, WithdrawalRequestSchema } from "../../lib";
 import { TEST_PAYMENT } from "../models/Payment/Payment.test";
 import { TEST_ASSET } from "../models/Asset/Asset.test";
 import { TEST_RECIPIENT } from "../models/Payment/Recipient.test";
+import { TEST_WITHDRAWAL } from "../models/Payment/BankTransferPayment.test";
+
+const withdrawalSchema = TEST_WITHDRAWAL();
 
 describe("lib.services.PaymentWebService", () => {
+  const withdrawalRequestData = {
+    bankingId: "6d1d9504-ec51-4bf9-bdb2-374dfbedb122",
+    amount: 1000,
+    description: "Pagamento de fornecedores"
+  } as WithdrawalRequestSchema;
+
   describe("Success cases", () => {
     beforeAll(() => {
       PaymentWebService.initialize({
@@ -17,6 +26,12 @@ describe("lib.services.PaymentWebService", () => {
 
       mock.onGet("/payments/" + TEST_PAYMENT.id).reply(200, TEST_PAYMENT);
       mock.onPost(`/payments/${TEST_ASSET.id}`).reply(200, TEST_PAYMENT);
+      mock
+        .onPost(`/payments/withdraw/${withdrawalRequestData.bankingId}`, {
+          amount: 1000,
+          description: "Pagamento de fornecedores"
+        })
+        .reply(200, withdrawalSchema);
     });
 
     it("should find one", async () => {
@@ -33,6 +48,11 @@ describe("lib.services.PaymentWebService", () => {
       });
 
       expect(one).toEqual(TEST_PAYMENT);
+    });
+
+    it("should perform withdrawal successfully", async () => {
+      const response = await PaymentWebService.getInstance().withdraw(withdrawalRequestData);
+      expect(response).toEqual(withdrawalSchema);
     });
   });
 

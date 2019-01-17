@@ -30,6 +30,5 @@ describe("lib.models.Payment", () => {
       ]
     });
     expect(recipient.source).toBeDefined();
-    expect(recipient.source.type).toBeDefined();
   });
 });

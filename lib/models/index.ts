@@ -14,7 +14,7 @@ export {
 export * from "./Consumer/Banking";
 export * from "./Payment/BankTransferPayment";
 export { default as Payment, PaymentSchema } from "./Payment/Payment";
-export { PaymentRequestSchema } from "./Payment/PaymentRequest";
+export { PaymentRequestSchema, WithdrawalRequestSchema } from "./Payment/PaymentRequest";
 export { default as Recipient, RecipientSchema } from "./Payment/Recipient";
 export { default as Asset, AssetSchema } from "./Asset/Asset";
 

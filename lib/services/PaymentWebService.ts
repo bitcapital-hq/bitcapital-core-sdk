@@ -1,5 +1,5 @@
 import { RequestUtil } from "../utils";
-import { Payment, PaymentRequestSchema, PaymentSchema, BankTransferPayment } from "../models";
+import { Payment, PaymentRequestSchema, PaymentSchema, BankTransferPayment, WithdrawalRequestSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {}
@@ -66,10 +66,17 @@ export default class PaymentWebService extends BaseModelWebService<Payment, Paym
    *
    * @param bankingId The id of the bank account to be credited
    */
-  public async withdraw(bankingId: string): Promise<BankTransferPayment> {
+  public async withdraw(requestData: WithdrawalRequestSchema): Promise<BankTransferPayment> {
+    const { bankingId, amount, description } = requestData;
+
+    const payload = { amount, description };
     const url = `/payments/withdraw/${bankingId}`;
-    const signature = RequestUtil.sign(this.options.clientSecret, { url, method: "POST" });
-    const response = await this.http.post(url, { headers: { ...signature } });
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      url,
+      body: JSON.stringify(payload),
+      method: "POST"
+    });
+    const response = await this.http.post(url, payload, { headers: { ...signature } });
 
     if (!response || response.status !== 200) {
       throw response;

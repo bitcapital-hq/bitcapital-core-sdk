@@ -1,4 +1,4 @@
-import { Payment, PaymentRequestSchema, PaymentSchema, BankTransferPayment } from "../models";
+import { Payment, PaymentRequestSchema, PaymentSchema, BankTransferPayment, WithdrawalRequestSchema } from "../models";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {
 }
@@ -24,5 +24,5 @@ export default class PaymentWebService extends BaseModelWebService<Payment, Paym
      *
      * @param bankingId The id of the bank account to be credited
      */
-    withdraw(bankingId: string): Promise<BankTransferPayment>;
+    withdraw(requestData: WithdrawalRequestSchema): Promise<BankTransferPayment>;
 }
