@@ -9,8 +9,6 @@ import { TEST_BOLETO_VALIDATE_RESPONSE } from "../models/Boleto/BoletoValidateRe
 import { BoletoWebService } from "../../lib";
 
 describe("lib.services.BoletoWebService", () => {
-  CRUDWebServiceTest("boletos", BoletoWebService, TEST_BOLETO);
-
   describe("Success cases", () => {
     beforeAll(() => {
       BoletoWebService.initialize({
@@ -22,8 +20,13 @@ describe("lib.services.BoletoWebService", () => {
 
       mock.onGet(`/boleto/${TEST_BOLETO.id}`).reply(200, TEST_BOLETO);
       mock
-        .onGet("/boleto", { params: { barcode: TEST_BOLETO.barCode } })
-        .reply(200, fs.readFileSync(path.join(__dirname, "../mocks/boleto/validate.json")).toString());
+        .onGet("/boleto")
+        .reply(
+          config =>
+            config.params.barcode && config.params.barcode === TEST_BOLETO.barCode
+              ? [200, TEST_BOLETO_VALIDATE_RESPONSE]
+              : [400]
+        );
 
       mock
         .onPost(`/boleto/pay`, {

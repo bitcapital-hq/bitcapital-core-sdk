@@ -1,5 +1,5 @@
-import { ValidationError } from "class-validator";
-export interface BoletoPaymentResponseSchema {
+import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
+export interface BoletoPaymentResponseSchema extends BaseModelSchema {
     paymentId: number;
     accountId: number;
     status: string;
@@ -11,7 +11,7 @@ export interface BoletoPaymentResponseSchema {
     taxAmount: number;
     amount: number;
 }
-export declare class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
+export declare class BoletoPaymentResponse extends BaseModel implements BoletoPaymentResponseSchema {
     paymentId: number;
     accountId: number;
     status: string;
@@ -23,10 +23,4 @@ export declare class BoletoPaymentResponse implements BoletoPaymentResponseSchem
     taxAmount: number;
     amount: number;
     constructor(data: Partial<BoletoPaymentResponse>);
-    /**
-     * Returns true if the model is valid or an array of validation errors if invalid
-     *
-     * @param {boolean} [toString] If toString is true, this will return a formatted error string
-     */
-    isValid(toString?: boolean): Promise<string | true | ValidationError[]>;
 }

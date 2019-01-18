@@ -1,6 +1,7 @@
-import { IsNotEmpty, validate, ValidationError } from "class-validator";
+import { IsNotEmpty } from "class-validator";
+import BaseModel, { BaseModelSchema } from "../Base/BaseModel";
 
-export interface BoletoPaymentResponseSchema {
+export interface BoletoPaymentResponseSchema extends BaseModelSchema {
   paymentId: number;
   accountId: number;
   status: string;
@@ -13,7 +14,7 @@ export interface BoletoPaymentResponseSchema {
   amount: number;
 }
 
-export class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
+export class BoletoPaymentResponse extends BaseModel implements BoletoPaymentResponseSchema {
   @IsNotEmpty() paymentId: number = undefined;
   @IsNotEmpty() accountId: number = undefined;
   @IsNotEmpty() status: string = undefined;
@@ -26,25 +27,7 @@ export class BoletoPaymentResponse implements BoletoPaymentResponseSchema {
   @IsNotEmpty() amount: number = undefined;
 
   constructor(data: Partial<BoletoPaymentResponse>) {
+    super(data);
     Object.assign(this, data);
-  }
-
-  /**
-   * Returns true if the model is valid or an array of validation errors if invalid
-   *
-   * @param {boolean} [toString] If toString is true, this will return a formatted error string
-   */
-  public async isValid(toString?: boolean): Promise<string | true | ValidationError[]> {
-    const errors = await validate(this);
-
-    if (errors.length === 0) {
-      return true;
-    }
-
-    if (toString) {
-      return errors.map(error => error.toString(true)).join("; ");
-    }
-
-    return errors;
   }
 }
