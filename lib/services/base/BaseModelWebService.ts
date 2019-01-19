@@ -1,5 +1,4 @@
-import { Http, HttpOptions } from "../../base";
-import { BaseModel, BaseModelSchema } from "../../models";
+import { BaseModel, BaseModelSchema, Http, HttpOptions } from "bitcapital-common";
 import { Session } from "../../session";
 import { PaginatedArray, Pagination } from "../../utils";
 

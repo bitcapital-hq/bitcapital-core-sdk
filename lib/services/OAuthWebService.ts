@@ -1,10 +1,8 @@
 import { Buffer } from "buffer";
 import { stringify } from "qs";
-import { Http, HttpOptions } from "../base";
-import { OAuthCredentials } from "../models";
+import { Http, HttpOptions, OAuthCredentials, OAuthSecretToken, OAuthSecretTokenResource } from "bitcapital-common";
 import { OAuthClientCredentialsRequest, OAuthPasswordRequest, OAuthRefreshRequest } from "./request";
 import { OAuthStatusResponse } from "./response";
-import OAuthSecretToken, { OAuthSecretTokenResource } from "../models/OAuth/OAuthSecretToken";
 
 export interface OAuthWebServiceOptions extends HttpOptions {
   clientId: string;

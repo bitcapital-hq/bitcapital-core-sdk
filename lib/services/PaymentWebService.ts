@@ -1,5 +1,4 @@
-import { RequestUtil } from "../utils";
-import { Payment, PaymentRequestSchema, PaymentSchema } from "../models";
+import { Payment, PaymentRequestSchema, PaymentSchema, RequestUtil } from "bitcapital-common";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {}

@@ -1,7 +1,7 @@
-import { Asset, AssetSchema, Payment } from "../models";
-import { PaginatedArray, Pagination, PaginationUtil, RequestUtil } from "../utils";
+import { Asset, AssetSchema, Payment, RequestUtil } from "bitcapital-common";
+import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { AssetEmitRequestSchema, AssetDestroyRequestSchema } from "./request";
+import { AssetDestroyRequestSchema, AssetEmitRequestSchema } from "./request";
 
 export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {}
 

@@ -1,5 +1,4 @@
-import { Http } from "../base";
-import { Document, DocumentSchema, DocumentType, User, UserSchema, Wallet } from "../models";
+import { Document, DocumentSchema, DocumentType, Http, User, UserSchema, Wallet } from "bitcapital-common";
 import { PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {

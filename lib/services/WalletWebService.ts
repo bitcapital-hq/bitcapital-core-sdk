@@ -1,4 +1,4 @@
-import { Wallet, WalletSchema, Transaction, TransactionSchema, Payment, PaymentSchema } from "../models";
+import { Wallet, WalletSchema, Transaction, TransactionSchema, Payment, PaymentSchema } from "bitcapital-common";
 import { PaginationUtil, PaginatedArray, Pagination } from "../utils";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
