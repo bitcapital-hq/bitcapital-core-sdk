@@ -28,7 +28,7 @@
   "dependencies": {
     "@types/crypto-js": "^3.1.43",
     "axios": "^0.17.1",
-    "bitcapital-common": "../bitcapital-common",
+    "bitcapital-common": "bitcapital-hq/bitcapital-common",
     "buffer": "^5.0.8",
     "class-validator": "^0.9.1",
     "crypto-js": "^3.1.9-1",
