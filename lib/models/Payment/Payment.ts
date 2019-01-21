@@ -16,8 +16,8 @@ export interface PaymentSchema extends BaseModelSchema {
 }
 
 export class Payment extends BaseModel implements PaymentSchema {
-  type: PaymentType;
-  amount: string;
+  type: PaymentType = undefined;
+  amount: string = undefined;
   transaction?: Transaction;
   destination?: Wallet;
   asset?: Asset;

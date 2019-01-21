@@ -29,7 +29,7 @@ export class Phone extends BaseModel implements PhoneSchema {
   @IsNumberString()
   number: string = undefined;
 
-  @IsOptional() extension?: string;
+  @IsOptional() extension?: string = undefined;
 
   @IsOptional()
   @IsDate()

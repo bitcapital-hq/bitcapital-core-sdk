@@ -32,7 +32,7 @@ export class Address extends BaseModel implements AddressSchema {
   @IsNotEmpty() street: string = undefined;
   @IsOptional() complement?: string = undefined;
   @IsOptional() number?: string = undefined;
-  @IsOptional() reference?: string;
+  @IsOptional() reference?: string = undefined;
 
   geo: { x: number; y: number } = undefined;
 
