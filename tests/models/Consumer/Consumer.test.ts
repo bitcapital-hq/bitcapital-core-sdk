@@ -8,9 +8,9 @@ import * as CPF from "cpf";
 
 export const TEST_CONSUMER = (): ConsumerSchema => ({
   id: uuid(),
-  addresses: Array.from({ length: faker.random.number(3) }, () => TEST_ADDRESS()),
-  documents: Array.from({ length: faker.random.number(3) }, () => TEST_DOCUMENT()),
-  phones: Array.from({ length: faker.random.number(3) }, () => TEST_PHONE()),
+  addresses: Array.from({ length: faker.random.number({ min: 1, max: 3 }) }, () => TEST_ADDRESS()),
+  documents: Array.from({ length: faker.random.number({ min: 1, max: 3 }) }, () => TEST_DOCUMENT()),
+  phones: Array.from({ length: faker.random.number({ min: 1, max: 3 }) }, () => TEST_PHONE()),
   taxId: CPF.generate()
 });
 

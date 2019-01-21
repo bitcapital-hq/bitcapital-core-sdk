@@ -32,7 +32,7 @@ export const TEST_USER = (
   role: UserRole.PUBLIC,
   status: UserStatus.ACTIVE,
   consumer: options.consumer ? TEST_CONSUMER() : undefined,
-  wallets: Array.from({ length: faker.random.number(3) }, () => TEST_WALLET()),
+  wallets: Array.from({ length: faker.random.number({ min: 1, max: 3 }) }, () => TEST_WALLET()),
   credentials: options.credentials
     ? new OAuthCredentials(TEST_CREDENTIALS(options.credentials === "virtual"))
     : undefined
