@@ -28,7 +28,7 @@ export class AddressWebService extends NestedModelWebService<Address, AddressSch
    */
   public async findAll(userId: string, pagination: Pagination): Promise<PaginatedArray<Address>> {
     const { skip, limit } = pagination;
-    const response = await this.http.get(`/consumer/${userId}/addresses`, null, { params: { skip, limit } });
+    const response = await this.http.get(`/consumers/${userId}/addresses`, null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -46,7 +46,7 @@ export class AddressWebService extends NestedModelWebService<Address, AddressSch
    * @param addressId The Address ID.
    */
   public async findOne(userId: string, addressId: string): Promise<Address> {
-    const response = await this.http.get(`/consumer/${userId}/addresses/${addressId}`);
+    const response = await this.http.get(`/consumers/${userId}/addresses/${addressId}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -62,7 +62,7 @@ export class AddressWebService extends NestedModelWebService<Address, AddressSch
    * @param address The Address schema.
    */
   public async create(userId: string, address: AddressSchema): Promise<Address> {
-    const response = await this.http.post(`/consumer/${userId}/addresses`, address);
+    const response = await this.http.post(`/consumers/${userId}/addresses`, address);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -79,7 +79,7 @@ export class AddressWebService extends NestedModelWebService<Address, AddressSch
    * @param address The partial Address schema.
    */
   public async update(userId: string, addressId: string, address: Partial<AddressSchema>): Promise<Address> {
-    const response = await this.http.post(`/consumer/${userId}/addresses/${addressId}`, address);
+    const response = await this.http.post(`/consumers/${userId}/addresses/${addressId}`, address);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -95,7 +95,7 @@ export class AddressWebService extends NestedModelWebService<Address, AddressSch
    * @param addressId The Address ID.
    */
   public async delete(userId: string, addressId: string): Promise<boolean> {
-    const response = await this.http.delete(`/consumer/${userId}/addresses/${addressId}`);
+    const response = await this.http.delete(`/consumers/${userId}/addresses/${addressId}`);
 
     if (!response || response.status !== 200) {
       throw response;

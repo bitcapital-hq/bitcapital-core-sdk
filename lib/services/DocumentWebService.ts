@@ -29,7 +29,7 @@ export class DocumentWebService extends NestedModelWebService<Document, Document
    */
   public async findAll(userId: string, pagination: Pagination): Promise<PaginatedArray<Document>> {
     const { skip, limit } = pagination;
-    const response = await this.http.get(`/consumer/${userId}/documents`, null, { params: { skip, limit } });
+    const response = await this.http.get(`/consumers/${userId}/documents`, null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -48,7 +48,7 @@ export class DocumentWebService extends NestedModelWebService<Document, Document
    * @param documentId The Document ID or type.
    */
   public async findOne(userId: string, documentIdOrType: string): Promise<Document> {
-    const response = await this.http.get(`/consumer/${userId}/documents/${documentIdOrType}`);
+    const response = await this.http.get(`/consumers/${userId}/documents/${documentIdOrType}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -64,7 +64,7 @@ export class DocumentWebService extends NestedModelWebService<Document, Document
    * @param document The Document schema.
    */
   public async create(userId: string, document: DocumentSchema): Promise<Document> {
-    const response = await this.http.post(`/consumer/${userId}/documents`, document);
+    const response = await this.http.post(`/consumers/${userId}/documents`, document);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -81,7 +81,7 @@ export class DocumentWebService extends NestedModelWebService<Document, Document
    * @param document The partial Document schema.
    */
   public async update(userId: string, documentId: string, document: Partial<DocumentSchema>): Promise<Document> {
-    const response = await this.http.post(`/consumer/${userId}/documents/${documentId}`, document);
+    const response = await this.http.post(`/consumers/${userId}/documents/${documentId}`, document);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -145,7 +145,7 @@ export class DocumentWebService extends NestedModelWebService<Document, Document
    * @param documentId The Document ID.
    */
   public async delete(userId: string, documentId: string): Promise<boolean> {
-    const response = await this.http.delete(`/consumer/${userId}/documents/${documentId}`);
+    const response = await this.http.delete(`/consumers/${userId}/documents/${documentId}`);
 
     if (!response || response.status !== 200) {
       throw response;

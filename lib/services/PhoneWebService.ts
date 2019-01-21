@@ -28,7 +28,7 @@ export class PhoneWebService extends NestedModelWebService<Phone, PhoneSchema> {
    */
   public async findAll(userId: string, pagination: Pagination): Promise<PaginatedArray<Phone>> {
     const { skip, limit } = pagination;
-    const response = await this.http.get(`/consumer/${userId}/phones`, null, { params: { skip, limit } });
+    const response = await this.http.get(`/consumers/${userId}/phones`, null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -46,7 +46,7 @@ export class PhoneWebService extends NestedModelWebService<Phone, PhoneSchema> {
    * @param phoneId The Phone ID.
    */
   public async findOne(userId: string, phoneId: string): Promise<Phone> {
-    const response = await this.http.get(`/consumer/${userId}/phones/${phoneId}`);
+    const response = await this.http.get(`/consumers/${userId}/phones/${phoneId}`);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -62,7 +62,7 @@ export class PhoneWebService extends NestedModelWebService<Phone, PhoneSchema> {
    * @param phone The Phone schema.
    */
   public async create(userId: string, phone: PhoneSchema): Promise<Phone> {
-    const response = await this.http.post(`/consumer/${userId}/phones`, phone);
+    const response = await this.http.post(`/consumers/${userId}/phones`, phone);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -79,7 +79,7 @@ export class PhoneWebService extends NestedModelWebService<Phone, PhoneSchema> {
    * @param phone The partial Phone schema.
    */
   public async update(userId: string, phoneId: string, phone: Partial<PhoneSchema>): Promise<Phone> {
-    const response = await this.http.post(`/consumer/${userId}/phones/${phoneId}`, phone);
+    const response = await this.http.post(`/consumers/${userId}/phones/${phoneId}`, phone);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -95,7 +95,7 @@ export class PhoneWebService extends NestedModelWebService<Phone, PhoneSchema> {
    * @param phoneId The Phone ID.
    */
   public async delete(userId: string, phoneId: string): Promise<boolean> {
-    const response = await this.http.delete(`/consumer/${userId}/phones/${phoneId}`);
+    const response = await this.http.delete(`/consumers/${userId}/phones/${phoneId}`);
 
     if (!response || response.status !== 200) {
       throw response;
