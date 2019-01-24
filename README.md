@@ -8,12 +8,12 @@ A multi-platform SDK for accessing the Bitcapital Core services in JS and TS env
 
 Install as a project dependency using Yarn, remember to specify the desired version.
 ```bash
-yarn add "github:bitcapital-hq/bitcapital-core-sdk#1.3.0";
+yarn add "github:bitcapital-hq/bitcapital-core-sdk";
 ```
 
 Or use NPM:
 ```bash
-npm install "git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git#1.3.0";
+npm install "git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git";
 ```
 
 
