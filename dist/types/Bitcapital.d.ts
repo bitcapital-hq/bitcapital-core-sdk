@@ -36,7 +36,7 @@ export default class Bitcapital {
      *
      * @param request The request object
      */
-    sign(request: RequestSigningOptions): import("../../bitcapital-common/dist/types/utils/Request").RequestSigningHeaders;
+    sign(request: RequestSigningOptions): import("bitcapital-common").RequestSigningHeaders;
     /**
      * Get the API Status.
      */
