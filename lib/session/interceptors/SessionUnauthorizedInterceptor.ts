@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosError, AxiosResponse } from "axios";
-import { HttpInterceptor } from "../../base";
+import { HttpInterceptor } from "bitcapital-common";
 
 export type SessionUnauthorizedCallback = (error: AxiosError | AxiosResponse) => any;
 

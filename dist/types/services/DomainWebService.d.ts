@@ -1,6 +1,4 @@
-import { Http } from "../base";
-import { Domain, DomainSchema, User } from "../models";
-import { PaginatedArray, Pagination } from "../utils";
+import { Domain, DomainSchema, Http, User, PaginatedArray, Pagination } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 import { CountMetricsResponse, TotalMetricsResponse } from "./response";
 export declare enum PaymentLogType {

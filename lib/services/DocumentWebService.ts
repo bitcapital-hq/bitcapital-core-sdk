@@ -1,6 +1,5 @@
 import { NestedModelWebService, NestedModelWebServiceOptions } from "./base";
-import { DocumentSchema, Document } from "../models";
-import { Pagination, PaginatedArray, PaginationUtil } from "../utils";
+import { Document, DocumentSchema, Pagination, PaginatedArray, PaginationUtil } from "bitcapital-common";
 
 export interface DocumentWebServiceOptions extends NestedModelWebServiceOptions {}
 

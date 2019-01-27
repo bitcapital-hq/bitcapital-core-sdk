@@ -1,5 +1,4 @@
-import { Http, HttpOptions } from "../base";
-import { OAuthSecretToken, OAuthCredentials, OAuthSecretTokenResource } from "../models";
+import { Http, HttpOptions, OAuthCredentials, OAuthSecretToken, OAuthSecretTokenResource } from "bitcapital-common";
 import { OAuthStatusResponse } from "./response";
 export interface OAuthWebServiceOptions extends HttpOptions {
     clientId: string;

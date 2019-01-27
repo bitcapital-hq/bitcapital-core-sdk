@@ -1,6 +1,5 @@
+import { Address, AddressSchema, PaginatedArray, Pagination, PaginationUtil } from "bitcapital-common";
 import { NestedModelWebService, NestedModelWebServiceOptions } from "./base";
-import { AddressSchema, Address } from "../models";
-import { Pagination, PaginatedArray, PaginationUtil } from "../utils";
 
 export interface AddressWebServiceOptions extends NestedModelWebServiceOptions {}
 

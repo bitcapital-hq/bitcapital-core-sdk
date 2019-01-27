@@ -1,5 +1,4 @@
-import { RequestUtil } from "../utils";
-import { Payment, PaymentSchema } from "../models";
+import { Payment, PaymentSchema, RequestUtil } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 import { PaymentRequest } from "./request";
 

@@ -1,7 +1,5 @@
-import { Http, HttpOptions } from "../../base";
-import { BaseModel, BaseModelSchema } from "../../models";
+import { BaseModel, BaseModelSchema, Http, HttpOptions, Pagination, PaginatedArray } from "bitcapital-common";
 import { Session } from "../../session";
-import { PaginatedArray, Pagination } from "../../utils";
 export interface BaseModelWebServiceOptions extends HttpOptions {
     session?: Session;
     clientId?: string;

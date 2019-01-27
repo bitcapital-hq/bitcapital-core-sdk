@@ -1,6 +1,4 @@
-import { Http } from "../base";
-import { Domain, DomainSchema, User } from "../models";
-import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
+import { Domain, DomainSchema, Http, User, PaginatedArray, Pagination, PaginationUtil } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 import { CountMetricsResponse, TotalMetricsResponse } from "./response";
 

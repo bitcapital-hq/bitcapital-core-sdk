@@ -1,4 +1,4 @@
-import { User } from "./models";
+import { User, RequestUtil, RequestSigningOptions } from "bitcapital-common";
 import {
   AddressWebService,
   AssetWebService,
@@ -15,7 +15,6 @@ import {
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
-import { RequestSigningOptions, RequestUtil } from "./utils";
 
 export interface BitcapitalOptions {
   session?: Session;

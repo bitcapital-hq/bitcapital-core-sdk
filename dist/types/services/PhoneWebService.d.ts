@@ -1,6 +1,5 @@
 import { NestedModelWebService, NestedModelWebServiceOptions } from "./base";
-import { PhoneSchema, Phone } from "../models";
-import { Pagination, PaginatedArray } from "../utils";
+import { Phone, PhoneSchema, Pagination, PaginatedArray } from "bitcapital-common";
 export interface PhoneWebServiceOptions extends NestedModelWebServiceOptions {
 }
 export declare class PhoneWebService extends NestedModelWebService<Phone, PhoneSchema> {

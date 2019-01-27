@@ -1,7 +1,6 @@
+import { Http, HttpOptions, OAuthCredentials, OAuthSecretToken, OAuthSecretTokenResource } from "bitcapital-common";
 import { Buffer } from "buffer";
 import { stringify } from "qs";
-import { Http, HttpOptions } from "../base";
-import { OAuthSecretToken, OAuthCredentials, OAuthSecretTokenResource } from "../models";
 import { OAuthClientCredentialsRequest, OAuthPasswordRequest, OAuthRefreshRequest } from "./request";
 import { OAuthStatusResponse } from "./response";
 
