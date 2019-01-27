@@ -1,6 +1,5 @@
-import { BaseModel, BaseModelSchema, Http, HttpOptions } from "bitcapital-common";
+import { BaseModel, BaseModelSchema, Http, HttpOptions, Pagination, PaginatedArray } from "bitcapital-common";
 import { Session } from "../../session";
-import { PaginatedArray, Pagination } from "../../utils";
 
 export interface BaseModelWebServiceOptions extends HttpOptions {
   session?: Session;
@@ -16,7 +15,7 @@ export interface BaseModelWebServiceIntf<T extends BaseModel, U extends BaseMode
   delete?(id: string): Promise<boolean>;
 }
 
-export default abstract class BaseModelWebService<T extends BaseModel, U extends BaseModelSchema>
+export abstract class BaseModelWebService<T extends BaseModel, U extends BaseModelSchema>
   implements BaseModelWebServiceIntf<T, U> {
   protected http: Http;
 

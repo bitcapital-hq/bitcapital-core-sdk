@@ -1,11 +1,14 @@
 import { User, RequestUtil, RequestSigningOptions } from "bitcapital-common";
 import {
+  AddressWebService,
   AssetWebService,
   ConsumerWebService,
+  DocumentWebService,
   DomainWebService,
   OAuthWebService,
   OAuthWebServiceOptions,
   PaymentWebService,
+  PhoneWebService,
   UserWebService,
   WalletWebService
 } from "./services";
@@ -46,10 +49,13 @@ export default class Bitcapital {
       });
 
     // Initialize main web services
+    AddressWebService.initialize({ ...options });
     AssetWebService.initialize({ ...options });
     ConsumerWebService.initialize({ ...options });
+    DocumentWebService.initialize({ ...options });
     DomainWebService.initialize({ ...options });
     PaymentWebService.initialize({ ...options });
+    PhoneWebService.initialize({ ...options });
     WalletWebService.initialize({ ...options });
 
     // Prepare singleton for easier access
@@ -112,6 +118,13 @@ export default class Bitcapital {
   }
 
   /**
+   * Interface for the Addresses service.
+   */
+  public addresses(): AddressWebService {
+    return AddressWebService.getInstance();
+  }
+
+  /**
    * Interface for the Assets service.
    */
   public assets(): AssetWebService {
@@ -126,6 +139,13 @@ export default class Bitcapital {
   }
 
   /**
+   * Interface for the Documents service.
+   */
+  public documents(): DocumentWebService {
+    return DocumentWebService.getInstance();
+  }
+
+  /**
    * Interface for the Domains service.
    */
   public domains(): DomainWebService {
@@ -137,6 +157,13 @@ export default class Bitcapital {
    */
   public payments(): PaymentWebService {
     return PaymentWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Phones service.
+   */
+  public phones(): PhoneWebService {
+    return PhoneWebService.getInstance();
   }
 
   /**

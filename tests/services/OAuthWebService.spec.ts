@@ -1,7 +1,6 @@
 import * as hat from "hat";
 import MockAdapter from "axios-mock-adapter";
-import { OAuthWebService } from "../../lib";
-import OAuthCredentials from "../../lib/models/OAuth/OAuthCredentials";
+import { OAuthWebService, OAuthCredentials } from "../../lib";
 
 const TEST_CREDENTIALS = {
   token_type: "bearer",
@@ -95,7 +94,7 @@ describe("lib.services.OAuthWebService", () => {
       let failed = false;
 
       try {
-        const response = await oauth.password({
+        await oauth.password({
           username: "test",
           password: "test"
         });

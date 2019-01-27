@@ -1,11 +1,18 @@
-import { Asset, AssetSchema, Payment, RequestUtil } from "bitcapital-common";
-import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { AssetDestroyRequestSchema, AssetEmitRequestSchema } from "./request";
+import { AssetEmitRequestSchema, AssetDestroyRequestSchema } from "./request";
+import {
+  Asset,
+  AssetSchema,
+  Payment,
+  RequestUtil,
+  PaginatedArray,
+  Pagination,
+  PaginationUtil
+} from "bitcapital-common";
+import { BaseModelWebServiceOptions, BaseModelWebService } from "./base";
 
 export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
+export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
   protected static instance: AssetWebService;
 
   constructor(protected readonly options: AssetWebServiceOptions) {

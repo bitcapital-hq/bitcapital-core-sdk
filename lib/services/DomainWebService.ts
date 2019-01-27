@@ -1,6 +1,6 @@
-import { Domain, DomainSchema, Http, User } from "bitcapital-common";
-import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { Domain, DomainSchema, Http, User, PaginatedArray, Pagination, PaginationUtil } from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
+import { CountMetricsResponse, TotalMetricsResponse } from "./response";
 
 export enum PaymentLogType {
   COMMON = "common",
@@ -17,19 +17,9 @@ export interface DomainMetricsOptions {
   type?: PaymentLogType; // Get metrics for a single payment type
 }
 
-export interface CountMetricsResponse {
-  paymentTime: Date;
-  count: number;
-}
-
-export interface TotalMetricsResponse {
-  paymentTime: Date;
-  totalAmount: number;
-}
-
 export interface DomainWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class DomainWebService extends BaseModelWebService<Domain, DomainSchema> {
+export class DomainWebService extends BaseModelWebService<Domain, DomainSchema> {
   protected http: Http;
   protected static instance: DomainWebService;
 
