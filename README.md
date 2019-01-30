@@ -94,9 +94,9 @@ Utility Modules:
 
 ### Library Reference
 
-Full API specification is located at: [https://sdk.btcore.app](https://sdk.btcore.app).
+Full API specification is located at: [https://bitcapital-hq.github.io/bitcapital-core-sdk](https://bitcapital-hq.github.io/bitcapital-core-sdk).
 
-### Using a Custom Session
+### Using an ephemeral session (NodeJS)
 
 The SDK comes with a built-in set of Storage providers: Memory and Local. In NodeJS environments, only Memory is available.
 
