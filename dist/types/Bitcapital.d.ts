@@ -2,6 +2,7 @@ import { User, RequestSigningOptions } from "bitcapital-common";
 import { AddressWebService, AssetWebService, ConsumerWebService, DocumentWebService, DomainWebService, OAuthWebService, PaymentWebService, PhoneWebService, UserWebService, WalletWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
+import { ProductWebService } from "./services/ProductWebService";
 export interface BitcapitalOptions {
     session?: Session;
     baseURL: string;
@@ -81,6 +82,10 @@ export default class Bitcapital {
      * Interface for the Phones service.
      */
     phones(): PhoneWebService;
+    /**
+     * Interface for the Product service.
+     */
+    products(): ProductWebService;
     /**
      * Interface for the Users service.
      */
