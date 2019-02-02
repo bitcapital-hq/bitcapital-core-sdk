@@ -1,24 +1,11 @@
 import * as hat from "hat";
 import * as MockAdapter from "axios-mock-adapter";
-import { User, OAuthCredentials, Session, StorageUtil, MemoryStorage } from "../../lib";
-import OAuthWebService from "../../lib/services/OAuthWebService";
-import UserWebService from "../../lib/services/UserWebService";
+import { User, UserRole, OAuthCredentials, Session, StorageUtil, MemoryStorage } from "../../lib";
+import { TEST_USER } from "../models/User/User.test";
 
 jest.useFakeTimers();
 
-const TEST_CREDENTIALS = {
-  token_type: "bearer",
-  access_token: hat(),
-  refresh_token: hat(),
-  user_id: hat(),
-  expires_in: 3600
-};
-
-const TEST_USER = {
-  _id: hat(),
-  name: "Test User",
-  email: "user@test.com"
-};
+const userSchema = TEST_USER({ consumer: false, credentials: "common" });
 
 describe("lib.session.Session", () => {
   it("should have a valid lib interface", async () => {
@@ -80,8 +67,8 @@ describe("lib.session.Session", () => {
       const userMock = new (MockAdapter as any)((session.userWebService as any).http.client);
 
       // Mock requests to a simple success
-      oauthMock.onPost("/oauth/token").reply(200, TEST_CREDENTIALS);
-      userMock.onGet("/users/me").reply(200, TEST_USER);
+      oauthMock.onPost("/oauth/token").reply(200, userSchema.credentials);
+      userMock.onGet("/users/me").reply(200, userSchema);
 
       // Mock find all users request to 401 so we can test refresh token
       userMock.onGet("/users").reply(401);
@@ -136,7 +123,7 @@ describe("lib.session.Session", () => {
 
       // Make a call that will return 401, as if the token was revoked or expired
       try {
-        await session.userWebService.findAll({});
+        await session.userWebService.findAllByRole({}, UserRole.CONSUMER);
       } catch {}
 
       // Check if the session performed a refresh token authentication
@@ -146,7 +133,7 @@ describe("lib.session.Session", () => {
     it("should publish the right events", async () => {
       let notified = false;
       const observer = {
-        update(eventName: string) {
+        update() {
           notified = true;
         }
       };

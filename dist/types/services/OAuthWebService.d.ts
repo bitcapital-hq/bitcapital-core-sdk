@@ -1,12 +1,10 @@
-import { Http, HttpOptions } from "../base";
-import { OAuthCredentials } from "../models";
+import { Http, HttpOptions, OAuthCredentials, OAuthSecretToken, OAuthSecretTokenResource } from "bitcapital-common";
 import { OAuthStatusResponse } from "./response";
-import OAuthSecretToken, { OAuthSecretTokenResource } from "../models/OAuth/OAuthSecretToken";
 export interface OAuthWebServiceOptions extends HttpOptions {
     clientId: string;
     clientSecret: string;
 }
-export default class OAuthWebService {
+export declare class OAuthWebService {
     protected options: OAuthWebServiceOptions;
     protected http: Http;
     protected static instance: OAuthWebService;

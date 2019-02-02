@@ -1,6 +1,5 @@
-import { Pagination, PaginatedArray } from "../utils";
-import { Banking, BankingSchema } from "../models";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { Banking, BankingSchema, Pagination, PaginatedArray } from "bitcapital-common";
 export interface BankingWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export declare class BankingWebService extends BaseModelWebService<Banking, BankingSchema> {

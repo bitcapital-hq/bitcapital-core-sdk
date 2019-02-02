@@ -1,30 +1,32 @@
-import * as hat from "hat";
 import * as uuid from "uuid/v4";
-import { Wallet, WalletType, StellarWalletData, WalletSchema, BankingWalletData } from "../../../lib";
+import { Wallet, WalletSchema, WalletStatus } from "../../../lib";
 
-export const TEST_WALLET: WalletSchema = {
+export const TEST_WALLET = (): WalletSchema => ({
   id: uuid(),
-  type: WalletType.STELLAR,
-  data: { publicKey: hat() } as StellarWalletData
-};
+  status: WalletStatus.PENDING,
+  stellar: {
+    publicKey: uuid(),
+    secretKey: uuid()
+  }
+});
 
 export const TEST_WALLET_BANKING: WalletSchema = {
   id: uuid(),
-  type: WalletType.BANKING,
-  data: {
+  additionalData: {
     bankCode: "341",
     accountAgency: "1234",
     accountNumber: "12345",
     accountDocument: ""
-  } as BankingWalletData
+  }
 };
 
 describe("lib.models.Wallet", () => {
   it("should instantiate properly", async () => {
-    const wallet = new Wallet({ ...TEST_WALLET });
-    expect(wallet.type).toBe(TEST_WALLET.type);
-    expect(wallet.data).toBe(TEST_WALLET.data);
+    const schema = TEST_WALLET();
+    const wallet = new Wallet(schema);
 
+    expect(wallet.id).toBe(schema.id);
+    expect(wallet.status).toBe(schema.status);
     expect(await wallet.isValid()).toBe(true);
   });
 });

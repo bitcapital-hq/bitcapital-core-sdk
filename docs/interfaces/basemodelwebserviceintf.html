@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BaseModelWebServiceIntf | bitcapital-core-sdk (v1.2.2)</title>
+	<title>BaseModelWebServiceIntf | bitcapital-core-sdk (v1.6.0)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">bitcapital-core-sdk (v1.2.2)</a>
+					<a href="../index.html" class="title">bitcapital-core-sdk (v1.6.0)</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -70,10 +70,10 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>T<span class="tsd-signature-symbol">: </span><a href="../classes/basemodel.html" class="tsd-signature-type">BaseModel</a></h4>
+						<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BaseModel</span></h4>
 					</li>
 					<li>
-						<h4>U<span class="tsd-signature-symbol">: </span><a href="basemodelschema.html" class="tsd-signature-type">BaseModelSchema</a></h4>
+						<h4>U<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BaseModelSchema</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -89,7 +89,9 @@
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
 					<li><a href="../classes/assetwebservice.html" class="tsd-signature-type">AssetWebService</a></li>
+					<li><a href="../classes/bankingwebservice.html" class="tsd-signature-type">BankingWebService</a></li>
 					<li><a href="../classes/basemodelwebservice.html" class="tsd-signature-type">BaseModelWebService</a></li>
+					<li><a href="../classes/cardwebservice.html" class="tsd-signature-type">CardWebService</a></li>
 					<li><a href="../classes/consumerwebservice.html" class="tsd-signature-type">ConsumerWebService</a></li>
 					<li><a href="../classes/domainwebservice.html" class="tsd-signature-type">DomainWebService</a></li>
 					<li><a href="../classes/paymentwebservice.html" class="tsd-signature-type">PaymentWebService</a></li>
@@ -126,7 +128,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/base/BaseModelWebService.ts#L15">services/base/BaseModelWebService.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/49e23ab/lib/services/base/BaseModelWebService.ts#L13">services/base/BaseModelWebService.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,7 +151,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/base/BaseModelWebService.ts#L17">services/base/BaseModelWebService.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/49e23ab/lib/services/base/BaseModelWebService.ts#L15">services/base/BaseModelWebService.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -166,22 +168,22 @@
 					<a name="findall" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> find<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>All<span class="tsd-signature-symbol">(</span>pagination<span class="tsd-signature-symbol">?: </span><a href="pagination.html" class="tsd-signature-type">Pagination</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/paginatedarray.html" class="tsd-signature-type">PaginatedArray</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>All<span class="tsd-signature-symbol">(</span>pagination<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Pagination</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PaginatedArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/base/BaseModelWebService.ts#L13">services/base/BaseModelWebService.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/49e23ab/lib/services/base/BaseModelWebService.ts#L11">services/base/BaseModelWebService.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pagination: <a href="pagination.html" class="tsd-signature-type">Pagination</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pagination: <span class="tsd-signature-type">Pagination</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/paginatedarray.html" class="tsd-signature-type">PaginatedArray</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PaginatedArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -195,7 +197,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/base/BaseModelWebService.ts#L14">services/base/BaseModelWebService.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/49e23ab/lib/services/base/BaseModelWebService.ts#L12">services/base/BaseModelWebService.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -218,7 +220,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/base/BaseModelWebService.ts#L16">services/base/BaseModelWebService.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/49e23ab/lib/services/base/BaseModelWebService.ts#L14">services/base/BaseModelWebService.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
