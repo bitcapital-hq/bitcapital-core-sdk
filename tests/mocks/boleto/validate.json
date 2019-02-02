@@ -1,0 +1,39 @@
+{
+    "paid": "true",
+    "boletoInfo": {
+        "description": "Description",
+        "amount": 1000.00,
+        "expiresAt": "2019-01-31",
+        "hasExpirationDate": "true",
+        "barcodeNumber": "23790504004188102313343008109209176890000019900"
+    },
+    "paymentInfo": {
+        "contractId": "123456789",
+        "idNumber": "123456789",
+        "traders": {
+            "recipient": "BitCapital",
+            "recipientDocument": "09.072.897/0001-33",
+            "payerName": "Cliente X",
+            "payerDocument": "99.999.999/0001-99"
+        },
+        "expiresAt": "2019-01-31",
+        "totalAmount": 1000.00,
+        "amountDetails": {
+            "interestAmount": 0,
+            "discount": 0,
+            "fineAmount": 0,
+            "totalAmount": 1000.00,
+            "paymentAmountUpdated": 1000.00,
+            "calculationDate": "2019-01-17"
+        },
+        "acceptPartialAmount": {
+            "code": 0,
+            "description": "Não aceita"
+        },
+        "barcode": "23790504004188102313343008109209176890000019900",
+        "digitableLine": "23790.50400.418810.2313343008109209 1 76890000019900",
+        "paymentDeadline": "2019-01-31",
+        "validDate": "true",
+        "nextBusinessDay": ""
+    }
+}
