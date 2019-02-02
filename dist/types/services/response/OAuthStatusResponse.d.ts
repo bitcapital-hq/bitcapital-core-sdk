@@ -4,7 +4,7 @@ export interface OAuthStatusResponseSchema {
     env: string;
     uptime: number;
 }
-export default class OAuthStatusResponse implements OAuthStatusResponseSchema {
+export declare class OAuthStatusResponse implements OAuthStatusResponseSchema {
     name: string;
     version: string;
     env: string;

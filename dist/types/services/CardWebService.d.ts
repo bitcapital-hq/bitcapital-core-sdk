@@ -1,8 +1,8 @@
 import { Card, CardSchema, CardBlockRequestSchema, CardUnblockRequestSchema } from "bitcapital-common";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 export interface CardWebServiceOptions extends BaseModelWebServiceOptions {
 }
-export default class CardWebService extends BaseModelWebService<Card, CardSchema> {
+export declare class CardWebService extends BaseModelWebService<Card, CardSchema> {
     protected static instance: CardWebService;
     constructor(options: CardWebServiceOptions);
     static getInstance(): CardWebService;

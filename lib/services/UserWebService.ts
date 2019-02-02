@@ -7,11 +7,11 @@ import {
   PaginatedArray,
   PaginationUtil
 } from "bitcapital-common";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class UserWebService extends BaseModelWebService<User, UserSchema> {
+export class UserWebService extends BaseModelWebService<User, UserSchema> {
   protected static instance: UserWebService;
 
   constructor(options: UserWebServiceOptions) {

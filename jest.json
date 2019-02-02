@@ -1,6 +1,5 @@
 {
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-  "mapCoverage": true,
   "collectCoverage": true,
   "testEnvironment": "node",
   "coverageDirectory": "./coverage",
@@ -9,7 +8,7 @@
     "tests"
   ],
   "transform": {
-    "^.+\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
+    "^.+\\.(ts)$": "ts-jest"
   },
   "setupFiles": [
     "./tests/setup.ts"

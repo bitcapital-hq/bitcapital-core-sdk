@@ -1,8 +1,8 @@
 import { Wallet, WalletSchema, Transaction, Payment, Pagination, PaginatedArray } from "bitcapital-common";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {
 }
-export default class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
+export declare class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
     protected static instance: WalletWebService;
     constructor(options: WalletWebServiceOptions);
     static getInstance(): WalletWebService;
