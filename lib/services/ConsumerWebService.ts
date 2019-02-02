@@ -1,11 +1,20 @@
-import { Http } from "../base";
-import { Document, DocumentSchema, DocumentType, User, UserSchema, Wallet } from "../models";
-import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import {
+  Document,
+  DocumentSchema,
+  DocumentType,
+  Http,
+  User,
+  UserSchema,
+  Pagination,
+  PaginatedArray,
+  PaginationUtil,
+  Wallet
+} from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
+export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
   protected http: Http;
   protected static instance: ConsumerWebService;
 
@@ -58,8 +67,11 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
    * This method won't return pictures.
    *
    * @param id The User ID.
+   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
    */
   public async findDocumentsById(id: string = "me"): Promise<Document[]> {
+    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
+
     const response = await this.http.get(`/consumers/${id}/documents`);
 
     if (!response || response.status !== 200) {
@@ -74,8 +86,11 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
    * This method will return pictures.
    *
    * @param id The User ID.
+   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
    */
   public async findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document> {
+    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
+
     const response = await this.http.get(`/consumers/${id}/documents/${type}`);
 
     if (!response || response.status !== 200) {
@@ -119,8 +134,11 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
    * Create a new Document on a User with role Consumer.
    *
    * @param id The User ID.
+   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
    */
   public async createDocument(id: string, document: DocumentSchema): Promise<Document> {
+    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
+
     const response = await this.http.post(`/consumers/${id}/documents`, document);
 
     if (!response || response.status !== 200) {
@@ -137,6 +155,18 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
    * @param consumer The partial User schema.
    */
   public async update(id: string, consumer: Partial<UserSchema>): Promise<User> {
+    if (consumer.consumer) {
+      if (consumer.consumer.addresses) {
+        throw new Error("Addresses should be updated on it's own service");
+      }
+      if (consumer.consumer.documents) {
+        throw new Error("Documents should be updated on it's own service");
+      }
+      if (consumer.consumer.phones) {
+        throw new Error("Phones should be updated on it's own service");
+      }
+    }
+
     const response = await this.http.post(`/consumers/${id}`, consumer);
 
     if (!response || response.status !== 200) {
@@ -153,8 +183,11 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
    * @param {DocumentType} type The Document type.
    * @param {("front" | "back" | "selfie")} side The Document picture side.
    * @param {File} picture The picture to be uploaded.
+   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
    */
   public async uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File) {
+    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
+
     const formData = new FormData();
     formData.append("picture", picture);
 
@@ -178,6 +211,7 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
    * @param {DocumentType} type The Document type.
    * @param {("front" | "back" | "selfie")} side The Document picture side.
    * @param {string} picture The base64 representation of the picture to be uploaded.
+   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
    */
   public async uploadDocumentPictureFromBase64(
     id: string,
@@ -185,6 +219,8 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
     side: "front" | "back" | "selfie",
     picture: string
   ) {
+    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
+
     const response = await this.http.post(`/consumers/${id}/documents/${type}/${side}`, { picture });
 
     if (!response || response.status !== 200) {

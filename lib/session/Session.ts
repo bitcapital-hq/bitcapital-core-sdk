@@ -1,8 +1,7 @@
-import { HttpInterceptor } from "../base";
-import { User, UserSchema } from "../models";
+import { User, UserSchema, HttpInterceptor, Observable, Observer } from "bitcapital-common";
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
 import { BaseModelWebServiceOptions } from "../services/base/BaseModelWebService";
-import { Observable, Observer, StorageUtil } from "../utils";
+import { StorageUtil } from "../utils";
 import { SessionCredentialsInterceptor, SessionUnauthorizedInterceptor } from "./interceptors";
 
 export interface SessionOptions {

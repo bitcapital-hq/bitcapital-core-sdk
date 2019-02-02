@@ -1,11 +1,11 @@
 import * as hat from "hat";
-import { OAuthClient, OAuthClientStatus } from "../../../lib";
+import { OAuthClient, OAuthClientStatus, OAuthClientSchema, OAuthClientPlatform } from "../../../lib";
 
-const TEST_CLIENT = {
+const TEST_CLIENT: OAuthClientSchema = {
   id: hat(),
   clientId: hat(),
   clientSecret: hat(),
-  platform: "test",
+  platform: OAuthClientPlatform.API,
   status: OAuthClientStatus.ACTIVE
 };
 

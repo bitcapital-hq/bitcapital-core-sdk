@@ -23,7 +23,7 @@ export const CRUDWebServiceTest = (endpoint: string, webServiceInstance, respons
       const all = await webServiceInstance.getInstance().findAll({});
 
       expect(all.length).toBe(3);
-      expect(all[0]).toEqual(response);
+      expect(all[0]).toMatchObject(response);
     });
 
     it("should find one", async () => {
@@ -31,7 +31,7 @@ export const CRUDWebServiceTest = (endpoint: string, webServiceInstance, respons
 
       const one = await webServiceInstance.getInstance().findOne(response.id);
 
-      expect(one).toEqual(response);
+      expect(one).toMatchObject(response);
     });
 
     it("should create one", async () => {
@@ -39,7 +39,7 @@ export const CRUDWebServiceTest = (endpoint: string, webServiceInstance, respons
 
       const one = await webServiceInstance.getInstance().create(response);
 
-      expect(one).toEqual(response);
+      expect(one).toMatchObject(response);
     });
 
     it("should update one", async () => {
@@ -47,7 +47,7 @@ export const CRUDWebServiceTest = (endpoint: string, webServiceInstance, respons
 
       const one = await webServiceInstance.getInstance().update(response.id, response);
 
-      expect(one).toEqual(response);
+      expect(one).toMatchObject(response);
     });
 
     it("should delete one", async () => {
@@ -55,7 +55,7 @@ export const CRUDWebServiceTest = (endpoint: string, webServiceInstance, respons
 
       const one = await webServiceInstance.getInstance().delete(response.id);
 
-      expect(one).toEqual(true);
+      expect(one).toBe(true);
     });
   });
 

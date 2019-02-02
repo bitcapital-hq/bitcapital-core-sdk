@@ -1,10 +1,9 @@
-import { RequestUtil } from "../utils";
-import { Payment, PaymentRequestSchema, PaymentSchema } from "../models";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { Payment, PaymentSchema, RequestUtil, PaymentRequestSchema } from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class PaymentWebService extends BaseModelWebService<Payment, PaymentSchema> {
+export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchema> {
   protected static instance: PaymentWebService;
 
   constructor(options: PaymentWebServiceOptions) {

@@ -1,8 +1,7 @@
-import { User } from "./models";
-import { AssetWebService, ConsumerWebService, DomainWebService, OAuthWebService, PaymentWebService, UserWebService, WalletWebService, BoletoWebService } from "./services";
+import { User, RequestSigningOptions } from "bitcapital-common";
+import { AddressWebService, AssetWebService, CardWebService, ConsumerWebService, DocumentWebService, DomainWebService, OAuthWebService, PaymentWebService, PhoneWebService, UserWebService, WalletWebService, BoletoWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
-import { RequestSigningOptions } from "./utils";
 export interface BitcapitalOptions {
     session?: Session;
     baseURL: string;
@@ -37,7 +36,7 @@ export default class Bitcapital {
      *
      * @param request The request object
      */
-    sign(request: RequestSigningOptions): import("./utils/Request").RequestSigningHeaders;
+    sign(request: RequestSigningOptions): import("bitcapital-common").RequestSigningHeaders;
     /**
      * Get the API Status.
      */
@@ -55,6 +54,10 @@ export default class Bitcapital {
      */
     oauth(): OAuthWebService;
     /**
+     * Interface for the Addresses service.
+     */
+    addresses(): AddressWebService;
+    /**
      * Interface for the Assets service.
      */
     assets(): AssetWebService;
@@ -67,6 +70,13 @@ export default class Bitcapital {
      */
     consumers(): ConsumerWebService;
     /**
+     * Interface for the Card service.
+     */
+    cards(): CardWebService;
+    /** Interface for the Documents service.
+     */
+    documents(): DocumentWebService;
+    /**
      * Interface for the Domains service.
      */
     domains(): DomainWebService;
@@ -74,6 +84,10 @@ export default class Bitcapital {
      * Interface for the Payments service.
      */
     payments(): PaymentWebService;
+    /**
+     * Interface for the Phones service.
+     */
+    phones(): PhoneWebService;
     /**
      * Interface for the Users service.
      */

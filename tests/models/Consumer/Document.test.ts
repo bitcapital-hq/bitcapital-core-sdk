@@ -1,30 +1,29 @@
+import * as faker from "faker";
 import * as uuid from "uuid/v4";
-import * as hat from "hat";
 import { Document, DocumentSchema, DocumentType } from "../../../lib";
 
-export const TEST_DOCUMENT: DocumentSchema = {
+console.dir(DocumentType);
+
+export const TEST_DOCUMENT = (type?: DocumentType): DocumentSchema => ({
   id: uuid(),
-  consumerId: uuid(),
-  consumer: undefined,
-  type: DocumentType.BRL_IDENTITY,
-  number: hat(),
-  front: Buffer.from(hat()).toString("base64"),
-  back: Buffer.from(hat()).toString("base64"),
-  selfie: Buffer.from(hat()).toString("base64"),
-  verifiedAt: new Date()
-};
+  number: faker.random.alphaNumeric(12),
+  back: Buffer.from(uuid()).toString("base64"),
+  front: Buffer.from(uuid()).toString("base64"),
+  selfie: Buffer.from(uuid()).toString("base64"),
+  type: type || DocumentType.BRL_IDENTITY
+});
 
 describe("lib.models.Consumer.Document", () => {
   it("should instantiate a valid instance", async () => {
-    const document = new Document({ ...TEST_DOCUMENT });
+    const schema = TEST_DOCUMENT();
+    const document = new Document(schema);
 
-    expect(document.consumerId).toBe(TEST_DOCUMENT.consumerId);
-    expect(document.type).toBe(TEST_DOCUMENT.type);
-    expect(document.number).toBe(TEST_DOCUMENT.number);
-    expect(document.front).toBe(TEST_DOCUMENT.front);
-    expect(document.back).toBe(TEST_DOCUMENT.back);
-    expect(document.selfie).toBe(TEST_DOCUMENT.selfie);
-    expect(document.verifiedAt).toBe(TEST_DOCUMENT.verifiedAt);
+    expect(document.id).toBe(schema.id);
+    expect(document.type).toBe(schema.type);
+    expect(document.number).toBe(schema.number);
+    expect(document.front).toBe(schema.front);
+    expect(document.back).toBe(schema.back);
+    expect(document.selfie).toBe(schema.selfie);
 
     expect(await document.isValid()).toBe(true);
   });

@@ -1,10 +1,8 @@
-import { Http } from "../base";
-import { Document, DocumentSchema, DocumentType, User, UserSchema, Wallet } from "../models";
-import { PaginatedArray, Pagination } from "../utils";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { Document, DocumentSchema, DocumentType, Http, User, UserSchema, Pagination, PaginatedArray, Wallet } from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {
 }
-export default class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
+export declare class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
     protected http: Http;
     protected static instance: ConsumerWebService;
     constructor(options: ConsumerWebServiceOptions);
@@ -25,6 +23,7 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
      * This method won't return pictures.
      *
      * @param id The User ID.
+     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
      */
     findDocumentsById(id?: string): Promise<Document[]>;
     /**
@@ -32,6 +31,7 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
      * This method will return pictures.
      *
      * @param id The User ID.
+     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
      */
     findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document>;
     /**
@@ -50,6 +50,7 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
      * Create a new Document on a User with role Consumer.
      *
      * @param id The User ID.
+     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
      */
     createDocument(id: string, document: DocumentSchema): Promise<Document>;
     /**
@@ -66,6 +67,7 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
      * @param {DocumentType} type The Document type.
      * @param {("front" | "back" | "selfie")} side The Document picture side.
      * @param {File} picture The picture to be uploaded.
+     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
      */
     uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File): Promise<Document>;
     /**
@@ -75,6 +77,7 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
      * @param {DocumentType} type The Document type.
      * @param {("front" | "back" | "selfie")} side The Document picture side.
      * @param {string} picture The base64 representation of the picture to be uploaded.
+     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
      */
     uploadDocumentPictureFromBase64(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: string): Promise<Document>;
     /**

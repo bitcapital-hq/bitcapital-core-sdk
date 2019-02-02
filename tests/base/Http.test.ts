@@ -1,4 +1,3 @@
-import * as hat from "hat";
 import * as MockAdapter from "axios-mock-adapter";
 import { Http, HttpInterceptor } from "../../lib";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";

@@ -1,8 +1,8 @@
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Boleto, BoletoSchema, BoletoPaymentRequestSchema, BoletoPaymentResponse, BoletoValidateResponse } from "../models";
+import { Boleto, BoletoSchema, BoletoPaymentRequestSchema, BoletoPaymentResponse, BoletoValidateResponse } from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 export interface BoletoWebServiceOptions extends BaseModelWebServiceOptions {
 }
-export default class BoletoWebService extends BaseModelWebService<Boleto, BoletoSchema> {
+export declare class BoletoWebService extends BaseModelWebService<Boleto, BoletoSchema> {
     protected static instance: BoletoWebService;
     constructor(options: BoletoWebServiceOptions);
     static getInstance(): BoletoWebService;
