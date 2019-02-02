@@ -1,6 +1,5 @@
+import { Card, CardSchema, CardBlockRequestSchema, CardUnblockRequestSchema } from "bitcapital-common";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Card, CardSchema } from "../models";
-import { CardBlockRequestSchema, CardUnblockRequestSchema } from "../models/Card/CardBlockRequest";
 export interface CardWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export default class CardWebService extends BaseModelWebService<Card, CardSchema> {

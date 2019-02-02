@@ -1,6 +1,4 @@
-import { Http } from "../base";
-import { Domain, DomainSchema, User } from "../models";
-import { PaginatedArray, Pagination } from "../utils";
+import { Domain, DomainSchema, Http, PaginatedArray, Pagination, User } from "bitcapital-common";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 export declare enum PaymentLogType {
     COMMON = "common",

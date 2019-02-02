@@ -1,5 +1,12 @@
-import { PaginatedArray, Pagination, PaginationUtil } from "..";
-import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
+import {
+  OAuthCredentials,
+  User,
+  UserRole,
+  UserSchema,
+  Pagination,
+  PaginatedArray,
+  PaginationUtil
+} from "bitcapital-common";
 import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {}

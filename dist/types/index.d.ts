@@ -1,6 +1,5 @@
 import Bitcapital from "./Bitcapital";
-export * from "./base";
-export * from "./models";
+export * from "bitcapital-common";
 export * from "./services";
 export * from "./utils";
 export * from "./session";

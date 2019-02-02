@@ -1,6 +1,6 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { HttpInterceptor } from "../../base";
 import Session from "../Session";
+import { HttpInterceptor } from "bitcapital-common";
 
 export default class SessionCredentialsInterceptor implements HttpInterceptor {
   session: Session;
