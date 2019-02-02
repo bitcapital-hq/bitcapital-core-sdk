@@ -18,6 +18,7 @@ import {
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
+import { ProductWebService } from "./services/ProductWebService";
 
 export interface BitcapitalOptions {
   session?: Session;
@@ -190,6 +191,13 @@ export default class Bitcapital {
    */
   public phones(): PhoneWebService {
     return PhoneWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Product service.
+   */
+  public products(): ProductWebService {
+    return ProductWebService.getInstance();
   }
 
   /**
