@@ -1,6 +1,12 @@
-import { Payment, PaymentSchema, RequestUtil } from "bitcapital-common";
+import {
+  Payment,
+  PaymentSchema,
+  RequestUtil,
+  PaymentRequestSchema,
+  WithdrawalRequestSchema,
+  BankTransferPayment
+} from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
-import { PaymentRequest } from "./request";
 
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {}
 
@@ -40,7 +46,7 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
    *
    * @param payment The Payment schema
    */
-  public async pay(request: PaymentRequest): Promise<Payment> {
+  public async pay(request: PaymentRequestSchema): Promise<Payment> {
     const { source, recipients } = request;
     const asset = request.asset ? request.asset : "";
 
@@ -59,5 +65,29 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     }
 
     return new Payment(response.data);
+  }
+
+  /**
+   * Performs cashout from consumer wallet to the bank account identified by the given id
+   *
+   * @param bankingId The id of the bank account to be credited
+   */
+  public async withdraw(requestData: WithdrawalRequestSchema): Promise<BankTransferPayment> {
+    const { bankingId, amount, description } = requestData;
+
+    const payload = { amount, description };
+    const url = `/payments/withdraw/${bankingId}`;
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      url,
+      body: JSON.stringify(payload),
+      method: "POST"
+    });
+    const response = await this.http.post(url, payload, { headers: { ...signature } });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new BankTransferPayment(response.data);
   }
 }

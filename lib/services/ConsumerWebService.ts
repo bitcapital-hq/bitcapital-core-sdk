@@ -5,10 +5,10 @@ import {
   Http,
   User,
   UserSchema,
-  Wallet,
   Pagination,
   PaginatedArray,
-  PaginationUtil
+  PaginationUtil,
+  Wallet
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 

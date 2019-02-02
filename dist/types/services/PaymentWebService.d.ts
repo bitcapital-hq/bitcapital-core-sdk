@@ -1,6 +1,5 @@
-import { Payment, PaymentSchema } from "bitcapital-common";
+import { Payment, PaymentSchema, PaymentRequestSchema, WithdrawalRequestSchema, BankTransferPayment } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
-import { PaymentRequest } from "./request";
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export declare class PaymentWebService extends BaseModelWebService<Payment, PaymentSchema> {
@@ -19,5 +18,11 @@ export declare class PaymentWebService extends BaseModelWebService<Payment, Paym
      *
      * @param payment The Payment schema
      */
-    pay(request: PaymentRequest): Promise<Payment>;
+    pay(request: PaymentRequestSchema): Promise<Payment>;
+    /**
+     * Performs cashout from consumer wallet to the bank account identified by the given id
+     *
+     * @param bankingId The id of the bank account to be credited
+     */
+    withdraw(requestData: WithdrawalRequestSchema): Promise<BankTransferPayment>;
 }

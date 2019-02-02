@@ -3,4 +3,3 @@ export { default as OAuthClientCredentialsRequest } from "./OAuthClientCredentia
 export { default as OAuthRefreshRequest } from "./OAuthRefreshRequest";
 export { AssetEmitRequestSchema } from "./AssetEmitRequest";
 export { AssetDestroyRequestSchema } from "./AssetDestroyRequest";
-export * from "./PaymentRequest";
