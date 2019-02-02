@@ -13,3 +13,4 @@ export * from "./PaymentWebService";
 export * from "./PhoneWebService";
 export * from "./UserWebService";
 export * from "./WalletWebService";
+export * from "./BankingWebService";

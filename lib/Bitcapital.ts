@@ -12,6 +12,7 @@ import {
   PhoneWebService,
   UserWebService,
   WalletWebService,
+  BankingWebService,
   BoletoWebService
 } from "./services";
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
@@ -53,6 +54,7 @@ export default class Bitcapital {
     // Initialize main web services
     AddressWebService.initialize({ ...options });
     AssetWebService.initialize({ ...options });
+    BankingWebService.initialize({ ...options });
     BoletoWebService.initialize({ ...options });
     CardWebService.initialize({ ...options });
     ConsumerWebService.initialize({ ...options });
@@ -133,6 +135,13 @@ export default class Bitcapital {
    */
   public assets(): AssetWebService {
     return AssetWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Bankings service.
+   */
+  public bankings(): BankingWebService {
+    return BankingWebService.getInstance();
   }
 
   /**
