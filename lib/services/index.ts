@@ -3,6 +3,7 @@ export * from "./request";
 export * from "./response";
 export * from "./AddressWebService";
 export * from "./AssetWebService";
+export * from "./BoletoWebService";
 export * from "./ConsumerWebService";
 export * from "./CardWebService";
 export * from "./DocumentWebService";

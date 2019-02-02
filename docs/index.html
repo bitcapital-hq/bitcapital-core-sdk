@@ -68,24 +68,20 @@
 				<p>A multi-platform SDK for accessing the Bitcapital Core services in JS and TS environments.</p>
 				<h2 id="getting-started-from-github-">Getting started (From GitHub)</h2>
 				<p>Install as a project dependency using Yarn, remember to specify the desired version.</p>
-				<pre><code class="lang-bash">yarn add <span class="hljs-string">"github:bitcapital-hq/bitcapital-core-sdk#1.3.0"</span>;
-</code></pre>
+				<pre><code class="language-bash">yarn add <span class="hljs-string">"github:bitcapital-hq/bitcapital-core-sdk#1.3.0"</span>;</code></pre>
 				<p>Or use NPM:</p>
-				<pre><code class="lang-bash">npm install <span class="hljs-string">"git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git#1.3.0"</span>;
-</code></pre>
+				<pre><code class="language-bash">npm install <span class="hljs-string">"git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git#1.3.0"</span>;</code></pre>
 				<h2 id="getting-started-from-source-">Getting started (From source)</h2>
 				<p>Install the dependencies and make sure everything is OK by running the automated tests.</p>
-				<pre><code class="lang-bash">yarn install
-yarn <span class="hljs-built_in">test</span>
-</code></pre>
+				<pre><code class="language-bash">yarn install
+yarn <span class="hljs-built_in">test</span></code></pre>
 				<p>Prepare the changes for publishing using the Typescript compiler</p>
-				<pre><code class="lang-bash">yarn run build
-</code></pre>
+				<pre><code class="language-bash">yarn run build</code></pre>
 				<h2 id="configuring-your-client">Configuring your Client</h2>
 				<p>To start using this SDK you need both a Client ID and a Client Secret, emitted by
 				the Bitcapital Core Team. If you don&#39;t have yours yet, contact them at <a href="https://bitcapital.com.br/developers">https://bitcapital.com.br/developers</a>.</p>
 				<p>Configure your Bitcapital SDK instance.</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> Bitcapital <span class="hljs-keyword">from</span> <span class="hljs-string">'bitcapital-core-sdk'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> Bitcapital <span class="hljs-keyword">from</span> <span class="hljs-string">'bitcapital-core-sdk'</span>;
 
 <span class="hljs-comment">// Initialize the session instance to authenticate</span>
 <span class="hljs-comment">// using the Bitcapital Core OAuth 2.0 provider.</span>
@@ -115,8 +111,7 @@ yarn <span class="hljs-built_in">test</span>
 } <span class="hljs-keyword">catch</span>(exception) {
   <span class="hljs-comment">// Something went wront, probably credentials are invalid</span>
   <span class="hljs-built_in">console</span>.error(exception);
-}
-</code></pre>
+}</code></pre>
 				<h2 id="accessing-library-modules">Accessing library modules</h2>
 				<p>Library modules:</p>
 				<ul>
@@ -142,7 +137,7 @@ yarn <span class="hljs-built_in">test</span>
 				<h3 id="using-a-custom-session">Using a Custom Session</h3>
 				<p>The SDK comes with a built-in set of Storage providers: Memory and Local. In NodeJS environments, only Memory is available.</p>
 				<p>To override the default storage for your platform, pass it in the Session constructor:</p>
-				<pre><code class="lang-typescript"><span class="hljs-comment">// Initialize a custom session with desired storage</span>
+				<pre><code class="language-typescript"><span class="hljs-comment">// Initialize a custom session with desired storage</span>
 <span class="hljs-keyword">const</span> session = Session.initialize({
   storage: <span class="hljs-keyword">new</span> StorageUtil(<span class="hljs-string">'session'</span>, <span class="hljs-keyword">new</span> MemoryStorage()),
   oauth: {
@@ -165,11 +160,10 @@ yarn <span class="hljs-built_in">test</span>
   baseURL: data.baseURL,
   clientId: data.clientId,
   clientSecret: data.clientSecret,
-});
-</code></pre>
+});</code></pre>
 				<p><strong>Creating a custom Storage provider</strong> </p>
 				<p>To implement another Storage mechanism, extend the <code>StorageUtilEngine</code> interface.</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { StorageUtilEngine } <span class="hljs-keyword">from</span> <span class="hljs-string">"bitcapital-core-sdk"</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { StorageUtilEngine } <span class="hljs-keyword">from</span> <span class="hljs-string">"bitcapital-core-sdk"</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> MemoryStorage <span class="hljs-keyword">implements</span> StorageUtilEngine {
   <span class="hljs-keyword">protected</span> data: <span class="hljs-built_in">any</span> = {};
@@ -187,8 +181,7 @@ yarn <span class="hljs-built_in">test</span>
   <span class="hljs-keyword">async</span> clear(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt; {
     <span class="hljs-keyword">this</span>.data = {};
   }
-}
-</code></pre>
+}</code></pre>
 				<h1 id="license">LICENSE</h1>
 				<p>UNLICENSED</p>
 			</div>
@@ -217,6 +210,9 @@ yarn <span class="hljs-built_in">test</span>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/bitcapital.html" class="tsd-kind-icon">Bitcapital</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="classes/boletowebservice.html" class="tsd-kind-icon">Boleto<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/cardwebservice.html" class="tsd-kind-icon">Card<wbr>Web<wbr>Service</a>
@@ -300,6 +296,9 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="interfaces/bitcapitaloptions.html" class="tsd-kind-icon">Bitcapital<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/boletowebserviceoptions.html" class="tsd-kind-icon">Boleto<wbr>Web<wbr>Service<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/cardwebserviceoptions.html" class="tsd-kind-icon">Card<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
@@ -331,9 +330,6 @@ yarn <span class="hljs-built_in">test</span>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/passwordgrantoptions.html" class="tsd-kind-icon">Password<wbr>Grant<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/paymentrequest.html" class="tsd-kind-icon">Payment<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/paymentwebserviceoptions.html" class="tsd-kind-icon">Payment<wbr>Web<wbr>Service<wbr>Options</a>

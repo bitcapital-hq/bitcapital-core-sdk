@@ -1,5 +1,5 @@
 import { User, RequestSigningOptions } from "bitcapital-common";
-import { AddressWebService, AssetWebService, CardWebService, ConsumerWebService, DocumentWebService, DomainWebService, OAuthWebService, PaymentWebService, PhoneWebService, UserWebService, WalletWebService } from "./services";
+import { AddressWebService, AssetWebService, CardWebService, ConsumerWebService, DocumentWebService, DomainWebService, OAuthWebService, PaymentWebService, PhoneWebService, UserWebService, WalletWebService, BoletoWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
 export interface BitcapitalOptions {
@@ -36,7 +36,7 @@ export default class Bitcapital {
      *
      * @param request The request object
      */
-    sign(request: RequestSigningOptions): import("../../bitcapital-common/dist/types/utils/Request").RequestSigningHeaders;
+    sign(request: RequestSigningOptions): import("bitcapital-common").RequestSigningHeaders;
     /**
      * Get the API Status.
      */
@@ -62,6 +62,10 @@ export default class Bitcapital {
      */
     assets(): AssetWebService;
     /**
+     * Interface for the Boleto service.
+     */
+    boletos(): BoletoWebService;
+    /**
      * Interface for the Consumers service.
      */
     consumers(): ConsumerWebService;
@@ -70,7 +74,7 @@ export default class Bitcapital {
      */
     cards(): CardWebService;
     /** Interface for the Documents service.
-    */
+     */
     documents(): DocumentWebService;
     /**
      * Interface for the Domains service.

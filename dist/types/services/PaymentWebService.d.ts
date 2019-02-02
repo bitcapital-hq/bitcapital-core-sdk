@@ -1,6 +1,5 @@
-import { Payment, PaymentSchema } from "bitcapital-common";
+import { Payment, PaymentSchema, PaymentRequestSchema } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
-import { PaymentRequest } from "./request";
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export declare class PaymentWebService extends BaseModelWebService<Payment, PaymentSchema> {
@@ -19,5 +18,5 @@ export declare class PaymentWebService extends BaseModelWebService<Payment, Paym
      *
      * @param payment The Payment schema
      */
-    pay(request: PaymentRequest): Promise<Payment>;
+    pay(request: PaymentRequestSchema): Promise<Payment>;
 }

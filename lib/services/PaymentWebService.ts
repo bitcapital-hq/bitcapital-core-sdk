@@ -1,6 +1,5 @@
-import { Payment, PaymentSchema, RequestUtil } from "bitcapital-common";
+import { Payment, PaymentSchema, RequestUtil, PaymentRequestSchema } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
-import { PaymentRequest } from "./request";
 
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {}
 
@@ -40,7 +39,7 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
    *
    * @param payment The Payment schema
    */
-  public async pay(request: PaymentRequest): Promise<Payment> {
+  public async pay(request: PaymentRequestSchema): Promise<Payment> {
     const { source, recipients } = request;
     const asset = request.asset ? request.asset : "";
 
