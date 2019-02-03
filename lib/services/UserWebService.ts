@@ -110,14 +110,11 @@ export class UserWebService extends BaseModelWebService<User, UserSchema> {
    * @param credentials The OAuth 2.0 credentials for the request
    */
   public async me(credentials?: OAuthCredentials): Promise<User> {
-    const response = await this.http.get(
-      "/users/me",
-      {},
-      {
-        // TODO: move this to an interceptor
-        headers: { Authorization: credentials ? `Bearer ${credentials.accessToken}` : undefined }
-      }
-    );
+    const accessToken = credentials && credentials.accessToken ? credentials.accessToken : undefined;
+
+    // If a specific credential was supplied, use it in the header, then perform request
+    const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined;
+    const response = await this.http.get("/users/me", {}, { headers });
 
     if (credentials && !credentials.expiresAt && response.headers && response.headers["x-oauth-bearer-expiration"]) {
       credentials.expiresAt = new Date(response.headers["x-oauth-bearer-expiration"]);

@@ -13,8 +13,13 @@ export default class SessionCredentialsInterceptor implements HttpInterceptor {
     const credentials = this.session.current ? this.session.current.credentials : undefined;
 
     if (credentials && !request.headers["Authorization"]) {
-      request.headers["Authorization"] = `Bearer ${credentials.accessToken}`;
+      const accessToken = credentials.accessToken || credentials["access_token"];
+
+      if (accessToken) {
+        request.headers["Authorization"] = `Bearer ${accessToken}`;
+      }
     }
+
     return request;
   }
 
