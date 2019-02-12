@@ -1,5 +1,5 @@
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Card, CardSchema, CardBlockRequestSchema, CardUnblockRequestSchema, CardBaseRequestSchema } from "bitcapital-common";
+import { Card, CardSchema, CardBlockRequestSchema, CardUnblockRequestSchema, CardBaseRequestSchema, Payment, Pagination, PaginatedArray } from "bitcapital-common";
 export interface CardWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export declare class CardWebService extends BaseModelWebService<Card, CardSchema> {
@@ -29,4 +29,11 @@ export declare class CardWebService extends BaseModelWebService<Card, CardSchema
      */
     activate(userId: string, payload: CardBaseRequestSchema): Promise<boolean>;
     findOne(userId: string, cardsId: string): Promise<Card>;
+    /**
+     * Find the Payments from a Card.
+     *
+     * @param userId  The user ID
+     * @param id      The Card ID.
+     */
+    findCardPayments(userId: string, id: string, pagination: Pagination): Promise<PaginatedArray<Payment>>;
 }
