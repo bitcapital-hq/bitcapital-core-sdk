@@ -73,9 +73,13 @@ export default class Session {
     this.observable = new Observable();
     this.storage = options.storage || new StorageUtil("session");
 
-    // Prepare web services
-    this.userWebService = options.http ? UserWebService.initialize(options.http) : UserWebService.getInstance();
-    this.oauthWebService = options.oauth ? OAuthWebService.initialize(options.oauth) : OAuthWebService.getInstance();
+    // Prepare inner web services
+    this.userWebService = options.http
+      ? UserWebService.initialize({ session: this, ...options.http })
+      : UserWebService.getInstance();
+    this.oauthWebService = options.oauth
+      ? OAuthWebService.initialize({ ...options.oauth })
+      : OAuthWebService.getInstance();
 
     // Prepare Session interceptors
     this._interceptors = [
