@@ -53,17 +53,17 @@ export default class Bitcapital {
       });
 
     // Initialize main web services
-    AddressWebService.initialize({ ...options });
-    AssetWebService.initialize({ ...options });
-    BankingWebService.initialize({ ...options });
-    BoletoWebService.initialize({ ...options });
-    CardWebService.initialize({ ...options });
-    ConsumerWebService.initialize({ ...options });
-    DocumentWebService.initialize({ ...options });
-    DomainWebService.initialize({ ...options });
-    PaymentWebService.initialize({ ...options });
-    PhoneWebService.initialize({ ...options });
-    WalletWebService.initialize({ ...options });
+    AddressWebService.initialize({ session: this._session, ...options });
+    AssetWebService.initialize({ session: this._session, ...options });
+    BankingWebService.initialize({ session: this._session, ...options });
+    BoletoWebService.initialize({ session: this._session, ...options });
+    CardWebService.initialize({ session: this._session, ...options });
+    ConsumerWebService.initialize({ session: this._session, ...options });
+    DocumentWebService.initialize({ session: this._session, ...options });
+    DomainWebService.initialize({ session: this._session, ...options });
+    PaymentWebService.initialize({ session: this._session, ...options });
+    PhoneWebService.initialize({ session: this._session, ...options });
+    WalletWebService.initialize({ session: this._session, ...options });
 
     // Prepare singleton for easier access
     if (!Bitcapital._instance) {
