@@ -73,14 +73,6 @@ export default class Session {
     this.observable = new Observable();
     this.storage = options.storage || new StorageUtil("session");
 
-    // Prepare inner web services
-    this.userWebService = options.http
-      ? UserWebService.initialize({ session: this, ...options.http })
-      : UserWebService.getInstance();
-    this.oauthWebService = options.oauth
-      ? OAuthWebService.initialize({ ...options.oauth })
-      : OAuthWebService.getInstance();
-
     // Prepare Session interceptors
     this._interceptors = [
       new SessionCredentialsInterceptor(this),
@@ -101,6 +93,14 @@ export default class Session {
         }
       })
     ];
+
+    // Prepare inner web services
+    this.userWebService = options.http
+      ? UserWebService.initialize({ session: this, ...options.http })
+      : UserWebService.getInstance();
+    this.oauthWebService = options.oauth
+      ? OAuthWebService.initialize({ ...options.oauth })
+      : OAuthWebService.getInstance();
 
     // Fetch session in startup by default
     if ((options.autoFetch as any) !== false) {
