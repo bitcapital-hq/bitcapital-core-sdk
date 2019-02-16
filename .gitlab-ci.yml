@@ -1,13 +1,14 @@
 stages:
   - dependencies
   - build
+  - publish
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
 
-install_dependencies:
+dependencies-install:
   stage: dependencies
   image: node:10
   script:
@@ -25,17 +26,28 @@ install_dependencies:
   tags:
     - docker
 
-build_tsc:
+build-tsc:
   stage: build
   image: node:10
   dependencies:
-    - install_dependencies
+    - dependencies-install
   script:
     - yarn build
 
-  artifacts:
-    expire_in: 1d
-    paths:
-      - dist/
+publish-github:
+  stage: publish
+  image: debian
+  dependencies:
+    - build-tsc
   tags:
     - docker
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+    - git config --global user.email "ghost@btcore.app"
+    - git config --global user.name "btcore"
+    - mkdir -p ~/.ssh
+    - cat gitlab-known-hosts >> ~/.ssh/known_hosts
+  script:
+    - git status
