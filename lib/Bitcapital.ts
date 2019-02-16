@@ -204,7 +204,7 @@ export default class Bitcapital {
    * Interface for the Users service.
    */
   public users(): UserWebService {
-    return UserWebService.getInstance();
+    return this._session.userWebService;
   }
 
   /**
