@@ -63,6 +63,7 @@ export default class Session {
   observable: Observable;
   userWebService: UserWebService;
   oauthWebService: OAuthWebService;
+  private _fetchPromise?: Promise<User>;
   private _interceptors: HttpInterceptor[] = [];
 
   public static EVENT_SESSION_CHANGED = "SESSION_CHANGED";
@@ -104,7 +105,7 @@ export default class Session {
 
     // Fetch session in startup by default
     if ((options.autoFetch as any) !== false) {
-      this.fetch();
+      this._fetchPromise = this.fetch();
     }
   }
 
@@ -143,6 +144,16 @@ export default class Session {
    */
   public unsubscribe(observable: Observer) {
     this.observable.unsubscribe(observable);
+  }
+
+  /**
+   * Returns a promise to await fetching completion.
+   */
+  public async onFetch() {
+    if (!this._fetchPromise) {
+      return Promise.resolve(this.current);
+    }
+    return this._fetchPromise;
   }
 
   /**

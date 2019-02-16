@@ -122,6 +122,7 @@ session.unsubscribe(observer);</code></pre>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="session.html#_fetchpromise" class="tsd-kind-icon">_fetch<wbr>Promise</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="session.html#_interceptors" class="tsd-kind-icon">_interceptors</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="session.html#current" class="tsd-kind-icon">current</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="session.html#oauthwebservice" class="tsd-kind-icon">oauth<wbr>Web<wbr>Service</a></li>
@@ -140,6 +141,7 @@ session.unsubscribe(observer);</code></pre>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="session.html#destroy" class="tsd-kind-icon">destroy</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="session.html#fetch" class="tsd-kind-icon">fetch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="session.html#interceptors" class="tsd-kind-icon">interceptors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="session.html#onfetch" class="tsd-kind-icon">on<wbr>Fetch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="session.html#password" class="tsd-kind-icon">password</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="session.html#refreshtoken" class="tsd-kind-icon">refresh<wbr>Token</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="session.html#register" class="tsd-kind-icon">register</a></li>
@@ -165,7 +167,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L70">session/Session.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L71">session/Session.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -182,12 +184,22 @@ session.unsubscribe(observer);</code></pre>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="_fetchpromise" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> _fetch<wbr>Promise</h3>
+					<div class="tsd-signature tsd-kind-icon">_fetch<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">User</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="_interceptors" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _interceptors</h3>
 					<div class="tsd-signature tsd-kind-icon">_interceptors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HttpInterceptor</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L66">session/Session.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L67">session/Session.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +209,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">current<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">User</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L61">session/Session.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L61">session/Session.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -207,7 +219,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">oauth<wbr>Web<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="oauthwebservice.html" class="tsd-signature-type">OAuthWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L65">session/Session.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L65">session/Session.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -217,7 +229,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">observable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L63">session/Session.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L63">session/Session.ts:63</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -227,7 +239,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/sessionoptions.html" class="tsd-signature-type">SessionOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L72">session/Session.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L73">session/Session.ts:73</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -237,7 +249,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="storageutil.html" class="tsd-signature-type">StorageUtil</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L62">session/Session.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L62">session/Session.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -247,7 +259,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Web<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="userwebservice.html" class="tsd-signature-type">UserWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L64">session/Session.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L64">session/Session.ts:64</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -257,7 +269,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">EVENT_<wbr>SESSION_<wbr>CHANGED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;SESSION_CHANGED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L68">session/Session.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L69">session/Session.ts:69</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -267,7 +279,7 @@ session.unsubscribe(observer);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <a href="session.html" class="tsd-signature-type">Session</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L70">session/Session.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L71">session/Session.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -284,7 +296,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L263">session/Session.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L274">session/Session.ts:274</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +318,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L190">session/Session.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L201">session/Session.ts:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -328,7 +340,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L170">session/Session.ts:170</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L181">session/Session.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -350,7 +362,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L114">session/Session.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L115">session/Session.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -359,6 +371,28 @@ session.unsubscribe(observer);</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HttpInterceptor</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="onfetch" class="tsd-anchor"></a>
+					<h3>on<wbr>Fetch</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Fetch<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">User</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L152">session/Session.ts:152</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a promise to await fetching completion.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">User</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -372,7 +406,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L216">session/Session.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L227">session/Session.ts:227</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -403,7 +437,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L242">session/Session.ts:242</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L253">session/Session.ts:253</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -434,7 +468,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L154">session/Session.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L165">session/Session.ts:165</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -476,7 +510,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L179">session/Session.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L190">session/Session.ts:190</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -498,7 +532,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L135">session/Session.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L136">session/Session.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -529,7 +563,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L144">session/Session.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L145">session/Session.ts:145</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -560,7 +594,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L121">session/Session.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L122">session/Session.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -582,7 +616,7 @@ session.unsubscribe(observer);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/ed6f84e/lib/session/Session.ts#L125">session/Session.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/56cc823/lib/session/Session.ts#L126">session/Session.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -614,6 +648,9 @@ session.unsubscribe(observer);</code></pre>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
 								<a href="session.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="session.html#_fetchpromise" class="tsd-kind-icon">_fetch<wbr>Promise</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="session.html#_interceptors" class="tsd-kind-icon">_interceptors</a>
@@ -653,6 +690,9 @@ session.unsubscribe(observer);</code></pre>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="session.html#interceptors" class="tsd-kind-icon">interceptors</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="session.html#onfetch" class="tsd-kind-icon">on<wbr>Fetch</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="session.html#password" class="tsd-kind-icon">password</a>
