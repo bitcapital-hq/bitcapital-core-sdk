@@ -51,3 +51,5 @@ publish-github:
     - git --version
   script:
     - git status
+    - git remote -v
+    - ls
