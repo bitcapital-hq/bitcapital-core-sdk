@@ -43,7 +43,7 @@ publish-github:
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH")
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - git config --global user.email "ghost@btcore.app"
     - git config --global user.name "btcore"
     - mkdir -p ~/.ssh
