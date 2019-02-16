@@ -49,6 +49,8 @@ publish-github:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - git --version
+    - git status
+    - git branch
   script:
     - git remote add github $GITHUB_URL
-    - git push github $CI_COMMIT_REF_NAME
+    - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME"
