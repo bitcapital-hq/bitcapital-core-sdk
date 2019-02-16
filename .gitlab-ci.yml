@@ -1,0 +1,41 @@
+stages:
+  - dependencies
+  - build
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: dependencies
+  image: node:10
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - yarn install
+
+  artifacts:
+    expire_in: 1d
+    paths:
+      - node_modules/
+  tags:
+    - docker
+
+build_tsc:
+  stage: build
+  image: node:10
+  dependencies:
+    - install_dependencies
+  script:
+    - yarn build
+
+  artifacts:
+    expire_in: 1d
+    paths:
+      - dist/
+  tags:
+    - docker
