@@ -10,9 +10,9 @@ cache:
 
 dependencies-install:
   stage: dependencies
-  image: node:10
+  image: node:10-alpine
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which ssh-agent || ( apk --update add openssh-client bash )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
@@ -29,7 +29,7 @@ dependencies-install:
 
 build-tsc:
   stage: build
-  image: node:10
+  image: node:10-alpine
   dependencies:
     - dependencies-install
   script:
@@ -43,7 +43,7 @@ publish-github:
     - docker
   image: alpine/git
   before_script:
-    - 'which ssh-agent || ( apk --update add openssh-client )'
+    - 'which ssh-agent || ( apk --update add openssh-client bash )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
