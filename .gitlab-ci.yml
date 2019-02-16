@@ -41,13 +41,14 @@ publish-github:
     - build-tsc
   tags:
     - docker
-  image: alpine/git
+  image: node:10-alpine
   before_script:
-    - which ssh-agent || ( apk --update add openssh-client bash )
+    - which ssh-agent || ( apk --update add openssh-client bash git )
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - mkdir -p ~/.ssh
     - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - git --version
   script:
     - git remote add github "$GITHUB_URL"
     - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME"
