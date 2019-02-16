@@ -50,6 +50,5 @@ publish-github:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - git --version
   script:
-    - git status
-    - git remote -v
-    - ls
+    - git remote add github $GITHUB_URL
+    - git push github $CI_COMMIT_REF_NAME
