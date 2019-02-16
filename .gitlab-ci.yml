@@ -13,6 +13,7 @@ dependencies-install:
   image: node:10-alpine
   before_script:
     - which ssh-agent || ( apk --update add openssh-client bash )
+    - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - mkdir -p ~/.ssh
     - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
@@ -43,6 +44,7 @@ publish-github:
   image: alpine/git
   before_script:
     - which ssh-agent || ( apk --update add openssh-client bash )
+    - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - mkdir -p ~/.ssh
     - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
