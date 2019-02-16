@@ -63,8 +63,8 @@ export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
    * Emits an Asset to a specific wallet. If none supplied, will be emited to the mediator wallet.
    */
   public async emit(request: AssetEmitRequestSchema): Promise<Payment> {
-    const { id, amount, destination } = request;
-    const body = { amount, destination };
+    const { id, amount, destination, additionalData } = request;
+    const body = { amount, destination, additionalData };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/assets/${id}/emit`,
@@ -86,8 +86,8 @@ export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
    * Destroys an amount of Assets from a specific wallet. If none supplied, will be destroyed from the mediator wallet.
    */
   public async destroy(request: AssetDestroyRequestSchema): Promise<Payment> {
-    const { id, amount, source } = request;
-    const body = { amount, source };
+    const { id, amount, source, additionalData } = request;
+    const body = { amount, source, additionalData };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/assets/${id}/destroy`,
