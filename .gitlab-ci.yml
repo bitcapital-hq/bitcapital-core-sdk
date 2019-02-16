@@ -12,7 +12,7 @@ dependencies-install:
   stage: dependencies
   image: node:10-alpine
   before_script:
-    - apk add --update openssh-client bash && rm -rf /var/cache/apk/*
+    - apk add --update openssh-client bash git && rm -rf /var/cache/apk/*
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - mkdir -p ~/.ssh
@@ -52,3 +52,25 @@ publish-github:
   script:
     - git remote add github "$GITHUB_URL"
     - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME"
+  only:
+    - branches
+
+publish-github-tags:
+  stage: publish
+  dependencies:
+    - build-tsc
+  tags:
+    - docker
+  image: node:10-alpine
+  before_script:
+    - apk add --update openssh-client bash git && rm -rf /var/cache/apk/*
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - git --version
+  script:
+    - git remote add github "$GITHUB_URL"
+    - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME" --tags
+  only:
+    - tags
