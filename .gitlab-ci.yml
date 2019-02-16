@@ -12,11 +12,10 @@ dependencies-install:
   stage: dependencies
   image: node:10-alpine
   before_script:
-    - 'which ssh-agent || ( apk --update add openssh-client bash )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - which ssh-agent || ( apk --update add openssh-client bash )
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - yarn install
 
@@ -43,11 +42,10 @@ publish-github:
     - docker
   image: alpine/git
   before_script:
-    - 'which ssh-agent || ( apk --update add openssh-client bash )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - which ssh-agent || ( apk --update add openssh-client bash )
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - git remote add github "$GITHUB_URL"
     - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME"
