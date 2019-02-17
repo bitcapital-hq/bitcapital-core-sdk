@@ -1,5 +1,5 @@
 export interface AssetEmitRequestSchema {
-    id: string;
+    id?: string;
     amount: string;
     destination?: string;
     additionalData?: any;

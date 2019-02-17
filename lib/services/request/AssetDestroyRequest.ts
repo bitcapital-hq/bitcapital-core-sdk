@@ -1,5 +1,5 @@
 export interface AssetDestroyRequestSchema {
-  id: string;
+  id?: string;
   amount: string;
   source?: string;
   additionalData?: any;

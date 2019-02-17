@@ -59,6 +59,7 @@ export default class Session {
     observable: Observable;
     userWebService: UserWebService;
     oauthWebService: OAuthWebService;
+    private _fetchPromise?;
     private _interceptors;
     static EVENT_SESSION_CHANGED: string;
     protected static instance: Session;
@@ -84,6 +85,10 @@ export default class Session {
      * @param {Observer} observable The instance to be removed from listeners.
      */
     unsubscribe(observable: Observer): void;
+    /**
+     * Returns a promise to await fetching completion.
+     */
+    onFetch(): Promise<User>;
     /**
      * Register a new User in session, notifying all observers.
      *
