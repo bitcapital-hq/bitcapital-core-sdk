@@ -41,6 +41,12 @@ export declare class ConsumerWebService extends BaseModelWebService<User, UserSc
      */
     findWalletsById(id: string): Promise<Wallet[]>;
     /**
+    * Gets KYC information about an user for an operator.
+    *
+    * @param id The User ID.
+    */
+    getKYCData(id: string): Promise<any>;
+    /**
      * Create a new User with role Consumer.
      *
      * @param consumer The User schema.
@@ -70,6 +76,20 @@ export declare class ConsumerWebService extends BaseModelWebService<User, UserSc
      * @deprecated This method was moved to DocumentWebService and will be removed in a future release
      */
     uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File): Promise<Document>;
+    /**
+     * Registers the manual KYC anlysis result.
+     *
+     * @param {string} id The User id.
+     * @param {string} name The consumer's name.
+     * @param {{"approved" | "rejected"}} result The analysis veredict.
+     * @param {string} result The reason for the consumer's approval or rejection.
+     * @param {string} taxId The consumer's tax ID.
+     * @param {string} motherName The consumer's mother's name.
+     * @param {string} address The consumer's address.
+     * @param {string} phone The consumer's phone.
+     * @param {string} birthday The consumer's birthday.
+     */
+    setManualKYCAnalysisResult(id: string, name: string, result: string, reason: string, taxId: string, motherName: string, address: string, phone: string, birthday: string): Promise<import("axios").AxiosResponse<any>>;
     /**
      * Upload a new Document picture to a User with role Consumer using base64.
      *

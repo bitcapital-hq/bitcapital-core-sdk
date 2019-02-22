@@ -116,6 +116,21 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
   }
 
   /**
+   * Gets KYC information about an user for an operator.
+   *
+   * @param id The User ID.
+   */
+  public async getKYCData(id: string) {
+    const response = await this.http.get(`/consumers/${id}/kyc`);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data;
+  }
+
+  /**
    * Create a new User with role Consumer.
    *
    * @param consumer The User schema.
@@ -202,6 +217,48 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
     }
 
     return new Document(response.data);
+  }
+
+  /**
+   * Registers the manual KYC anlysis result.
+   *
+   * @param {string} id The User id.
+   * @param {string} name The consumer's name.
+   * @param {{"approved" | "rejected"}} result The analysis veredict.
+   * @param {string} result The reason for the consumer's approval or rejection.
+   * @param {string} taxId The consumer's tax ID.
+   * @param {string} motherName The consumer's mother's name.
+   * @param {string} address The consumer's address.
+   * @param {string} phone The consumer's phone.
+   * @param {string} birthday The consumer's birthday.
+   */
+  public async setManualKYCAnalysisResult(
+    id: string,
+    name: string,
+    result: string,
+    reason: string,
+    taxId: string,
+    motherName: string,
+    address: string,
+    phone: string,
+    birthday: string
+  ) {
+    const response = await this.http.post(`/consumers/${id}/kyc`, {
+      name,
+      result,
+      reason,
+      taxId,
+      motherName,
+      address,
+      phone,
+      birthday
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response;
   }
 
   /**
