@@ -9,11 +9,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn run -s clean && tsc",
-    "clean": "rimraf ./dist/",
+    "prebuild": "rimraf dist docs",
+    "build": "tsc",
+    "docs": "./scripts/docs.sh",
+    "postbuild": "yarn run -s docs",
     "test": "yarn run -s lint && jest --config jest.json",
     "lint": "tslint --project tsconfig.json",
-    "docs": "./scripts/docs.sh",
     "start": "$(cd docs/ && serve -p ${PORT:-3030})",
     "precommit": "lint-staged",
     "prepush": "yarn -s test"
