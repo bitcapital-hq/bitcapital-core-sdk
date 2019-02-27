@@ -63,6 +63,36 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
   }
 
   /**
+   * Block an User with role Consumer.
+   *
+   * @param id The User ID.
+   */
+  public async block(id: string): Promise<boolean> {
+    const response = await this.http.post(`/consumers/${id}/block`);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data;
+  }
+
+  /**
+   * Block an User with role Consumer.
+   *
+   * @param id The User ID.
+   */
+  public async unblock(id: string): Promise<boolean> {
+    const response = await this.http.post(`/consumers/${id}/unblock`);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data;
+  }
+
+  /**
    * Create a new User with role Consumer.
    *
    * @param consumer The User schema.
