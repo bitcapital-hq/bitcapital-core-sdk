@@ -8,6 +8,7 @@ export * from "./ConsumerWebService";
 export * from "./CardWebService";
 export * from "./DocumentWebService";
 export * from "./DomainWebService";
+export * from "./MediatorWebService";
 export * from "./OAuthWebService";
 export * from "./PaymentWebService";
 export * from "./PhoneWebService";

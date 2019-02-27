@@ -2,18 +2,19 @@ import { User, RequestUtil, RequestSigningOptions } from "bitcapital-common";
 import {
   AddressWebService,
   AssetWebService,
+  BankingWebService,
+  BoletoWebService,
   CardWebService,
   ConsumerWebService,
   DocumentWebService,
   DomainWebService,
+  MediatorWebService,
   OAuthWebService,
   OAuthWebServiceOptions,
   PaymentWebService,
   PhoneWebService,
   UserWebService,
-  WalletWebService,
-  BankingWebService,
-  BoletoWebService
+  WalletWebService
 } from "./services";
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
@@ -61,6 +62,7 @@ export default class Bitcapital {
     ConsumerWebService.initialize({ session: this._session, ...options });
     DocumentWebService.initialize({ session: this._session, ...options });
     DomainWebService.initialize({ session: this._session, ...options });
+    MediatorWebService.initialize({ session: this._session, ...options });
     PaymentWebService.initialize({ session: this._session, ...options });
     PhoneWebService.initialize({ session: this._session, ...options });
     WalletWebService.initialize({ session: this._session, ...options });
@@ -177,6 +179,13 @@ export default class Bitcapital {
    */
   public domains(): DomainWebService {
     return DomainWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Mediators service.
+   */
+  public mediators(): MediatorWebService {
+    return MediatorWebService.getInstance();
   }
 
   /**
