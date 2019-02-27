@@ -1,6 +1,6 @@
 stages:
   - dependencies
-  - build
+  - audit
   - publish
 
 cache:
@@ -19,7 +19,6 @@ dependencies-install:
     - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - yarn install
-
   artifacts:
     expire_in: 1d
     paths:
@@ -27,18 +26,20 @@ dependencies-install:
   tags:
     - docker
 
-build-tsc:
-  stage: build
+tests:
+  stage: audit
   image: node:10-alpine
   dependencies:
     - dependencies-install
   script:
-    - yarn build
+    - yarn -s test
+  artifacts:
+    reports:
+      junit: junit.xml
+
 
 publish-github:
   stage: publish
-  dependencies:
-    - build-tsc
   tags:
     - docker
   image: node:10-alpine
@@ -57,8 +58,6 @@ publish-github:
 
 publish-github-tags:
   stage: publish
-  dependencies:
-    - build-tsc
   tags:
     - docker
   image: node:10-alpine
