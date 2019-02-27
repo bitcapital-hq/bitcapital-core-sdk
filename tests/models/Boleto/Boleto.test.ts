@@ -1,5 +1,5 @@
 import * as uuid from "uuid/v4";
-import { BoletoSchema, Boleto } from "../../../lib";
+import { BoletoSchema } from "bitcapital-common";
 
 export const TEST_BOLETO: BoletoSchema = {
   id: uuid(),
@@ -11,7 +11,7 @@ export const TEST_BOLETO: BoletoSchema = {
   beneficiaryName: "BitCapital",
   beneficiaryCode: "string",
   beneficiaryDocument: "string",
-  amount: 1000.0,
+  amount: "1000.0",
   barCode: "23790504004188102313343008109209176890000019900",
   digitableLine: "23790504004188102313343008109209176890000019900",
   bank: "341",
@@ -22,11 +22,3 @@ export const TEST_BOLETO: BoletoSchema = {
   conductorNumberDigit: "9",
   isRegistered: false
 };
-
-describe("lib.models.Boleto", () => {
-  it("should instantiate properly", async () => {
-    const boleto = new Boleto({ ...TEST_BOLETO });
-
-    expect(await boleto.isValid()).toBe(true);
-  });
-});

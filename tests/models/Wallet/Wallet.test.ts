@@ -1,5 +1,5 @@
 import * as uuid from "uuid/v4";
-import { Wallet, WalletSchema, WalletStatus } from "../../../lib";
+import { WalletSchema, WalletStatus } from "bitcapital-common";
 
 export const TEST_WALLET = (): WalletSchema => ({
   id: uuid(),
@@ -19,14 +19,3 @@ export const TEST_WALLET_BANKING: WalletSchema = {
     accountDocument: ""
   }
 };
-
-describe("lib.models.Wallet", () => {
-  it("should instantiate properly", async () => {
-    const schema = TEST_WALLET();
-    const wallet = new Wallet(schema);
-
-    expect(wallet.id).toBe(schema.id);
-    expect(wallet.status).toBe(schema.status);
-    expect(await wallet.isValid()).toBe(true);
-  });
-});

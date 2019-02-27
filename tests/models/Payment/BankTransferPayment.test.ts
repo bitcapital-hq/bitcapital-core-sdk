@@ -1,8 +1,6 @@
 import * as uuid from "uuid/v4";
-import { BankTransferPaymentSchema, BankTransferPayment, Wallet } from "../../../lib";
+import { BankTransfer, BankTransferDestination, BankTransferPaymentSchema, Wallet } from "bitcapital-common";
 import { TEST_WALLET_BANKING } from "../Wallet/Wallet.test";
-import { BankTransferDestination } from "../../../lib/models/Payment/BankTransferDestination";
-import { BankTransfer } from "../../../lib/models/Payment/BankTransfer";
 
 export const TEST_WITHDRAWAL = (): BankTransferPaymentSchema => ({
   id: uuid(),
@@ -25,22 +23,4 @@ export const TEST_WITHDRAWAL = (): BankTransferPaymentSchema => ({
     identificator: 123456789,
     subIssuerCode: 123456789
   })
-});
-
-describe("lib.models.BankTransferPayment", () => {
-  it("should instantiate properly", async () => {
-    const schema = TEST_WITHDRAWAL();
-    const withdrawal = new BankTransferPayment(schema);
-
-    expect(withdrawal.amount).toBe(schema.amount);
-    expect(withdrawal.bankTransfer.destination).toBe(schema.bankTransfer.destination);
-    expect(withdrawal.bankTransfer.identificator).toBe(schema.bankTransfer.identificator);
-    expect(withdrawal.bankTransfer.subIssuerCode).toBe(schema.bankTransfer.subIssuerCode);
-    expect(withdrawal.bitcapitalCoreId).toBe(schema.bitcapitalCoreId);
-    expect(withdrawal.source).toBe(schema.source);
-    expect(withdrawal.transactionCode).toBe(schema.transactionCode);
-    expect(withdrawal.type).toBe(schema.type);
-
-    expect(await withdrawal.isValid()).toBe(true);
-  });
 });

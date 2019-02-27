@@ -1,4 +1,4 @@
-import { BoletoPaymentResponseSchema, BoletoPaymentResponse } from "../../../lib";
+import { BoletoPaymentResponseSchema } from "bitcapital-common";
 
 export const TEST_BOLETO_PAYMENT_RESPONSE: BoletoPaymentResponseSchema = {
   paymentId: 123456789,
@@ -12,10 +12,3 @@ export const TEST_BOLETO_PAYMENT_RESPONSE: BoletoPaymentResponseSchema = {
   taxAmount: 0,
   amount: 1000.0
 };
-
-describe("lib.models.BoletoPaymentResponse", () => {
-  it("should instantiate properly", async () => {
-    const boletoPaymentResponse = new BoletoPaymentResponse({ ...TEST_BOLETO_PAYMENT_RESPONSE });
-    expect(await boletoPaymentResponse.isValid()).toBe(true);
-  });
-});

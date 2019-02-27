@@ -1,12 +1,11 @@
 import {
-  BoletoValidateResponse,
   BoletoValidateResponseSchema,
   TradersInfo,
   PaymentInfo,
   BoletoInfo,
   PaymentAmountDetails,
   PartialAmountDetails
-} from "../../../lib";
+} from "bitcapital-common";
 
 export const TEST_BOLETO_VALIDATE_RESPONSE: BoletoValidateResponseSchema = {
   paid: true,
@@ -47,10 +46,3 @@ export const TEST_BOLETO_VALIDATE_RESPONSE: BoletoValidateResponseSchema = {
     nextBusinessDay: ""
   })
 };
-
-describe("lib.models.BoletoValidateResponse", () => {
-  it("should instantiate properly", async () => {
-    const boletoValidateResponse = new BoletoValidateResponse({ ...TEST_BOLETO_VALIDATE_RESPONSE });
-    expect(await boletoValidateResponse.isValid()).toBe(true);
-  });
-});
