@@ -1,9 +1,9 @@
-import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Banking, BankingSchema, Pagination, PaginatedArray, PaginationUtil } from "bitcapital-common";
+import { Banking, BankingSchema, PaginatedArray, Pagination, PaginationUtil } from "bitcapital-common";
+import { NestedModelWebService, NestedModelWebServiceOptions } from "./base";
 
-export interface BankingWebServiceOptions extends BaseModelWebServiceOptions {}
+export interface BankingWebServiceOptions extends NestedModelWebServiceOptions {}
 
-export class BankingWebService extends BaseModelWebService<Banking, BankingSchema> {
+export class BankingWebService extends NestedModelWebService<Banking, BankingSchema> {
   protected static instance: BankingWebService;
 
   constructor(protected readonly options: BankingWebServiceOptions) {
@@ -27,7 +27,7 @@ export class BankingWebService extends BaseModelWebService<Banking, BankingSchem
    */
   public async findAll(userId: string, pagination: Pagination): Promise<PaginatedArray<Banking>> {
     const { skip, limit } = pagination;
-    const response = await this.http.get(`/consumer/${userId}/bankings`, { params: { skip, limit } });
+    const response = await this.http.get(`/consumers/${userId}/bankings`, null, { params: { skip, limit } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -39,23 +39,19 @@ export class BankingWebService extends BaseModelWebService<Banking, BankingSchem
   }
 
   /**
-   * Find an Banking based on it's ID.
+   * Find a Banking based on it's ID.
    *
    * @param userId The Consumer's User ID.
    * @param bankingId The Banking ID.
    */
-  public async findOneById(userId: string, bankingId: string): Promise<Banking> {
-    const response = await this.http.get(`/consumer/${userId}/bankings/${bankingId}`);
+  public async findOne(userId: string, bankingId: string): Promise<Banking> {
+    const response = await this.http.get(`/consumers/${userId}/bankings/${bankingId}`);
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
     return new Banking(response.data);
-  }
-
-  public findOne(id: string): Promise<Banking> {
-    throw new Error(`Unable to find banking with id ${id}: method not implemented. Use findOneById instead.`);
   }
 
   /**
@@ -65,7 +61,7 @@ export class BankingWebService extends BaseModelWebService<Banking, BankingSchem
    * @param banking The Banking schema.
    */
   public async create(userId: string, banking: BankingSchema): Promise<Banking> {
-    const response = await this.http.post(`/consumer/${userId}/bankings`, banking);
+    const response = await this.http.post(`/consumers/${userId}/bankings`, banking);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -82,7 +78,7 @@ export class BankingWebService extends BaseModelWebService<Banking, BankingSchem
    * @param banking The partial Banking schema.
    */
   public async update(userId: string, bankingId: string, banking: Partial<BankingSchema>): Promise<Banking> {
-    const response = await this.http.post(`/consumer/${userId}/bankings/${bankingId}`, banking);
+    const response = await this.http.post(`/consumers/${userId}/bankings/${bankingId}`, banking);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -92,13 +88,13 @@ export class BankingWebService extends BaseModelWebService<Banking, BankingSchem
   }
 
   /**
-   * Delete an Banking from the platform.
+   * Delete a Banking from the platform.
    *
    * @param userId The Consumer's User ID.
    * @param bankingId The Banking ID.
    */
   public async delete(userId: string, bankingId: string): Promise<boolean> {
-    const response = await this.http.delete(`/consumer/${userId}/bankings/${bankingId}`);
+    const response = await this.http.delete(`/consumers/${userId}/bankings/${bankingId}`);
 
     if (!response || response.status !== 200) {
       throw response;
