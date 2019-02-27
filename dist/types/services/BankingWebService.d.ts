@@ -1,8 +1,8 @@
-import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Banking, BankingSchema, Pagination, PaginatedArray } from "bitcapital-common";
-export interface BankingWebServiceOptions extends BaseModelWebServiceOptions {
+import { Banking, BankingSchema, PaginatedArray, Pagination } from "bitcapital-common";
+import { NestedModelWebService, NestedModelWebServiceOptions } from "./base";
+export interface BankingWebServiceOptions extends NestedModelWebServiceOptions {
 }
-export declare class BankingWebService extends BaseModelWebService<Banking, BankingSchema> {
+export declare class BankingWebService extends NestedModelWebService<Banking, BankingSchema> {
     protected readonly options: BankingWebServiceOptions;
     protected static instance: BankingWebService;
     constructor(options: BankingWebServiceOptions);
@@ -16,13 +16,12 @@ export declare class BankingWebService extends BaseModelWebService<Banking, Bank
      */
     findAll(userId: string, pagination: Pagination): Promise<PaginatedArray<Banking>>;
     /**
-     * Find an Banking based on it's ID.
+     * Find a Banking based on it's ID.
      *
      * @param userId The Consumer's User ID.
      * @param bankingId The Banking ID.
      */
-    findOneById(userId: string, bankingId: string): Promise<Banking>;
-    findOne(id: string): Promise<Banking>;
+    findOne(userId: string, bankingId: string): Promise<Banking>;
     /**
      * Create a new Banking in the platform.
      *
@@ -39,7 +38,7 @@ export declare class BankingWebService extends BaseModelWebService<Banking, Bank
      */
     update(userId: string, bankingId: string, banking: Partial<BankingSchema>): Promise<Banking>;
     /**
-     * Delete an Banking from the platform.
+     * Delete a Banking from the platform.
      *
      * @param userId The Consumer's User ID.
      * @param bankingId The Banking ID.
