@@ -1,11 +1,46 @@
 import * as hat from "hat";
 import * as MockAdapter from "axios-mock-adapter";
-import { User, UserRole, OAuthCredentials, Session, StorageUtil, MemoryStorage } from "../../lib";
-import { TEST_USER } from "../models/User/User.test";
+import {
+  User,
+  UserRole,
+  OAuthCredentials,
+  Session,
+  StorageUtil,
+  MemoryStorage,
+  OAuthCredentialsSchema,
+  UserSchema,
+  UserStatus
+} from "../../lib";
+import * as uuid from "uuid/v4";
+import * as faker from "faker";
 
 jest.useFakeTimers();
 
-const userSchema = TEST_USER({ consumer: false, credentials: "common" });
+const TEST_CREDENTIALS = (virtual: boolean = false): OAuthCredentialsSchema => ({
+  virtual,
+  token_type: "bearer",
+  access_token: uuid(),
+  refresh_token: uuid(),
+  user_id: uuid(),
+  expires_in: 3600,
+  scope: []
+});
+
+export const TEST_USER = (
+  options: { credentials: false | "common" | "virtual" } = { credentials: false }
+): UserSchema => ({
+  id: uuid(),
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  role: UserRole.PUBLIC,
+  status: UserStatus.ACTIVE,
+  credentials: options.credentials
+    ? new OAuthCredentials(TEST_CREDENTIALS(options.credentials === "virtual"))
+    : undefined
+});
+
+const userSchema = TEST_USER({ credentials: "common" });
 
 describe("lib.session.Session", () => {
   it("should have a valid lib interface", async () => {
