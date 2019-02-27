@@ -539,9 +539,9 @@ binary-extensions@^1.0.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
 
-bitcapital-common@bitcapital-hq/bitcapital-common#feat/activate-card:
-  version "1.2.0"
-  resolved "https://codeload.github.com/bitcapital-hq/bitcapital-common/tar.gz/7d345425e87e14f4d1b7eeeee1277ac28deda37c"
+"bitcapital-common@git+ssh://git@git.btcore.app:oss/bitcapital-common.git":
+  version "1.5.0"
+  resolved "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#8c895511a28b2d1ca6008b87c80eb12f30deb306"
   dependencies:
     "@types/crypto-js" "^3.1.43"
     axios "^0.17.1"

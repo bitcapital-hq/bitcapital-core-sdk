@@ -1,0 +1,76 @@
+stages:
+  - dependencies
+  - build
+  - publish
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+dependencies-install:
+  stage: dependencies
+  image: node:10-alpine
+  before_script:
+    - apk add --update openssh-client bash git && rm -rf /var/cache/apk/*
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - yarn install
+
+  artifacts:
+    expire_in: 1d
+    paths:
+      - node_modules/
+  tags:
+    - docker
+
+build-tsc:
+  stage: build
+  image: node:10-alpine
+  dependencies:
+    - dependencies-install
+  script:
+    - yarn build
+
+publish-github:
+  stage: publish
+  dependencies:
+    - build-tsc
+  tags:
+    - docker
+  image: node:10-alpine
+  before_script:
+    - apk add --update openssh-client bash git && rm -rf /var/cache/apk/*
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - git --version
+  script:
+    - git remote add github "$GITHUB_URL"
+    - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME"
+  only:
+    - branches
+
+publish-github-tags:
+  stage: publish
+  dependencies:
+    - build-tsc
+  tags:
+    - docker
+  image: node:10-alpine
+  before_script:
+    - apk add --update openssh-client bash git && rm -rf /var/cache/apk/*
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - bash -c '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - git --version
+  script:
+    - git remote add github "$GITHUB_URL"
+    - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME" --tags
+  only:
+    - tags
