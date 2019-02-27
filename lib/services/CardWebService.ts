@@ -31,6 +31,38 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
   }
 
   /**
+   * Emits a new physical card
+   *
+   * @param userId The user ID
+   * @param plasticId The plastic ID
+   */
+  public async emitPhysical(userId: string, plasticId: number): Promise<Card> {
+    const response = await this.http.post(`/users/${userId}/cards/physical`, { plasticId });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Card(response.data);
+  }
+
+  /**
+   * Emits a new physical card
+   *
+   * @param userId The user ID
+   * @param expirationDate The expiration date
+   */
+  public async emitVirtual(userId: string, expirationDate: Date): Promise<Card> {
+    const response = await this.http.post(`/users/${userId}/cards/virtual`, { expirationDate });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Card(response.data);
+  }
+
+  /**
    * Blocks card with the given ID
    *
    * @param userId  The user ID

@@ -119,35 +119,4 @@ export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
 
     return new Asset(response.data);
   }
-
-  /**
-   * Partially update an existing Asset.
-   *
-   * @param id The Asset ID.
-   * @param asset The partial Asset schema.
-   */
-  public async update(id: string, asset: Partial<AssetSchema>): Promise<Asset> {
-    const response = await this.http.post(`/assets/${id}`, asset);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Asset(response.data);
-  }
-
-  /**
-   * Delete an Asset from the platform.
-   *
-   * @param id The Asset ID.
-   */
-  public async delete(id: string): Promise<boolean> {
-    const response = await this.http.delete(`/assets/${id}`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return true;
-  }
 }

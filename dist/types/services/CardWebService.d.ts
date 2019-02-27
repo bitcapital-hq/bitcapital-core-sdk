@@ -8,6 +8,20 @@ export declare class CardWebService extends BaseModelWebService<Card, CardSchema
     static getInstance(): CardWebService;
     static initialize(options: CardWebServiceOptions): CardWebService;
     /**
+     * Emits a new physical card
+     *
+     * @param userId The user ID
+     * @param plasticId The plastic ID
+     */
+    emitPhysical(userId: string, plasticId: number): Promise<Card>;
+    /**
+     * Emits a new physical card
+     *
+     * @param userId The user ID
+     * @param expirationDate The expiration date
+     */
+    emitVirtual(userId: string, expirationDate: Date): Promise<Card>;
+    /**
      * Blocks card with the given ID
      *
      * @param userId  The user ID
