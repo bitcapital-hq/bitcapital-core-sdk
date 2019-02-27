@@ -51,7 +51,7 @@ publish-github:
     - git --version
   script:
     - git remote add github "$GITHUB_URL"
-    - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME"
+    - git push github "$CI_COMMIT_SHA:refs/heads/$CI_COMMIT_REF_NAME"
   only:
     - branches
 
@@ -71,6 +71,6 @@ publish-github-tags:
     - git --version
   script:
     - git remote add github "$GITHUB_URL"
-    - git push github "$CI_COMMIT_SHA:$CI_COMMIT_REF_NAME" --tags
+    - git push github "$CI_COMMIT_SHA:refs/heads/$CI_COMMIT_REF_NAME" --tags
   only:
     - tags
