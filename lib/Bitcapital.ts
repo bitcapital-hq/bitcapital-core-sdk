@@ -13,6 +13,7 @@ import {
   OAuthWebServiceOptions,
   PaymentWebService,
   PhoneWebService,
+  TransactionWebService,
   UserWebService,
   WalletWebService
 } from "./services";
@@ -65,6 +66,7 @@ export default class Bitcapital {
     MediatorWebService.initialize({ session: this._session, ...options });
     PaymentWebService.initialize({ session: this._session, ...options });
     PhoneWebService.initialize({ session: this._session, ...options });
+    TransactionWebService.initialize({ session: this._session, ...options });
     WalletWebService.initialize({ session: this._session, ...options });
 
     // Prepare singleton for easier access
@@ -207,6 +209,13 @@ export default class Bitcapital {
    */
   public products(): ProductWebService {
     return ProductWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Transactions service.
+   */
+  public transactions(): TransactionWebService {
+    return TransactionWebService.getInstance();
   }
 
   /**
