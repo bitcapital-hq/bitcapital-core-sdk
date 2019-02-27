@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "bitcapital-common": "bitcapital-hq/bitcapital-common#feat/activate-card",
+    "bitcapital-common": "git+ssh://git@git.btcore.app:oss/bitcapital-common.git",
     "buffer": "^5.0.8",
     "class-validator": "^0.9.1",
     "crypto-js": "^3.1.9-1",
