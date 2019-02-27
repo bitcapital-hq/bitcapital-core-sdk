@@ -4,7 +4,12 @@ import {
   CardSchema,
   CardBlockRequestSchema,
   CardUnblockRequestSchema,
-  CardBaseRequestSchema
+  CardBaseRequestSchema,
+  Payment,
+  PaymentSchema,
+  Pagination,
+  PaginatedArray,
+  PaginationUtil
 } from "bitcapital-common";
 
 export interface CardWebServiceOptions extends BaseModelWebServiceOptions {}
@@ -81,5 +86,24 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
     }
 
     return new Card(response.data);
+  }
+
+  /**
+   * Find the Payments from a Card.
+   *
+   * @param userId  The user ID
+   * @param id      The Card ID.
+   */
+  public async findCardPayments(userId: string, id: string, pagination: Pagination): Promise<PaginatedArray<Payment>> {
+    const { skip, limit } = pagination;
+    const response = await this.http.get(`/users/${userId}/cards/${id}/payments`, null, { params: { skip, limit } });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    // Return a paginated array with count information from headers
+    const result = response.data.map((item: PaymentSchema) => new Payment(item));
+    return PaginationUtil.parse(result, response.headers);
   }
 }
