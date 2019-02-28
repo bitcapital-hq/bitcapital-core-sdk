@@ -1,4 +1,3 @@
-import * as hat from "hat";
 import * as MockAdapter from "axios-mock-adapter";
 import { Http, HttpInterceptor } from "../../lib";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
@@ -9,7 +8,7 @@ describe("lib.base.Http", () => {
   beforeEach(async () => {
     // This sets the mock adapter on the default instance
     http = new Http({ baseURL: "http://localhost:3000/test_url" });
-    const mock = new MockAdapter(http.client);
+    const mock = new (MockAdapter as any)(http.client);
 
     // Mock all requests to a simple success
     mock.onGet("/get").reply(200, {});

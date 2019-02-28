@@ -1,10 +1,19 @@
-import { PaginatedArray, Pagination, PaginationUtil } from "..";
-import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import {
+  OAuthCredentials,
+  User,
+  UserRole,
+  UserSchema,
+  Pagination,
+  PaginatedArray,
+  PaginationUtil,
+  Wallet,
+  WalletSchema
+} from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class UserWebService extends BaseModelWebService<User, UserSchema> {
+export class UserWebService extends BaseModelWebService<User, UserSchema> {
   protected static instance: UserWebService;
 
   constructor(options: UserWebServiceOptions) {
@@ -49,6 +58,21 @@ export default class UserWebService extends BaseModelWebService<User, UserSchema
     }
 
     return new User(response.data);
+  }
+
+  /**
+   * Find the Wallets from a User with role Consumer.
+   *
+   * @param id The User ID.
+   */
+  public async findWalletsById(id: string): Promise<Wallet[]> {
+    const response = await this.http.get(`/users/${id}/wallets`);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data.map((wallet: WalletSchema) => new Wallet(wallet));
   }
 
   /**
@@ -103,14 +127,11 @@ export default class UserWebService extends BaseModelWebService<User, UserSchema
    * @param credentials The OAuth 2.0 credentials for the request
    */
   public async me(credentials?: OAuthCredentials): Promise<User> {
-    const response = await this.http.get(
-      "/users/me",
-      {},
-      {
-        // TODO: move this to an interceptor
-        headers: { Authorization: credentials ? `Bearer ${credentials.accessToken}` : undefined }
-      }
-    );
+    const accessToken = credentials && credentials.accessToken ? credentials.accessToken : undefined;
+
+    // If a specific credential was supplied, use it in the header, then perform request
+    const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined;
+    const response = await this.http.get("/users/me", {}, { headers });
 
     if (credentials && !credentials.expiresAt && response.headers && response.headers["x-oauth-bearer-expiration"]) {
       credentials.expiresAt = new Date(response.headers["x-oauth-bearer-expiration"]);

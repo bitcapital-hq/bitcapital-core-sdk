@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>bitcapital-core-sdk (v1.2.2)</title>
+	<title>bitcapital-core-sdk (v1.6.0)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">bitcapital-core-sdk (v1.2.2)</a>
+					<a href="index.html" class="title">bitcapital-core-sdk (v1.6.0)</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> bitcapital-core-sdk (v1.2.2)</h1>
+			<h1> bitcapital-core-sdk (v1.6.0)</h1>
 		</div>
 	</div>
 </header>
@@ -68,24 +68,20 @@
 				<p>A multi-platform SDK for accessing the Bitcapital Core services in JS and TS environments.</p>
 				<h2 id="getting-started-from-github-">Getting started (From GitHub)</h2>
 				<p>Install as a project dependency using Yarn, remember to specify the desired version.</p>
-				<pre><code class="lang-bash">yarn add <span class="hljs-string">"github:bitcapital-hq/bitcapital-core-sdk#1.3.0"</span>;
-</code></pre>
+				<pre><code class="language-bash">yarn add <span class="hljs-string">"github:bitcapital-hq/bitcapital-core-sdk#1.3.0"</span>;</code></pre>
 				<p>Or use NPM:</p>
-				<pre><code class="lang-bash">npm install <span class="hljs-string">"git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git#1.3.0"</span>;
-</code></pre>
+				<pre><code class="language-bash">npm install <span class="hljs-string">"git+https://github.com/bitcapital-hq/bitcapital-core-sdk.git#1.3.0"</span>;</code></pre>
 				<h2 id="getting-started-from-source-">Getting started (From source)</h2>
 				<p>Install the dependencies and make sure everything is OK by running the automated tests.</p>
-				<pre><code class="lang-bash">yarn install
-yarn <span class="hljs-built_in">test</span>
-</code></pre>
+				<pre><code class="language-bash">yarn install
+yarn <span class="hljs-built_in">test</span></code></pre>
 				<p>Prepare the changes for publishing using the Typescript compiler</p>
-				<pre><code class="lang-bash">yarn run build
-</code></pre>
+				<pre><code class="language-bash">yarn run build</code></pre>
 				<h2 id="configuring-your-client">Configuring your Client</h2>
 				<p>To start using this SDK you need both a Client ID and a Client Secret, emitted by
 				the Bitcapital Core Team. If you don&#39;t have yours yet, contact them at <a href="https://bitcapital.com.br/developers">https://bitcapital.com.br/developers</a>.</p>
 				<p>Configure your Bitcapital SDK instance.</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> Bitcapital <span class="hljs-keyword">from</span> <span class="hljs-string">'bitcapital-core-sdk'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> Bitcapital <span class="hljs-keyword">from</span> <span class="hljs-string">'bitcapital-core-sdk'</span>;
 
 <span class="hljs-comment">// Initialize the session instance to authenticate</span>
 <span class="hljs-comment">// using the Bitcapital Core OAuth 2.0 provider.</span>
@@ -115,8 +111,7 @@ yarn <span class="hljs-built_in">test</span>
 } <span class="hljs-keyword">catch</span>(exception) {
   <span class="hljs-comment">// Something went wront, probably credentials are invalid</span>
   <span class="hljs-built_in">console</span>.error(exception);
-}
-</code></pre>
+}</code></pre>
 				<h2 id="accessing-library-modules">Accessing library modules</h2>
 				<p>Library modules:</p>
 				<ul>
@@ -142,7 +137,7 @@ yarn <span class="hljs-built_in">test</span>
 				<h3 id="using-a-custom-session">Using a Custom Session</h3>
 				<p>The SDK comes with a built-in set of Storage providers: Memory and Local. In NodeJS environments, only Memory is available.</p>
 				<p>To override the default storage for your platform, pass it in the Session constructor:</p>
-				<pre><code class="lang-typescript"><span class="hljs-comment">// Initialize a custom session with desired storage</span>
+				<pre><code class="language-typescript"><span class="hljs-comment">// Initialize a custom session with desired storage</span>
 <span class="hljs-keyword">const</span> session = Session.initialize({
   storage: <span class="hljs-keyword">new</span> StorageUtil(<span class="hljs-string">'session'</span>, <span class="hljs-keyword">new</span> MemoryStorage()),
   oauth: {
@@ -165,11 +160,10 @@ yarn <span class="hljs-built_in">test</span>
   baseURL: data.baseURL,
   clientId: data.clientId,
   clientSecret: data.clientSecret,
-});
-</code></pre>
+});</code></pre>
 				<p><strong>Creating a custom Storage provider</strong> </p>
 				<p>To implement another Storage mechanism, extend the <code>StorageUtilEngine</code> interface.</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { StorageUtilEngine } <span class="hljs-keyword">from</span> <span class="hljs-string">"bitcapital-core-sdk"</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { StorageUtilEngine } <span class="hljs-keyword">from</span> <span class="hljs-string">"bitcapital-core-sdk"</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> MemoryStorage <span class="hljs-keyword">implements</span> StorageUtilEngine {
   <span class="hljs-keyword">protected</span> data: <span class="hljs-built_in">any</span> = {};
@@ -187,8 +181,7 @@ yarn <span class="hljs-built_in">test</span>
   <span class="hljs-keyword">async</span> clear(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt; {
     <span class="hljs-keyword">this</span>.data = {};
   }
-}
-</code></pre>
+}</code></pre>
 				<h1 id="license">LICENSE</h1>
 				<p>UNLICENSED</p>
 			</div>
@@ -204,67 +197,16 @@ yarn <span class="hljs-built_in">test</span>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/addresstype.html" class="tsd-kind-icon">Address<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/assetsscopes.html" class="tsd-kind-icon">Assets<wbr>Scopes</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/consumerstatus.html" class="tsd-kind-icon">Consumer<wbr>Status</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/documenttype.html" class="tsd-kind-icon">Document<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/domainrole.html" class="tsd-kind-icon">Domain<wbr>Role</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/domainsscopes.html" class="tsd-kind-icon">Domains<wbr>Scopes</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/oauthclientstatus.html" class="tsd-kind-icon">OAuth<wbr>Client<wbr>Status</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
 						<a href="enums/paymentlogtype.html" class="tsd-kind-icon">Payment<wbr>Log<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/paymentsscopes.html" class="tsd-kind-icon">Payments<wbr>Scopes</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/phonetype.html" class="tsd-kind-icon">Phone<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/transactiontype.html" class="tsd-kind-icon">Transaction<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/transactionsscopes.html" class="tsd-kind-icon">Transactions<wbr>Scopes</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/userrole.html" class="tsd-kind-icon">User<wbr>Role</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/userstatus.html" class="tsd-kind-icon">User<wbr>Status</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/usersscopes.html" class="tsd-kind-icon">Users<wbr>Scopes</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/wallettype.html" class="tsd-kind-icon">Wallet<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-external">
-						<a href="enums/walletsscopes.html" class="tsd-kind-icon">Wallets<wbr>Scopes</a>
-					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/address.html" class="tsd-kind-icon">Address</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/asset.html" class="tsd-kind-icon">Asset</a>
+						<a href="classes/addresswebservice.html" class="tsd-kind-icon">Address<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/assetwebservice.html" class="tsd-kind-icon">Asset<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/basemodel.html" class="tsd-kind-icon">Base<wbr>Model</a>
+						<a href="classes/bankingwebservice.html" class="tsd-kind-icon">Banking<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-external">
 						<a href="classes/basemodelwebservice.html" class="tsd-kind-icon">Base<wbr>Model<wbr>Web<wbr>Service</a>
@@ -273,40 +215,34 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="classes/bitcapital.html" class="tsd-kind-icon">Bitcapital</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/consumer.html" class="tsd-kind-icon">Consumer</a>
+						<a href="classes/boletowebservice.html" class="tsd-kind-icon">Boleto<wbr>Web<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="classes/cardwebservice.html" class="tsd-kind-icon">Card<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/consumerwebservice.html" class="tsd-kind-icon">Consumer<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/document.html" class="tsd-kind-icon">Document</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/domain.html" class="tsd-kind-icon">Domain</a>
+						<a href="classes/documentwebservice.html" class="tsd-kind-icon">Document<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/domainwebservice.html" class="tsd-kind-icon">Domain<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/http.html" class="tsd-kind-icon">Http</a>
+						<a href="classes/localstorage.html" class="tsd-kind-icon">Local<wbr>Storage</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/localstorage.html" class="tsd-kind-icon">Local<wbr>Storage</a>
+						<a href="classes/mediatorwebservice.html" class="tsd-kind-icon">Mediator<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/memorystorage.html" class="tsd-kind-icon">Memory<wbr>Storage</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/oauthaccesstoken.html" class="tsd-kind-icon">OAuth<wbr>Access<wbr>Token</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/oauthclient.html" class="tsd-kind-icon">OAuth<wbr>Client</a>
+					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-external">
+						<a href="classes/nestedmodelwebservice.html" class="tsd-kind-icon">Nested<wbr>Model<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/oauthclientcredentialsrequest.html" class="tsd-kind-icon">OAuth<wbr>Client<wbr>Credentials<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/oauthcredentials.html" class="tsd-kind-icon">OAuth<wbr>Credentials</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/oauthpasswordrequest.html" class="tsd-kind-icon">OAuth<wbr>Password<wbr>Request</a>
@@ -315,40 +251,19 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="classes/oauthrefreshrequest.html" class="tsd-kind-icon">OAuth<wbr>Refresh<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/oauthrefreshtoken.html" class="tsd-kind-icon">OAuth<wbr>Refresh<wbr>Token</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/oauthsecrettoken.html" class="tsd-kind-icon">OAuth<wbr>Secret<wbr>Token</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/oauthstatusresponse.html" class="tsd-kind-icon">OAuth<wbr>Status<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/oauthwebservice.html" class="tsd-kind-icon">OAuth<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/observable.html" class="tsd-kind-icon">Observable</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-external">
-						<a href="classes/paginatedarray.html" class="tsd-kind-icon">Paginated<wbr>Array</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/paginationutil.html" class="tsd-kind-icon">Pagination<wbr>Util</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/payment.html" class="tsd-kind-icon">Payment</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/paymentwebservice.html" class="tsd-kind-icon">Payment<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/phone.html" class="tsd-kind-icon">Phone</a>
+						<a href="classes/phonewebservice.html" class="tsd-kind-icon">Phone<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/recipient.html" class="tsd-kind-icon">Recipient</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/requestutil.html" class="tsd-kind-icon">Request<wbr>Util</a>
+						<a href="classes/productwebservice.html" class="tsd-kind-icon">Product<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/session.html" class="tsd-kind-icon">Session</a>
@@ -363,22 +278,16 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="classes/storageutil.html" class="tsd-kind-icon">Storage<wbr>Util</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/transaction.html" class="tsd-kind-icon">Transaction</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/user.html" class="tsd-kind-icon">User</a>
+						<a href="classes/transactionwebservice.html" class="tsd-kind-icon">Transaction<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/userwebservice.html" class="tsd-kind-icon">User<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="classes/wallet.html" class="tsd-kind-icon">Wallet</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
 						<a href="classes/walletwebservice.html" class="tsd-kind-icon">Wallet<wbr>Web<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/addressschema.html" class="tsd-kind-icon">Address<wbr>Schema</a>
+						<a href="interfaces/addresswebserviceoptions.html" class="tsd-kind-icon">Address<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/assetdestroyrequestschema.html" class="tsd-kind-icon">Asset<wbr>Destroy<wbr>Request<wbr>Schema</a>
@@ -387,16 +296,10 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="interfaces/assetemitrequestschema.html" class="tsd-kind-icon">Asset<wbr>Emit<wbr>Request<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/assetschema.html" class="tsd-kind-icon">Asset<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/assetwebserviceoptions.html" class="tsd-kind-icon">Asset<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/bankingwalletdata.html" class="tsd-kind-icon">Banking<wbr>Wallet<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/basemodelschema.html" class="tsd-kind-icon">Base<wbr>Model<wbr>Schema</a>
+						<a href="interfaces/bankingwebserviceoptions.html" class="tsd-kind-icon">Banking<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-external">
 						<a href="interfaces/basemodelwebserviceintf.html" class="tsd-kind-icon">Base<wbr>Model<wbr>Web<wbr>Service<wbr>Intf</a>
@@ -408,7 +311,10 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="interfaces/bitcapitaloptions.html" class="tsd-kind-icon">Bitcapital<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/consumerschema.html" class="tsd-kind-icon">Consumer<wbr>Schema</a>
+						<a href="interfaces/boletowebserviceoptions.html" class="tsd-kind-icon">Boleto<wbr>Web<wbr>Service<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/cardwebserviceoptions.html" class="tsd-kind-icon">Card<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/consumerwebserviceoptions.html" class="tsd-kind-icon">Consumer<wbr>Web<wbr>Service<wbr>Options</a>
@@ -417,43 +323,22 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="interfaces/countmetricsresponse.html" class="tsd-kind-icon">Count<wbr>Metrics<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/documentschema.html" class="tsd-kind-icon">Document<wbr>Schema</a>
+						<a href="interfaces/documentwebserviceoptions.html" class="tsd-kind-icon">Document<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/domainmetricsoptions.html" class="tsd-kind-icon">Domain<wbr>Metrics<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/domainschema.html" class="tsd-kind-icon">Domain<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/domainsettings.html" class="tsd-kind-icon">Domain<wbr>Settings</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/domainwebserviceoptions.html" class="tsd-kind-icon">Domain<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/httpinterceptor.html" class="tsd-kind-icon">Http<wbr>Interceptor</a>
+						<a href="interfaces/mediatorwebserviceoptions.html" class="tsd-kind-icon">Mediator<wbr>Web<wbr>Service<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-external">
+						<a href="interfaces/nestedmodelwebserviceintf.html" class="tsd-kind-icon">Nested<wbr>Model<wbr>Web<wbr>Service<wbr>Intf</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/httpoptions.html" class="tsd-kind-icon">Http<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/oauthaccesstokenschema.html" class="tsd-kind-icon">OAuth<wbr>Access<wbr>Token<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/oauthclientschema.html" class="tsd-kind-icon">OAuth<wbr>Client<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/oauthcredentialsschema.html" class="tsd-kind-icon">OAuth<wbr>Credentials<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/oauthrefreshtokenschema.html" class="tsd-kind-icon">OAuth<wbr>Refresh<wbr>Token<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/oauthsecrettokenresource.html" class="tsd-kind-icon">OAuth<wbr>Secret<wbr>Token<wbr>Resource</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/oauthsecrettokenschema.html" class="tsd-kind-icon">OAuth<wbr>Secret<wbr>Token<wbr>Schema</a>
+						<a href="interfaces/nestedmodelwebserviceoptions.html" class="tsd-kind-icon">Nested<wbr>Model<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/oauthstatusresponseschema.html" class="tsd-kind-icon">OAuth<wbr>Status<wbr>Response<wbr>Schema</a>
@@ -462,49 +347,22 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="interfaces/oauthwebserviceoptions.html" class="tsd-kind-icon">OAuth<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/observableoptions.html" class="tsd-kind-icon">Observable<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/observer.html" class="tsd-kind-icon">Observer</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/pagination.html" class="tsd-kind-icon">Pagination</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/paginationdata.html" class="tsd-kind-icon">Pagination<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/passwordgrantoptions.html" class="tsd-kind-icon">Password<wbr>Grant<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/paymentrequestschema.html" class="tsd-kind-icon">Payment<wbr>Request<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/paymentschema.html" class="tsd-kind-icon">Payment<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/paymentwebserviceoptions.html" class="tsd-kind-icon">Payment<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/phoneschema.html" class="tsd-kind-icon">Phone<wbr>Schema</a>
+						<a href="interfaces/phonewebserviceoptions.html" class="tsd-kind-icon">Phone<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/recipientschema.html" class="tsd-kind-icon">Recipient<wbr>Schema</a>
+						<a href="interfaces/productwebserviceoptions.html" class="tsd-kind-icon">Product<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/refreshgrantoptions.html" class="tsd-kind-icon">Refresh<wbr>Grant<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/requestsigningheaders.html" class="tsd-kind-icon">Request<wbr>Signing<wbr>Headers</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/requestsigningoptions.html" class="tsd-kind-icon">Request<wbr>Signing<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/sessionoptions.html" class="tsd-kind-icon">Session<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/stellarwalletdata.html" class="tsd-kind-icon">Stellar<wbr>Wallet<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/storageutilengine.html" class="tsd-kind-icon">Storage<wbr>Util<wbr>Engine</a>
@@ -513,43 +371,16 @@ yarn <span class="hljs-built_in">test</span>
 						<a href="interfaces/totalmetricsresponse.html" class="tsd-kind-icon">Total<wbr>Metrics<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/transactionadditionaldata.html" class="tsd-kind-icon">Transaction<wbr>Additional<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/transactionschema.html" class="tsd-kind-icon">Transaction<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/useragentinformation.html" class="tsd-kind-icon">User<wbr>Agent<wbr>Information</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/userschema.html" class="tsd-kind-icon">User<wbr>Schema</a>
+						<a href="interfaces/transactionwebserviceoptions.html" class="tsd-kind-icon">Transaction<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/userwebserviceoptions.html" class="tsd-kind-icon">User<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/walletbalance.html" class="tsd-kind-icon">Wallet<wbr>Balance</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="interfaces/walletschema.html" class="tsd-kind-icon">Wallet<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/walletwebserviceoptions.html" class="tsd-kind-icon">Wallet<wbr>Web<wbr>Service<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-external">
-						<a href="globals.html#httpclient" class="tsd-kind-icon">Http<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-is-external">
-						<a href="globals.html#httprequestoptions" class="tsd-kind-icon">Http<wbr>Request<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-is-external">
 						<a href="globals.html#sessionunauthorizedcallback" class="tsd-kind-icon">Session<wbr>Unauthorized<wbr>Callback</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-external">
-						<a href="globals.html#default_limit" class="tsd-kind-icon">DEFAULT_<wbr>LIMIT</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-external">
-						<a href="globals.html#scopes" class="tsd-kind-icon">scopes</a>
 					</li>
 				</ul>
 			</nav>

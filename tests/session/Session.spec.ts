@@ -1,24 +1,46 @@
 import * as hat from "hat";
 import * as MockAdapter from "axios-mock-adapter";
-import { User, OAuthCredentials, Session, StorageUtil, MemoryStorage } from "../../lib";
-import OAuthWebService from "../../lib/services/OAuthWebService";
-import UserWebService from "../../lib/services/UserWebService";
+import {
+  User,
+  UserRole,
+  OAuthCredentials,
+  Session,
+  StorageUtil,
+  MemoryStorage,
+  OAuthCredentialsSchema,
+  UserSchema,
+  UserStatus
+} from "../../lib";
+import * as uuid from "uuid/v4";
+import * as faker from "faker";
 
 jest.useFakeTimers();
 
-const TEST_CREDENTIALS = {
+const TEST_CREDENTIALS = (virtual: boolean = false): OAuthCredentialsSchema => ({
+  virtual,
   token_type: "bearer",
-  access_token: hat(),
-  refresh_token: hat(),
-  user_id: hat(),
-  expires_in: 3600
-};
+  access_token: uuid(),
+  refresh_token: uuid(),
+  user_id: uuid(),
+  expires_in: 3600,
+  scope: []
+});
 
-const TEST_USER = {
-  _id: hat(),
-  name: "Test User",
-  email: "user@test.com"
-};
+export const TEST_USER = (
+  options: { credentials: false | "common" | "virtual" } = { credentials: false }
+): UserSchema => ({
+  id: uuid(),
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  role: UserRole.PUBLIC,
+  status: UserStatus.ACTIVE,
+  credentials: options.credentials
+    ? new OAuthCredentials(TEST_CREDENTIALS(options.credentials === "virtual"))
+    : undefined
+});
+
+const userSchema = TEST_USER({ credentials: "common" });
 
 describe("lib.session.Session", () => {
   it("should have a valid lib interface", async () => {
@@ -80,8 +102,8 @@ describe("lib.session.Session", () => {
       const userMock = new (MockAdapter as any)((session.userWebService as any).http.client);
 
       // Mock requests to a simple success
-      oauthMock.onPost("/oauth/token").reply(200, TEST_CREDENTIALS);
-      userMock.onGet("/users/me").reply(200, TEST_USER);
+      oauthMock.onPost("/oauth/token").reply(200, userSchema.credentials);
+      userMock.onGet("/users/me").reply(200, userSchema);
 
       // Mock find all users request to 401 so we can test refresh token
       userMock.onGet("/users").reply(401);
@@ -136,7 +158,7 @@ describe("lib.session.Session", () => {
 
       // Make a call that will return 401, as if the token was revoked or expired
       try {
-        await session.userWebService.findAll({});
+        await session.userWebService.findAllByRole({}, UserRole.CONSUMER);
       } catch {}
 
       // Check if the session performed a refresh token authentication
@@ -146,7 +168,7 @@ describe("lib.session.Session", () => {
     it("should publish the right events", async () => {
       let notified = false;
       const observer = {
-        update(eventName: string) {
+        update() {
           notified = true;
         }
       };

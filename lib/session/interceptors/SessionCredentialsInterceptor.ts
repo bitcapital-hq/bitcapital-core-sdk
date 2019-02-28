@@ -1,6 +1,6 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { HttpInterceptor } from "../../base";
 import Session from "../Session";
+import { HttpInterceptor } from "bitcapital-common";
 
 export default class SessionCredentialsInterceptor implements HttpInterceptor {
   session: Session;
@@ -13,8 +13,13 @@ export default class SessionCredentialsInterceptor implements HttpInterceptor {
     const credentials = this.session.current ? this.session.current.credentials : undefined;
 
     if (credentials && !request.headers["Authorization"]) {
-      request.headers["Authorization"] = `Bearer ${credentials.accessToken}`;
+      const accessToken = credentials.accessToken || credentials["access_token"];
+
+      if (accessToken) {
+        request.headers["Authorization"] = `Bearer ${accessToken}`;
+      }
     }
+
     return request;
   }
 

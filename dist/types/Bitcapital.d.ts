@@ -1,8 +1,8 @@
-import { User } from "./models";
-import { AssetWebService, ConsumerWebService, DomainWebService, OAuthWebService, PaymentWebService, UserWebService, WalletWebService } from "./services";
+import { User, RequestSigningOptions } from "bitcapital-common";
+import { AddressWebService, AssetWebService, BankingWebService, BoletoWebService, CardWebService, ConsumerWebService, DocumentWebService, DomainWebService, MediatorWebService, OAuthWebService, PaymentWebService, PhoneWebService, TransactionWebService, UserWebService, WalletWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
-import { RequestSigningOptions } from "./utils";
+import { ProductWebService } from "./services/ProductWebService";
 export interface BitcapitalOptions {
     session?: Session;
     baseURL: string;
@@ -37,7 +37,7 @@ export default class Bitcapital {
      *
      * @param request The request object
      */
-    sign(request: RequestSigningOptions): import("./utils/Request").RequestSigningHeaders;
+    sign(request: RequestSigningOptions): import("bitcapital-common").RequestSigningHeaders;
     /**
      * Get the API Status.
      */
@@ -55,21 +55,56 @@ export default class Bitcapital {
      */
     oauth(): OAuthWebService;
     /**
+     * Interface for the Addresses service.
+     */
+    addresses(): AddressWebService;
+    /**
      * Interface for the Assets service.
      */
     assets(): AssetWebService;
+    /**
+     * Interface for the Bankings service.
+     */
+    bankings(): BankingWebService;
+    /**
+     * Interface for the Boleto service.
+     */
+    boletos(): BoletoWebService;
     /**
      * Interface for the Consumers service.
      */
     consumers(): ConsumerWebService;
     /**
+     * Interface for the Card service.
+     */
+    cards(): CardWebService;
+    /** Interface for the Documents service.
+     */
+    documents(): DocumentWebService;
+    /**
      * Interface for the Domains service.
      */
     domains(): DomainWebService;
     /**
+     * Interface for the Mediators service.
+     */
+    mediators(): MediatorWebService;
+    /**
      * Interface for the Payments service.
      */
     payments(): PaymentWebService;
+    /**
+     * Interface for the Phones service.
+     */
+    phones(): PhoneWebService;
+    /**
+     * Interface for the Product service.
+     */
+    products(): ProductWebService;
+    /**
+     * Interface for the Transactions service.
+     */
+    transactions(): TransactionWebService;
     /**
      * Interface for the Users service.
      */

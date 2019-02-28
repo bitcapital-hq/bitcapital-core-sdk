@@ -4,14 +4,9 @@ describe("lib.Bitcapital", () => {
   it("should have a valid initialization interface", async () => {
     // Initialize bit capital instance
     const bitcapital = Bitcapital.initialize({
-      http: {
-        baseURL: "http://localhost:3000"
-      },
-      oauth: {
-        clientId: "test",
-        clientSecret: "test",
-        baseURL: "http://localhost:3000"
-      }
+      baseURL: "http://localhost:3000",
+      clientId: "test",
+      clientSecret: "test"
     });
 
     // Check bit capital utility methods

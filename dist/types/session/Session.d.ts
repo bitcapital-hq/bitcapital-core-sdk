@@ -1,8 +1,7 @@
-import { HttpInterceptor } from "../base";
-import { User } from "../models";
+import { User, HttpInterceptor, Observable, Observer } from "bitcapital-common";
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
 import { BaseModelWebServiceOptions } from "../services/base/BaseModelWebService";
-import { Observable, Observer, StorageUtil } from "../utils";
+import { StorageUtil } from "../utils";
 export interface SessionOptions {
     http?: BaseModelWebServiceOptions;
     oauth?: OAuthWebServiceOptions;
@@ -60,6 +59,7 @@ export default class Session {
     observable: Observable;
     userWebService: UserWebService;
     oauthWebService: OAuthWebService;
+    private _fetchPromise?;
     private _interceptors;
     static EVENT_SESSION_CHANGED: string;
     protected static instance: Session;
@@ -85,6 +85,10 @@ export default class Session {
      * @param {Observer} observable The instance to be removed from listeners.
      */
     unsubscribe(observable: Observer): void;
+    /**
+     * Returns a promise to await fetching completion.
+     */
+    onFetch(): Promise<User>;
     /**
      * Register a new User in session, notifying all observers.
      *

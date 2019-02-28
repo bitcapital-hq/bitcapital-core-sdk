@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AssetWebService | bitcapital-core-sdk (v1.2.2)</title>
+	<title>AssetWebService | bitcapital-core-sdk (v1.6.0)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">bitcapital-core-sdk (v1.2.2)</a>
+					<a href="../index.html" class="title">bitcapital-core-sdk (v1.6.0)</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="basemodelwebservice.html" class="tsd-signature-type">BaseModelWebService</a><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/assetschema.html" class="tsd-signature-type">AssetSchema</a><span class="tsd-signature-symbol">&gt;</span>
+						<a href="basemodelwebservice.html" class="tsd-signature-type">BaseModelWebService</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AssetSchema</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">AssetWebService</span>
@@ -82,7 +82,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/basemodelwebserviceintf.html" class="tsd-signature-type">BaseModelWebServiceIntf</a><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/assetschema.html" class="tsd-signature-type">AssetSchema</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/basemodelwebserviceintf.html" class="tsd-signature-type">BaseModelWebServiceIntf</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AssetSchema</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -107,12 +107,10 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="assetwebservice.html#create" class="tsd-kind-icon">create</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="assetwebservice.html#delete" class="tsd-kind-icon">delete</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="assetwebservice.html#destroy" class="tsd-kind-icon">destroy</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="assetwebservice.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="assetwebservice.html#findall" class="tsd-kind-icon">find<wbr>All</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="assetwebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="assetwebservice.html#update" class="tsd-kind-icon">update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="assetwebservice.html#getinstance" class="tsd-kind-icon">get<wbr>Instance</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="assetwebservice.html#initialize" class="tsd-kind-icon">initialize</a></li>
 							</ul>
@@ -133,7 +131,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L9">services/AssetWebService.ts:9</a></li>
+									<li>Defined in services/AssetWebService.ts:16</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,11 +150,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 					<a name="http" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> http</h3>
-					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <a href="http.html" class="tsd-signature-type">Http</a></div>
+					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#http">http</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/base/BaseModelWebService.ts#L22">services/base/BaseModelWebService.ts:22</a></li>
+							<li>Defined in services/base/BaseModelWebService.ts:20</li>
 						</ul>
 					</aside>
 				</section>
@@ -167,7 +165,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#options">options</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L11">services/AssetWebService.ts:11</a></li>
+							<li>Defined in services/AssetWebService.ts:18</li>
 						</ul>
 					</aside>
 				</section>
@@ -177,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <a href="assetwebservice.html" class="tsd-signature-type">AssetWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L9">services/AssetWebService.ts:9</a></li>
+							<li>Defined in services/AssetWebService.ts:16</li>
 						</ul>
 					</aside>
 				</section>
@@ -188,13 +186,13 @@
 					<a name="create" class="tsd-anchor"></a>
 					<h3>create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>asset<span class="tsd-signature-symbol">: </span><a href="../interfaces/assetschema.html" class="tsd-signature-type">AssetSchema</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>asset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AssetSchema</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L106">services/AssetWebService.ts:106</a></li>
+									<li>Defined in services/AssetWebService.ts:113</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -205,45 +203,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>asset: <a href="../interfaces/assetschema.html" class="tsd-signature-type">AssetSchema</a></h5>
+									<h5>asset: <span class="tsd-signature-type">AssetSchema</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The Asset schema.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="delete" class="tsd-anchor"></a>
-					<h3>delete</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#delete">delete</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L137">services/AssetWebService.ts:137</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Delete an Asset from the platform.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The Asset ID.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -251,13 +217,13 @@
 					<a name="destroy" class="tsd-anchor"></a>
 					<h3>destroy</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="../interfaces/assetdestroyrequestschema.html" class="tsd-signature-type">AssetDestroyRequestSchema</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="../interfaces/assetdestroyrequestschema.html" class="tsd-signature-type">AssetDestroyRequestSchema</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Payment</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L81">services/AssetWebService.ts:81</a></li>
+									<li>Defined in services/AssetWebService.ts:88</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,7 +237,7 @@
 									<h5>request: <a href="../interfaces/assetdestroyrequestschema.html" class="tsd-signature-type">AssetDestroyRequestSchema</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Payment</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -279,13 +245,13 @@
 					<a name="emit" class="tsd-anchor"></a>
 					<h3>emit</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="../interfaces/assetemitrequestschema.html" class="tsd-signature-type">AssetEmitRequestSchema</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="../interfaces/assetemitrequestschema.html" class="tsd-signature-type">AssetEmitRequestSchema</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Payment</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L58">services/AssetWebService.ts:58</a></li>
+									<li>Defined in services/AssetWebService.ts:65</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -299,7 +265,7 @@
 									<h5>request: <a href="../interfaces/assetemitrequestschema.html" class="tsd-signature-type">AssetEmitRequestSchema</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Payment</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -307,14 +273,14 @@
 					<a name="findall" class="tsd-anchor"></a>
 					<h3>find<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>All<span class="tsd-signature-symbol">(</span>pagination<span class="tsd-signature-symbol">: </span><a href="../interfaces/pagination.html" class="tsd-signature-type">Pagination</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="paginatedarray.html" class="tsd-signature-type">PaginatedArray</a><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>All<span class="tsd-signature-symbol">(</span>pagination<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Pagination</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PaginatedArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#findall">findAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L27">services/AssetWebService.ts:27</a></li>
+									<li>Defined in services/AssetWebService.ts:34</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,10 +291,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>pagination: <a href="../interfaces/pagination.html" class="tsd-signature-type">Pagination</a></h5>
+									<h5>pagination: <span class="tsd-signature-type">Pagination</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="paginatedarray.html" class="tsd-signature-type">PaginatedArray</a><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PaginatedArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -336,15 +302,14 @@
 					<a name="findone" class="tsd-anchor"></a>
 					<h3>find<wbr>One</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>One<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>One<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#findone">findOne</a></p>
 								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#findone">findOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L45">services/AssetWebService.ts:45</a></li>
+									<li>Defined in services/AssetWebService.ts:52</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -361,45 +326,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="update" class="tsd-anchor"></a>
-					<h3>update</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, asset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/assetschema.html" class="tsd-signature-type">AssetSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#update">update</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L122">services/AssetWebService.ts:122</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Partially update an existing Asset.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The Asset ID.</p>
-									</div>
-								</li>
-								<li>
-									<h5>asset: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/assetschema.html" class="tsd-signature-type">AssetSchema</a><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The partial Asset schema.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Asset</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -413,7 +340,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L15">services/AssetWebService.ts:15</a></li>
+									<li>Defined in services/AssetWebService.ts:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="assetwebservice.html" class="tsd-signature-type">AssetWebService</a></h4>
@@ -430,7 +357,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/1fe8167/lib/services/AssetWebService.ts#L19">services/AssetWebService.ts:19</a></li>
+									<li>Defined in services/AssetWebService.ts:26</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -476,9 +403,6 @@
 								<a href="assetwebservice.html#create" class="tsd-kind-icon">create</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="assetwebservice.html#delete" class="tsd-kind-icon">delete</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="assetwebservice.html#destroy" class="tsd-kind-icon">destroy</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
@@ -489,9 +413,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 								<a href="assetwebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="assetwebservice.html#update" class="tsd-kind-icon">update</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 								<a href="assetwebservice.html#getinstance" class="tsd-kind-icon">get<wbr>Instance</a>

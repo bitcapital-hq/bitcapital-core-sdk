@@ -1,11 +1,19 @@
-export { default as BaseModelWebService } from "./base/BaseModelWebService";
-
-export { default as AssetWebService } from "./AssetWebService";
-export { default as ConsumerWebService } from "./ConsumerWebService";
-export { default as DomainWebService } from "./DomainWebService";
-export { default as OAuthWebService, OAuthWebServiceOptions } from "./OAuthWebService";
-export { default as UserWebService } from "./UserWebService";
-export { default as WalletWebService } from "./WalletWebService";
-export { default as PaymentWebService } from "./PaymentWebService";
-
+export * from "./base";
 export * from "./request";
+export * from "./response";
+export * from "./AddressWebService";
+export * from "./AssetWebService";
+export * from "./BoletoWebService";
+export * from "./ConsumerWebService";
+export * from "./CardWebService";
+export * from "./DocumentWebService";
+export * from "./DomainWebService";
+export * from "./MediatorWebService";
+export * from "./OAuthWebService";
+export * from "./PaymentWebService";
+export * from "./PhoneWebService";
+export * from "./ProductWebService";
+export * from "./TransactionWebService";
+export * from "./UserWebService";
+export * from "./WalletWebService";
+export * from "./BankingWebService";

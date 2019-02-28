@@ -1,8 +1,7 @@
-import { HttpInterceptor } from "../base";
-import { User, UserSchema } from "../models";
+import { User, UserSchema, HttpInterceptor, Observable, Observer } from "bitcapital-common";
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
 import { BaseModelWebServiceOptions } from "../services/base/BaseModelWebService";
-import { Observable, Observer, StorageUtil } from "../utils";
+import { StorageUtil } from "../utils";
 import { SessionCredentialsInterceptor, SessionUnauthorizedInterceptor } from "./interceptors";
 
 export interface SessionOptions {
@@ -64,6 +63,7 @@ export default class Session {
   observable: Observable;
   userWebService: UserWebService;
   oauthWebService: OAuthWebService;
+  private _fetchPromise?: Promise<User>;
   private _interceptors: HttpInterceptor[] = [];
 
   public static EVENT_SESSION_CHANGED = "SESSION_CHANGED";
@@ -73,10 +73,6 @@ export default class Session {
   constructor(public options: SessionOptions) {
     this.observable = new Observable();
     this.storage = options.storage || new StorageUtil("session");
-
-    // Prepare web services
-    this.userWebService = options.http ? UserWebService.initialize(options.http) : UserWebService.getInstance();
-    this.oauthWebService = options.oauth ? OAuthWebService.initialize(options.oauth) : OAuthWebService.getInstance();
 
     // Prepare Session interceptors
     this._interceptors = [
@@ -99,9 +95,17 @@ export default class Session {
       })
     ];
 
+    // Prepare inner web services
+    this.userWebService = options.http
+      ? UserWebService.initialize({ session: this, ...options.http })
+      : UserWebService.getInstance();
+    this.oauthWebService = options.oauth
+      ? OAuthWebService.initialize({ ...options.oauth })
+      : OAuthWebService.getInstance();
+
     // Fetch session in startup by default
     if ((options.autoFetch as any) !== false) {
-      this.fetch();
+      this._fetchPromise = this.fetch();
     }
   }
 
@@ -140,6 +144,16 @@ export default class Session {
    */
   public unsubscribe(observable: Observer) {
     this.observable.unsubscribe(observable);
+  }
+
+  /**
+   * Returns a promise to await fetching completion.
+   */
+  public async onFetch() {
+    if (!this._fetchPromise) {
+      return Promise.resolve(this.current);
+    }
+    return this._fetchPromise;
   }
 
   /**

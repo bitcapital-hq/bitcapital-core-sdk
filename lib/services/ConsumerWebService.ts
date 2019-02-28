@@ -1,11 +1,9 @@
-import { Http } from "../base";
-import { Document, DocumentSchema, DocumentType, User, UserSchema, Wallet } from "../models";
-import { PaginatedArray, Pagination, PaginationUtil } from "../utils";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { Http, User, UserSchema, Pagination, PaginatedArray, PaginationUtil } from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {}
 
-export default class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
+export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
   protected http: Http;
   protected static instance: ConsumerWebService;
 
@@ -54,50 +52,33 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Find the Documents from a User with role Consumer.
-   * This method won't return pictures.
+   * Block an User with role Consumer.
    *
    * @param id The User ID.
    */
-  public async findDocumentsById(id: string = "me"): Promise<Document[]> {
-    const response = await this.http.get(`/consumers/${id}/documents`);
+  public async block(id: string): Promise<boolean> {
+    const response = await this.http.post(`/consumers/${id}/block`);
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
-    return response.data.map(document => new Document(document));
+    return response.data;
   }
 
   /**
-   * Find the Documents from a User with role Consumer.
-   * This method will return pictures.
+   * Block an User with role Consumer.
    *
    * @param id The User ID.
    */
-  public async findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document> {
-    const response = await this.http.get(`/consumers/${id}/documents/${type}`);
+  public async unblock(id: string): Promise<boolean> {
+    const response = await this.http.post(`/consumers/${id}/unblock`);
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
-    return new Document(response.data);
-  }
-
-  /**
-   * Find the Wallets from a User with role Consumer.
-   *
-   * @param id The User ID.
-   */
-  public async findWalletsById(id: string): Promise<Wallet[]> {
-    const response = await this.http.get(`/consumers/${id}/wallets`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return response.data.map(wallet => new Wallet(wallet));
+    return response.data;
   }
 
   /**
@@ -116,27 +97,24 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
   }
 
   /**
-   * Create a new Document on a User with role Consumer.
-   *
-   * @param id The User ID.
-   */
-  public async createDocument(id: string, document: DocumentSchema): Promise<Document> {
-    const response = await this.http.post(`/consumers/${id}/documents`, document);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Document(response.data);
-  }
-
-  /**
    * Partially update an existing User with role Consumer.
    *
    * @param id The User ID.
    * @param consumer The partial User schema.
    */
   public async update(id: string, consumer: Partial<UserSchema>): Promise<User> {
+    if (consumer.consumer) {
+      if (consumer.consumer.addresses) {
+        throw new Error("Addresses should be updated on it's own service");
+      }
+      if (consumer.consumer.documents) {
+        throw new Error("Documents should be updated on it's own service");
+      }
+      if (consumer.consumer.phones) {
+        throw new Error("Phones should be updated on it's own service");
+      }
+    }
+
     const response = await this.http.post(`/consumers/${id}`, consumer);
 
     if (!response || response.status !== 200) {
@@ -144,54 +122,6 @@ export default class ConsumerWebService extends BaseModelWebService<User, UserSc
     }
 
     return new User(response.data);
-  }
-
-  /**
-   * Upload a new Document picture to a User with role Consumer.
-   *
-   * @param {string} id The User id.
-   * @param {DocumentType} type The Document type.
-   * @param {("front" | "back" | "selfie")} side The Document picture side.
-   * @param {File} picture The picture to be uploaded.
-   */
-  public async uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File) {
-    const formData = new FormData();
-    formData.append("picture", picture);
-
-    const response = await this.http.post(`/consumers/${id}/documents/${type}/${side}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    });
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Document(response.data);
-  }
-
-  /**
-   * Upload a new Document picture to a User with role Consumer using base64.
-   *
-   * @param {string} id The User id.
-   * @param {DocumentType} type The Document type.
-   * @param {("front" | "back" | "selfie")} side The Document picture side.
-   * @param {string} picture The base64 representation of the picture to be uploaded.
-   */
-  public async uploadDocumentPictureFromBase64(
-    id: string,
-    type: DocumentType,
-    side: "front" | "back" | "selfie",
-    picture: string
-  ) {
-    const response = await this.http.post(`/consumers/${id}/documents/${type}/${side}`, { picture });
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Document(response.data);
   }
 
   /**

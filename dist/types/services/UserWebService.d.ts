@@ -1,9 +1,8 @@
-import { PaginatedArray, Pagination } from "..";
-import { OAuthCredentials, User, UserRole, UserSchema } from "../models";
-import BaseModelWebService, { BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { OAuthCredentials, User, UserRole, UserSchema, Pagination, PaginatedArray, Wallet } from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 export interface UserWebServiceOptions extends BaseModelWebServiceOptions {
 }
-export default class UserWebService extends BaseModelWebService<User, UserSchema> {
+export declare class UserWebService extends BaseModelWebService<User, UserSchema> {
     protected static instance: UserWebService;
     constructor(options: UserWebServiceOptions);
     static getInstance(): UserWebService;
@@ -18,6 +17,12 @@ export default class UserWebService extends BaseModelWebService<User, UserSchema
      * @param id The User ID.
      */
     findOne(id: string): Promise<User>;
+    /**
+     * Find the Wallets from a User with role Consumer.
+     *
+     * @param id The User ID.
+     */
+    findWalletsById(id: string): Promise<Wallet[]>;
     /**
      * Create a new User.
      *

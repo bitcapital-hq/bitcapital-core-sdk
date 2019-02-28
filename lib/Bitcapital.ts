@@ -1,18 +1,26 @@
-import { User } from "./models";
+import { User, RequestUtil, RequestSigningOptions } from "bitcapital-common";
 import {
+  AddressWebService,
   AssetWebService,
+  BankingWebService,
+  BoletoWebService,
+  CardWebService,
   ConsumerWebService,
+  DocumentWebService,
   DomainWebService,
+  MediatorWebService,
   OAuthWebService,
   OAuthWebServiceOptions,
   PaymentWebService,
+  PhoneWebService,
+  TransactionWebService,
   UserWebService,
   WalletWebService
 } from "./services";
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
-import { RequestSigningOptions, RequestUtil } from "./utils";
+import { ProductWebService } from "./services/ProductWebService";
 
 export interface BitcapitalOptions {
   session?: Session;
@@ -47,11 +55,19 @@ export default class Bitcapital {
       });
 
     // Initialize main web services
-    AssetWebService.initialize({ ...options });
-    ConsumerWebService.initialize({ ...options });
-    DomainWebService.initialize({ ...options });
-    PaymentWebService.initialize({ ...options });
-    WalletWebService.initialize({ ...options });
+    AddressWebService.initialize({ session: this._session, ...options });
+    AssetWebService.initialize({ session: this._session, ...options });
+    BankingWebService.initialize({ session: this._session, ...options });
+    BoletoWebService.initialize({ session: this._session, ...options });
+    CardWebService.initialize({ session: this._session, ...options });
+    ConsumerWebService.initialize({ session: this._session, ...options });
+    DocumentWebService.initialize({ session: this._session, ...options });
+    DomainWebService.initialize({ session: this._session, ...options });
+    MediatorWebService.initialize({ session: this._session, ...options });
+    PaymentWebService.initialize({ session: this._session, ...options });
+    PhoneWebService.initialize({ session: this._session, ...options });
+    TransactionWebService.initialize({ session: this._session, ...options });
+    WalletWebService.initialize({ session: this._session, ...options });
 
     // Prepare singleton for easier access
     if (!Bitcapital._instance) {
@@ -113,10 +129,31 @@ export default class Bitcapital {
   }
 
   /**
+   * Interface for the Addresses service.
+   */
+  public addresses(): AddressWebService {
+    return AddressWebService.getInstance();
+  }
+
+  /**
    * Interface for the Assets service.
    */
   public assets(): AssetWebService {
     return AssetWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Bankings service.
+   */
+  public bankings(): BankingWebService {
+    return BankingWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Boleto service.
+   */
+  public boletos(): BoletoWebService {
+    return BoletoWebService.getInstance();
   }
 
   /**
@@ -127,10 +164,30 @@ export default class Bitcapital {
   }
 
   /**
+   * Interface for the Card service.
+   */
+  public cards(): CardWebService {
+    return CardWebService.getInstance();
+  }
+
+  /** Interface for the Documents service.
+   */
+  public documents(): DocumentWebService {
+    return DocumentWebService.getInstance();
+  }
+
+  /**
    * Interface for the Domains service.
    */
   public domains(): DomainWebService {
     return DomainWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Mediators service.
+   */
+  public mediators(): MediatorWebService {
+    return MediatorWebService.getInstance();
   }
 
   /**
@@ -141,10 +198,31 @@ export default class Bitcapital {
   }
 
   /**
+   * Interface for the Phones service.
+   */
+  public phones(): PhoneWebService {
+    return PhoneWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Product service.
+   */
+  public products(): ProductWebService {
+    return ProductWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Transactions service.
+   */
+  public transactions(): TransactionWebService {
+    return TransactionWebService.getInstance();
+  }
+
+  /**
    * Interface for the Users service.
    */
   public users(): UserWebService {
-    return UserWebService.getInstance();
+    return this._session.userWebService;
   }
 
   /**
