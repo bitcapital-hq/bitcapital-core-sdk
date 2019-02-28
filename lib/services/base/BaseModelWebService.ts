@@ -9,7 +9,7 @@ export interface BaseModelWebServiceOptions extends HttpOptions {
 
 export interface BaseModelWebServiceIntf<T extends BaseModel, U extends BaseModelSchema> {
   findAll?(pagination?: Pagination): Promise<PaginatedArray<T>>;
-  findOne(id: string): Promise<T>;
+  findOne(id: string, resourceId?: string): Promise<T>;
   create?(schema: U): Promise<T>;
   update?(id: string, schema: Partial<U>): Promise<T>;
   delete?(id: string): Promise<boolean>;
@@ -27,5 +27,5 @@ export abstract class BaseModelWebService<T extends BaseModel, U extends BaseMod
     }
   }
 
-  public abstract async findOne(id: string): Promise<T>;
+  public abstract async findOne(id: string, resourceId?: string): Promise<T>;
 }

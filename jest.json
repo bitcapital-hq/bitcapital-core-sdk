@@ -1,5 +1,6 @@
 {
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+  "testMatch": null,
   "collectCoverage": true,
   "testEnvironment": "node",
   "coverageDirectory": "./coverage",
@@ -8,21 +9,17 @@
     "tests"
   ],
   "transform": {
-    "^.+\\.(ts)$": "ts-jest"
+    "\\.jsx?$": "babel-jest",
+    "\\.tsx?$": "ts-jest"
   },
   "setupFiles": [
     "./tests/setup.ts"
   ],
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "json"
-  ],
   "testPathIgnorePatterns": [
     "./build",
     "./tests/setup.ts",
-    "./tests/__mock__"
+    "./tests/__mock__",
+    "./tests/models"
   ],
-  "reporters": ["jest-silent-reporter"]
+  "reporters": ["jest-silent-reporter", "jest-junit"]
 }

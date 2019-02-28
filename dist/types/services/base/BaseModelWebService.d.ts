@@ -7,7 +7,7 @@ export interface BaseModelWebServiceOptions extends HttpOptions {
 }
 export interface BaseModelWebServiceIntf<T extends BaseModel, U extends BaseModelSchema> {
     findAll?(pagination?: Pagination): Promise<PaginatedArray<T>>;
-    findOne(id: string): Promise<T>;
+    findOne(id: string, resourceId?: string): Promise<T>;
     create?(schema: U): Promise<T>;
     update?(id: string, schema: Partial<U>): Promise<T>;
     delete?(id: string): Promise<boolean>;
@@ -16,5 +16,5 @@ export declare abstract class BaseModelWebService<T extends BaseModel, U extends
     protected readonly options: BaseModelWebServiceOptions;
     protected http: Http;
     constructor(options: BaseModelWebServiceOptions);
-    abstract findOne(id: string): Promise<T>;
+    abstract findOne(id: string, resourceId?: string): Promise<T>;
 }
