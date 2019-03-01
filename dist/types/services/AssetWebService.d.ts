@@ -33,17 +33,4 @@ export declare class AssetWebService extends BaseModelWebService<Asset, AssetSch
      * @param asset The Asset schema.
      */
     create(asset: AssetSchema): Promise<Asset>;
-    /**
-     * Partially update an existing Asset.
-     *
-     * @param id The Asset ID.
-     * @param asset The partial Asset schema.
-     */
-    update(id: string, asset: Partial<AssetSchema>): Promise<Asset>;
-    /**
-     * Delete an Asset from the platform.
-     *
-     * @param id The Asset ID.
-     */
-    delete(id: string): Promise<boolean>;
 }

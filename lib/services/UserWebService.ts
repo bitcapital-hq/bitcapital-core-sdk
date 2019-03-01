@@ -5,7 +5,9 @@ import {
   UserSchema,
   Pagination,
   PaginatedArray,
-  PaginationUtil
+  PaginationUtil,
+  Wallet,
+  WalletSchema
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
@@ -56,6 +58,21 @@ export class UserWebService extends BaseModelWebService<User, UserSchema> {
     }
 
     return new User(response.data);
+  }
+
+  /**
+   * Find the Wallets from a User with role Consumer.
+   *
+   * @param id The User ID.
+   */
+  public async findWalletsById(id: string): Promise<Wallet[]> {
+    const response = await this.http.get(`/users/${id}/wallets`);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data.map((wallet: WalletSchema) => new Wallet(wallet));
   }
 
   /**
