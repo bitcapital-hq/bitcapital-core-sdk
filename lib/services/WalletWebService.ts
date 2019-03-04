@@ -83,7 +83,7 @@ export class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> 
    *
    * @param id The Wallet ID.
    */
-  public async findWalletPayments(id: string, pagination: Pagination): Promise<PaginatedArray<Payment>> {
+  public async findWalletPayments(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>> {
     const { skip, limit } = pagination;
     const response = await this.http.get(`/wallets/${id}/payments`, null, { params: { skip, limit } });
 
@@ -92,7 +92,7 @@ export class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> 
     }
 
     // Return a paginated array with count information from headers
-    const result = response.data.map((item: PaymentSchema) => new Payment(item));
+    const result = response.data.map((item: TransactionSchema) => new Transaction(item));
     return PaginationUtil.parse(result, response.headers);
   }
 

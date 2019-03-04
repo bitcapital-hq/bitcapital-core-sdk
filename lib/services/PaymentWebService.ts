@@ -4,7 +4,8 @@ import {
   RequestUtil,
   PaymentRequestSchema,
   WithdrawalRequestSchema,
-  BankTransferPayment
+  BankTransferPayment,
+  Transaction
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
@@ -46,9 +47,9 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
    *
    * @param payment The Payment schema
    */
-  public async pay(request: PaymentRequestSchema): Promise<Payment> {
+  public async pay(request: PaymentRequestSchema): Promise<Transaction> {
     const { source, recipients } = request;
-    const asset = request.asset ? request.asset : "";
+    const asset = request.assetId ? request.assetId : "";
 
     const url = `/payments/${asset}`;
     const body = { source, recipients };
@@ -64,7 +65,7 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
       throw response;
     }
 
-    return new Payment(response.data);
+    return new Transaction(response.data);
   }
 
   /**
