@@ -3,8 +3,6 @@ import {
   WalletSchema,
   Transaction,
   TransactionSchema,
-  Payment,
-  PaymentSchema,
   Pagination,
   PaginatedArray,
   PaginationUtil
