@@ -49,7 +49,13 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
    */
   public async pay(request: PaymentRequestSchema): Promise<Transaction> {
     const { source, recipients } = request;
-    const asset = request.assetId ? request.assetId : "";
+
+    // TODO: This should be deprecated, asset must be passed in recipient
+    let asset = "";
+    if (request["assetId"]) {
+      console.warn("BITCAPITAL-SDK: Payment global recipient is deprecated, asset must be passed in recipients array");
+      asset = request["assetId"];
+    }
 
     const url = `/payments/${asset}`;
     const body = { source, recipients };
