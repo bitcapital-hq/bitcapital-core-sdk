@@ -86,7 +86,7 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
    *
    * @param consumer The User schema.
    */
-  public async create(consumer: UserSchema): Promise<User> {
+  public async create(consumer: UserSchema & { password: string; productId: string }): Promise<User> {
     const response = await this.http.post(`/consumers`, consumer);
 
     if (!response || response.status !== 200) {
