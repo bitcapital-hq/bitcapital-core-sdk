@@ -1,16 +1,17 @@
-import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 import {
   Card,
-  CardSchema,
-  CardBlockRequestSchema,
-  CardUnblockRequestSchema,
   CardBaseRequestSchema,
-  Payment,
-  PaymentSchema,
-  Pagination,
+  CardBlockRequestSchema,
+  CardSchema,
+  CardUnblockRequestSchema,
   PaginatedArray,
-  PaginationUtil
+  Pagination,
+  PaginationUtil,
+  Payment,
+  PaymentSchema
 } from "bitcapital-common";
+import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
+import { CardEmitRequest } from "./request/CardEmitRequest";
 
 export interface CardWebServiceOptions extends BaseModelWebServiceOptions {}
 
@@ -31,29 +32,16 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
   }
 
   /**
-   * Emits a new physical card
+   * Emits a new physical or virtual card
    *
-   * @param userId The user ID
-   * @param plasticId The plastic ID
+   * @param wallet The wallet ID for this emission
+   * @param data.type The type of the card, physical or virtual
+   * @param data.plasticId The plastic ID for the emission, from the card design
+   * @param data.expirationDate The card expiration date, if needed
    */
-  public async emitPhysical(userId: string, plasticId: number): Promise<Card> {
-    const response = await this.http.post(`/users/${userId}/cards/physical`, { plasticId });
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Card(response.data);
-  }
-
-  /**
-   * Emits a new physical card
-   *
-   * @param userId The user ID
-   * @param expirationDate The expiration date
-   */
-  public async emitVirtual(userId: string, expirationDate: Date): Promise<Card> {
-    const response = await this.http.post(`/users/${userId}/cards/virtual`, { expirationDate });
+  public async emit(wallet: string, data: CardEmitRequest): Promise<Card> {
+    const { type, ...otherData } = data;
+    const response = await this.http.post(`/wallets/${wallet}/cards/${type}`, { ...otherData });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -65,11 +53,11 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
   /**
    * Blocks card with the given ID
    *
-   * @param userId  The user ID
+   * @param walletId  The wallet ID
    * @param payload The data required for the card blocking operation
    */
-  public async block(userId: string, payload: CardBlockRequestSchema): Promise<boolean> {
-    const response = await this.http.post(`/users/${userId}/cards/${payload.cardId}/block`, payload);
+  public async block(walletId: string, payload: CardBlockRequestSchema): Promise<boolean> {
+    const response = await this.http.post(`/wallets/${walletId}/cards/${payload.cardId}/block`, payload);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -81,11 +69,11 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
   /**
    * Unblocks card with the given ID
    *
-   * @param userId  The user ID
+   * @param walletId  The wallet ID
    * @param payload The data required for the card unblocking operation
    */
-  public async unblock(userId: string, payload: CardUnblockRequestSchema): Promise<boolean> {
-    const response = await this.http.post(`/users/${userId}/cards/${payload.cardId}/unblock`, payload);
+  public async unblock(walletId: string, payload: CardUnblockRequestSchema): Promise<boolean> {
+    const response = await this.http.post(`/wallets/${walletId}/cards/${payload.cardId}/unblock`, payload);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -97,11 +85,11 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
   /**
    * Activates card with the given ID
    *
-   * @param userId  The user ID
+   * @param walletId  The wallet ID
    * @param payload The data required for the card activation operation
    */
-  public async activate(userId: string, payload: CardBaseRequestSchema): Promise<boolean> {
-    const response = await this.http.post(`/users/${userId}/cards/${payload.cardId}/activate`, payload);
+  public async activate(walletId: string, payload: CardBaseRequestSchema): Promise<boolean> {
+    const response = await this.http.post(`/wallets/${walletId}/cards/${payload.cardId}/activate`, payload);
 
     if (!response || response.status !== 200) {
       throw response;
@@ -110,8 +98,8 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
     return true;
   }
 
-  public async findOne(userId: string, cardsId: string): Promise<Card> {
-    const response = await this.http.get(`/users/${userId}/cards/${cardsId}`);
+  public async findOne(walletId: string, cardsId: string): Promise<Card> {
+    const response = await this.http.get(`/wallets/${walletId}/cards/${cardsId}`);
 
     if (!response || !response.data || response.status !== 200) {
       throw response;
@@ -123,12 +111,14 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
   /**
    * Find the Payments from a Card.
    *
-   * @param userId  The user ID
+   * @param wallet  The wallet ID
    * @param id      The Card ID.
    */
-  public async findCardPayments(userId: string, id: string, pagination: Pagination): Promise<PaginatedArray<Payment>> {
-    const { skip, limit } = pagination;
-    const response = await this.http.get(`/users/${userId}/cards/${id}/payments`, null, { params: { skip, limit } });
+  public async findCardPayments(wallet: string, id: string, data: Pagination): Promise<PaginatedArray<Payment>> {
+    const { skip, limit } = data;
+    const response = await this.http.get(`/wallets/${wallet}/cards/${id}/payments`, null, {
+      params: { skip, limit }
+    });
 
     if (!response || response.status !== 200) {
       throw response;
