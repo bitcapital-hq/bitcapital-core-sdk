@@ -167,4 +167,34 @@ export class UserWebService extends BaseModelWebService<User, UserSchema> {
       throw response;
     }
   }
+
+  /**
+   * Set two factor authentication for an logged user or for id user (admin only) / retrive user 2FA QR Code.
+   *
+   * @param userId The User id.
+   */
+  public async setTwoFactorAuth(userId?: string): Promise<any> {
+    const response = await this.http.post(`/users/activate-2fa`, { userId });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data;
+  }
+
+    /**
+   * Unset two factor authentication to an user.
+   *
+   * @param userId The User id.
+   */
+  public async unsetTwoFactorAuth(userId: string): Promise<boolean> {
+    const response = await this.http.post(`/users/deactivate-2fa`, { userId });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return true;
+  }
 }
