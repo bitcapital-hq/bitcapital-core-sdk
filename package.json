@@ -28,8 +28,7 @@
     "axios": "^0.17.1",
     "bitcapital-common": "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#nightly",
     "localstorage-polyfill": "^1.0.1",
-    "qs": "^6.6.0",
-    "react-native-custom-qr-codes": "https://github.com/luiseduardobrito/react-native-custom-qr-codes.git"
+    "qs": "^6.6.0"
   },
   "devDependencies": {
     "@types/faker": "^4.1.5",
