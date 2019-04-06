@@ -56,7 +56,7 @@ export default class Session {
     options: SessionOptions;
     current?: User;
     storage: StorageUtil;
-    isFechting: boolean;
+    isFetching: boolean;
     observable: Observable;
     userWebService: UserWebService;
     oauthWebService: OAuthWebService;
