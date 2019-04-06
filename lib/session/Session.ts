@@ -60,6 +60,7 @@ session.unsubscribe(observer);
 export default class Session {
   current?: User;
   storage: StorageUtil;
+  isFechting: boolean = false;
   observable: Observable;
   userWebService: UserWebService;
   oauthWebService: OAuthWebService;
@@ -179,8 +180,15 @@ export default class Session {
    * Fetch the currently stored Session from local storage.
    */
   protected async fetch() {
-    this.current = await this.storage.get("session");
-    await this.observable.notify(Session.EVENT_SESSION_CHANGED, this.current);
+    this.isFechting = true;
+    try {
+      this.current = await this.storage.get("session");
+      await this.observable.notify(Session.EVENT_SESSION_CHANGED, this.current);
+    } catch (exception) {
+      console.warn("Could not fetch from local storage, clearing session", exception);
+      await this.destroy();
+    }
+    this.isFechting = false;
     return this.current;
   }
 
