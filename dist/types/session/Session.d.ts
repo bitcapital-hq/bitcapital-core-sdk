@@ -1,4 +1,4 @@
-import { User, HttpInterceptor, Observable, Observer } from "bitcapital-common";
+import { HttpInterceptor, Observable, Observer, User } from "bitcapital-common";
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
 import { BaseModelWebServiceOptions } from "../services/base/BaseModelWebService";
 import { StorageUtil } from "../utils";
@@ -57,6 +57,7 @@ export default class Session {
     current?: User;
     storage: StorageUtil;
     isFetching: boolean;
+    isLoading: boolean;
     observable: Observable;
     userWebService: UserWebService;
     oauthWebService: OAuthWebService;
@@ -102,7 +103,7 @@ export default class Session {
     /**
      * Fetch the currently stored Session from local storage.
      */
-    protected fetch(): Promise<User>;
+    fetch(): Promise<User>;
     /**
      * Reload the current User using the remote server.
      */
