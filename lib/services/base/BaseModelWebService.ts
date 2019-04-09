@@ -20,7 +20,12 @@ export abstract class BaseModelWebService<T extends BaseModel, U extends BaseMod
   protected http: Http;
 
   constructor(protected readonly options: BaseModelWebServiceOptions) {
-    this.http = new Http(options);
+    this.http = new Http({
+      headers: {
+        "User-Agent": `@bitcapital/core-sdk/${require("../../../package.json").version}`
+      },
+      ...options
+    });
 
     if (options.session) {
       this.http.interceptors(options.session.interceptors());

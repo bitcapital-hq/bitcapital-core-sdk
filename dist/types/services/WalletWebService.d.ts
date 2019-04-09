@@ -1,4 +1,4 @@
-import { Wallet, WalletSchema, Transaction, Pagination, PaginatedArray } from "bitcapital-common";
+import { Wallet, WalletSchema, Transaction, Pagination, PaginatedArray, Card } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {
 }
@@ -10,7 +10,7 @@ export declare class WalletWebService extends BaseModelWebService<Wallet, Wallet
     /**
      * Find all Wallets.
      */
-    findAll(pagination: Pagination): Promise<PaginatedArray<Wallet>>;
+    findAll(pagination?: Pagination): Promise<PaginatedArray<Wallet>>;
     /**
      * Find a Wallet.
      *
@@ -22,17 +22,21 @@ export declare class WalletWebService extends BaseModelWebService<Wallet, Wallet
      *
      * @param id The Wallet ID.
      */
-    findWalletTransactions(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>>;
+    findWalletTransactions(id: string, pagination?: Pagination): Promise<PaginatedArray<Transaction>>;
     /**
      * Find the Payments from a Wallet.
      *
      * @param id The Wallet ID.
      */
-    findWalletPayments(id: string, pagination: Pagination): Promise<PaginatedArray<Transaction>>;
+    findWalletPayments(id: string, pagination?: Pagination): Promise<PaginatedArray<Transaction>>;
     /**
      * Find the Root Wallet.
      */
     findRootWallet(): Promise<Wallet>;
+    /**
+     * Find all cards associated with specified wallet.
+     */
+    findCards(walletId: string, pagination?: Pagination): Promise<PaginatedArray<Card>>;
     /**
      * Create a new Wallet.
      *

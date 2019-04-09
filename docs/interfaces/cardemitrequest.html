@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CountMetricsResponse | bitcapital-core-sdk (v1.6.1)</title>
+	<title>CardEmitRequest | bitcapital-core-sdk (v1.6.1)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="countmetricsresponse.html">CountMetricsResponse</a>
+					<a href="cardemitrequest.html">CardEmitRequest</a>
 				</li>
 			</ul>
-			<h1>Interface CountMetricsResponse</h1>
+			<h1>Interface CardEmitRequest</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CountMetricsResponse</span>
+						<span class="target">CardEmitRequest</span>
 					</li>
 				</ul>
 			</section>
@@ -81,8 +81,9 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="countmetricsresponse.html#count" class="tsd-kind-icon">count</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="countmetricsresponse.html#paymenttime" class="tsd-kind-icon">payment<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="cardemitrequest.html#expirationdate" class="tsd-kind-icon">expiration<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="cardemitrequest.html#plasticid" class="tsd-kind-icon">plastic<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="cardemitrequest.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,22 +92,32 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="count" class="tsd-anchor"></a>
-					<h3>count</h3>
-					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="expirationdate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expiration<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">expiration<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in services/response/CountMetricsResponse.ts:3</li>
+							<li>Defined in services/request/CardEmitRequest.ts:4</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="paymenttime" class="tsd-anchor"></a>
-					<h3>payment<wbr>Time</h3>
-					<div class="tsd-signature tsd-kind-icon">payment<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+					<a name="plasticid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> plastic<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">plastic<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in services/response/CountMetricsResponse.ts:2</li>
+							<li>Defined in services/request/CardEmitRequest.ts:3</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"virtual"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"physical"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in services/request/CardEmitRequest.ts:2</li>
 						</ul>
 					</aside>
 				</section>
@@ -125,13 +136,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-is-external">
-						<a href="countmetricsresponse.html" class="tsd-kind-icon">Count<wbr>Metrics<wbr>Response</a>
+						<a href="cardemitrequest.html" class="tsd-kind-icon">Card<wbr>Emit<wbr>Request</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="countmetricsresponse.html#count" class="tsd-kind-icon">count</a>
+								<a href="cardemitrequest.html#expirationdate" class="tsd-kind-icon">expiration<wbr>Date</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="countmetricsresponse.html#paymenttime" class="tsd-kind-icon">payment<wbr>Time</a>
+								<a href="cardemitrequest.html#plasticid" class="tsd-kind-icon">plastic<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="cardemitrequest.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>

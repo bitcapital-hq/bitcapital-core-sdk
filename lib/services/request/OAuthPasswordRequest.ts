@@ -1,4 +1,4 @@
-export default class OAuthPasswordRequest {
+export class OAuthPasswordRequest {
   grant_type: string;
   username: string;
   password: string;

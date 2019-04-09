@@ -67,6 +67,7 @@ export default class Bitcapital {
     MediatorWebService.initialize({ session: this._session, ...options });
     PaymentWebService.initialize({ session: this._session, ...options });
     PhoneWebService.initialize({ session: this._session, ...options });
+    ProductWebService.initialize({ session: this._session, ...options });
     TransactionWebService.initialize({ session: this._session, ...options });
     WalletWebService.initialize({ session: this._session, ...options });
     PhoneCreditWebService.initialize({ session: this._session, ...options });

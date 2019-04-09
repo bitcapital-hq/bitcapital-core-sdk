@@ -1,4 +1,4 @@
-import { User, UserSchema, HttpInterceptor, Observable, Observer } from "bitcapital-common";
+import { HttpInterceptor, Observable, Observer, User, UserSchema } from "bitcapital-common";
 import { OAuthWebService, OAuthWebServiceOptions, UserWebService } from "../services";
 import { BaseModelWebServiceOptions } from "../services/base/BaseModelWebService";
 import { StorageUtil } from "../utils";
@@ -60,6 +60,8 @@ session.unsubscribe(observer);
 export default class Session {
   current?: User;
   storage: StorageUtil;
+  isFetching: boolean = false;
+  isLoading: boolean = false;
   observable: Observable;
   userWebService: UserWebService;
   oauthWebService: OAuthWebService;
@@ -178,9 +180,16 @@ export default class Session {
   /**
    * Fetch the currently stored Session from local storage.
    */
-  protected async fetch() {
-    this.current = await this.storage.get("session");
-    await this.observable.notify(Session.EVENT_SESSION_CHANGED, this.current);
+  public async fetch() {
+    this.isFetching = true;
+    try {
+      this.current = await this.storage.get("session");
+      await this.observable.notify(Session.EVENT_SESSION_CHANGED, this.current);
+    } catch (exception) {
+      console.warn("Could not fetch from local storage, clearing session", exception);
+      await this.destroy();
+    }
+    this.isFetching = false;
     return this.current;
   }
 
@@ -189,10 +198,18 @@ export default class Session {
    */
   public async reload() {
     if (this.current) {
-      const oauth = this.current.credentials;
-      const user = await this.userWebService.me(oauth);
-      return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+      this.isLoading = true;
+      try {
+        const oauth = this.current.credentials;
+        const user = await this.userWebService.me(oauth);
+        return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+      } catch (exception) {
+        console.warn("Could not fetch from local storage, clearing session", exception);
+        await this.destroy();
+      }
+      this.isLoading = false;
     }
+    return this.current;
   }
 
   /**
@@ -225,21 +242,30 @@ export default class Session {
    * @param data The User credentials.
    */
   public async password(data: PasswordGrantOptions): Promise<User> {
-    const oauth = await this.oauthWebService.password({
-      username: data.username,
-      password: data.password,
-      scope: data.scopes ? data.scopes.join(",") : data.scope
-    });
-
-    if (!oauth.accessToken) {
-      throw oauth;
-    }
-
+    this.isLoading = true;
     try {
-      const user = await this.userWebService.me(oauth);
-      return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+      const oauth = await this.oauthWebService.password({
+        username: data.username,
+        password: data.password,
+        scope: data.scopes ? data.scopes.join(",") : data.scope
+      });
+
+      if (!oauth.accessToken) {
+        this.isLoading = false;
+        throw oauth;
+      }
+
+      try {
+        const user = await this.userWebService.me(oauth);
+        this.isLoading = false;
+        return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+      } catch (error) {
+        error.credentials = oauth;
+        this.isLoading = false;
+        throw error;
+      }
     } catch (error) {
-      error.credentials = oauth;
+      this.isLoading = false;
       throw error;
     }
   }
@@ -251,19 +277,28 @@ export default class Session {
    * @param {RefreshGrantOptions} data
    */
   public async refreshToken(data: RefreshGrantOptions) {
-    const oauth = await this.oauthWebService.refreshToken({
-      refreshToken: data.refreshToken
-    });
-
-    if (!oauth.accessToken) {
-      throw oauth;
-    }
-
+    this.isLoading = true;
     try {
-      const user = await this.userWebService.me(oauth);
-      return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+      const oauth = await this.oauthWebService.refreshToken({
+        refreshToken: data.refreshToken
+      });
+
+      if (!oauth.accessToken) {
+        this.isLoading = false;
+        throw oauth;
+      }
+
+      try {
+        const user = await this.userWebService.me(oauth);
+        this.isLoading = false;
+        return this.register(new User({ ...user, credentials: oauth } as UserSchema));
+      } catch (error) {
+        error.credentials = oauth;
+        this.isLoading = false;
+        throw error;
+      }
     } catch (error) {
-      error.credentials = oauth;
+      this.isLoading = false;
       throw error;
     }
   }
@@ -272,22 +307,32 @@ export default class Session {
    * Perform a "client_credentials" authentication using the OAuth 2.0 server and registers it in current Session.
    */
   public async clientCredentials(): Promise<User> {
-    // The client ID and client secret will be passed by the OAuthWebService
-    const oauth = await this.oauthWebService.clientCredentials();
+    this.isLoading = true;
 
     try {
-      if (oauth.accessToken && !oauth.virtual) {
-        const user = await this.userWebService.me(oauth);
-        return this.register(user);
+      // The client ID and client secret will be passed by the OAuthWebService
+      const oauth = await this.oauthWebService.clientCredentials();
+
+      try {
+        if (oauth.accessToken && !oauth.virtual) {
+          const user = await this.userWebService.me(oauth);
+          this.isLoading = false;
+          return this.register(user);
+        }
+        if (oauth.accessToken) {
+          this.isLoading = false;
+          return this.register(new User({ id: oauth.userId, credentials: oauth }));
+        }
+      } catch (error) {
+        error.credentials = oauth;
+        this.isLoading = false;
+        throw error;
       }
-      if (oauth.accessToken) {
-        return this.register(new User({ id: oauth.userId, credentials: oauth }));
-      }
+
+      throw oauth;
     } catch (error) {
-      error.credentials = oauth;
+      this.isLoading = false;
       throw error;
     }
-
-    throw oauth;
   }
 }
