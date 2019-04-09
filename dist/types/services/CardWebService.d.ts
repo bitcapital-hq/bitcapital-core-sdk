@@ -1,5 +1,6 @@
+import { Card, CardBaseRequestSchema, CardBlockRequestSchema, CardSchema, CardUnblockRequestSchema, PaginatedArray, Pagination, Payment } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
-import { Card, CardSchema, CardBlockRequestSchema, CardUnblockRequestSchema, CardBaseRequestSchema, Payment, Pagination, PaginatedArray } from "bitcapital-common";
+import { CardEmitRequest } from "./request/CardEmitRequest";
 export interface CardWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export declare class CardWebService extends BaseModelWebService<Card, CardSchema> {
@@ -8,46 +9,41 @@ export declare class CardWebService extends BaseModelWebService<Card, CardSchema
     static getInstance(): CardWebService;
     static initialize(options: CardWebServiceOptions): CardWebService;
     /**
-     * Emits a new physical card
+     * Emits a new physical or virtual card
      *
-     * @param userId The user ID
-     * @param plasticId The plastic ID
+     * @param wallet The wallet ID for this emission
+     * @param data.type The type of the card, physical or virtual
+     * @param data.plasticId The plastic ID for the emission, from the card design
+     * @param data.expirationDate The card expiration date, if needed
      */
-    emitPhysical(userId: string, plasticId: number): Promise<Card>;
-    /**
-     * Emits a new physical card
-     *
-     * @param userId The user ID
-     * @param expirationDate The expiration date
-     */
-    emitVirtual(userId: string, expirationDate: Date): Promise<Card>;
+    emit(wallet: string, data: CardEmitRequest): Promise<Card>;
     /**
      * Blocks card with the given ID
      *
-     * @param userId  The user ID
+     * @param walletId  The wallet ID
      * @param payload The data required for the card blocking operation
      */
-    block(userId: string, payload: CardBlockRequestSchema): Promise<boolean>;
+    block(walletId: string, payload: CardBlockRequestSchema): Promise<boolean>;
     /**
      * Unblocks card with the given ID
      *
-     * @param userId  The user ID
+     * @param walletId  The wallet ID
      * @param payload The data required for the card unblocking operation
      */
-    unblock(userId: string, payload: CardUnblockRequestSchema): Promise<boolean>;
+    unblock(walletId: string, payload: CardUnblockRequestSchema): Promise<boolean>;
     /**
      * Activates card with the given ID
      *
-     * @param userId  The user ID
+     * @param walletId  The wallet ID
      * @param payload The data required for the card activation operation
      */
-    activate(userId: string, payload: CardBaseRequestSchema): Promise<boolean>;
-    findOne(userId: string, cardsId: string): Promise<Card>;
+    activate(walletId: string, payload: CardBaseRequestSchema): Promise<boolean>;
+    findOne(walletId: string, cardsId: string): Promise<Card>;
     /**
      * Find the Payments from a Card.
      *
-     * @param userId  The user ID
+     * @param wallet  The wallet ID
      * @param id      The Card ID.
      */
-    findCardPayments(userId: string, id: string, pagination: Pagination): Promise<PaginatedArray<Payment>>;
+    findCardPayments(wallet: string, id: string, data: Pagination): Promise<PaginatedArray<Payment>>;
 }

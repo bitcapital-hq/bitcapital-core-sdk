@@ -1,4 +1,4 @@
-import { Boleto, BoletoSchema, BoletoPaymentRequestSchema, BoletoPaymentResponse, BoletoValidateResponse } from "bitcapital-common";
+import { Boleto, BoletoSchema, BoletoEmissionRequestSchema, BoletoEmissionResponse, BoletoPaymentRequestSchema, BoletoPaymentResponse, BoletoValidateResponse } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 export interface BoletoWebServiceOptions extends BaseModelWebServiceOptions {
 }
@@ -20,6 +20,12 @@ export declare class BoletoWebService extends BaseModelWebService<Boleto, Boleto
      * @param payment The Payment schema
      */
     pay(payload: BoletoPaymentRequestSchema): Promise<BoletoPaymentResponse>;
+    /**
+     * Emits a boleto to enable a deposit into a specified account.
+     *
+     * @param payload The payload schema
+     */
+    emit(payload: BoletoEmissionRequestSchema): Promise<BoletoEmissionResponse>;
     /**
      * Find a Boleto by its ID
      *

@@ -1,4 +1,4 @@
-export default class OAuthClientCredentialsRequest {
+export class OAuthClientCredentialsRequest {
   grant_type: string;
 
   constructor() {

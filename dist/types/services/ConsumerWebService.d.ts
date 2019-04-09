@@ -38,6 +38,7 @@ export declare class ConsumerWebService extends BaseModelWebService<User, UserSc
     create(consumer: UserSchema & {
         password: string;
         productId: string;
+        externalId?: string;
     }): Promise<User>;
     /**
      * Partially update an existing User with role Consumer.
