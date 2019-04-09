@@ -1,4 +1,4 @@
-export default class OAuthRefreshRequest {
+export class OAuthRefreshRequest {
   grant_type: string;
   refresh_token: string;
 

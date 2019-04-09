@@ -1,6 +1,8 @@
 import {
   Boleto,
   BoletoSchema,
+  BoletoEmissionRequestSchema,
+  BoletoEmissionResponse,
   BoletoPaymentRequestSchema,
   BoletoPaymentResponse,
   BoletoValidateResponse,
@@ -63,6 +65,28 @@ export class BoletoWebService extends BaseModelWebService<Boleto, BoletoSchema> 
     }
 
     return new BoletoPaymentResponse(response.data);
+  }
+
+  /**
+   * Emits a boleto to enable a deposit into a specified account.
+   *
+   * @param payload The payload schema
+   */
+  public async emit(payload: BoletoEmissionRequestSchema): Promise<BoletoEmissionResponse> {
+    const url = "/boleto/emit";
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      url,
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+
+    const response = await this.http.post(url, payload, { headers: { ...signature } });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new BoletoEmissionResponse(response.data);
   }
 
   /**

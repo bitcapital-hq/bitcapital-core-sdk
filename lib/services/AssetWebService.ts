@@ -6,7 +6,7 @@ import {
   PaginatedArray,
   PaginationUtil,
   RequestUtil,
-  Payment
+  Transaction
 } from "bitcapital-common";
 import { AssetEmitRequestSchema, AssetDestroyRequestSchema } from "./request";
 
@@ -62,9 +62,9 @@ export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
   /**
    * Emits an Asset to a specific wallet. If none supplied, will be emited to the mediator wallet.
    */
-  public async emit(request: AssetEmitRequestSchema): Promise<Payment> {
-    const { id, amount, destination } = request;
-    const body = { amount, destination };
+  public async emit(request: AssetEmitRequestSchema): Promise<Transaction> {
+    const { id, amount, destination, additionalData } = request;
+    const body = { amount, destination, additionalData };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/assets/${id}/emit`,
@@ -79,15 +79,15 @@ export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
       throw response;
     }
 
-    return new Payment(response.data);
+    return new Transaction(response.data);
   }
 
   /**
    * Destroys an amount of Assets from a specific wallet. If none supplied, will be destroyed from the mediator wallet.
    */
-  public async destroy(request: AssetDestroyRequestSchema): Promise<Payment> {
-    const { id, amount, source } = request;
-    const body = { amount, source };
+  public async destroy(request: AssetDestroyRequestSchema): Promise<Transaction> {
+    const { id, amount, source, additionalData } = request;
+    const body = { amount, source, additionalData };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/assets/${id}/destroy`,
@@ -102,7 +102,7 @@ export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
       throw response;
     }
 
-    return new Payment(response.data);
+    return new Transaction(response.data);
   }
 
   /**
@@ -118,36 +118,5 @@ export class AssetWebService extends BaseModelWebService<Asset, AssetSchema> {
     }
 
     return new Asset(response.data);
-  }
-
-  /**
-   * Partially update an existing Asset.
-   *
-   * @param id The Asset ID.
-   * @param asset The partial Asset schema.
-   */
-  public async update(id: string, asset: Partial<AssetSchema>): Promise<Asset> {
-    const response = await this.http.post(`/assets/${id}`, asset);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Asset(response.data);
-  }
-
-  /**
-   * Delete an Asset from the platform.
-   *
-   * @param id The Asset ID.
-   */
-  public async delete(id: string): Promise<boolean> {
-    const response = await this.http.delete(`/assets/${id}`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return true;
   }
 }

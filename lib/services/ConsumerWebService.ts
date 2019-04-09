@@ -1,15 +1,4 @@
-import {
-  Document,
-  DocumentSchema,
-  DocumentType,
-  Http,
-  User,
-  UserSchema,
-  Pagination,
-  PaginatedArray,
-  PaginationUtil,
-  Wallet
-} from "bitcapital-common";
+import { Http, User, UserSchema, Pagination, PaginatedArray, PaginationUtil, Document } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {}
@@ -63,56 +52,33 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
   }
 
   /**
-   * Find the Documents from a User with role Consumer.
-   * This method won't return pictures.
+   * Block an User with role Consumer.
    *
    * @param id The User ID.
-   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
    */
-  public async findDocumentsById(id: string = "me"): Promise<Document[]> {
-    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
-
-    const response = await this.http.get(`/consumers/${id}/documents`);
+  public async block(id: string): Promise<boolean> {
+    const response = await this.http.post(`/consumers/${id}/block`);
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
-    return response.data.map(document => new Document(document));
+    return response.data;
   }
 
   /**
-   * Find the Documents from a User with role Consumer.
-   * This method will return pictures.
+   * Block an User with role Consumer.
    *
    * @param id The User ID.
-   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
    */
-  public async findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document> {
-    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
-
-    const response = await this.http.get(`/consumers/${id}/documents/${type}`);
+  public async unblock(id: string): Promise<boolean> {
+    const response = await this.http.post(`/consumers/${id}/unblock`);
 
     if (!response || response.status !== 200) {
       throw response;
     }
 
-    return new Document(response.data);
-  }
-
-  /**
-   * Find the Wallets from a User with role Consumer.
-   *
-   * @param id The User ID.
-   */
-  public async findWalletsById(id: string): Promise<Wallet[]> {
-    const response = await this.http.get(`/consumers/${id}/wallets`);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return response.data.map(wallet => new Wallet(wallet));
+    return response.data;
   }
 
   /**
@@ -135,7 +101,7 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
    *
    * @param consumer The User schema.
    */
-  public async create(consumer: UserSchema): Promise<User> {
+  public async create(consumer: UserSchema & { externalId?: string }): Promise<User> {
     const response = await this.http.post(`/consumers`, consumer);
 
     if (!response || response.status !== 200) {
@@ -143,24 +109,6 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
     }
 
     return new User(response.data);
-  }
-
-  /**
-   * Create a new Document on a User with role Consumer.
-   *
-   * @param id The User ID.
-   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
-   */
-  public async createDocument(id: string, document: DocumentSchema): Promise<Document> {
-    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
-
-    const response = await this.http.post(`/consumers/${id}/documents`, document);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return new Document(response.data);
   }
 
   /**

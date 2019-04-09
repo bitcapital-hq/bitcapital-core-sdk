@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BoletoWebService | bitcapital-core-sdk (v1.6.0)</title>
+	<title>BoletoWebService | bitcapital-core-sdk (v1.6.1)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">bitcapital-core-sdk (v1.6.0)</a>
+					<a href="../index.html" class="title">bitcapital-core-sdk (v1.6.1)</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -106,6 +106,7 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="boletowebservice.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="boletowebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="boletowebservice.html#getpaymentinfo" class="tsd-kind-icon">get<wbr>Payment<wbr>Info</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="boletowebservice.html#pay" class="tsd-kind-icon">pay</a></li>
@@ -129,7 +130,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/BoletoWebService.ts#L15">services/BoletoWebService.ts:15</a></li>
+									<li>Defined in services/BoletoWebService.ts:17</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,7 +153,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#http">http</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/base/BaseModelWebService.ts#L20">services/base/BaseModelWebService.ts:20</a></li>
+							<li>Defined in services/base/BaseModelWebService.ts:20</li>
 						</ul>
 					</aside>
 				</section>
@@ -163,7 +164,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#options">options</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/base/BaseModelWebService.ts#L22">services/base/BaseModelWebService.ts:22</a></li>
+							<li>Defined in services/base/BaseModelWebService.ts:22</li>
 						</ul>
 					</aside>
 				</section>
@@ -173,13 +174,44 @@
 					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <a href="boletowebservice.html" class="tsd-signature-type">BoletoWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/BoletoWebService.ts#L15">services/BoletoWebService.ts:15</a></li>
+							<li>Defined in services/BoletoWebService.ts:17</li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="emit" class="tsd-anchor"></a>
+					<h3>emit</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BoletoEmissionRequestSchema</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">BoletoEmissionResponse</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in services/BoletoWebService.ts:75</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emits a boleto to enable a deposit into a specified account.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>payload: <span class="tsd-signature-type">BoletoEmissionRequestSchema</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The payload schema</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">BoletoEmissionResponse</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a name="findone" class="tsd-anchor"></a>
 					<h3>find<wbr>One</h3>
@@ -189,10 +221,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#findone">findOne</a></p>
 								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#findone">findOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/BoletoWebService.ts#L73">services/BoletoWebService.ts:73</a></li>
+									<li>Defined in services/BoletoWebService.ts:97</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,7 +254,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/BoletoWebService.ts#L35">services/BoletoWebService.ts:35</a></li>
+									<li>Defined in services/BoletoWebService.ts:37</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -254,7 +285,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/BoletoWebService.ts#L51">services/BoletoWebService.ts:51</a></li>
+									<li>Defined in services/BoletoWebService.ts:53</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,7 +314,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/BoletoWebService.ts#L21">services/BoletoWebService.ts:21</a></li>
+									<li>Defined in services/BoletoWebService.ts:23</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="boletowebservice.html" class="tsd-signature-type">BoletoWebService</a></h4>
@@ -300,7 +331,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/BoletoWebService.ts#L25">services/BoletoWebService.ts:25</a></li>
+									<li>Defined in services/BoletoWebService.ts:27</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -341,6 +372,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static tsd-is-external">
 								<a href="boletowebservice.html#instance" class="tsd-kind-icon">instance</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="boletowebservice.html#emit" class="tsd-kind-icon">emit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 								<a href="boletowebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a>

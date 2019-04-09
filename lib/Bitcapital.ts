@@ -2,18 +2,20 @@ import { User, RequestUtil, RequestSigningOptions } from "bitcapital-common";
 import {
   AddressWebService,
   AssetWebService,
+  BankingWebService,
+  BoletoWebService,
   CardWebService,
   ConsumerWebService,
   DocumentWebService,
   DomainWebService,
+  MediatorWebService,
   OAuthWebService,
   OAuthWebServiceOptions,
   PaymentWebService,
   PhoneWebService,
+  TransactionWebService,
   UserWebService,
-  WalletWebService,
-  BankingWebService,
-  BoletoWebService
+  WalletWebService
 } from "./services";
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
@@ -61,8 +63,11 @@ export default class Bitcapital {
     ConsumerWebService.initialize({ session: this._session, ...options });
     DocumentWebService.initialize({ session: this._session, ...options });
     DomainWebService.initialize({ session: this._session, ...options });
+    MediatorWebService.initialize({ session: this._session, ...options });
     PaymentWebService.initialize({ session: this._session, ...options });
     PhoneWebService.initialize({ session: this._session, ...options });
+    ProductWebService.initialize({ session: this._session, ...options });
+    TransactionWebService.initialize({ session: this._session, ...options });
     WalletWebService.initialize({ session: this._session, ...options });
 
     // Prepare singleton for easier access
@@ -180,6 +185,13 @@ export default class Bitcapital {
   }
 
   /**
+   * Interface for the Mediators service.
+   */
+  public mediators(): MediatorWebService {
+    return MediatorWebService.getInstance();
+  }
+
+  /**
    * Interface for the Payments service.
    */
   public payments(): PaymentWebService {
@@ -198,6 +210,13 @@ export default class Bitcapital {
    */
   public products(): ProductWebService {
     return ProductWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Transactions service.
+   */
+  public transactions(): TransactionWebService {
+    return TransactionWebService.getInstance();
   }
 
   /**

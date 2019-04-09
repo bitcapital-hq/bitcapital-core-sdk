@@ -1,5 +1,5 @@
 import { BaseModelWebServiceOptions, BaseModelWebService } from "./base";
-import { Asset, AssetSchema, Pagination, PaginatedArray, Payment } from "bitcapital-common";
+import { Asset, AssetSchema, Pagination, PaginatedArray, Transaction } from "bitcapital-common";
 import { AssetEmitRequestSchema, AssetDestroyRequestSchema } from "./request";
 export interface AssetWebServiceOptions extends BaseModelWebServiceOptions {
 }
@@ -22,28 +22,15 @@ export declare class AssetWebService extends BaseModelWebService<Asset, AssetSch
     /**
      * Emits an Asset to a specific wallet. If none supplied, will be emited to the mediator wallet.
      */
-    emit(request: AssetEmitRequestSchema): Promise<Payment>;
+    emit(request: AssetEmitRequestSchema): Promise<Transaction>;
     /**
      * Destroys an amount of Assets from a specific wallet. If none supplied, will be destroyed from the mediator wallet.
      */
-    destroy(request: AssetDestroyRequestSchema): Promise<Payment>;
+    destroy(request: AssetDestroyRequestSchema): Promise<Transaction>;
     /**
      * Create a new Asset in the platform.
      *
      * @param asset The Asset schema.
      */
     create(asset: AssetSchema): Promise<Asset>;
-    /**
-     * Partially update an existing Asset.
-     *
-     * @param id The Asset ID.
-     * @param asset The partial Asset schema.
-     */
-    update(id: string, asset: Partial<AssetSchema>): Promise<Asset>;
-    /**
-     * Delete an Asset from the platform.
-     *
-     * @param id The Asset ID.
-     */
-    delete(id: string): Promise<boolean>;
 }

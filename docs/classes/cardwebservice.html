@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CardWebService | bitcapital-core-sdk (v1.6.0)</title>
+	<title>CardWebService | bitcapital-core-sdk (v1.6.1)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">bitcapital-core-sdk (v1.6.0)</a>
+					<a href="../index.html" class="title">bitcapital-core-sdk (v1.6.1)</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -106,7 +106,10 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="cardwebservice.html#activate" class="tsd-kind-icon">activate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="cardwebservice.html#block" class="tsd-kind-icon">block</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="cardwebservice.html#emit" class="tsd-kind-icon">emit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="cardwebservice.html#findcardpayments" class="tsd-kind-icon">find<wbr>Card<wbr>Payments</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="cardwebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="cardwebservice.html#unblock" class="tsd-kind-icon">unblock</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="cardwebservice.html#getinstance" class="tsd-kind-icon">get<wbr>Instance</a></li>
@@ -129,7 +132,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/CardWebService.ts#L7">services/CardWebService.ts:7</a></li>
+									<li>Defined in services/CardWebService.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,7 +155,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#http">http</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/base/BaseModelWebService.ts#L20">services/base/BaseModelWebService.ts:20</a></li>
+							<li>Defined in services/base/BaseModelWebService.ts:20</li>
 						</ul>
 					</aside>
 				</section>
@@ -163,7 +166,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#options">options</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/base/BaseModelWebService.ts#L22">services/base/BaseModelWebService.ts:22</a></li>
+							<li>Defined in services/base/BaseModelWebService.ts:22</li>
 						</ul>
 					</aside>
 				</section>
@@ -173,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <a href="cardwebservice.html" class="tsd-signature-type">CardWebService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/CardWebService.ts#L7">services/CardWebService.ts:7</a></li>
+							<li>Defined in services/CardWebService.ts:19</li>
 						</ul>
 					</aside>
 				</section>
@@ -181,16 +184,53 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="block" class="tsd-anchor"></a>
-					<h3>block</h3>
+					<a name="activate" class="tsd-anchor"></a>
+					<h3>activate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">block<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CardBlockRequestSchema</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">activate<span class="tsd-signature-symbol">(</span>walletId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CardBaseRequestSchema</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/CardWebService.ts#L28">services/CardWebService.ts:28</a></li>
+									<li>Defined in services/CardWebService.ts:91</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Activates card with the given ID</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>walletId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The wallet ID</p>
+									</div>
+								</li>
+								<li>
+									<h5>payload: <span class="tsd-signature-type">CardBaseRequestSchema</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The data required for the card activation operation</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="block" class="tsd-anchor"></a>
+					<h3>block</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">block<span class="tsd-signature-symbol">(</span>walletId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CardBlockRequestSchema</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in services/CardWebService.ts:59</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -201,9 +241,9 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<h5>walletId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The card ID</p>
+										<p>The wallet ID</p>
 									</div>
 								</li>
 								<li>
@@ -217,11 +257,85 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="emit" class="tsd-anchor"></a>
+					<h3>emit</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>wallet<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">: </span><a href="../interfaces/cardemitrequest.html" class="tsd-signature-type">CardEmitRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Card</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in services/CardWebService.ts:42</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Emits a new physical or virtual card</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>wallet: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The wallet ID for this emission</p>
+									</div>
+								</li>
+								<li>
+									<h5>data: <a href="../interfaces/cardemitrequest.html" class="tsd-signature-type">CardEmitRequest</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Card</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="findcardpayments" class="tsd-anchor"></a>
+					<h3>find<wbr>Card<wbr>Payments</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Card<wbr>Payments<span class="tsd-signature-symbol">(</span>wallet<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Pagination</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PaginatedArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Payment</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in services/CardWebService.ts:117</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Find the Payments from a Card.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>wallet: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The wallet ID</p>
+									</div>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Card ID.</p>
+									</div>
+								</li>
+								<li>
+									<h5>data: <span class="tsd-signature-type">Pagination</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PaginatedArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Payment</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a name="findone" class="tsd-anchor"></a>
 					<h3>find<wbr>One</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>One<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Card</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>One<span class="tsd-signature-symbol">(</span>walletId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, cardsId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Card</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -229,13 +343,16 @@
 								<p>Implementation of <a href="../interfaces/basemodelwebserviceintf.html">BaseModelWebServiceIntf</a>.<a href="../interfaces/basemodelwebserviceintf.html#findone">findOne</a></p>
 								<p>Overrides <a href="basemodelwebservice.html">BaseModelWebService</a>.<a href="basemodelwebservice.html#findone">findOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/CardWebService.ts#L54">services/CardWebService.ts:54</a></li>
+									<li>Defined in services/CardWebService.ts:101</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<h5>walletId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>cardsId: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Card</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -246,13 +363,13 @@
 					<a name="unblock" class="tsd-anchor"></a>
 					<h3>unblock</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">unblock<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CardUnblockRequestSchema</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">unblock<span class="tsd-signature-symbol">(</span>walletId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CardUnblockRequestSchema</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/CardWebService.ts#L44">services/CardWebService.ts:44</a></li>
+									<li>Defined in services/CardWebService.ts:75</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -263,9 +380,9 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<h5>walletId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The card ID</p>
+										<p>The wallet ID</p>
 									</div>
 								</li>
 								<li>
@@ -289,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/CardWebService.ts#L13">services/CardWebService.ts:13</a></li>
+									<li>Defined in services/CardWebService.ts:25</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="cardwebservice.html" class="tsd-signature-type">CardWebService</a></h4>
@@ -306,7 +423,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bitcapital-hq/bitcapital-core-sdk/blob/f0eff5c/lib/services/CardWebService.ts#L17">services/CardWebService.ts:17</a></li>
+									<li>Defined in services/CardWebService.ts:29</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -349,7 +466,16 @@
 								<a href="cardwebservice.html#instance" class="tsd-kind-icon">instance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="cardwebservice.html#activate" class="tsd-kind-icon">activate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="cardwebservice.html#block" class="tsd-kind-icon">block</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="cardwebservice.html#emit" class="tsd-kind-icon">emit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="cardwebservice.html#findcardpayments" class="tsd-kind-icon">find<wbr>Card<wbr>Payments</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 								<a href="cardwebservice.html#findone" class="tsd-kind-icon">find<wbr>One</a>

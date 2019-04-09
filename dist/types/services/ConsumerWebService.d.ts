@@ -1,4 +1,4 @@
-import { Document, DocumentSchema, DocumentType, Http, User, UserSchema, Pagination, PaginatedArray, Wallet } from "bitcapital-common";
+import { Http, User, UserSchema, Pagination, PaginatedArray, Document } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {
 }
@@ -19,46 +19,31 @@ export declare class ConsumerWebService extends BaseModelWebService<User, UserSc
      */
     findOne(id: string): Promise<User>;
     /**
-     * Find the Documents from a User with role Consumer.
-     * This method won't return pictures.
-     *
-     * @param id The User ID.
-     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
-     */
-    findDocumentsById(id?: string): Promise<Document[]>;
-    /**
-     * Find the Documents from a User with role Consumer.
-     * This method will return pictures.
-     *
-     * @param id The User ID.
-     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
-     */
-    findDocumentByIdAndType(id: string, type: DocumentType): Promise<Document>;
-    /**
-     * Find the Wallets from a User with role Consumer.
+     * Block an User with role Consumer.
      *
      * @param id The User ID.
      */
-    findWalletsById(id: string): Promise<Wallet[]>;
+    block(id: string): Promise<boolean>;
     /**
-    * Gets KYC information about an user for an operator.
-    *
-    * @param id The User ID.
-    */
+     * Block an User with role Consumer.
+     *
+     * @param id The User ID.
+     */
+    unblock(id: string): Promise<boolean>;
+    /**
+     * Gets KYC information about an user for an operator.
+     *
+     * @param id The User ID.
+     */
     getKYCData(id: string): Promise<any>;
     /**
      * Create a new User with role Consumer.
      *
      * @param consumer The User schema.
      */
-    create(consumer: UserSchema): Promise<User>;
-    /**
-     * Create a new Document on a User with role Consumer.
-     *
-     * @param id The User ID.
-     * @deprecated This method was moved to DocumentWebService and will be removed in a future release
-     */
-    createDocument(id: string, document: DocumentSchema): Promise<Document>;
+    create(consumer: UserSchema & {
+        externalId?: string;
+    }): Promise<User>;
     /**
      * Partially update an existing User with role Consumer.
      *
