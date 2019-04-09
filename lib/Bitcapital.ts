@@ -208,6 +208,13 @@ export default class Bitcapital {
   }
 
   /**
+   * Interface for the Phone Credit service.
+   */
+  public phoneCredit(): PhoneCreditWebService {
+    return PhoneCreditWebService.getInstance();
+  }
+
+  /**
    * Interface for the Product service.
    */
   public products(): ProductWebService {
