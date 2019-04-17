@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class WalletWithdrawRequest {
+    constructor(bankingId, amount) {
+        this.bankingId = bankingId;
+        this.amount = amount;
+    }
+}
+exports.WalletWithdrawRequest = WalletWithdrawRequest;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiV2FsbGV0V2l0aGRyYXdSZXF1ZXN0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vbGliL3NlcnZpY2VzL3JlcXVlc3QvV2FsbGV0V2l0aGRyYXdSZXF1ZXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsTUFBYSxxQkFBcUI7SUFHaEMsWUFBWSxTQUFpQixFQUFFLE1BQWM7UUFDM0MsSUFBSSxDQUFDLFNBQVMsR0FBRyxTQUFTLENBQUM7UUFDM0IsSUFBSSxDQUFDLE1BQU0sR0FBRyxNQUFNLENBQUM7SUFDdkIsQ0FBQztDQUNGO0FBUEQsc0RBT0MiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgV2FsbGV0V2l0aGRyYXdSZXF1ZXN0IHtcbiAgYmFua2luZ0lkPzogc3RyaW5nO1xuICBhbW91bnQ6IHN0cmluZztcbiAgY29uc3RydWN0b3IoYmFua2luZ0lkOiBzdHJpbmcsIGFtb3VudDogc3RyaW5nKSB7XG4gICAgdGhpcy5iYW5raW5nSWQgPSBiYW5raW5nSWQ7XG4gICAgdGhpcy5hbW91bnQgPSBhbW91bnQ7XG4gIH1cbn1cbiJdfQ==
