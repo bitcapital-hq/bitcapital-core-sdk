@@ -1,5 +1,12 @@
 export declare class WalletWithdrawRequest {
+    amount: number;
     bankingId?: string;
-    amount: string;
-    constructor(bankingId: string, amount: string);
+    bank?: {
+        bank: number;
+        agency: number;
+        agencyDigit: string;
+        account: number;
+        accountDigit: string;
+    };
+    constructor(amount: number, bank: number, agency: number, agencyDigit: string, account: number, accountDigit: string, bankingId?: string);
 }

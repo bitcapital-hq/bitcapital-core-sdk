@@ -1,6 +1,6 @@
 import { Wallet, WalletSchema, Transaction, Pagination, PaginatedArray } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
-import { WalletTransferRequest, WalletWithdrawRequest } from "./request";
+import { WalletWithdrawRequest } from "./request";
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export declare class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
@@ -59,10 +59,4 @@ export declare class WalletWebService extends BaseModelWebService<Wallet, Wallet
      * @param id The Wallet id.
      */
     withdraw(id: string, schema: WalletWithdrawRequest): Promise<any>;
-    /**
-     * Transfer money to a third party bank.
-     *
-     * @param id The Wallet id.
-     */
-    transfer(id: string, schema: WalletTransferRequest): Promise<any>;
 }
