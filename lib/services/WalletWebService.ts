@@ -8,7 +8,7 @@ import {
   PaginationUtil
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
-import { WalletTransferRequest, WalletWithdrawRequest } from "./request";
+import { WalletWithdrawRequest } from "./request";
 
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {}
 
@@ -161,21 +161,6 @@ export class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> 
    */
   public async withdraw(id: string, schema: WalletWithdrawRequest) {
     const response = await this.http.post(`/wallets/${id}/withdraw`, schema);
-
-    if (!response || response.status !== 200) {
-      throw response;
-    }
-
-    return response.data;
-  }
-
-  /**
-   * Transfer money to a third party bank.
-   *
-   * @param id The Wallet id.
-   */
-  public async transfer(id: string, schema: WalletTransferRequest) {
-    const response = await this.http.post(`/wallets/${id}/transfer`, schema);
 
     if (!response || response.status !== 200) {
       throw response;
