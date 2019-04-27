@@ -3,3 +3,4 @@ export * from "./OAuthClientCredentialsRequest";
 export * from "./OAuthRefreshRequest";
 export * from "./AssetEmitRequest";
 export * from "./AssetDestroyRequest";
+export * from "./WalletWithdrawRequest";
