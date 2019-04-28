@@ -37,7 +37,7 @@ export declare class ConsumerWebService extends BaseModelWebService<User, UserSc
      */
     create(consumer: UserSchema & {
         password: string;
-        productId: string;
+        productId?: string;
         externalId?: string;
     }): Promise<User>;
     /**
