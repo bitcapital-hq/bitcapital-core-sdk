@@ -1,4 +1,4 @@
-import { Http, User, UserSchema, Pagination, PaginatedArray, PaginationUtil } from "bitcapital-common";
+import { Http, User, UserSchema, Pagination, PaginatedArray, PaginationUtil, Document } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
 export interface ConsumerWebServiceOptions extends BaseModelWebServiceOptions {}
@@ -82,6 +82,21 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
   }
 
   /**
+   * Gets KYC information about an user for an operator.
+   *
+   * @param id The User ID.
+   */
+  public async getKYCData(id: string) {
+    const response = await this.http.get(`/consumers/${id}/kyc`);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data;
+  }
+
+  /**
    * Create a new User with role Consumer.
    *
    * @param consumer The User schema.
@@ -124,6 +139,102 @@ export class ConsumerWebService extends BaseModelWebService<User, UserSchema> {
     }
 
     return new User(response.data);
+  }
+
+  /**
+   * Upload a new Document picture to a User with role Consumer.
+   *
+   * @param {string} id The User id.
+   * @param {DocumentType} type The Document type.
+   * @param {("front" | "back" | "selfie")} side The Document picture side.
+   * @param {File} picture The picture to be uploaded.
+   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
+   */
+  public async uploadDocumentPicture(id: string, type: DocumentType, side: "front" | "back" | "selfie", picture: File) {
+    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
+
+    const formData = new FormData();
+    formData.append("picture", picture);
+
+    const response = await this.http.post(`/consumers/${id}/documents/${type}/${side}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Document(response.data);
+  }
+
+  /**
+   * Registers the manual KYC anlysis result.
+   *
+   * @param {string} id The User id.
+   * @param {string} name The consumer's name.
+   * @param {{"approved" | "rejected"}} result The analysis veredict.
+   * @param {string} result The reason for the consumer's approval or rejection.
+   * @param {string} taxId The consumer's tax ID.
+   * @param {string} motherName The consumer's mother's name.
+   * @param {string} address The consumer's address.
+   * @param {string} phone The consumer's phone.
+   * @param {string} birthday The consumer's birthday.
+   */
+  public async setManualKYCAnalysisResult(
+    id: string,
+    name: string,
+    result: string,
+    reason: string,
+    taxId: string,
+    motherName: string,
+    address: string,
+    phone: string,
+    birthday: string
+  ) {
+    const response = await this.http.post(`/consumers/${id}/kyc`, {
+      name,
+      result,
+      reason,
+      taxId,
+      motherName,
+      address,
+      phone,
+      birthday
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response;
+  }
+
+  /**
+   * Upload a new Document picture to a User with role Consumer using base64.
+   *
+   * @param {string} id The User id.
+   * @param {DocumentType} type The Document type.
+   * @param {("front" | "back" | "selfie")} side The Document picture side.
+   * @param {string} picture The base64 representation of the picture to be uploaded.
+   * @deprecated This method was moved to DocumentWebService and will be removed in a future release
+   */
+  public async uploadDocumentPictureFromBase64(
+    id: string,
+    type: DocumentType,
+    side: "front" | "back" | "selfie",
+    picture: string
+  ) {
+    console.warn("This method was moved to DocumentWebService and will be removed in a future release");
+
+    const response = await this.http.post(`/consumers/${id}/documents/${type}/${side}`, { picture });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Document(response.data);
   }
 
   /**
