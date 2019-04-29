@@ -9,6 +9,7 @@ import {
   Card
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
+import { WalletWithdrawRequest } from "./request";
 
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {}
 
@@ -168,5 +169,20 @@ export class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> 
     }
 
     return true;
+  }
+
+  /**
+   * Withdraw money from a Wallet.
+   *
+   * @param id The Wallet id.
+   */
+  public async withdraw(id: string, schema: WalletWithdrawRequest) {
+    const response = await this.http.post(`/wallets/${id}/withdraw`, schema);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data;
   }
 }

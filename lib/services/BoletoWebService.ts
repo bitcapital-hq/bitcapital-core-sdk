@@ -35,7 +35,7 @@ export class BoletoWebService extends BaseModelWebService<Boleto, BoletoSchema> 
    * @param barcode The boleto barcode
    */
   public async getPaymentInfo(barcode: string): Promise<BoletoValidateResponse> {
-    const response = await this.http.get("/boleto", { params: { barcode } });
+    const response = await this.http.get("/boletos", { params: { barcode } });
 
     if (!response || response.status !== 200) {
       throw response;
@@ -51,7 +51,7 @@ export class BoletoWebService extends BaseModelWebService<Boleto, BoletoSchema> 
    * @param payment The Payment schema
    */
   public async pay(payload: BoletoPaymentRequestSchema): Promise<BoletoPaymentResponse> {
-    const url = "/boleto/pay";
+    const url = "/boletos/pay";
     const signature = RequestUtil.sign(this.options.clientSecret, {
       url,
       method: "POST",
@@ -73,7 +73,7 @@ export class BoletoWebService extends BaseModelWebService<Boleto, BoletoSchema> 
    * @param payload The payload schema
    */
   public async emit(payload: BoletoEmissionRequestSchema): Promise<BoletoEmissionResponse> {
-    const url = "/boleto/emit";
+    const url = "/boletos/emit";
     const signature = RequestUtil.sign(this.options.clientSecret, {
       url,
       method: "POST",
@@ -95,7 +95,7 @@ export class BoletoWebService extends BaseModelWebService<Boleto, BoletoSchema> 
    * @param id the boleto ID
    */
   public async findOne(id: string): Promise<Boleto> {
-    const response = await this.http.get(`/boleto/${id}`);
+    const response = await this.http.get(`/boletos/${id}`);
 
     if (!response || response.status !== 200) {
       throw response;

@@ -1,5 +1,6 @@
 import { Wallet, WalletSchema, Transaction, Pagination, PaginatedArray, Card } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
+import { WalletWithdrawRequest } from "./request";
 export interface WalletWebServiceOptions extends BaseModelWebServiceOptions {
 }
 export declare class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> {
@@ -56,4 +57,10 @@ export declare class WalletWebService extends BaseModelWebService<Wallet, Wallet
      * @param id The Wallet ID.
      */
     delete(id: string): Promise<boolean>;
+    /**
+     * Withdraw money from a Wallet.
+     *
+     * @param id The Wallet id.
+     */
+    withdraw(id: string, schema: WalletWithdrawRequest): Promise<any>;
 }
