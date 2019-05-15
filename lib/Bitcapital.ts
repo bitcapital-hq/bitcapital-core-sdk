@@ -16,12 +16,13 @@ import {
   TransactionWebService,
   UserWebService,
   WalletWebService,
-  PhoneCreditWebService
+  PhoneCreditWebService,
+  ProductWebService,
+  IssueWebService
 } from "./services";
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
-import { ProductWebService } from "./services/ProductWebService";
 
 export interface BitcapitalOptions {
   session?: Session;
@@ -71,6 +72,7 @@ export default class Bitcapital {
     TransactionWebService.initialize({ session: this._session, ...options });
     WalletWebService.initialize({ session: this._session, ...options });
     PhoneCreditWebService.initialize({ session: this._session, ...options });
+    IssueWebService.initialize({ session: this._session, ...options });
 
     // Prepare singleton for easier access
     if (!Bitcapital._instance) {
@@ -240,5 +242,12 @@ export default class Bitcapital {
    */
   public wallets(): WalletWebService {
     return WalletWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Issues service.
+   */
+  public issues(): IssueWebService {
+    return IssueWebService.getInstance();
   }
 }
