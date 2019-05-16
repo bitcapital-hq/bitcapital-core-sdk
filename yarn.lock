@@ -591,7 +591,7 @@ binary-extensions@^1.0.0:
 
 "bitcapital-common@git+ssh://git@git.btcore.app:oss/bitcapital-common.git#feat/str-provider":
   version "1.6.1"
-  resolved "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#0a1b8aa2827bd7c638146c33ce7ec3fb199609e8"
+  resolved "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#f7a437c384f40b8c63ddad9e3c01ce7e286c9ab5"
   dependencies:
     "@types/crypto-js" "^3.1.43"
     async "^2.6.2"
