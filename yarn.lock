@@ -589,9 +589,9 @@ binary-extensions@^1.0.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
 
-"bitcapital-common@git+ssh://git@git.btcore.app:oss/bitcapital-common.git#feat/str-provider":
+"bitcapital-common@git+ssh://git@git.btcore.app:oss/bitcapital-common.git#nightly":
   version "1.6.1"
-  resolved "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#0a1b8aa2827bd7c638146c33ce7ec3fb199609e8"
+  resolved "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#4669e06a9dbb741e9af6079127933b9e3f6dd5a7"
   dependencies:
     "@types/crypto-js" "^3.1.43"
     async "^2.6.2"

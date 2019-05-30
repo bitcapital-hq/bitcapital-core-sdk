@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "bitcapital-common": "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#feat/str-provider",
+    "bitcapital-common": "git+ssh://git@git.btcore.app:oss/bitcapital-common.git#nightly",
     "localstorage-polyfill": "^1.0.1",
     "qs": "^6.6.0"
   },
