@@ -1,8 +1,7 @@
 import { User, RequestSigningOptions } from "bitcapital-common";
-import { AddressWebService, AssetWebService, BankingWebService, BoletoWebService, CardWebService, ConsumerWebService, DocumentWebService, DomainWebService, MediatorWebService, OAuthWebService, PaymentWebService, PhoneWebService, TransactionWebService, UserWebService, WalletWebService, PhoneCreditWebService } from "./services";
+import { AddressWebService, AssetWebService, BankingWebService, BoletoWebService, CardWebService, ConsumerWebService, DocumentWebService, DomainWebService, MediatorWebService, OAuthWebService, PaymentWebService, PhoneWebService, TransactionWebService, UserWebService, WalletWebService, PhoneCreditWebService, ProductWebService, IssueWebService } from "./services";
 import { OAuthStatusResponse } from "./services/response";
 import { Session } from "./session";
-import { ProductWebService } from "./services/ProductWebService";
 export interface BitcapitalOptions {
     session?: Session;
     baseURL: string;
@@ -117,4 +116,8 @@ export default class Bitcapital {
      * Interface for the Wallets service.
      */
     wallets(): WalletWebService;
+    /**
+     * Interface for the Issues service.
+     */
+    issues(): IssueWebService;
 }
