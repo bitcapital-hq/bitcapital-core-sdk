@@ -1,6 +1,7 @@
 import { BaseModelWebServiceOptions } from ".";
 import { RequestUtil } from "..";
 import { Http } from "bitcapital-common";
+import { PeopleResponse } from "bigdatacorp-service";
 
 export interface PreviewWebServiceOptions extends BaseModelWebServiceOptions {}
 
@@ -31,7 +32,7 @@ export class PreviewWebService {
     throw new Error("Method not implemented.");
   }
 
-  public async kyc(taxId: string) {
+  public async kyc(taxId: string): Promise<{ accepted: true; details: PeopleResponse }> {
     const payload = {};
 
     const url = `/preview/kyc/${taxId}`;
