@@ -41,7 +41,7 @@ export class PreviewWebService {
       body: JSON.stringify(payload),
       method: "GET"
     });
-    const response = await this.http.post(url, payload, { headers: { ...signature } });
+    const response = await this.http.get(url, payload, { headers: { ...signature } });
 
     if (!response || response.status !== 200) {
       throw response;
