@@ -19,4 +19,5 @@ export * from "./WalletWebService";
 export * from "./BankingWebService";
 export * from "./PhoneCreditWebService";
 export * from "./IssueWebService";
+export * from "./AlertWebService";
 export * from "./PreviewWebService";
