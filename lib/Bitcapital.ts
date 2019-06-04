@@ -19,7 +19,8 @@ import {
   PhoneCreditWebService,
   ProductWebService,
   IssueWebService,
-  AlertWebService
+  AlertWebService,
+  PreviewWebService
 } from "./services";
 import { BaseModelWebServiceOptions } from "./services/base/BaseModelWebService";
 import { OAuthStatusResponse } from "./services/response";
@@ -75,6 +76,7 @@ export default class Bitcapital {
     PhoneCreditWebService.initialize({ session: this._session, ...options });
     IssueWebService.initialize({ session: this._session, ...options });
     AlertWebService.initialize({ session: this._session, ...options });
+    PreviewWebService.initialize({ session: this._session, ...options });
 
     // Prepare singleton for easier access
     if (!Bitcapital._instance) {
@@ -258,5 +260,12 @@ export default class Bitcapital {
    */
   public alerts(): AlertWebService {
     return AlertWebService.getInstance();
+  }
+
+  /**
+   * Interface for the Preview service.
+   */
+  public previews(): PreviewWebService {
+    return PreviewWebService.getInstance();
   }
 }
