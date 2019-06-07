@@ -185,4 +185,19 @@ export class WalletWebService extends BaseModelWebService<Wallet, WalletSchema> 
 
     return response.data;
   }
+
+  /**
+   * Get banking deposit info from a Wallet
+   *
+   * @param id The Wallet id.
+   */
+  public async getDepositInfo(id: string) {
+    const response = await this.http.get(`/wallets/${id}/depositInfo`);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return response.data;
+  }
 }
