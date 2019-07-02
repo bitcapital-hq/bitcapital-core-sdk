@@ -88,11 +88,14 @@ export default class Session {
             this.refreshToken({ refreshToken });
           } else {
             // No refresh token, just destroy the session
+            console.warn("Session is invalid and no refresh token avaiable, destroying session");
             this.destroy();
           }
         } catch (error) {
           // Refresh token auth failed, destroy the session
+          console.error("Session is invalid and refresh token auth failed, destroying session");
           this.destroy();
+          throw error;
         }
       })
     ];
