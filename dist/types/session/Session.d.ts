@@ -7,6 +7,7 @@ export interface SessionOptions {
     oauth?: OAuthWebServiceOptions;
     storage?: StorageUtil;
     autoFetch?: boolean;
+    sessionUnauthorizedHandler?: (current: User) => Promise<void>;
 }
 export interface PasswordGrantOptions {
     username: string;
