@@ -63,4 +63,10 @@ export declare class WalletWebService extends BaseModelWebService<Wallet, Wallet
      * @param id The Wallet id.
      */
     withdraw(id: string, schema: WalletWithdrawRequest): Promise<any>;
+    /**
+     * Get banking deposit info from a Wallet
+     *
+     * @param id The Wallet id.
+     */
+    getDepositInfo(id: string): Promise<any>;
 }

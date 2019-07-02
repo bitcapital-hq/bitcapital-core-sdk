@@ -9,6 +9,7 @@ export interface SessionOptions {
   oauth?: OAuthWebServiceOptions;
   storage?: StorageUtil;
   autoFetch?: boolean;
+  sessionUnauthorizedHandler?: (current: User) => Promise<void>;
 }
 
 export interface PasswordGrantOptions {
@@ -83,16 +84,22 @@ export default class Session {
         try {
           const refreshToken = this.current.credentials && this.current.credentials.refreshToken;
 
+          if (options.sessionUnauthorizedHandler) {
+            // If there's a custom handler, run it
+            return options.sessionUnauthorizedHandler(this.current);
+          }
           if (refreshToken) {
             // If there's a refresh token, try to refresh it
-            this.refreshToken({ refreshToken });
-          } else {
-            // No refresh token, just destroy the session
-            this.destroy();
+            return this.refreshToken({ refreshToken });
           }
+          // No refresh token, just destroy the session
+          console.warn("Session is invalid and no refresh token avaiable, destroying session");
+          return this.destroy();
         } catch (error) {
           // Refresh token auth failed, destroy the session
+          console.error("Session is invalid and handler failed, destroying session");
           this.destroy();
+          throw error;
         }
       })
     ];
