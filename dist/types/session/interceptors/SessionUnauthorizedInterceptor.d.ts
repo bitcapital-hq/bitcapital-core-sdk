@@ -7,5 +7,5 @@ export default class SessionUnauthorizedInterceptor implements HttpInterceptor {
     constructor(onUnauthorizedStatus: SessionUnauthorizedCallback, errorCodes?: number[]);
     request(request: AxiosRequestConfig): Promise<AxiosRequestConfig>;
     response(response: AxiosResponse): Promise<any>;
-    error(error: AxiosError): Promise<AxiosError>;
+    error(error: AxiosError): Promise<AxiosError | AxiosResponse<any>>;
 }
