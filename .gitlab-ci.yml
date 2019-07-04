@@ -36,6 +36,8 @@ tests:
   artifacts:
     reports:
       junit: junit.xml
+  tags:
+    - docker
 
 
 publish-github:
