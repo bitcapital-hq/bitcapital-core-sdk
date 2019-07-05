@@ -5,7 +5,8 @@ import {
   PaymentRequestSchema,
   WithdrawalRequestSchema,
   BankTransferPayment,
-  Transaction
+  Transaction,
+  PaymentType
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
@@ -96,5 +97,30 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     }
 
     return new BankTransferPayment(response.data);
+  }
+
+  public async recordFailedPayment(request: {
+    source: string;
+    amount: string;
+    type: PaymentType;
+    assetCode?: string;
+    additionalData?: any;
+  }): Promise<Transaction> {
+    const body = { ...request };
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      method: "POST",
+      url: `/payments/failed`,
+      body: JSON.stringify(body)
+    });
+
+    const response = await this.http.post(`/payments/failed`, body, {
+      headers: { ...signature }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Transaction(response.data);
   }
 }

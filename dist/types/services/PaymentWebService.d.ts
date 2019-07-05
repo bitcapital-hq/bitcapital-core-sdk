@@ -1,4 +1,4 @@
-import { Payment, PaymentSchema, PaymentRequestSchema, WithdrawalRequestSchema, BankTransferPayment, Transaction } from "bitcapital-common";
+import { Payment, PaymentSchema, PaymentRequestSchema, WithdrawalRequestSchema, BankTransferPayment, Transaction, PaymentType } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 export interface PaymentWebServiceOptions extends BaseModelWebServiceOptions {
 }
@@ -25,4 +25,11 @@ export declare class PaymentWebService extends BaseModelWebService<Payment, Paym
      * @param bankingId The id of the bank account to be credited
      */
     withdraw(requestData: WithdrawalRequestSchema): Promise<BankTransferPayment>;
+    recordFailedPayment(request: {
+        source: string;
+        amount: string;
+        type: PaymentType;
+        assetCode?: string;
+        additionalData?: any;
+    }): Promise<Transaction>;
 }
