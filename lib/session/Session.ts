@@ -80,7 +80,7 @@ export default class Session {
     // Prepare Session interceptors
     this._interceptors = [
       new SessionCredentialsInterceptor(this),
-      new SessionUnauthorizedInterceptor(() => {
+      new SessionUnauthorizedInterceptor(this, () => {
         try {
           const refreshToken = this.current.credentials && this.current.credentials.refreshToken;
 
