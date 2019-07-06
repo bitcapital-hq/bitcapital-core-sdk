@@ -109,11 +109,11 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     const body = { ...request };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
-      url: `/payments/failed`,
+      url: `/payments/offline/failed`,
       body: JSON.stringify(body)
     });
 
-    const response = await this.http.post(`/payments/failed`, body, {
+    const response = await this.http.post(`/payments/offline/failed`, body, {
       headers: { ...signature }
     });
 
