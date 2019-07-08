@@ -26,5 +26,5 @@ export declare class PaymentWebService extends BaseModelWebService<Payment, Paym
      */
     withdraw(requestData: WithdrawalRequestSchema): Promise<BankTransferPayment>;
     confirm(source: string, id: string): Promise<Transaction>;
-    cancel(source: string, id: string): Promise<Transaction>;
+    reverse(source: string, id: string): Promise<Transaction>;
 }

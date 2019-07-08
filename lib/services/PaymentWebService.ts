@@ -117,7 +117,7 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     return new Transaction(response.data);
   }
 
-  public async cancel(source: string, id: string): Promise<Transaction> {
+  public async reverse(source: string, id: string): Promise<Transaction> {
     const body = { source };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
