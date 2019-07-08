@@ -98,8 +98,8 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     return new BankTransferPayment(response.data);
   }
 
-  public async confirm(source: string, id: string): Promise<Transaction> {
-    const body = { source };
+  public async confirm(source: string, id: string, extra?: any): Promise<Transaction> {
+    const body = { source, extra };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/payments/${id}/confirmation`,
@@ -117,8 +117,8 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     return new Transaction(response.data);
   }
 
-  public async reverse(source: string, id: string): Promise<Transaction> {
-    const body = { source };
+  public async reverse(source: string, id: string, extra?: any): Promise<Transaction> {
+    const body = { source, extra };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
       url: `/payments/${id}/reversal`,
