@@ -31,7 +31,7 @@ export default class SessionUnauthorizedInterceptor implements HttpInterceptor {
     return actualResponse;
   }
 
-  public async error(error: AxiosError): Promise<AxiosError | AxiosResponse<any>> {
+  public async error(error: AxiosError): Promise<any> {
     const originalRequest = error.config;
     if (error && error.response && this.errorCodes.indexOf(error.response.status) >= 0 && !originalRequest["_retry"]) {
       originalRequest["_retry"] = true;

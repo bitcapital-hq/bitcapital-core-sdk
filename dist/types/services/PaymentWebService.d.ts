@@ -25,4 +25,6 @@ export declare class PaymentWebService extends BaseModelWebService<Payment, Paym
      * @param bankingId The id of the bank account to be credited
      */
     withdraw(requestData: WithdrawalRequestSchema): Promise<BankTransferPayment>;
+    confirm(source: string, id: string): Promise<Transaction>;
+    cancel(source: string, id: string): Promise<Transaction>;
 }

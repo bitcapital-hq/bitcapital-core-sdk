@@ -97,4 +97,42 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
 
     return new BankTransferPayment(response.data);
   }
+
+  public async confirm(source: string, id: string): Promise<Transaction> {
+    const body = { source };
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      method: "POST",
+      url: `/payments/${id}/confirmation`,
+      body: JSON.stringify(body)
+    });
+
+    const response = await this.http.post(`/payments/${id}/confirmation`, body, {
+      headers: { ...signature }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Transaction(response.data);
+  }
+
+  public async cancel(source: string, id: string): Promise<Transaction> {
+    const body = { source };
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      method: "POST",
+      url: `/payments/${id}/reversal`,
+      body: JSON.stringify(body)
+    });
+
+    const response = await this.http.post(`/payments/${id}/reversal`, body, {
+      headers: { ...signature }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Transaction(response.data);
+  }
 }
