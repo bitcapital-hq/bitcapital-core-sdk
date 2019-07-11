@@ -30,7 +30,7 @@ export declare class PaymentWebService extends BaseModelWebService<Payment, Paym
     authorize(request: {
         source: string;
         amount: string;
-        type: PaymentType;
+        type?: PaymentType;
         assetCode?: string;
         additionalData?: any;
     }): Promise<Transaction>;

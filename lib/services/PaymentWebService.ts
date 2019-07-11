@@ -140,7 +140,7 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
   public async authorize(request: {
     source: string;
     amount: string;
-    type: PaymentType;
+    type?: PaymentType;
     assetCode?: string;
     additionalData?: any;
   }): Promise<Transaction> {
