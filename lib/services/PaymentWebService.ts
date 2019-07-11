@@ -5,7 +5,8 @@ import {
   PaymentRequestSchema,
   WithdrawalRequestSchema,
   BankTransferPayment,
-  Transaction
+  Transaction,
+  PaymentType
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base";
 
@@ -98,7 +99,7 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     return new BankTransferPayment(response.data);
   }
 
-  public async confirm(source: string, id: string, extra?: any): Promise<Transaction> {
+  public async confirm(source: string, id: string, extra?: any): Promise<Payment> {
     const body = { source, extra };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
@@ -114,10 +115,10 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
       throw response;
     }
 
-    return new Transaction(response.data);
+    return new Payment(response.data);
   }
 
-  public async reverse(source: string, id: string, extra?: any): Promise<Transaction> {
+  public async reverse(source: string, id: string, extra?: any): Promise<Payment> {
     const body = { source, extra };
     const signature = RequestUtil.sign(this.options.clientSecret, {
       method: "POST",
@@ -126,6 +127,31 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
     });
 
     const response = await this.http.post(`/payments/${id}/reversal`, body, {
+      headers: { ...signature }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Payment(response.data);
+  }
+
+  public async authorize(request: {
+    source: string;
+    amount: string;
+    type: PaymentType;
+    assetCode?: string;
+    additionalData?: any;
+  }): Promise<Transaction> {
+    const body = { ...request };
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      method: "POST",
+      url: `/payments/authorization`,
+      body: JSON.stringify(body)
+    });
+
+    const response = await this.http.post(`/payments/authorization`, body, {
       headers: { ...signature }
     });
 
