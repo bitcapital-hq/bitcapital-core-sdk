@@ -34,4 +34,11 @@ export declare class PaymentWebService extends BaseModelWebService<Payment, Paym
         assetCode?: string;
         additionalData?: any;
     }): Promise<Transaction>;
+    recordFailedPayment(request: {
+        source: string;
+        amount: string;
+        type?: PaymentType;
+        assetCode?: string;
+        additionalData?: any;
+    }): Promise<Transaction>;
 }

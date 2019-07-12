@@ -161,4 +161,29 @@ export class PaymentWebService extends BaseModelWebService<Payment, PaymentSchem
 
     return new Transaction(response.data);
   }
+
+  public async recordFailedPayment(request: {
+    source: string;
+    amount: string;
+    type?: PaymentType;
+    assetCode?: string;
+    additionalData?: any;
+  }): Promise<Transaction> {
+    const body = { ...request };
+    const signature = RequestUtil.sign(this.options.clientSecret, {
+      method: "POST",
+      url: `/payments/offline/failed`,
+      body: JSON.stringify(body)
+    });
+
+    const response = await this.http.post(`/payments/offline/failed`, body, {
+      headers: { ...signature }
+    });
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return new Transaction(response.data);
+  }
 }
