@@ -8,7 +8,8 @@ import {
   Pagination,
   PaginationUtil,
   Payment,
-  PaymentSchema
+  PaymentSchema,
+  CardCancellationRequestSchema
 } from "bitcapital-common";
 import { BaseModelWebService, BaseModelWebServiceOptions } from "./base/BaseModelWebService";
 import { CardEmitRequest } from "./request/CardEmitRequest";
@@ -48,6 +49,23 @@ export class CardWebService extends BaseModelWebService<Card, CardSchema> {
     }
 
     return new Card(response.data);
+  }
+
+  /**
+   * Cancel card with the given ID
+   *
+   * @param walletId  The wallet ID
+   * @param walletId  The card ID
+   * @param payload The data required for the card canceling operation
+   */
+  public async cancel(cardId: string, walletId: string, payload: CardCancellationRequestSchema): Promise<boolean> {
+    const response = await this.http.post(`/wallets/${walletId}/cards/${cardId}/cancel`, payload);
+
+    if (!response || response.status !== 200) {
+      throw response;
+    }
+
+    return true;
   }
 
   /**
